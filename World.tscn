@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=9 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://nanahira_papercraft.tscn" id="1_e7o3j"]
 [ext_resource type="Script" path="res://Player.gd" id="1_ksjrh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1hb0"]
+[ext_resource type="Material" uid="uid://cj4o0j6e71k4p" path="res://PaperMaterial.tres" id="1_w2hpw"]
+[ext_resource type="Script" path="res://FollowCamera.gd" id="4_dpexn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0uhwe"]
 radius = 0.114141
@@ -26,26 +26,30 @@ ambient_light_source = 3
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 use_collision = true
-size = Vector3(20, 2, 10)
-material = SubResource("StandardMaterial3D_k1hb0")
+size = Vector3(20, 2, 20)
+material = ExtResource("1_w2hpw")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("1_ksjrh")
+camera = NodePath("../Camera3D")
 
 [node name="NanahiraPapercraft" parent="CharacterBody3D" instance=ExtResource("1_e7o3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685212)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.167508, -0.00991626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)
 shape = SubResource("CapsuleShape3D_0uhwe")
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.978631, 0.205624, 0, -0.205624, 0.978631, 0, 0.690873, 0.837549)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -0.572074, 1, 1.73205)
 current = true
+script = ExtResource("4_dpexn")
+target = NodePath("../CharacterBody3D")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ofiqo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.61606, 0.787699, 0, -0.787699, -0.61606, -0.709259, 0.265969, -1.27568)
+transform = Transform3D(0.903043, -0.374112, -0.211077, -8.88178e-16, -0.49139, 0.87094, -0.42955, -0.786496, -0.443746, -0.286918, 0.265969, -0.579307)
 shadow_enabled = true
+shadow_bias = 0.03

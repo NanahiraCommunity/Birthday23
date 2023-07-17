@@ -53,11 +53,12 @@ states/Walk/position = Vector2(463, 100)
 states/walk-start/node = SubResource("AnimationNodeAnimation_seisf")
 states/walk-start/position = Vector2(328, 100)
 transitions = ["Start", "walk-start", SubResource("AnimationNodeStateMachineTransition_jk0wd"), "walk-start", "Walk", SubResource("AnimationNodeStateMachineTransition_1cffu")]
+graph_offset = Vector2(-123, -23)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ue47u"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tpo04"]
-graph_offset = Vector2(-37, -14.0909)
+graph_offset = Vector2(-110, 16)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_n2ccf")
 nodes/Blend2/position = Vector2(440, 100)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_vgeme")
@@ -87,13 +88,13 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 script = ExtResource("2_4spq3")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, -0.143098, 0)
-bones/1/rotation = Quaternion(0.997886, 1.70304e-07, 1.98382e-07, -0.0649845)
-bones/2/rotation = Quaternion(-0.124642, 1.6485e-07, 1.43052e-07, 0.992202)
-bones/3/rotation = Quaternion(0.748959, -1.50547e-08, 2.09035e-07, 0.662616)
-bones/4/rotation = Quaternion(0.997886, 1.54184e-07, 1.98884e-07, -0.0649854)
-bones/5/rotation = Quaternion(-0.124643, 9.02616e-08, 1.92195e-07, 0.992202)
-bones/6/rotation = Quaternion(0.748961, 6.30646e-09, 1.31308e-07, 0.662614)
+bones/0/position = Vector3(0, -0.144796, 0)
+bones/1/rotation = Quaternion(0.99084, 1.75402e-07, 1.91523e-07, -0.135045)
+bones/2/rotation = Quaternion(-0.259715, 1.53041e-07, 1.63879e-07, 0.965685)
+bones/3/rotation = Quaternion(0.79024, -3.51302e-09, 2.08665e-07, 0.612797)
+bones/4/rotation = Quaternion(0.99084, 1.62689e-07, 1.9352e-07, -0.135042)
+bones/5/rotation = Quaternion(-0.259713, 7.69064e-08, 2.02095e-07, 0.965686)
+bones/6/rotation = Quaternion(0.790242, 1.29209e-08, 1.2961e-07, 0.612796)
 
 [node name="NanahiraPapercraft2" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
