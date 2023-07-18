@@ -75,7 +75,7 @@ nodes/StateMachine/position = Vector2(60, 220)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ue47u")
 nodes/TimeScale/position = Vector2(280, 200)
 nodes/output/position = Vector2(620, 140)
-node_connections = [&"output", 0, &"Blend2", &"TimeScale", 0, &"StateMachine", &"Blend2", 0, &"Idle", &"Blend2", 1, &"TimeScale"]
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Idle", &"Blend2", 1, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jlsk"]
 animation = &"fly-start"
@@ -134,20 +134,6 @@ fill_to = Vector2(1, 0.5)
 
 [node name="NanahiraPapercraft" instance=ExtResource("1_vjmr4")]
 script = ExtResource("2_4spq3")
-
-[node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, -0.143581, 0)
-bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, 3.19734e-36, 1)
-bones/1/rotation = Quaternion(0.997204, 9.60049e-08, 7.46e-08, -0.0747259)
-bones/2/rotation = Quaternion(-0.143531, 1.54907e-07, 7.82281e-08, 0.989646)
-bones/3/rotation = Quaternion(0.754875, 1.64194e-09, 1.78527e-07, 0.655869)
-bones/4/rotation = Quaternion(0.997204, 7.33696e-08, 1.22397e-07, -0.0747263)
-bones/5/rotation = Quaternion(-0.143532, 7.59613e-08, 9.34462e-08, 0.989646)
-bones/6/rotation = Quaternion(0.754877, 2.39419e-08, 1.02878e-07, 0.655867)
-bones/13/rotation = Quaternion(-7.42916e-08, -5.4504e-08, 0.939693, 0.34202)
-bones/15/rotation = Quaternion(-1.93281e-07, -4.47391e-08, -0.507572, 0.861609)
-bones/16/rotation = Quaternion(-2.483e-07, -3.87301e-08, 0.939693, -0.34202)
-bones/18/rotation = Quaternion(-3.44599e-08, -2.89574e-07, 0.507572, 0.861609)
 
 [node name="NanahiraPapercraft2" parent="Armature/Skeleton3D" index="0"]
 visible = false
