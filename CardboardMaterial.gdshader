@@ -115,7 +115,7 @@ void fragment()
 		vec2 base_uv = SideUV.xy;
 		{
 			vec3 view_dir = normalize(normalize(-VERTEX)*mat3(TANGENT,-BINORMAL,NORMAL));
-			for (; it < 32; it++)
+			for (; it < 20; it++)
 			{
 				float depth = clamp(
 					pow(abs(pow(sin(base_uv.x * 3.1415926), 2.0) - clamp(base_uv.y, 0, 1)) * 4.0, 2.0)
@@ -129,7 +129,7 @@ void fragment()
 		y = base_uv.y;
 				m = mix(light_brown, darkest_brown, clamp(
 			pow(abs(pow(sin(base_uv.x * 3.1415926), 2.0) - clamp(base_uv.y, 0, 1)) * 4.0, 2.0)
-			+ pow(float(it) / 32.0, 0.75), 0, 1));
+			+ pow(float(it) / 20.0, 0.75), 0, 1));
 		}
 		
 		ALBEDO = mix(m, darker_brown, n * 0.15);
