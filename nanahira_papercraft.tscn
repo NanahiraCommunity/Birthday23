@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://byflm3kvjdyoy"]
+[gd_scene load_steps=33 format=3 uid="uid://byflm3kvjdyoy"]
 
 [ext_resource type="PackedScene" uid="uid://b5v002sdy4808" path="res://NanahiraPapercraft.glb" id="1_vjmr4"]
 [ext_resource type="Script" path="res://nanahira_papercraft.gd" id="2_4spq3"]
@@ -26,6 +26,12 @@ shader_parameter/texture_albedo = ExtResource("3_epfh2")
 shader_parameter/texture_paper = ExtResource("6_6djn6")
 shader_parameter/texture_roughness = ExtResource("5_5yljj")
 shader_parameter/texture_normal = ExtResource("4_t4h03")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g56u5"]
+animation = &"Fly-stop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs1eg"]
+animation = &"Fly"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lvxvn"]
 animation = &"Idle"
@@ -59,7 +65,7 @@ graph_offset = Vector2(-123, -23)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ue47u"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tpo04"]
-graph_offset = Vector2(-110, 16)
+graph_offset = Vector2(-213, 42)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_n2ccf")
 nodes/Blend2/position = Vector2(440, 100)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_vgeme")
@@ -69,21 +75,51 @@ nodes/StateMachine/position = Vector2(60, 220)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ue47u")
 nodes/TimeScale/position = Vector2(280, 200)
 nodes/output/position = Vector2(620, 140)
-node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Idle", &"Blend2", 1, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
+node_connections = [&"output", 0, &"Blend2", &"TimeScale", 0, &"StateMachine", &"Blend2", 0, &"Idle", &"Blend2", 1, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7jlsk"]
+animation = &"fly-start"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_poj7k"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_knxuw"]
 xfade_time = 0.3
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q63s5"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n6diw"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ii77c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a7urx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dtksj"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jfm6e"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cvq6l"]
 states/End/position = Vector2(193, 133)
+states/Fly/node = SubResource("AnimationNodeAnimation_bs1eg")
+states/Fly/position = Vector2(415, 250)
+states/Fly-stop/node = SubResource("AnimationNodeAnimation_g56u5")
+states/Fly-stop/position = Vector2(341, 192)
 states/Idle/node = SubResource("AnimationNodeAnimation_lvxvn")
 states/Idle/position = Vector2(341, 108)
 states/Start/position = Vector2(193, 70)
 states/Walk/node = SubResource("AnimationNodeBlendTree_tpo04")
 states/Walk/position = Vector2(481, 108)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw")]
+states/fly-start/node = SubResource("AnimationNodeAnimation_7jlsk")
+states/fly-start/position = Vector2(481, 192)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw"), "Idle", "fly-start", SubResource("AnimationNodeStateMachineTransition_q63s5"), "Walk", "fly-start", SubResource("AnimationNodeStateMachineTransition_n6diw"), "fly-start", "Fly", SubResource("AnimationNodeStateMachineTransition_ii77c"), "Fly", "Fly-stop", SubResource("AnimationNodeStateMachineTransition_a7urx"), "Fly-stop", "Idle", SubResource("AnimationNodeStateMachineTransition_dtksj"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfm6e")]
+graph_offset = Vector2(-133, 6)
 
 [sub_resource type="Gradient" id="Gradient_f8bdy"]
 interpolation_mode = 2
@@ -100,12 +136,18 @@ fill_to = Vector2(1, 0.5)
 script = ExtResource("2_4spq3")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(0.997904, 9.52507e-08, 7.55606e-08, -0.0647051)
-bones/2/rotation = Quaternion(-0.1241, 1.56411e-07, 7.51757e-08, 0.99227)
-bones/3/rotation = Quaternion(0.748789, -6.06762e-12, 1.78535e-07, 0.662809)
-bones/4/rotation = Quaternion(0.997904, 7.21364e-08, 1.23128e-07, -0.064706)
-bones/5/rotation = Quaternion(-0.124101, 7.77789e-08, 9.19389e-08, 0.99227)
-bones/6/rotation = Quaternion(0.74879, 2.29913e-08, 1.03094e-07, 0.662807)
+bones/0/position = Vector3(0, -0.143581, 0)
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, 3.19734e-36, 1)
+bones/1/rotation = Quaternion(0.997204, 9.60049e-08, 7.46e-08, -0.0747259)
+bones/2/rotation = Quaternion(-0.143531, 1.54907e-07, 7.82281e-08, 0.989646)
+bones/3/rotation = Quaternion(0.754875, 1.64194e-09, 1.78527e-07, 0.655869)
+bones/4/rotation = Quaternion(0.997204, 7.33696e-08, 1.22397e-07, -0.0747263)
+bones/5/rotation = Quaternion(-0.143532, 7.59613e-08, 9.34462e-08, 0.989646)
+bones/6/rotation = Quaternion(0.754877, 2.39419e-08, 1.02878e-07, 0.655867)
+bones/13/rotation = Quaternion(-7.42916e-08, -5.4504e-08, 0.939693, 0.34202)
+bones/15/rotation = Quaternion(-1.93281e-07, -4.47391e-08, -0.507572, 0.861609)
+bones/16/rotation = Quaternion(-2.483e-07, -3.87301e-08, 0.939693, -0.34202)
+bones/18/rotation = Quaternion(-3.44599e-08, -2.89574e-07, 0.507572, 0.861609)
 
 [node name="NanahiraPapercraft2" parent="Armature/Skeleton3D" index="0"]
 visible = false

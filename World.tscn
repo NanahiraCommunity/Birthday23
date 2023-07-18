@@ -51,7 +51,7 @@ environment = SubResource("Environment_ofiqo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.903043, -0.374112, -0.211077, -8.88178e-16, -0.49139, 0.87094, -0.42955, -0.786496, -0.443746, -0.286918, 0.265969, -0.579307)
-light_energy = 2.0
+light_energy = 1.5
 shadow_enabled = true
 shadow_bias = 0.03
 

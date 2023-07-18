@@ -32,13 +32,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var flight_gravity = gravity * 0.1
 
 func _visualize_flight(delta):
-	var bonePose = skeleton.get_bone_pose(rootBone)
-	var targetPose = skeleton.get_bone_pose_rotation(rootBone)
-	if flying:
-		targetPose = targetPose.slerp(Quaternion(Vector3(1.0, 0.0, 0.0), deg_to_rad(-70.0)), FLY_START_ANIMATION_SPEED * delta)
-	else:
-		targetPose = targetPose.slerp(Quaternion(skeleton.get_bone_rest(rootBone).basis), FLY_END_ANIMATION_SPEED * delta)
-	skeleton.set_bone_pose_rotation(rootBone, targetPose)
+	#var bonePose = skeleton.get_bone_pose(rootBone)
+	#var targetPose = skeleton.get_bone_pose_rotation(rootBone)
+	#if flying:
+	#	targetPose = targetPose.slerp(Quaternion(Vector3(1.0, 0.0, 0.0), deg_to_rad(-70.0)), FLY_START_ANIMATION_SPEED * delta)
+	#else:
+	#	targetPose = targetPose.slerp(Quaternion(skeleton.get_bone_rest(rootBone).basis), FLY_END_ANIMATION_SPEED * delta)
+	#skeleton.set_bone_pose_rotation(rootBone, targetPose)
 	model.set_flight(flying)
 
 func _physics_process(delta):

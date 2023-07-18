@@ -28,5 +28,11 @@ shader_parameter/texture_normal = ExtResource("4_fsp6b")
 
 [node name="MessengerPapercraft" instance=ExtResource("1_tn04i")]
 
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.143091, 0)
+bones/1/rotation = Quaternion(-0.997904, -9.52507e-08, -7.55606e-08, 0.0647051)
+bones/3/rotation = Quaternion(0.748789, -6.06836e-12, 1.78535e-07, 0.662809)
+bones/5/rotation = Quaternion(-0.124101, 7.77789e-08, 9.19389e-08, 0.99227)
+
 [node name="MessengerPapercraft2" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_6e1fb")
