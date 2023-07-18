@@ -88,13 +88,12 @@ transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_
 script = ExtResource("2_4spq3")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, -0.144796, 0)
-bones/1/rotation = Quaternion(0.99084, 1.75402e-07, 1.91523e-07, -0.135045)
-bones/2/rotation = Quaternion(-0.259715, 1.53041e-07, 1.63879e-07, 0.965685)
-bones/3/rotation = Quaternion(0.79024, -3.51302e-09, 2.08665e-07, 0.612797)
-bones/4/rotation = Quaternion(0.99084, 1.62689e-07, 1.9352e-07, -0.135042)
-bones/5/rotation = Quaternion(-0.259713, 7.69064e-08, 2.02095e-07, 0.965686)
-bones/6/rotation = Quaternion(0.790242, 1.29209e-08, 1.2961e-07, 0.612796)
+bones/1/rotation = Quaternion(0.997904, 9.52507e-08, 7.55606e-08, -0.0647051)
+bones/2/rotation = Quaternion(-0.1241, 1.56411e-07, 7.51757e-08, 0.99227)
+bones/3/rotation = Quaternion(0.748789, -6.06762e-12, 1.78535e-07, 0.662809)
+bones/4/rotation = Quaternion(0.997904, 7.21364e-08, 1.23128e-07, -0.064706)
+bones/5/rotation = Quaternion(-0.124101, 7.77789e-08, 9.19389e-08, 0.99227)
+bones/6/rotation = Quaternion(0.74879, 2.29913e-08, 1.03094e-07, 0.662807)
 
 [node name="NanahiraPapercraft2" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
