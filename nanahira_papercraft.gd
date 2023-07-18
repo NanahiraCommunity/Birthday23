@@ -4,13 +4,11 @@ extends Node3D
 
 const VELOCITY_SCALE = 2.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	#animationPlayer = get_node("AnimationPlayer")
-	pass
+	var scene = preload("res://messenger_papercraft.tscn")
+	var instance = scene.instantiate()
+	instance.get_node("Armature/Skeleton3D/MessengerPapercraft2").reparent($Armature/Skeleton3D, false)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 

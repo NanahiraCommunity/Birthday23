@@ -108,6 +108,7 @@ bones/5/rotation = Quaternion(-0.124101, 7.77789e-08, 9.19389e-08, 0.99227)
 bones/6/rotation = Quaternion(0.74879, 2.29913e-08, 1.03094e-07, 0.662807)
 
 [node name="NanahiraPapercraft2" parent="Armature/Skeleton3D" index="0"]
+visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
@@ -120,6 +121,6 @@ parameters/Walk/TimeScale/scale = 1.0
 
 [node name="Decal" type="Decal" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52384, 0)
-size = Vector3(0.3, 1, 0.3)
+size = Vector3(0.2, 1, 0.2)
 texture_albedo = SubResource("GradientTexture2D_23taj")
-upper_fade = 0.1
+upper_fade = 0.15
