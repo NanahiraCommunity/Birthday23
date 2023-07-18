@@ -17,8 +17,8 @@ func _process(delta):
 func set_velocity(velocity: Vector3):
 	var v = Vector3(velocity.x, 0, velocity.z).length() * VELOCITY_SCALE
 	if v > 0.01:
-		var speed = clamp(0.75, 2, v * 2)
-		var blend = clamp(0, 1, v * 2)
+		var speed = clamp(0.75, 4, v)
+		var blend = clamp(0, 1, v)
 		$AnimationTree["parameters/playback"].travel("Walk")
 		$AnimationTree.set("parameters/Walk/Blend2/blend_amount", blend);
 		$AnimationTree["parameters/Walk/TimeScale/scale"] = speed

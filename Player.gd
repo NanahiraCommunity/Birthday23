@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 
-const SPEED = 1.0
-const RUN_SPEED = 2.0
+const WALK_SPEED = 0.75
+const RUN_SPEED = 1.5
 const ROTATION_SPEED = 10
 const JUMP_VELOCITY = 2.5
+const STOP_SPEED = 0.15
 
 @export var camera: Node3D
 @onready var model: Node3D = get_node("NanahiraPapercraft")
@@ -23,21 +24,21 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	var direction = (camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y))
+	var direction = Vector3(input_dir.x, 0, input_dir.y)
 	if direction.length_squared() > 1:
 		direction = direction.normalized()
+	direction = camera.transform.basis * direction;
 
 	if direction:
-		# Hold shift to run
-		var held_shift = Input.is_physical_key_pressed(KEY_SHIFT)
-		velocity.x = direction.x * (RUN_SPEED if held_shift else SPEED)
-		velocity.z = direction.z * (RUN_SPEED if held_shift else SPEED)
+		var sneak = Input.is_action_pressed("sneak")
+		velocity.x = direction.x * (WALK_SPEED if sneak else RUN_SPEED)
+		velocity.z = direction.z * (WALK_SPEED if sneak else RUN_SPEED)
 		var rotation = Basis(Vector3(0, 1, 0), -atan2(velocity.x, -velocity.z))
 		model.global_transform.basis = model.global_transform.basis.slerp(rotation, ROTATION_SPEED * delta)
 	else:
 		# reset speed to 0
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, STOP_SPEED)
+		velocity.z = move_toward(velocity.z, 0, STOP_SPEED)
 
 	model.set_velocity(velocity)
 	move_and_slide()
