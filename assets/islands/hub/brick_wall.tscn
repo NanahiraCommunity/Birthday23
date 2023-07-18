@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yiols"]
 render_priority = 0
 shader = ExtResource("2_pt5wg")
-shader_parameter/paper_color = Color(0.74902, 0.65098, 0.486275, 1)
+shader_parameter/paper_color = Color(0.756863, 0.713726, 0.588235, 1)
 shader_parameter/paper_color_both_sides = true
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
