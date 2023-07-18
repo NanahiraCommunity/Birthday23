@@ -11,7 +11,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wd5h7"]
 render_priority = 0
 shader = ExtResource("3_fpl8o")
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = null

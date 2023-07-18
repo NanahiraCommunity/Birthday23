@@ -2,7 +2,8 @@
 
 shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_disabled,diffuse_burley,specular_schlick_ggx;
-uniform vec4 albedo : source_color;
+uniform vec4 paper_color : source_color;
+uniform bool paper_color_both_sides;
 uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
 uniform sampler2D texture_paper : source_color,filter_linear_mipmap,repeat_enable;
 uniform float point_size : hint_range(0,128);
@@ -27,8 +28,9 @@ void fragment() {
 	vec2 base_uv = UV;
 	vec4 albedo_tex = (texture(texture_albedo, base_uv) * vec4(vec3(paper_amount), 1.0)
 		+ vec4(vec3(1.0 - paper_amount), 0.0))
-		* (FRONT_FACING ? texture(texture_paper, base_uv) : vec4(1.0));
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
+		* (FRONT_FACING ? paper_color * texture(texture_paper, base_uv)
+				: (paper_color_both_sides ? paper_color : vec4(1.0)));
+	ALBEDO = albedo_tex.rgb;
 	METALLIC = 0.0;
 	float roughness_tex = texture(texture_roughness,base_uv).r;
 	ROUGHNESS = roughness_tex * roughness;
