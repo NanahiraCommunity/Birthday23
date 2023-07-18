@@ -26,11 +26,10 @@ func _physics_process(delta):
 	var direction = (camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y))
 	if direction.length_squared() > 1:
 		direction = direction.normalized()
-		
-	# Hold shift to run
-	var held_shift = Input.is_physical_key_pressed(KEY_SHIFT)
 
 	if direction:
+		# Hold shift to run
+		var held_shift = Input.is_physical_key_pressed(KEY_SHIFT)
 		velocity.x = direction.x * (RUN_SPEED if held_shift else SPEED)
 		velocity.z = direction.z * (RUN_SPEED if held_shift else SPEED)
 		var rotation = Basis(Vector3(0, 1, 0), -atan2(velocity.x, -velocity.z))
