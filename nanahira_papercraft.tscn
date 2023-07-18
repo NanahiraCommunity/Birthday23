@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://byflm3kvjdyoy"]
+[gd_scene load_steps=24 format=3 uid="uid://byflm3kvjdyoy"]
 
 [ext_resource type="PackedScene" uid="uid://b5v002sdy4808" path="res://NanahiraPapercraft.glb" id="1_vjmr4"]
 [ext_resource type="Script" path="res://nanahira_papercraft.gd" id="2_4spq3"]
@@ -85,6 +85,17 @@ states/Walk/node = SubResource("AnimationNodeBlendTree_tpo04")
 states/Walk/position = Vector2(481, 108)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw")]
 
+[sub_resource type="Gradient" id="Gradient_f8bdy"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.133641, 0.732719, 0.884793)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.443137, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_23taj"]
+gradient = SubResource("Gradient_f8bdy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="NanahiraPapercraft" instance=ExtResource("1_vjmr4")]
 script = ExtResource("2_4spq3")
 
@@ -106,3 +117,9 @@ advance_expression_base_node = NodePath("..")
 active = true
 parameters/Walk/Blend2/blend_amount = 1.0
 parameters/Walk/TimeScale/scale = 1.0
+
+[node name="Decal" type="Decal" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52384, 0)
+size = Vector3(0.3, 1, 0.3)
+texture_albedo = SubResource("GradientTexture2D_23taj")
+upper_fade = 0.1

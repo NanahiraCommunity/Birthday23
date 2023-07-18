@@ -8,7 +8,8 @@ extends Camera3D
 
 const FOLLOW_SPEED_PUSH = 0.9999
 const FOLLOW_SPEED_PULL = 0.85
-const ASCEND_SPEED = 0.9
+const ASCEND_SPEED = 0.8
+const ASCEND_SPEED_ONGROUND = 0.99
 const PREDICTION_SPEED = 0.95
 const LOOKAT_SPEED = 0.98
 const SPEED_HEIGHT_MULTIPLIER = 30
@@ -54,5 +55,6 @@ func _physics_process(delta):
 		global_position.x = (global_position.x - pull_xz.x) * pow(1 - FOLLOW_SPEED_PULL, delta) + pull_xz.x
 		global_position.z = (global_position.z - pull_xz.y) * pow(1 - FOLLOW_SPEED_PULL, delta) + pull_xz.y
 
-	global_position.y = (global_position.y - camera_height) * pow(1 - ASCEND_SPEED, delta) + camera_height
+	var ascendSpeed = ASCEND_SPEED_ONGROUND if target && target.is_on_floor() else ASCEND_SPEED
+	global_position.y = (global_position.y - camera_height) * pow(1 - ascendSpeed, delta) + camera_height
 	look_at(lookat_pos + LOOKAT_OFFSET)

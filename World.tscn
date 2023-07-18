@@ -34,7 +34,7 @@ script = ExtResource("1_ksjrh")
 camera = NodePath("../Camera3D")
 
 [node name="NanahiraPapercraft" parent="CharacterBody3D" instance=ExtResource("1_e7o3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685212)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685215)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)
@@ -51,6 +51,7 @@ environment = SubResource("Environment_ofiqo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.903043, -0.374112, -0.211077, -8.88178e-16, -0.49139, 0.87094, -0.42955, -0.786496, -0.443746, -0.286918, 0.265969, -0.579307)
+light_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.03
 
@@ -68,3 +69,23 @@ shape = SubResource("ConcavePolygonShape3D_u0yro")
 
 [node name="Castle" parent="." instance=ExtResource("6_b3hnb")]
 transform = Transform3D(0.990338, 0, -0.138672, 0, 1, 0, 0.138672, 0, 0.990338, -0.824015, -9.53674e-07, 5.94933)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69674, 0.456135, -7.49193)
+use_collision = true
+size = Vector3(0.64, 0.3, 0.639)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69674, 0.89054, -6.24552)
+use_collision = true
+size = Vector3(0.64, 0.3, 0.639)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69674, 1.25335, -5.05733)
+use_collision = true
+size = Vector3(0.64, 0.3, 0.639)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69674, 1.46039, -1.86066)
+use_collision = true
+size = Vector3(0.64, 0.3, 0.639)

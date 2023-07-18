@@ -14,6 +14,10 @@ func _ready():
 func _process(delta):
 	pass
 
+func set_flight(flying: bool):
+	if flying:
+		$AnimationTree["parameters/playback"].travel("Idle") # TODO
+
 func set_velocity(velocity: Vector3):
 	var v = Vector3(velocity.x, 0, velocity.z).length() * VELOCITY_SCALE
 	if v > 0.01:
