@@ -102,7 +102,7 @@ func _physics_process(delta):
 	var velocity2d = Vector2(velocity.x, velocity.z)
 	if velocity2d.length_squared() > 0.2 * 0.2:
 		var rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
-		model.global_transform.basis = model.global_transform.basis.slerp(rotation, ROTATION_SPEED * delta)
+		global_transform.basis = global_transform.basis.slerp(rotation, ROTATION_SPEED * delta)
 
 	model.set_velocity(velocity)
 	move_and_slide()
