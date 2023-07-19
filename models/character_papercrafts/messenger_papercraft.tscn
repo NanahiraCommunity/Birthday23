@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://dyixhc87qpmul"]
+
+[ext_resource type="PackedScene" uid="uid://cs4kbxb0hjojd" path="res://models/character_papercrafts/messenger_papercraft.glb" id="1_tn04i"]
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="2_ojha8"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://models/character_papercrafts/paper_0026_color_4k.jpg" id="3_ek7jk"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://models/character_papercrafts/paper_0026_normal_opengl_4k.png" id="4_fsp6b"]
+[ext_resource type="Texture2D" uid="uid://dvlmf1gxbpt34" path="res://models/character_papercrafts/messenger_papercraft.png" id="5_vvmhf"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://models/character_papercrafts/paper_0026_roughness_4k.jpg" id="6_6eyms"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6e1fb"]
+render_priority = 0
+shader = ExtResource("2_ojha8")
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.500001
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_ek7jk")
+shader_parameter/texture_paper = ExtResource("5_vvmhf")
+shader_parameter/texture_roughness = ExtResource("6_6eyms")
+shader_parameter/texture_normal = ExtResource("4_fsp6b")
+
+[node name="MessengerPapercraft" instance=ExtResource("1_tn04i")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.143091, 0)
+bones/1/rotation = Quaternion(-0.997904, -9.52507e-08, -7.55606e-08, 0.0647051)
+bones/3/rotation = Quaternion(0.748789, -6.06836e-12, 1.78535e-07, 0.662809)
+bones/5/rotation = Quaternion(-0.124101, 7.77789e-08, 9.19389e-08, 0.99227)
+
+[node name="MessengerPapercraft" parent="Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_6e1fb")

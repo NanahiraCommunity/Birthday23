@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dj4xjicqlmq8x"]
+
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://models/character_papercrafts/paper_0026_color_4k.jpg" id="1_gt7th"]
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="1_nphpk"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://models/character_papercrafts/paper_0026_normal_opengl_4k.png" id="3_h26h8"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://models/character_papercrafts/paper_0026_roughness_4k.jpg" id="4_8cwqa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nphpk")
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(5, 5, 5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("1_gt7th")
+shader_parameter/texture_roughness = ExtResource("4_8cwqa")
+shader_parameter/texture_normal = ExtResource("3_h26h8")
