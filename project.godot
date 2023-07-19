@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [filesystem]
 
+import/blender/enabled=false
 import/fbx/enabled=false
 
 [input]
