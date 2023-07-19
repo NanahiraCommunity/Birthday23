@@ -1,0 +1,21 @@
+{
+    "npc-1": {
+        "greet": [
+                    {"name": "NPC 1", "emotion": "neutral", "text": "Hello!"},
+                    {"name": "NPC 1", "emotion": "neutral", "text": "This is my [b]dialog[/b]!"},
+                    {"name": "NPC 1", "emotion": "neutral", "text": "Do you love ななひら?",
+                        "options" : [
+                            {"text": "Yes", "jump_to": "option-yes"},
+                            {"text": "No", "jump_to": "option-no"},
+                        ]
+                    },
+                ],
+        "option-yes": [
+                    {"name": "NPC 1", "emotion": "happy", "text": "Me too!"},
+                    {"name": "NPC 1", "emotion": "admire", "text": "I really love Nanahira. Like, [i]a whole lot[/i]."},
+                ],
+        "option-no": [
+                    {"name": "NPC 1", "emotion": "sad", "text": ":("},
+                ],
+        },
+}
