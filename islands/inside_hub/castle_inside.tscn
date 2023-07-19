@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://nl1w72vybc7k"]
+
+[ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
+[ext_resource type="Shader" path="res://shaders/cardboard_material.gdshader" id="2_ky3oe"]
+[ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
+[ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
+
+[sub_resource type="Environment" id="Environment_na0up"]
+background_mode = 1
+background_color = Color(0.298039, 0.0784314, 0.0352941, 1)
+ambient_light_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trqyf"]
+render_priority = 0
+shader = ExtResource("2_ky3oe")
+shader_parameter/light_brown = Color(0.854902, 0.67451, 0.447059, 1)
+shader_parameter/dark_brown = Color(0.823529, 0.643137, 0.4, 1)
+shader_parameter/darker_brown = Color(0.447059, 0.32549, 0.160784, 1)
+shader_parameter/darkest_brown = Color(0.298039, 0.211765, 0.0941176, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b8hsf"]
+radius = 0.15
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8xab6"]
+
+[node name="Castle" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_na0up")
+
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_4pj2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0528373, 0)
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.143643, 0)
+use_collision = true
+size = Vector3(5, 0.3, 5)
+material = SubResource("ShaderMaterial_trqyf")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
+transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.873973, 1.14857, -5.61469)
+current = true
+script = ExtResource("3_8r8sj")
+target = NodePath("../../Player")
+kinematic_body = NodePath("../CameraSafeArea")
+
+[node name="CameraSafeArea" type="CharacterBody3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.874, 1.149, -13.745)
+collision_layer = 0
+floor_constant_speed = true
+platform_on_leave = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
+shape = SubResource("SphereShape3D_b8hsf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18533, 0.365944, 2.13364)
+shadow_enabled = true
+
+[node name="InteractArea" parent="." instance=ExtResource("4_ih1bi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07245, 0.00635737, 1.85907)
+next_scene = "res://world.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356134, 0)
+shape = SubResource("SphereShape3D_8xab6")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://tsew73160rqy"]
+
+[ext_resource type="Script" path="res://shared/door/world_portal.gd" id="1_gnr2r"]
+[ext_resource type="Texture2D" uid="uid://dlos82op2gjiu" path="res://shared/door/icon.png" id="1_ipno5"]
+
+[node name="InteractArea" type="Area3D"]
+script = ExtResource("1_gnr2r")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384728, -0.0520706)
+pixel_size = 0.0012
+billboard = 1
+no_depth_test = true
+texture = ExtResource("1_ipno5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

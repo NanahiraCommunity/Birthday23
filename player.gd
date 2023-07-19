@@ -21,6 +21,9 @@ const FLIGHT_DRAG_HORIZONTAL = 0.01
 @onready var skeleton: Skeleton3D = model.get_node("Armature/Skeleton3D")
 @onready var root_bone: int = skeleton.find_bone("Root")
 
+func _ready():
+	Global.player = self
+
 var flying = false
 var flight_strokes_max = 3
 var flight_strokes = flight_strokes_max

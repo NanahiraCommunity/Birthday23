@@ -4,7 +4,8 @@
 resource_name = "global"
 script/source = "extends Node
 
-var in_dialog = false
+var in_dialog: bool = false
+var player: CharacterBody3D
 "
 
 [node name="global" type="Node"]
