@@ -1,0 +1,13 @@
+~ start
+
+Nanahira: Hello!
+Nanahira: This is my [b]dialog[/b]!
+Nanahira: Do you love ななひら?
+- Yes
+	Nanahira: Me too!
+	Nanahira: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession.
+	Nanahira: Wait...[wait=1.5] I'm Nanahira
+- No
+	Nanahira: AAAAAAAAAAAAAAaaaaaaaaaaaaaaa aaAAAAAAAAAaaaaAAAaaaaAAAaaaaaaaaaaaAaaAAaaA AaaAAAAAAaaAAAAAAAAaaaaaAAAaaAAAAAAAaaaaaAAAAAaAAAAaaaaaAA AaaAAAAAAAaaaaaaaAAAAaaaaAAAAaaaaaaaaaaaAAAaaaaAAAAAAAA aaaaaaaaaaaaaaaaAAAaaAAAaaaaAAAaaaaaaaaaaaaaaaaAAaaaAAaa aaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaAAAAAAAAAAAAaaaAAAAAAAAAAAAAaaaaaaaaaaaa aAAAAAAAAAAAAAAAaaaaaaaaaaaaaAAAAaaaaaaaaaaaaaaaaaaaAAAAaaaaaaaaaaaaAAAAa AAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAaaaaaAAAaaaAAaaAAAaaaAAAaaaAAaaAAaaaaaa AAAAAAAAAAAAaaaaaaaAAAaaAAaaAAaaAAaaaaaaAAaaAAAAAAAaaaaa
+
+=> END

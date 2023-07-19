@@ -1,112 +1,103 @@
 extends Control
 
-var file_path = "res://dialogs/dialog_data.json"
-var dialog_data = get_dialog_data()		# dictionary consisting all the dialog in the game
-var dialog = []		# list of dialog currently being displayed
-var character		# id of character currently speaking
-var dialog_id		# id of dialog set being displayed
-
-@export var text_speed = 0.05	# seconds per character
-var dialog_index = 0
-var finished = false
+var dialogue: DialogueResource # loaded resource to the .dialogue file
+var next_dialogue: String      # id/title of dialog set being displayed
+var current_line: DialogueLine # currently displayed line
 
 # for options dialog
 var choosing = false
-var options	= []
+var rendering = false
 var selected_index = 0
+var option_nodes = []
 
 func _ready():
-	$Timer.wait_time = text_speed
+	pass
 
 func _process(delta):
 	if not visible: return
 	
-	$NextIndicator.visible = finished
+	$NextIndicator.visible = not rendering and not choosing and next_dialogue != null
 	$Cursor.visible = choosing
-	
-	# When spacebar/enter is pressed
-	if Input.is_action_just_pressed("ui_accept"):
-		if finished:
-			# If dialog text finished animating, check if the dialog has options
-			if "options" in dialog[dialog_index]:
-				trigger_option_dialog()
-			else:
-				# Otherwise, go to next dialog
-				dialog_index += 1
-				next_dialog()
-		elif choosing:
-			# If options dialog is open, jump to selected option
-			trigger_dialog(character, options[selected_index]["jump_to"])
-		else:
-			# Skip animation and display entire text
-			$Text.visible_characters = len($Text.text)
-	
 	if choosing:
-		if Input.is_action_just_pressed("ui_up"):
-			select_option( (selected_index + len(options) - 1) % len(options) )
-		if Input.is_action_just_pressed("ui_down"):
-			select_option( (selected_index + 1) % len(options) )
+		$Cursor.global_position.y = option_nodes[selected_index].global_position.y
 
+	$NinePatchRect.size = $MarginContainer.size
+	$NinePatchRect.position = $MarginContainer.position
 
-func get_dialog_data() -> Dictionary:
-	# Store JSON contents to dialog_data
-	assert(FileAccess.file_exists(file_path), "File path does not exist")
-	
-	var data_file = FileAccess.open(file_path, FileAccess.READ)
-	var parsed_result = JSON.parse_string(data_file.get_as_text())
-	
-	assert(parsed_result is Dictionary, "Error reading file")
-	return parsed_result
-	
+func _unhandled_input(event: InputEvent) -> void:
+	if choosing:
+		if event.is_action_pressed("ui_up"):
+			selected_index -= 1
+			if selected_index < 0:
+				selected_index = len(option_nodes) - 1
+		if event.is_action_pressed("ui_down"):
+			selected_index += 1
+			if selected_index >= len(option_nodes):
+				selected_index = 0
+		if event.is_action_pressed("ui_accept"):
+			next_dialogue = current_line.responses[selected_index].next_id
+			show_next()
+	else:
+		if event.is_action_pressed("ui_accept"):
+			if rendering:
+				# copied from their skip code
+				# Run any inline mutations that haven't been run yet
+				for i in range($MarginContainer/VBoxContainer/Text.visible_characters, $MarginContainer/VBoxContainer/Text.get_total_character_count()):
+					$MarginContainer/VBoxContainer/Text.mutate_inline_mutations(i)
+				$MarginContainer/VBoxContainer/Text.visible_characters = $MarginContainer/VBoxContainer/Text.get_total_character_count()
+				$MarginContainer/VBoxContainer/Text.is_typing = false
+				$MarginContainer/VBoxContainer/Text.finished_typing.emit()
+			else:
+				show_next()
 
-func trigger_dialog(_character, _dialog_id):
+func trigger_dialog(_character, _next_dialogue: String):
 	# Display the dialog UI
-	finished = false
 	choosing = false
-	
-	character = _character
-	dialog_id = _dialog_id
-	dialog = dialog_data[character][dialog_id]
-	dialog_index = 0
+
+	dialogue = load("res://dialogs/test.dialogue")
+	next_dialogue = _next_dialogue
 	
 	set_visible(true)
-	next_dialog()
+	show_next()
 
 
-func next_dialog():
-	if dialog_index >= len(dialog):
+func show_next():
+	if rendering:
+		return
+
+	rendering = true
+	
+	current_line = await dialogue.get_next_dialogue_line(next_dialogue) if dialogue else null
+
+	if not current_line:
 		# No dialog left
 		set_visible(false)
+		rendering = false
 		return
-	
-	finished = false
-	
-	$Name.bbcode_text = dialog[dialog_index]["name"]
-	$Text.bbcode_text = dialog[dialog_index]["text"]
-	$Text.visible_characters = 0
-	
-	# Text animation, display text character by character
-	while $Text.visible_characters < len($Text.text):
-		$Text.visible_characters += 1
-		$Timer.start()
-		await $Timer.timeout
-	
-	finished = true
-	
-func trigger_option_dialog():
-	finished = false
-	choosing = true
-	
-	options = dialog[dialog_index]["options"]
-	var options_text = []
-	for opt in options: options_text.append(opt["text"])
-		
-	$Name.bbcode_text = " "
-	$Text.bbcode_text = "\n".join(options_text)
-	
-	select_option(0)
 
+	for child in option_nodes:
+		$MarginContainer/VBoxContainer.remove_child(child)
+	option_nodes = []
 
-func select_option(index):
-	selected_index = index
-	$Cursor.position.y = $Text.position.y + $Text.get_theme_font_size("normal_font_size") * 1.4 * index
+	next_dialogue = current_line.next_id
+	choosing = false
+
+	$MarginContainer/VBoxContainer/Name.text = current_line.character
+	$MarginContainer/VBoxContainer/Text.dialogue_line = current_line
+	$MarginContainer/VBoxContainer/Text.type_out()
+
+	await $MarginContainer/VBoxContainer/Text.finished_typing
+	
+	if current_line.responses:
+		choosing = true
+		for response in current_line.responses:
+			var option: RichTextLabel = $MarginContainer/VBoxContainer/OptionTemplate.duplicate()
+			if not response.is_allowed:
+				option.text = "[color=#00000060]" + response.text + "[/color]"
+			else:
+				option.text = response.text
+			option.visible = true
+			$MarginContainer/VBoxContainer.add_child(option)
+			option_nodes.push_back(option)
+		selected_index = 0
+	rendering = false

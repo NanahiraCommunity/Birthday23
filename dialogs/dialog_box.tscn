@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bar7wftpdkyu0"]
+[gd_scene load_steps=9 format=3 uid="uid://bar7wftpdkyu0"]
 
 [ext_resource type="Texture2D" uid="uid://bkwhi3n6t82qa" path="res://dialogs/dialog_box.png" id="1_ecycg"]
 [ext_resource type="Script" path="res://dialogs/dialog_box.gd" id="1_sbwbj"]
 [ext_resource type="Texture2D" uid="uid://brlvsvt2bp05y" path="res://dialogs/dialog_next_indicator.png" id="2_44wbw"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_a1hd0"]
 [ext_resource type="Texture2D" uid="uid://dhy4im3eftwv2" path="res://dialogs/dialog_cursor.png" id="4_d4wuc"]
 
 [sub_resource type="Animation" id="Animation_dvqdu"]
@@ -11,18 +12,34 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath(".:offset")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(945, 151), Vector2(945, 161)]
+"values": [Vector2(0, 0), Vector2(0, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_mrnud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w8m6r"]
 _data = {
+"RESET": SubResource("Animation_mrnud"),
 "idle": SubResource("Animation_dvqdu")
 }
 
@@ -34,54 +51,43 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -498.0
-offset_top = -231.0
+offset_top = -251.0
 offset_right = 505.0
 offset_bottom = -34.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 script = ExtResource("1_sbwbj")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+offset_right = 1003.0
+offset_bottom = 216.0
 texture = ExtResource("1_ecycg")
-expand_mode = 1
+patch_margin_left = 64
+patch_margin_top = 64
+patch_margin_right = 64
+patch_margin_bottom = 64
 
-[node name="Text" type="RichTextLabel" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 44.0
-offset_top = 55.0
-offset_right = -37.0
-offset_bottom = -22.0
+offset_top = -217.0
+offset_bottom = -1.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 20
-theme_override_font_sizes/bold_font_size = 20
-theme_override_font_sizes/italics_font_size = 20
-theme_override_font_sizes/bold_italics_font_size = 20
-theme_override_font_sizes/mono_font_size = 20
-bbcode_enabled = true
-text = "This is [b]placeholder text[/b]! TODO: Please replace dialog background and font"
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="Name" type="RichTextLabel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 44.0
-offset_top = 18.0
-offset_right = -37.0
-offset_bottom = -140.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
@@ -90,9 +96,38 @@ theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
 text = "Character Name"
+fit_content = true
+
+[node name="Text" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "This is [b]placeholder text[/b]! TODO: Please replace dialog background and font"
+fit_content = true
+script = ExtResource("3_a1hd0")
+skip_action = ""
+seconds_per_step = 0.015
+pause_at_characters = ".,?!"
+
+[node name="OptionTemplate" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+text = "Option"
+fit_content = true
 
 [node name="NextIndicator" type="Sprite2D" parent="."]
-position = Vector2(945, 151)
+position = Vector2(959, 178)
 scale = Vector2(0.854167, 0.568182)
 texture = ExtResource("2_44wbw")
 
@@ -102,10 +137,8 @@ libraries = {
 "": SubResource("AnimationLibrary_w8m6r")
 }
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Cursor" type="Sprite2D" parent="."]
-position = Vector2(44, 55)
+position = Vector2(40.0001, 129)
 scale = Vector2(0.375, 0.364583)
 texture = ExtResource("4_d4wuc")
 offset = Vector2(-40, 40)
