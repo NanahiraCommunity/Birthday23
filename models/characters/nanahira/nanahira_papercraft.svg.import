@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://im03tfx1g1w8"
-path="res://.godot/imported/paper_0026_ao_4k.jpg-0eb86cbf85f40f088e7204ac3f85d957.ctex"
+uid="uid://nvvjjkf8ask"
+path="res://.godot/imported/nanahira_papercraft.svg-723a1be6d1285b91c75e4f14da745533.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shaders/res/paper_0026_ao_4k.jpg"
-dest_files=["res://.godot/imported/paper_0026_ao_4k.jpg-0eb86cbf85f40f088e7204ac3f85d957.ctex"]
+source_file="res://models/characters/nanahira/nanahira_papercraft.svg"
+dest_files=["res://.godot/imported/nanahira_papercraft.svg-723a1be6d1285b91c75e4f14da745533.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

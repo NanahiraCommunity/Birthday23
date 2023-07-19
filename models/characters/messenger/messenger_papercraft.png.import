@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvlmf1gxbpt34"
-path.s3tc="res://.godot/imported/messenger_papercraft.png-969b24b2385317407af1ffaae7e0796c.s3tc.ctex"
+path.s3tc="res://.godot/imported/messenger_papercraft.png-0cffda3fee2a40a7d3b86baf726fe5f9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://models/characters/messenger_papercraft.png"
-dest_files=["res://.godot/imported/messenger_papercraft.png-969b24b2385317407af1ffaae7e0796c.s3tc.ctex"]
+source_file="res://models/characters/messenger/messenger_papercraft.png"
+dest_files=["res://.godot/imported/messenger_papercraft.png-0cffda3fee2a40a7d3b86baf726fe5f9.s3tc.ctex"]
 
 [params]
 

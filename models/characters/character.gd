@@ -7,7 +7,7 @@ const VELOCITY_SCALE = 2.0
 var last_velocity = Vector3.ZERO
 
 func _ready():
-	var scene = preload("res://models/characters/messenger_papercraft.tscn")
+	var scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
 	var instance = scene.instantiate()
 	instance.get_node("Armature/Skeleton3D/MessengerPapercraft").reparent($Armature/Skeleton3D, false)
 

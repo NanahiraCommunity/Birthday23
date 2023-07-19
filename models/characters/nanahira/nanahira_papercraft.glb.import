@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b5v002sdy4808"
-path="res://.godot/imported/nanahira_papercraft.glb-7cb6f311d4df406f670f6e9655ccc2f1.scn"
+path="res://.godot/imported/nanahira_papercraft.glb-ef91fdd190e6dd5816bc44063f1410ce.scn"
 
 [deps]
 
-source_file="res://models/characters/nanahira_papercraft.glb"
-dest_files=["res://.godot/imported/nanahira_papercraft.glb-7cb6f311d4df406f670f6e9655ccc2f1.scn"]
+source_file="res://models/characters/nanahira/nanahira_papercraft.glb"
+dest_files=["res://.godot/imported/nanahira_papercraft.glb-ef91fdd190e6dd5816bc44063f1410ce.scn"]
 
 [params]
 

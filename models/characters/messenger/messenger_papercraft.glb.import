@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cs4kbxb0hjojd"
-path="res://.godot/imported/messenger_papercraft.glb-d96352a13a48ed6726537f7a2413da80.scn"
+path="res://.godot/imported/messenger_papercraft.glb-480080202608dd6b4f6aed54c0579e76.scn"
 
 [deps]
 
-source_file="res://models/characters/messenger_papercraft.glb"
-dest_files=["res://.godot/imported/messenger_papercraft.glb-d96352a13a48ed6726537f7a2413da80.scn"]
+source_file="res://models/characters/messenger/messenger_papercraft.glb"
+dest_files=["res://.godot/imported/messenger_papercraft.glb-480080202608dd6b4f6aed54c0579e76.scn"]
 
 [params]
 

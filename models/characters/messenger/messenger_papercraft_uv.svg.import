@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nvvjjkf8ask"
-path="res://.godot/imported/nanahira_papercraft.svg-f352e86622146e8d4b5e4d083fd05023.ctex"
+uid="uid://cnbjubnc6181x"
+path="res://.godot/imported/messenger_papercraft_uv.svg-b95e6d35dfb5e21afd5ac7d7c8d00563.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/characters/nanahira_papercraft.svg"
-dest_files=["res://.godot/imported/nanahira_papercraft.svg-f352e86622146e8d4b5e4d083fd05023.ctex"]
+source_file="res://models/characters/messenger/messenger_papercraft_uv.svg"
+dest_files=["res://.godot/imported/messenger_papercraft_uv.svg-b95e6d35dfb5e21afd5ac7d7c8d00563.ctex"]
 
 [params]
 
