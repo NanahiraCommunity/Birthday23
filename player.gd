@@ -6,15 +6,15 @@ const RUN_SPEED = 1.5
 const ROTATION_SPEED = 10
 const JUMP_VELOCITY = 3.5
 const FLIGHT_VELOCITY_UP = 1.5
-const FLIGHT_VELOCITY_FORWARD = 3.0
-const WALK_AIR_SPEED_MULTIPLIER = 0.7
-const FLYING_AIR_SPEED_MULTIPLIER = 1.0
+const FLIGHT_VELOCITY_FORWARD = 1.0
+const WALK_AIR_SPEED_MULTIPLIER = 0.12
+const FLYING_AIR_SPEED_MULTIPLIER = 0.15
 const STOP_SPEED = 0.25
 
 const FLY_START_ANIMATION_SPEED = 10.0
 const FLY_END_ANIMATION_SPEED = 30.0
 const FLIGHT_DRAG_VERTICAL = 0.5
-const FLIGHT_DRAG_HORIZONTAL = 0.99
+const FLIGHT_DRAG_HORIZONTAL = 0.01
 
 @export var camera: Node3D
 @onready var model: Node3D = get_node("nanahira_papercraft")
@@ -70,8 +70,6 @@ func _physics_process(delta):
 				flight_stroke_timer = flight_stroke_timer_max
 			else:
 				velocity.y -= (flight_gravity if Input.is_action_pressed("jump") else gravity) * delta
-				velocity.x *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
-				velocity.z *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
 				velocity.y *= pow(FLIGHT_DRAG_VERTICAL, delta)
 
 			flight_stroke_timer -= delta
@@ -89,8 +87,10 @@ func _physics_process(delta):
 		if direction:
 			var sneak = Input.is_action_pressed("sneak")
 			var speed_multiplier = FLYING_AIR_SPEED_MULTIPLIER if flying else WALK_AIR_SPEED_MULTIPLIER
-			velocity.x = direction.x * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
-			velocity.z = direction.z * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
+			velocity.x += direction.x * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
+			velocity.z += direction.z * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
+		velocity.x *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
+		velocity.z *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
 	else:
 		if flying:
 			flying = false
