@@ -1,6 +1,7 @@
 extends Camera3D
 
 @export var target: Node3D
+@export var kinematic_body: CharacterBody3D
 @export var min_distance: float = 0.8
 @export var max_distance: float = 1.0
 @export var height: float = 0.7
@@ -82,9 +83,15 @@ func _process_mouse(delta):
 				lookat_pos.x - cos(rot_transition) * dist,
 				camera_position.y,
 				lookat_pos.z + sin(rot_transition) * dist)
+			solve_constraints()
 		else:
 			rotate_transition = false
 
+func solve_constraints():
+	kinematic_body.global_position = camera_position + Vector3(0, height_offset, 0)
+	kinematic_body.move_and_slide()
+	global_position = kinematic_body.global_position
+	camera_position = global_position - Vector3(0, height_offset, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -124,6 +131,6 @@ func _physics_process(delta):
 	var ascend_speed = ASCEND_SPEED_ONGROUND if target && target.is_on_floor() else ASCEND_SPEED
 	camera_position.y = (camera_position.y - camera_height) * pow(1 - ascend_speed, delta) + camera_height
 
-	global_position = camera_position + Vector3(0, height_offset, 0)
+	solve_constraints()
 
 	look_at(lookat_pos + LOOKAT_OFFSET)
