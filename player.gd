@@ -31,6 +31,8 @@ var flight_stroke_timer = flight_stroke_timer_max
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var flight_gravity = gravity * 0.1
 
+var start_jump = false
+
 func _visualize_flight(delta):
 	#var bonePose = skeleton.get_bone_pose(root_bone)
 	#var targetPose = skeleton.get_bone_pose_rotation(root_bone)
@@ -41,7 +43,15 @@ func _visualize_flight(delta):
 	#skeleton.set_bone_pose_rotation(root_bone, targetPose)
 	model.set_flight(flying)
 
+func _unhandled_input(event):
+	if event.is_action_pressed("jump"):
+		start_jump = true
+
 func _physics_process(delta):
+	if Global.in_dialog:
+		model.set_velocity(Vector3.ZERO)
+		return # we just skip player physics in dialog for now
+	
 	var on_floor = is_on_floor()
 
 	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
@@ -52,7 +62,7 @@ func _physics_process(delta):
 
 	if not on_floor:
 		if flying:
-			if Input.is_action_just_pressed("jump") && flight_strokes > 0 && flight_stroke_timer < 0:
+			if start_jump && flight_strokes > 0 && flight_stroke_timer < 0:
 				flight_strokes -= 1
 				velocity.y = FLIGHT_VELOCITY_UP
 				velocity.x = FLIGHT_VELOCITY_FORWARD * direction.x
@@ -66,7 +76,7 @@ func _physics_process(delta):
 
 			flight_stroke_timer -= delta
 		else:
-			if Input.is_action_just_pressed("jump"):
+			if start_jump:
 				flying = true
 				flight_strokes = flight_strokes_max
 				flight_stroke_timer = 0
@@ -85,7 +95,7 @@ func _physics_process(delta):
 		if flying:
 			flying = false
 
-		if Input.is_action_just_pressed("jump"):
+		if start_jump:
 			velocity.y = JUMP_VELOCITY
 		else:
 			velocity.y -= gravity * delta
@@ -103,6 +113,8 @@ func _physics_process(delta):
 	if velocity2d.length_squared() > 0.2 * 0.2:
 		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
 		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
+
+	start_jump = false
 
 	model.set_velocity(velocity)
 	move_and_slide()

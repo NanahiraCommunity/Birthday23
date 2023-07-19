@@ -1,18 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=14 format=3 uid="uid://03d6finnci30"]
 
+[ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Material" uid="uid://c71j0q7t6b7cb" path="res://shaders/cardboard_material.tres" id="1_883em"]
-[ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/characters/character.tscn" id="1_e7o3j"]
-[ext_resource type="Script" path="res://player.gd" id="1_ksjrh"]
-[ext_resource type="Script" path="res://npc_character.gd" id="3_ol76o"]
+[ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_tgr6h"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_dpexn"]
 [ext_resource type="ArrayMesh" uid="uid://c711xl6y5ym2o" path="res://islands/hub/island1.obj" id="4_viow8"]
 [ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="5_e4pqs"]
 [ext_resource type="PackedScene" uid="uid://dc6kil0ny55li" path="res://islands/hub/castle.tscn" id="6_b3hnb"]
 [ext_resource type="Shader" path="res://shaders/cardboard_material.gdshader" id="7_d6boc"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0uhwe"]
-radius = 0.114141
-height = 0.346066
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ueedu"]
 ground_color = Color(0.0392157, 0.686275, 0.823529, 1)
@@ -39,38 +34,22 @@ shader_parameter/darkest_brown = Color(0.298039, 0.211765, 0.0941176, 1)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.301899, 0.148569, -9.69776)
-script = ExtResource("1_ksjrh")
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_0d04h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69093, 0.0551019, -8.33381)
 camera = NodePath("../Camera3D")
 
-[node name="nanahira_papercraft" parent="CharacterBody3D" instance=ExtResource("1_e7o3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685215)
-character = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)
-shape = SubResource("CapsuleShape3D_0uhwe")
-
-[node name="NPCCharacter" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "dialog_box", "player")]
-transform = Transform3D(0.78932, 0, -0.613982, 0, 1, 0, 0.613982, 0, 0.78932, -1.2896, 0.148569, -6.49304)
-script = ExtResource("3_ol76o")
+[node name="NPCCharacter" parent="." node_paths=PackedStringArray("camera", "dialog_box", "player") instance=ExtResource("2_tgr6h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3087, 0, -5.79157)
 camera = NodePath("../Camera3D")
 dialog_box = NodePath("../DialogBox")
-player = NodePath("../CharacterBody3D")
-
-[node name="nanahira_papercraft" parent="NPCCharacter" instance=ExtResource("1_e7o3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685215)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NPCCharacter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)
-shape = SubResource("CapsuleShape3D_0uhwe")
+player = NodePath("../Player")
+dialog_path = "res://dialogs/test.dialogue"
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-1, 4.37114e-08, -7.57103e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.873973, 1.14857, -13.7451)
 current = true
 script = ExtResource("4_dpexn")
-target = NodePath("../CharacterBody3D")
+target = NodePath("../Player")
 
 [node name="DialogBox" parent="." instance=ExtResource("5_e4pqs")]
 visible = false

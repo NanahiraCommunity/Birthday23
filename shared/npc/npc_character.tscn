@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://igunt2eyo7yq"]
+
+[ext_resource type="Script" path="res://npc_character.gd" id="1_jmm0v"]
+[ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/characters/character.tscn" id="2_75txh"]
+[ext_resource type="Texture2D" uid="uid://dxs66trfote8w" path="res://shared/npc/speech_bubble.png" id="3_jmn2w"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4y0na"]
+size = Vector3(0.223558, 0.3705, 0.110425)
+
+[sub_resource type="Animation" id="Animation_kdlsd"]
+resource_name = "dialog_hover"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(2, 0.5, 2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_41p21"]
+_data = {
+"dialog_hover": SubResource("Animation_kdlsd")
+}
+
+[node name="NPCCharacter" type="CharacterBody3D"]
+script = ExtResource("1_jmm0v")
+
+[node name="nanahira_papercraft" parent="." instance=ExtResource("2_75txh")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00304783, 0.178533, -0.00104709)
+shape = SubResource("BoxShape3D_4y0na")
+
+[node name="DialogIndicator" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547495, 0)
+offset = Vector2(0, -0.997692)
+pixel_size = 0.0012
+billboard = 1
+double_sided = false
+texture = ExtResource("3_jmn2w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogIndicator"]
+autoplay = "dialog_hover"
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_41p21")
+}
