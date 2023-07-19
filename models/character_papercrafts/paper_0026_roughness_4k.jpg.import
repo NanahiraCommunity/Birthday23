@@ -11,7 +11,7 @@ metadata={
 
 [deps]
 
-source_file="res://models/character_papercrafts/paper_0026_roughness_4k.jpg"
+source_file="res://shaders/res/paper_0026_roughness_4k.jpg"
 dest_files=["res://.godot/imported/paper_0026_roughness_4k.jpg-8e95d5229197f11c7f653b828c817fb7.s3tc.ctex"]
 
 [params]

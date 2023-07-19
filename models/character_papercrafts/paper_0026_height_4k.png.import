@@ -11,7 +11,7 @@ metadata={
 
 [deps]
 
-source_file="res://models/character_papercrafts/paper_0026_height_4k.png"
+source_file="res://shaders/res/paper_0026_height_4k.png"
 dest_files=["res://.godot/imported/paper_0026_height_4k.png-3fc496666708dd9943b3e13588d5aa36.s3tc.ctex"]
 
 [params]

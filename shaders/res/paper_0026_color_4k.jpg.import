@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkbgyrqdfaeer"
-path.s3tc="res://.godot/imported/paper_0026_color_4k.jpg-22e6b67995e0668e372724a6333b97a1.s3tc.ctex"
+path.s3tc="res://.godot/imported/paper_0026_color_4k.jpg-0eff8cb450df2b93c0363b2456035d3c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,7 +12,7 @@ metadata={
 [deps]
 
 source_file="res://shaders/res/paper_0026_color_4k.jpg"
-dest_files=["res://.godot/imported/paper_0026_color_4k.jpg-22e6b67995e0668e372724a6333b97a1.s3tc.ctex"]
+dest_files=["res://.godot/imported/paper_0026_color_4k.jpg-0eff8cb450df2b93c0363b2456035d3c.s3tc.ctex"]
 
 [params]
 

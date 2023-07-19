@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dj4xjicqlmq8x"]
 
-[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://models/character_papercrafts/paper_0026_color_4k.jpg" id="1_gt7th"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="1_gt7th"]
 [ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="1_nphpk"]
-[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://models/character_papercrafts/paper_0026_normal_opengl_4k.png" id="3_h26h8"]
-[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://models/character_papercrafts/paper_0026_roughness_4k.jpg" id="4_8cwqa"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="3_h26h8"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="4_8cwqa"]
 
 [resource]
 render_priority = 0

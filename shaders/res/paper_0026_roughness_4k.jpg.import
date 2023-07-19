@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkbgyrqdfaeer"
-path.s3tc="res://.godot/imported/paper_0026_color_4k.jpg-22e6b67995e0668e372724a6333b97a1.s3tc.ctex"
+uid="uid://bag7nnesrme58"
+path.s3tc="res://.godot/imported/paper_0026_roughness_4k.jpg-799dd88c05e4cf4dce59eaad501d59f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shaders/res/paper_0026_color_4k.jpg"
-dest_files=["res://.godot/imported/paper_0026_color_4k.jpg-22e6b67995e0668e372724a6333b97a1.s3tc.ctex"]
+source_file="res://shaders/res/paper_0026_roughness_4k.jpg"
+dest_files=["res://.godot/imported/paper_0026_roughness_4k.jpg-799dd88c05e4cf4dce59eaad501d59f3.s3tc.ctex"]
 
 [params]
 
