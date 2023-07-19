@@ -2,14 +2,35 @@ extends Node3D
 
 #var animationPlayer: AnimationPlayer
 
+enum Character {
+	NANAHIRA,
+	MESSENGER,
+}
+
 const VELOCITY_SCALE = 2.0
 
 var last_velocity = Vector3.ZERO
 
+@export var character: Character = Character.NANAHIRA
+
 func _ready():
-	var scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-	var instance = scene.instantiate()
-	instance.get_node("Armature/Skeleton3D/MessengerPapercraft").reparent($Armature/Skeleton3D, false)
+	var scene = null
+	var respath = null
+	
+	$Armature/Skeleton3D/NanahiraPapercraft.visible = false
+	
+	match(character):
+		Character.NANAHIRA:
+			$Armature/Skeleton3D/NanahiraPapercraft.visible = true
+		Character.MESSENGER:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+		_:
+			push_warning("Specified character not in enum, can't load!")
+	
+	if scene and respath:
+		var instance = scene.instantiate()
+		instance.get_node(respath).reparent($Armature/Skeleton3D, false)
 
 func _process(delta):
 	pass

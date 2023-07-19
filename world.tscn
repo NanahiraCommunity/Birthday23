@@ -46,6 +46,7 @@ camera = NodePath("../Camera3D")
 
 [node name="nanahira_papercraft" parent="CharacterBody3D" instance=ExtResource("1_e7o3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00685215)
+character = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)

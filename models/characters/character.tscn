@@ -136,7 +136,6 @@ fill_to = Vector2(1, 0.5)
 script = ExtResource("2_4spq3")
 
 [node name="NanahiraPapercraft" parent="Armature/Skeleton3D" index="0"]
-visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
