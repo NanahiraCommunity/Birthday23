@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="Material" uid="uid://c71j0q7t6b7cb" path="res://shaders/cardboard_material.tres" id="1_883em"]
-[ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/character_papercrafts/nanahira_papercraft.tscn" id="1_e7o3j"]
+[ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/characters/character.tscn" id="1_e7o3j"]
 [ext_resource type="Script" path="res://player.gd" id="1_ksjrh"]
 [ext_resource type="Script" path="res://npc_character.gd" id="3_ol76o"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_dpexn"]
