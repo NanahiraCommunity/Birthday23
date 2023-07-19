@@ -51,11 +51,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0114216, 1.19209e-07, -0.00
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00700498, 0.165605, -0.00991626)
 shape = SubResource("CapsuleShape3D_0uhwe")
 
-[node name="NPCCharacter" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "dialogBox", "player")]
+[node name="NPCCharacter" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera", "dialog_box", "player")]
 transform = Transform3D(0.78932, 0, -0.613982, 0, 1, 0, 0.613982, 0, 0.78932, -1.2896, 0.148569, -6.49304)
 script = ExtResource("3_ol76o")
 camera = NodePath("../Camera3D")
-dialogBox = NodePath("../DialogBox")
+dialog_box = NodePath("../DialogBox")
 player = NodePath("../CharacterBody3D")
 
 [node name="nanahira_papercraft" parent="NPCCharacter" instance=ExtResource("1_e7o3j")]

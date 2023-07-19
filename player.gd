@@ -19,7 +19,7 @@ const FLIGHT_DRAG_HORIZONTAL = 0.99
 @export var camera: Node3D
 @onready var model: Node3D = get_node("nanahira_papercraft")
 @onready var skeleton: Skeleton3D = model.get_node("Armature/Skeleton3D")
-@onready var rootBone: int = skeleton.find_bone("Root")
+@onready var root_bone: int = skeleton.find_bone("Root")
 
 var flying = false
 var flight_strokes_max = 3
@@ -32,13 +32,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var flight_gravity = gravity * 0.1
 
 func _visualize_flight(delta):
-	#var bonePose = skeleton.get_bone_pose(rootBone)
-	#var targetPose = skeleton.get_bone_pose_rotation(rootBone)
+	#var bonePose = skeleton.get_bone_pose(root_bone)
+	#var targetPose = skeleton.get_bone_pose_rotation(root_bone)
 	#if flying:
 	#	targetPose = targetPose.slerp(Quaternion(Vector3(1.0, 0.0, 0.0), deg_to_rad(-70.0)), FLY_START_ANIMATION_SPEED * delta)
 	#else:
-	#	targetPose = targetPose.slerp(Quaternion(skeleton.get_bone_rest(rootBone).basis), FLY_END_ANIMATION_SPEED * delta)
-	#skeleton.set_bone_pose_rotation(rootBone, targetPose)
+	#	targetPose = targetPose.slerp(Quaternion(skeleton.get_bone_rest(root_bone).basis), FLY_END_ANIMATION_SPEED * delta)
+	#skeleton.set_bone_pose_rotation(root_bone, targetPose)
 	model.set_flight(flying)
 
 func _physics_process(delta):
@@ -101,8 +101,8 @@ func _physics_process(delta):
 
 	var velocity2d = Vector2(velocity.x, velocity.z)
 	if velocity2d.length_squared() > 0.2 * 0.2:
-		var rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
-		global_transform.basis = global_transform.basis.slerp(rotation, ROTATION_SPEED * delta)
+		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
+		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
 
 	model.set_velocity(velocity)
 	move_and_slide()

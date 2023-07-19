@@ -121,8 +121,8 @@ func _physics_process(delta):
 		camera_position.x = (camera_position.x - pull_xz.x) * pow(1 - FOLLOW_SPEED_PULL, delta) + pull_xz.x
 		camera_position.z = (camera_position.z - pull_xz.y) * pow(1 - FOLLOW_SPEED_PULL, delta) + pull_xz.y
 
-	var ascendSpeed = ASCEND_SPEED_ONGROUND if target && target.is_on_floor() else ASCEND_SPEED
-	camera_position.y = (camera_position.y - camera_height) * pow(1 - ascendSpeed, delta) + camera_height
+	var ascend_speed = ASCEND_SPEED_ONGROUND if target && target.is_on_floor() else ASCEND_SPEED
+	camera_position.y = (camera_position.y - camera_height) * pow(1 - ascend_speed, delta) + camera_height
 
 	global_position = camera_position + Vector3(0, height_offset, 0)
 
