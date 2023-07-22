@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bswa4v76kk0k0"
+path="res://.godot/imported/sorting_desk.obj-171b65b82844a831cf8ad86739f22933.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sorting_desk.obj-171b65b82844a831cf8ad86739f22933.mesh"]
+
+source_file="res://islands/inside_hub/sorting_desk.obj"
+dest_files=["res://.godot/imported/sorting_desk.obj-171b65b82844a831cf8ad86739f22933.mesh", "res://.godot/imported/sorting_desk.obj-171b65b82844a831cf8ad86739f22933.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

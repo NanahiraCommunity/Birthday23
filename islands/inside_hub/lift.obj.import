@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ckyk7hrkofp65"
+path="res://.godot/imported/lift.obj-fe635be7f7e5553c5a844bd583702813.mesh"
+
+[deps]
+
+files=["res://.godot/imported/lift.obj-fe635be7f7e5553c5a844bd583702813.mesh"]
+
+source_file="res://islands/inside_hub/lift.obj"
+dest_files=["res://.godot/imported/lift.obj-fe635be7f7e5553c5a844bd583702813.mesh", "res://.godot/imported/lift.obj-fe635be7f7e5553c5a844bd583702813.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

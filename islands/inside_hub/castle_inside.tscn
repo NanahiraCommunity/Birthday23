@@ -1,27 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=16 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
-[ext_resource type="Shader" path="res://shaders/cardboard_material.gdshader" id="2_ky3oe"]
+[ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
+[ext_resource type="PackedScene" uid="uid://5e0r6jojpuol" path="res://islands/inside_hub/sorting_desk.tscn" id="4_dyp41"]
 [ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
+[ext_resource type="PackedScene" uid="uid://bc484g30nbc6y" path="res://islands/inside_hub/inside_hub_model.tscn" id="4_yppmi"]
+[ext_resource type="PackedScene" uid="uid://cnljkgyqnqbpf" path="res://islands/inside_hub/cart_incoming.tscn" id="5_qf56q"]
+[ext_resource type="PackedScene" uid="uid://dxnip436w51oa" path="res://islands/inside_hub/cart_2size.tscn" id="6_ftmxq"]
+[ext_resource type="PackedScene" uid="uid://q5cqr50j4ent" path="res://islands/inside_hub/cart_letters.tscn" id="7_ttggf"]
+[ext_resource type="PackedScene" uid="uid://b6po72onskoa6" path="res://islands/inside_hub/cart_packages.tscn" id="8_8jynb"]
+[ext_resource type="PackedScene" uid="uid://col6gmt7abxmw" path="res://islands/inside_hub/lift.tscn" id="9_56i4s"]
 
 [sub_resource type="Environment" id="Environment_na0up"]
 background_mode = 1
-background_color = Color(0.298039, 0.0784314, 0.0352941, 1)
-ambient_light_color = Color(0.152941, 0.152941, 0.152941, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_trqyf"]
-render_priority = 0
-shader = ExtResource("2_ky3oe")
-shader_parameter/light_brown = Color(0.854902, 0.67451, 0.447059, 1)
-shader_parameter/dark_brown = Color(0.823529, 0.643137, 0.4, 1)
-shader_parameter/darker_brown = Color(0.447059, 0.32549, 0.160784, 1)
-shader_parameter/darkest_brown = Color(0.298039, 0.211765, 0.0941176, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.658824, 0.658824, 0.658824, 1)
+ssao_radius = 1.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b8hsf"]
 radius = 0.15
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_8xab6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_r6x47"]
+size = Vector3(1.54088, 1.77111, 1.73666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctc56"]
+size = Vector3(31.9166, 1, 19.4523)
 
 [node name="Castle" type="Node3D"]
 
@@ -29,26 +33,20 @@ radius = 0.15
 environment = SubResource("Environment_na0up")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_4pj2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0528373, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0528373, 3.68156)
 camera = NodePath("../Node3D/Camera3D")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.143643, 0)
-use_collision = true
-size = Vector3(5, 0.3, 5)
-material = SubResource("ShaderMaterial_trqyf")
-
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975174, 5.86789)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
-transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.873973, 1.14857, -5.61469)
+transform = Transform3D(1, -8.74228e-08, 1.51421e-07, 9.47311e-16, 0.866025, 0.5, -1.74846e-07, -0.5, 0.866025, 0, 0, 0)
 current = true
 script = ExtResource("3_8r8sj")
 target = NodePath("../../Player")
 kinematic_body = NodePath("../CameraSafeArea")
 
 [node name="CameraSafeArea" type="CharacterBody3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.874, 1.149, -13.745)
 collision_layer = 0
 floor_constant_speed = true
 platform_on_leave = 2
@@ -56,14 +54,61 @@ platform_on_leave = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
 shape = SubResource("SphereShape3D_b8hsf")
 
+[node name="RoomMain" type="Node3D" parent="."]
+metadata/room_node = true
+
+[node name="Stool" parent="RoomMain" instance=ExtResource("3_2l40b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08009, 0, -2.05676)
+
+[node name="Stool2" parent="RoomMain" instance=ExtResource("3_2l40b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08009, 0, -1.56948)
+
+[node name="SortingDesk" parent="RoomMain" instance=ExtResource("4_dyp41")]
+
+[node name="CartIncoming" parent="RoomMain" instance=ExtResource("5_qf56q")]
+
+[node name="Cart2Size" parent="RoomMain" instance=ExtResource("6_ftmxq")]
+
+[node name="CartLetters" parent="RoomMain" instance=ExtResource("7_ttggf")]
+
+[node name="CartPackages" parent="RoomMain" instance=ExtResource("8_8jynb")]
+
+[node name="Lift" parent="RoomMain" instance=ExtResource("9_56i4s")]
+
+[node name="WorldLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, 0.836516, -0.224144, 0, 0.258819, 0.965926, 0.866025, -0.482963, 0.12941, -2.05981, 0.365944, -0.05182)
+light_energy = 0.4
+shadow_enabled = true
+shadow_blur = 2.0
+
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18533, 0.365944, 2.13364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54063, 1.28334, 3.08646)
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60192, 1.28334, 3.08646)
+shadow_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73309, 1.28334, -0.95067)
+shadow_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97634, 1.28334, -0.95067)
 shadow_enabled = true
 
 [node name="InteractArea" parent="." instance=ExtResource("4_ih1bi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07245, 0.00635737, 1.85907)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0282998, 0.00635761, 4.87664)
 next_scene = "res://world.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.356134, 0)
-shape = SubResource("SphereShape3D_8xab6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7086, 0)
+shape = SubResource("BoxShape3D_r6x47")
+
+[node name="inside_hub" parent="." instance=ExtResource("4_yppmi")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_ctc56")

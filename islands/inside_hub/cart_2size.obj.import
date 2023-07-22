@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://buo70eq4pmixt"
+path="res://.godot/imported/cart_2size.obj-1b4e35afb03b23f52cccc7c40db8065f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cart_2size.obj-1b4e35afb03b23f52cccc7c40db8065f.mesh"]
+
+source_file="res://islands/inside_hub/cart_2size.obj"
+dest_files=["res://.godot/imported/cart_2size.obj-1b4e35afb03b23f52cccc7c40db8065f.mesh", "res://.godot/imported/cart_2size.obj-1b4e35afb03b23f52cccc7c40db8065f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
