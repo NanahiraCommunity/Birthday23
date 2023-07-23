@@ -16,7 +16,7 @@ func _ready():
 	inside = false
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and inside and next_scene:
+	if event.is_action_pressed("interact") and inside and next_scene:
 		get_viewport().set_input_as_handled()
 		print("scene change: ", next_scene)
 		get_tree().change_scene_to_file(next_scene)
