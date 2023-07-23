@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://byflm3kvjdyoy"]
+[gd_scene load_steps=35 format=3 uid="uid://byflm3kvjdyoy"]
 
 [ext_resource type="PackedScene" uid="uid://b5v002sdy4808" path="res://models/characters/nanahira/nanahira_papercraft.glb" id="1_vjmr4"]
 [ext_resource type="Script" path="res://models/characters/character.gd" id="2_4spq3"]
@@ -35,6 +35,12 @@ animation = &"Fly"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lvxvn"]
 animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f32wc"]
+animation = &"Sit-throw"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tqluy"]
+animation = &"Sit"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_n2ccf"]
 
@@ -105,6 +111,13 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jfm6e"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nqbiy"]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4x46p"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cvq6l"]
 states/End/position = Vector2(193, 133)
 states/Fly/node = SubResource("AnimationNodeAnimation_bs1eg")
@@ -113,13 +126,17 @@ states/Fly-stop/node = SubResource("AnimationNodeAnimation_g56u5")
 states/Fly-stop/position = Vector2(341, 192)
 states/Idle/node = SubResource("AnimationNodeAnimation_lvxvn")
 states/Idle/position = Vector2(341, 108)
+states/Sit/node = SubResource("AnimationNodeAnimation_tqluy")
+states/Sit/position = Vector2(661, 108)
+states/Sit-throw/node = SubResource("AnimationNodeAnimation_f32wc")
+states/Sit-throw/position = Vector2(661, 192)
 states/Start/position = Vector2(193, 70)
 states/Walk/node = SubResource("AnimationNodeBlendTree_tpo04")
 states/Walk/position = Vector2(481, 108)
 states/fly-start/node = SubResource("AnimationNodeAnimation_7jlsk")
 states/fly-start/position = Vector2(481, 192)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw"), "Idle", "fly-start", SubResource("AnimationNodeStateMachineTransition_q63s5"), "Walk", "fly-start", SubResource("AnimationNodeStateMachineTransition_n6diw"), "fly-start", "Fly", SubResource("AnimationNodeStateMachineTransition_ii77c"), "Fly", "Fly-stop", SubResource("AnimationNodeStateMachineTransition_a7urx"), "Fly-stop", "Idle", SubResource("AnimationNodeStateMachineTransition_dtksj"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfm6e")]
-graph_offset = Vector2(-133, 6)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw"), "Idle", "fly-start", SubResource("AnimationNodeStateMachineTransition_q63s5"), "Walk", "fly-start", SubResource("AnimationNodeStateMachineTransition_n6diw"), "fly-start", "Fly", SubResource("AnimationNodeStateMachineTransition_ii77c"), "Fly", "Fly-stop", SubResource("AnimationNodeStateMachineTransition_a7urx"), "Fly-stop", "Idle", SubResource("AnimationNodeStateMachineTransition_dtksj"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfm6e"), "Sit", "Sit-throw", SubResource("AnimationNodeStateMachineTransition_nqbiy"), "Sit-throw", "Sit", SubResource("AnimationNodeStateMachineTransition_4x46p")]
+graph_offset = Vector2(69, -12)
 
 [node name="NanahiraPapercraft" instance=ExtResource("1_vjmr4")]
 script = ExtResource("2_4spq3")

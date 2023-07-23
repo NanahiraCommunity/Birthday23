@@ -50,11 +50,10 @@ shadow_bias = 0.03
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69093, 0.0551019, -8.33381)
 camera = NodePath("../Node3D/Camera3D")
 
-[node name="NPCCharacter" parent="." node_paths=PackedStringArray("camera", "dialog_box", "player") instance=ExtResource("2_tgr6h")]
+[node name="NPCCharacter" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_tgr6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3087, 0, -5.79157)
 camera = NodePath("../Node3D/Camera3D")
 dialog_box = NodePath("../DialogBox")
-player = NodePath("../Player")
 dialog_path = "res://dialogs/test.dialogue"
 
 [node name="Node3D" type="Node3D" parent="."]

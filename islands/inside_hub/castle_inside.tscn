@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=17 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
 [ext_resource type="PackedScene" uid="uid://5e0r6jojpuol" path="res://islands/inside_hub/sorting_desk.tscn" id="4_dyp41"]
 [ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
+[ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="4_k2tdf"]
 [ext_resource type="PackedScene" uid="uid://bc484g30nbc6y" path="res://islands/inside_hub/inside_hub_model.tscn" id="4_yppmi"]
 [ext_resource type="PackedScene" uid="uid://cnljkgyqnqbpf" path="res://islands/inside_hub/cart_incoming.tscn" id="5_qf56q"]
 [ext_resource type="PackedScene" uid="uid://dxnip436w51oa" path="res://islands/inside_hub/cart_2size.tscn" id="6_ftmxq"]
@@ -33,14 +34,14 @@ size = Vector3(31.9166, 1, 19.4523)
 environment = SubResource("Environment_na0up")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_4pj2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0528373, 3.68156)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09359, 0.0528373, -1.46358)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.975174, 5.86789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33438, 0.883262, 0.193773)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
-transform = Transform3D(1, -8.74228e-08, 1.51421e-07, 9.47311e-16, 0.866025, 0.5, -1.74846e-07, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, -8.7423e-08, 1.51421e-07, 9.47311e-16, 0.866025, 0.5, -1.74846e-07, -0.5, 0.866025, -2.32728, 0, -0.796576)
 current = true
 script = ExtResource("3_8r8sj")
 target = NodePath("../../Player")
@@ -57,17 +58,26 @@ shape = SubResource("SphereShape3D_b8hsf")
 [node name="RoomMain" type="Node3D" parent="."]
 metadata/room_node = true
 
-[node name="Stool" parent="RoomMain" instance=ExtResource("3_2l40b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08009, 0, -2.05676)
+[node name="Stool" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87363, 0.0595909, -2.05676)
+desk = NodePath("../SortingDesk")
 
-[node name="Stool2" parent="RoomMain" instance=ExtResource("3_2l40b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08009, 0, -1.56948)
+[node name="NPCCharacter" parent="RoomMain/Stool" instance=ExtResource("4_k2tdf")]
 
-[node name="SortingDesk" parent="RoomMain" instance=ExtResource("4_dyp41")]
+[node name="Stool2" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.87363, 0.0595909, -1.56948)
+desk = NodePath("../SortingDesk")
+
+[node name="NPCCharacter" parent="RoomMain/Stool2" instance=ExtResource("4_k2tdf")]
+
+[node name="SortingDesk" parent="RoomMain" node_paths=PackedStringArray("cart") instance=ExtResource("4_dyp41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58612, 0, -1.80841)
+cart = NodePath("../Cart2Size")
 
 [node name="CartIncoming" parent="RoomMain" instance=ExtResource("5_qf56q")]
 
 [node name="Cart2Size" parent="RoomMain" instance=ExtResource("6_ftmxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24424, 0, -2.0472)
 
 [node name="CartLetters" parent="RoomMain" instance=ExtResource("7_ttggf")]
 

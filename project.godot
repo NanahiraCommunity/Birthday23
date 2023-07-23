@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Birthday23"
-run/main_scene="res://world.tscn"
+run/main_scene="res://islands/inside_hub/castle_inside.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -89,6 +89,10 @@ pointing/emulate_mouse_from_touch=false
 [internationalization]
 
 locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue")
+
+[layer_names]
+
+3d_physics/layer_2="Letters"
 
 [rendering]
 
