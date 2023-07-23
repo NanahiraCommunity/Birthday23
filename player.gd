@@ -51,13 +51,12 @@ func _unhandled_input(event):
 		start_jump = true
 
 func _physics_process(delta):
-	if Global.in_dialog:
-		model.set_velocity(Vector3.ZERO)
-		return # we just skip player physics in dialog for now
-	
 	var on_floor = is_on_floor()
-
-	var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	var input_dir = Vector3()
+	
+	if not Global.in_dialog:
+		input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	
 	var direction = Vector3(input_dir.x, 0, input_dir.y)
 	if direction.length_squared() > 1:
 		direction = direction.normalized()

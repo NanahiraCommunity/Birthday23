@@ -33,12 +33,12 @@ func _input(event: InputEvent) -> void:
 	
 	var handled = false
 	if choosing:
-		if event.is_action_pressed("ui_up"):
+		if event.is_action_pressed("ui_up") or event.is_action_pressed("walk_up"):
 			selected_index -= 1
 			if selected_index < 0:
 				selected_index = len(option_nodes) - 1
 			handled = true
-		if event.is_action_pressed("ui_down"):
+		if event.is_action_pressed("ui_down") or event.is_action_pressed("walk_down"):
 			selected_index += 1
 			if selected_index >= len(option_nodes):
 				selected_index = 0

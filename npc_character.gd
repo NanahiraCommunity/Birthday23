@@ -20,7 +20,7 @@ var keep_head_time = 0
 var can_talk = false
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and can_talk:
+	if event.is_action_pressed("interact") and can_talk:
 		dialog_box.trigger_dialog(dialog_path, dialog_entry)
 		get_viewport().set_input_as_handled()
 
