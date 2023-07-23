@@ -94,7 +94,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "res://dialogs/test2.dialogue")
 
 [layer_names]
 
