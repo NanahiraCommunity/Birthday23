@@ -31,6 +31,7 @@ func _process(delta):
 
 	$NinePatchRect.size = $MarginContainer.size
 	$NinePatchRect.position = $MarginContainer.position
+	$Name.position.y = $MarginContainer.position.y
 
 func _input(event: InputEvent) -> void:
 	if not visible:
@@ -102,7 +103,7 @@ func show_next():
 	next_dialogue = current_line.next_id
 	choosing = false
 
-	$MarginContainer/VBoxContainer/Name.text = current_line.character
+	$Name.text = current_line.character
 	$MarginContainer/VBoxContainer/Text.dialogue_line = current_line
 	$MarginContainer/VBoxContainer/Text.type_out()
 

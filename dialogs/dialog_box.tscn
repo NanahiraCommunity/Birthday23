@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bar7wftpdkyu0"]
 
 [ext_resource type="Script" path="res://dialogs/dialog_box.gd" id="1_sbwbj"]
-[ext_resource type="Texture2D" uid="uid://c1ltedkuhgt44" path="res://dialogs/dialog_box.svg" id="2_jlh5g"]
+[ext_resource type="Texture2D" uid="uid://dg06wadpj8f8l" path="res://dialogs/dialog_box.svg" id="2_jlh5g"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_a1hd0"]
-[ext_resource type="Texture2D" uid="uid://de2huokohwshk" path="res://dialogs/dialog_next_indicator.svg" id="4_oa1es"]
-[ext_resource type="Texture2D" uid="uid://dik4v7wxeocwa" path="res://dialogs/dialog_separator.svg" id="4_sutl5"]
-[ext_resource type="Texture2D" uid="uid://c711pkvdvtdd2" path="res://dialogs/dialog_cursor.svg" id="5_elhst"]
+[ext_resource type="Texture2D" uid="uid://dbmv1it57xaw" path="res://dialogs/dialog_next_indicator.svg" id="4_oa1es"]
+[ext_resource type="Texture2D" uid="uid://b6soqux55vjnb" path="res://dialogs/dialog_separator.svg" id="4_sutl5"]
+[ext_resource type="Texture2D" uid="uid://k76gdy6dtp80" path="res://dialogs/dialog_cursor.svg" id="5_elhst"]
 
 [sub_resource type="Animation" id="Animation_mrnud"]
 length = 0.001
@@ -52,9 +52,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -498.0
-offset_top = -251.0
+offset_top = -228.0
 offset_right = 505.0
-offset_bottom = -34.0
+offset_bottom = -10.9991
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_sbwbj")
@@ -71,6 +71,22 @@ patch_margin_bottom = 28
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[node name="Name" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = 35.0
+offset_right = 963.0
+offset_bottom = 34.0
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.956863, 0.929412, 0.870588, 1)
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "Character Name"
+fit_content = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
@@ -81,29 +97,17 @@ offset_top = -217.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 45
 theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 40
+theme_override_constants/margin_bottom = 30
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Name" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
-theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 24
-theme_override_font_sizes/italics_font_size = 24
-theme_override_font_sizes/bold_italics_font_size = 24
-theme_override_font_sizes/mono_font_size = 24
-bbcode_enabled = true
-text = "Character Name"
-fit_content = true
-
 [node name="Text" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
+theme_override_colors/default_color = Color(0.666667, 0.164706, 0.054902, 1)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -118,14 +122,13 @@ seconds_per_step = 0.015
 pause_at_characters = ".,?!"
 
 [node name="DialogSeparator" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 texture = ExtResource("4_sutl5")
 
 [node name="OptionTemplate" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
+theme_override_colors/default_color = Color(0.666667, 0.164706, 0.054902, 1)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -149,4 +152,4 @@ libraries = {
 position = Vector2(40, 110)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_elhst")
-offset = Vector2(-30, 30)
+offset = Vector2(-35, 30)
