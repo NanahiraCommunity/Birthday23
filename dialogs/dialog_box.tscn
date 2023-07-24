@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bar7wftpdkyu0"]
+[gd_scene load_steps=10 format=3 uid="uid://bar7wftpdkyu0"]
 
-[ext_resource type="Texture2D" uid="uid://bkwhi3n6t82qa" path="res://dialogs/dialog_box.png" id="1_ecycg"]
 [ext_resource type="Script" path="res://dialogs/dialog_box.gd" id="1_sbwbj"]
-[ext_resource type="Texture2D" uid="uid://brlvsvt2bp05y" path="res://dialogs/dialog_next_indicator.png" id="2_44wbw"]
+[ext_resource type="Texture2D" uid="uid://c1ltedkuhgt44" path="res://dialogs/dialog_box.svg" id="2_jlh5g"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="3_a1hd0"]
-[ext_resource type="Texture2D" uid="uid://dhy4im3eftwv2" path="res://dialogs/dialog_cursor.png" id="4_d4wuc"]
+[ext_resource type="Texture2D" uid="uid://de2huokohwshk" path="res://dialogs/dialog_next_indicator.svg" id="4_oa1es"]
+[ext_resource type="Texture2D" uid="uid://dik4v7wxeocwa" path="res://dialogs/dialog_separator.svg" id="4_sutl5"]
+[ext_resource type="Texture2D" uid="uid://c711pkvdvtdd2" path="res://dialogs/dialog_cursor.svg" id="5_elhst"]
 
 [sub_resource type="Animation" id="Animation_mrnud"]
 length = 0.001
@@ -62,11 +63,13 @@ script = ExtResource("1_sbwbj")
 layout_mode = 2
 offset_right = 1003.0
 offset_bottom = 216.0
-texture = ExtResource("1_ecycg")
-patch_margin_left = 64
-patch_margin_top = 64
-patch_margin_right = 64
-patch_margin_bottom = 64
+texture = ExtResource("2_jlh5g")
+patch_margin_left = 31
+patch_margin_top = 38
+patch_margin_right = 107
+patch_margin_bottom = 28
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -88,7 +91,7 @@ layout_mode = 2
 
 [node name="Name" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
 theme_override_font_sizes/normal_font_size = 24
 theme_override_font_sizes/bold_font_size = 24
 theme_override_font_sizes/italics_font_size = 24
@@ -100,7 +103,7 @@ fit_content = true
 
 [node name="Text" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -114,10 +117,15 @@ skip_action = ""
 seconds_per_step = 0.015
 pause_at_characters = ".,?!"
 
+[node name="DialogSeparator" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("4_sutl5")
+
 [node name="OptionTemplate" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.4, 0.188235, 0.180392, 1)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -127,9 +135,9 @@ text = "Option"
 fit_content = true
 
 [node name="NextIndicator" type="Sprite2D" parent="."]
-position = Vector2(959, 178)
-scale = Vector2(0.854167, 0.568182)
-texture = ExtResource("2_44wbw")
+position = Vector2(959, 173)
+scale = Vector2(0.854, 0.854)
+texture = ExtResource("4_oa1es")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NextIndicator"]
 autoplay = "idle"
@@ -138,7 +146,7 @@ libraries = {
 }
 
 [node name="Cursor" type="Sprite2D" parent="."]
-position = Vector2(40.0001, 129)
-scale = Vector2(0.375, 0.364583)
-texture = ExtResource("4_d4wuc")
-offset = Vector2(-40, 40)
+position = Vector2(40, 110)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_elhst")
+offset = Vector2(-30, 30)

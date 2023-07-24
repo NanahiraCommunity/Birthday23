@@ -23,6 +23,11 @@ func _process(delta):
 	$Cursor.visible = choosing
 	if choosing:
 		$Cursor.global_position.y = option_nodes[selected_index].global_position.y
+		for i in range(len(option_nodes)):
+			if i == selected_index:
+				option_nodes[i].modulate.a = 1
+			else:
+				option_nodes[i].modulate.a = 0.5
 
 	$NinePatchRect.size = $MarginContainer.size
 	$NinePatchRect.position = $MarginContainer.position
@@ -89,6 +94,7 @@ func show_next():
 		rendering = false
 		return
 
+	$MarginContainer/VBoxContainer/DialogSeparator.visible = false
 	for child in option_nodes:
 		$MarginContainer/VBoxContainer.remove_child(child)
 	option_nodes = []
@@ -104,6 +110,7 @@ func show_next():
 	
 	if current_line.responses:
 		choosing = true
+		$MarginContainer/VBoxContainer/DialogSeparator.visible = true
 		for response in current_line.responses:
 			var option: RichTextLabel = $MarginContainer/VBoxContainer/OptionTemplate.duplicate()
 			if not response.is_allowed:
