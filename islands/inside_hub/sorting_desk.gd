@@ -5,11 +5,6 @@ extends MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Preload letter sprites
-	var letter_sprites = []
-	for i in [1,2,3]:
-		letter_sprites.append(load("res://shared/letter/letter%s.svg" % i))
-	
 	var letter_scene = preload("res://shared/letter/letter.tscn")
 	for i in range(start_letters):
 		var copy: RigidBody3D = letter_scene.instantiate()
@@ -17,9 +12,6 @@ func _ready():
 		copy.visible = true
 		copy.global_rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
 		copy.global_position += Vector3(randfn(0.0, 0.15) * 0.2, randfn(0.0, 0.15) * 0.15, randfn(0.0, 0.15) * 0.9)
-		# Randomize letter sprite
-		var letter_sprite = letter_sprites[randi() % len(letter_sprites)]
-		copy.get_node("Letter").set_texture(letter_sprite)
 
 func get_letter(npc):
 	var c = $Letters.get_child_count()
