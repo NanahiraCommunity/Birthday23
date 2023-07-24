@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=22 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Material" uid="uid://c71j0q7t6b7cb" path="res://shaders/cardboard_material.tres" id="1_883em"]
+[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="2_82oxn"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_tgr6h"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_dpexn"]
 [ext_resource type="ArrayMesh" uid="uid://c711xl6y5ym2o" path="res://islands/hub/island1.obj" id="4_viow8"]
@@ -104,6 +105,9 @@ platform_on_leave = 2
 shape = SubResource("SphereShape3D_qr5sb")
 
 [node name="DialogBox" parent="." instance=ExtResource("5_e4pqs")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("2_82oxn")]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
