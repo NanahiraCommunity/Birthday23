@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhy4im3eftwv2"
-path="res://.godot/imported/dialog_cursor.png-1357f23010d7facccca9a7b01af31aec.ctex"
+uid="uid://dik4v7wxeocwa"
+path="res://.godot/imported/dialog_separator.svg-ae345b733a52ba6b59247000da2cbe32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dialogs/dialog_cursor.png"
-dest_files=["res://.godot/imported/dialog_cursor.png-1357f23010d7facccca9a7b01af31aec.ctex"]
+source_file="res://dialogs/dialog_separator.svg"
+dest_files=["res://.godot/imported/dialog_separator.svg-ae345b733a52ba6b59247000da2cbe32.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
