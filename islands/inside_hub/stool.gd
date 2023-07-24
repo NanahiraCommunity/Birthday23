@@ -15,14 +15,14 @@ func _ready():
 func _process(delta):
 	if npc:
 		if not desk:
-			print("stool without desk!", self)
+			push_warning("stool without desk!", self)
 			return
 		if not desk.cart:
-			print("no cart")
+			# print("no cart")
 			return
 		var area = desk.cart.get_target_area(true)
 		if not area:
-			print("no target area")
+			# print("no target area")
 			return
 		pick_timeout -= delta
 		if pick_timeout < 0:

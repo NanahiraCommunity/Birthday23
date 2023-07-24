@@ -128,3 +128,9 @@ shape = SubResource("BoxShape3D_3p65p")
 [node name="Letters" type="CollisionShape3D" parent="Areas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0277585, 0.234911)
 shape = SubResource("BoxShape3D_blimr")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0632984, 0, 0)
+radius = 0.32
+height = 0.5
+vertices = PackedVector3Array(0.187226, 0, -0.254892, -0.209856, 0, -0.256738, -0.220937, 0, 0.265933, 0.192767, 0, 0.265933)

@@ -30,6 +30,8 @@ _data = {
 }
 
 [node name="NPCCharacter" type="CharacterBody3D"]
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("1_jmm0v")
 
 [node name="nanahira_papercraft" parent="." instance=ExtResource("2_75txh")]
@@ -40,7 +42,6 @@ shape = SubResource("BoxShape3D_4y0na")
 
 [node name="DialogIndicator" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547495, 0)
-offset = Vector2(0, -0.997692)
 pixel_size = 0.0012
 billboard = 1
 double_sided = false
@@ -52,3 +53,13 @@ reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_41p21")
 }
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+process_mode = 4
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_height_offset = 0.1
+path_max_distance = 3.01
+height = 0.5
+radius = 0.1
+neighbor_distance = 5.0

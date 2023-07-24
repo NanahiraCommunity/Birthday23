@@ -1,6 +1,7 @@
 extends MeshInstance3D
 
 @export var cart: Node3D
+@export var start_letters: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +11,7 @@ func _ready():
 		letter_sprites.append(load("res://shared/letter/letter%s.svg" % i))
 	
 	var letter_scene = preload("res://shared/letter/letter.tscn")
-	for i in range(30):
+	for i in range(start_letters):
 		var copy: RigidBody3D = letter_scene.instantiate()
 		$Letters.add_child(copy)
 		copy.visible = true
@@ -52,9 +53,11 @@ func _on_cart_area_body_exited(body):
 
 func _on_letter_area_body_exited(body):
 	if body in $Letters.get_children():
-		body.reparent(get_parent())
+		body.reparent.call_deferred(get_parent())
 
 
 func _on_letter_area_body_entered(body: Node3D):
-	if body.has_meta("is_letter"):
+	if body.has_meta("is_letter") and not body.is_in_group("ignore"):
+		body.add_to_group("ignore")
 		body.reparent($Letters)
+		body.remove_from_group("ignore")

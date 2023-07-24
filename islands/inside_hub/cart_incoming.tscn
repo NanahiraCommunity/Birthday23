@@ -106,3 +106,8 @@ monitorable = false
 [node name="Mixed" type="CollisionShape3D" parent="Areas"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0465541, -0.0277585, 0.0850209)
 shape = SubResource("BoxShape3D_lq75j")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.3
+height = 0.5
+vertices = PackedVector3Array(-0.153805, 0, -0.262139, 0.150279, 0, -0.264854, 0.154352, 0, 0.271366, -0.157877, 0, 0.265936)

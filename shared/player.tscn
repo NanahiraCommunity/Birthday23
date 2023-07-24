@@ -33,3 +33,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.52384, 0)
 size = Vector3(0.2, 1, 0.2)
 texture_albedo = SubResource("GradientTexture2D_2glq1")
 upper_fade = 0.15
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+target_desired_distance = 0.1
+path_height_offset = 0.1
+path_max_distance = 3.01
+avoidance_enabled = true
+height = 0.5
+radius = 0.2
+neighbor_distance = 5.0
+debug_enabled = true
