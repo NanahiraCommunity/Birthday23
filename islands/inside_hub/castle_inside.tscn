@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=19 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
+[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="3_ry6jm"]
+[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="4_3u7si"]
 [ext_resource type="PackedScene" uid="uid://5e0r6jojpuol" path="res://islands/inside_hub/sorting_desk.tscn" id="4_dyp41"]
 [ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="4_k2tdf"]
@@ -54,6 +56,12 @@ platform_on_leave = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
 shape = SubResource("SphereShape3D_b8hsf")
+
+[node name="DialogBox" parent="." instance=ExtResource("3_ry6jm")]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_3u7si")]
+visible = false
 
 [node name="RoomMain" type="Node3D" parent="."]
 metadata/room_node = true
