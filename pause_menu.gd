@@ -6,7 +6,7 @@ extends ColorRect
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		pause()
+		unpause() if is_visible() else pause()
 
 func _ready():
 	resume_button.pressed.connect(unpause)
