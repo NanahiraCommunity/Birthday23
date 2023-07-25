@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://djgq7xerv6hdo"
+path="res://.godot/imported/neko_concert.dialogue-13e2ad301c55103e611a12d03e95f951.tres"
+
+[deps]
+
+source_file="res://dialogs/neko_concert.dialogue"
+dest_files=["res://.godot/imported/neko_concert.dialogue-13e2ad301c55103e611a12d03e95f951.tres"]
+
+[params]
+
+defaults=true

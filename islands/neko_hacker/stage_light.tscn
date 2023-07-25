@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://l3b78fhqrhf2"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_inm2o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_km5mg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppmis"]
+size = Vector3(1, 1, 0.302215)
+
+[node name="stage_light" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.201073, 0, 0, 0, -6.59189e-09, -0.201073, 0, 0.150805, -8.78919e-09, 0, 0, 0)
+mesh = SubResource("CylinderMesh_inm2o")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.238, 0, 0, 0, 0.165436, -0.0149946, 0, 0.187433, 0.0132349, 0, 0.180112, 0.220677)
+mesh = SubResource("BoxMesh_km5mg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.238, 0, 0, 0, 0.179191, 0.0139463, 0, -0.174329, 0.0143353, 0.000422835, -0.174464, 0.217125)
+mesh = SubResource("BoxMesh_km5mg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.157585, 0, -0.0149879, 0, 0.25, 0, 0.178356, 0, 0.0132425, 0.172849, 0.00920755, 0.215565)
+mesh = SubResource("BoxMesh_km5mg")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(0.179255, 0, 0.0131564, 0, 0.25, 0, -0.156562, 0, 0.0150635, -0.18569, 0.0110845, 0.217489)
+mesh = SubResource("BoxMesh_km5mg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ppmis")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.154046)
+light_energy = 10.0
+spot_angle = 30.0

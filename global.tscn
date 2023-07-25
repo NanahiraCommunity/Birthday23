@@ -6,6 +6,14 @@ script/source = "extends Node
 
 var in_dialog: bool = false
 var player: CharacterBody3D
+
+
+var neko_world_reset_count = 0
+
+func give_kassan_letter():
+	neko_world_reset_count += 1
+	print(\"Kassan has been given the letter %s times\" % neko_world_reset_count)
+	get_tree().reload_current_scene()
 "
 
 [node name="global" type="Node"]
