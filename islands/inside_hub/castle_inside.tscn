@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
 [ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="3_ry6jm"]
-[ext_resource type="PackedScene" path="res://pause_menu.tscn" id="4_3u7si"]
+[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="4_3u7si"]
 [ext_resource type="PackedScene" uid="uid://5e0r6jojpuol" path="res://islands/inside_hub/sorting_desk.tscn" id="4_dyp41"]
 [ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="4_k2tdf"]
