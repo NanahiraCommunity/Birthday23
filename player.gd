@@ -38,6 +38,7 @@ var start_jump = false
 var direction = Vector3(0, 0, 0)
 var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 var sneak = false
+var is_jumping = false
 
 enum {
 	IDLE,
@@ -67,46 +68,77 @@ func _physics_process(delta):
 	input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	direction = Vector3(input_dir.x, 0, input_dir.y)
 	sneak = Input.is_action_pressed("sneak")
+	is_jumping = Input.is_action_pressed("jump")
 	match (state):
 		IDLE:
-			idle()
+			idle(delta)
 		WALKING:
-			walk()
+			walk(delta)
+		JUMPING:
+			jump(delta)
 		FLYING:
-			fly()
+			fly(delta)
 		TALKING:
-			talk()
+			talk(delta)
+	
+	model.set_velocity(velocity)
+	move_and_slide()
+	_visualize_flight(delta)
 
-func idle():
+
+func idle(delta):	
 	if Global.in_dialog:
 		state = TALKING
-		talk()
+		talk(delta)
 		return
 		
 	if direction.length():
 		state = WALKING
-		print("changed to walk")
-		walk()
+		walk(delta)
 		return
 	
+	velocity.x = move_toward(velocity.x, 0, STOP_SPEED)
+	velocity.z = move_toward(velocity.z, 0, STOP_SPEED)
+	var velocity2d = Vector2(velocity.x, velocity.z)
+	if velocity2d.length_squared() > 0.2 * 0.2:
+		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
+		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
 	
 	
-func walk():
+func walk(delta):
 	# Not sure where dialog is being handled
-	# idk if jumping from walking to a dialog
-	# is even possible. Put this here jic
+	# idk if going from walking to a entering a dialog
+	# is even possible but I put this here jic
 	if Global.in_dialog:
 		state = TALKING
-		talk()
+		talk(delta)
 		return
 		
+	if is_jumping:
+		state = JUMPING
+		jump(delta)
+		return
+		
+	if not direction:
+		state = IDLE
+		idle(delta)
+		return
+	direction = camera.transform.basis * direction;
 	
+	velocity.x = direction.x * (WALK_SPEED if sneak else RUN_SPEED)
+	velocity.z = direction.z * (WALK_SPEED if sneak else RUN_SPEED)
+	var velocity2d = Vector2(velocity.x, velocity.z)
+	if velocity2d.length_squared() > 0.2 * 0.2:
+		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
+		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
+
+func jump(delta):
 	return
 
-func fly():
+func fly(delta):
 	return
 
-func talk():
+func talk(delta):
 	return
 
 
