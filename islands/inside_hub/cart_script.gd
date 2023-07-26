@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+# duplicate in Global.gd
 enum Type
 {
 	MIXED,
@@ -10,9 +11,11 @@ enum Type
 
 @export var type: Type = Type.MIXED
 
+var items = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.set_meta("is_cart", true)
+	self.add_to_group("carts")
 
 func get_areas():
 	match type:
@@ -61,6 +64,15 @@ func get_target_area(letter: bool):
 		Type.SORTED_LETTERS:
 			return null if not letter else get_areas()[randi_range(0, 11)]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func is_sorted():
+	return type == Type.SORTED_PACKAGES or type == Type.SORTED_LETTERS
+
+func has_items():
+	return items > 0
+
+func notify_letter(letter):
+	items += 1
+	letter.reparent(self)
+
+func clear():
+	items = 0

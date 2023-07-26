@@ -70,6 +70,8 @@ size = Vector3(0.500201, 0.18802, 0.0204485)
 size = Vector3(0.0850799, 0.0563789, 0.0884892)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 10
+collision_mask = 8
 script = ExtResource("6_53u2n")
 type = 3
 
@@ -173,7 +175,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121015, -0.0277585, -0.0981
 shape = SubResource("BoxShape3D_l1bf3")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0560095, 0, 0)
-radius = 0.33
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056, 0.1, 0)
+radius = 0.29
 height = 0.5
-vertices = PackedVector3Array(0.197689, 0, -0.260954, -0.212414, 0, -0.265704, -0.207664, 0, 0.267905, 0.194523, 0, 0.267905)
+
+[node name="Handle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0430154, 0, -0.46885)

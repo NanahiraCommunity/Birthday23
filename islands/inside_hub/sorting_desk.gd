@@ -2,9 +2,11 @@ extends MeshInstance3D
 
 @export var cart: Node3D
 @export var start_letters: int = 0
+@export var orphan_letters: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.add_to_group("tables")
 	var letter_scene = preload("res://shared/letter/letter.tscn")
 	for i in range(start_letters):
 		var copy: RigidBody3D = letter_scene.instantiate()
@@ -29,27 +31,26 @@ func get_letter(npc):
 			closest = letter
 	return closest
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func remaining_items():
+	return $Letters.get_child_count()
 
 func _on_cart_area_body_entered(body: Node3D):
-	if body.has_meta("is_cart") and not cart:
+	if body.is_in_group("carts") and not cart:
 		cart = body
-
 
 func _on_cart_area_body_exited(body):
 	if body == cart:
 		cart = null
 
-
 func _on_letter_area_body_exited(body):
 	if body in $Letters.get_children():
-		body.reparent.call_deferred(get_parent())
-
+		body.reparent.call_deferred(orphan_letters)
 
 func _on_letter_area_body_entered(body: Node3D):
 	if body.has_meta("is_letter") and not body.is_in_group("ignore"):
 		body.add_to_group("ignore")
-		body.reparent($Letters)
-		body.remove_from_group("ignore")
+		_reparent_to_letters.call_deferred(body)
+
+func _reparent_to_letters(body: Node3D):
+	body.reparent($Letters)
+	body.remove_from_group("ignore")

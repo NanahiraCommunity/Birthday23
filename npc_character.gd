@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export_file("*.dialogue") var dialog_path: String
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
+@export var dynamic_collision: bool = false
 
 @onready var skeleton: Skeleton3D = get_node("nanahira_papercraft/Armature/Skeleton3D")
 @onready var head_bone: int = skeleton.find_bone("Head")
@@ -18,6 +19,11 @@ var dialog_triggered = false
 var head_angle = 0
 var keep_head_time = 0
 var can_talk = false
+
+func _ready():
+	if dynamic_collision:
+		$StaticCollision.disabled = true
+		$DynamicCollision.disabled = false
 
 func _input(event):
 	if event.is_action_pressed("interact") and can_talk:

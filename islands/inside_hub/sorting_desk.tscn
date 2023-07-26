@@ -105,6 +105,8 @@ shape = SubResource("BoxShape3D_1vc0g")
 
 [node name="CartArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240619, 0.18749, 0)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CartArea"]
 shape = SubResource("BoxShape3D_vhwfy")
@@ -116,6 +118,21 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LetterArea"]
 shape = SubResource("BoxShape3D_x3dw4")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, -0.352601)
+radius = 0.25
+height = 0.5
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, 0.350911)
+radius = 0.25
+height = 0.5
+
+[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, -0.0080049)
+radius = 0.25
+height = 0.5
 
 [connection signal="body_entered" from="CartArea" to="." method="_on_cart_area_body_entered"]
 [connection signal="body_exited" from="CartArea" to="." method="_on_cart_area_body_exited"]
