@@ -22,19 +22,24 @@ var desk = null
 var target = Vector3.INF
 var target_time = 0.0
 
+var reset_collision_layer: int
+
 var items_node: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	reset_collision_layer = collision_layer
 	self.add_to_group("carts")
 	items_node = Node3D.new()
 	add_child(items_node)
 
-func disable_avoidance():
-	$NavigationObstacle3D.avoidance_enabled = false
-
-func enable_avoidance():
-	$NavigationObstacle3D.avoidance_enabled = true
+func set_pushing(pushing: bool):
+	if pushing:
+		self.collision_layer = 0
+		$NavigationObstacle3D.avoidance_enabled = false
+	else:
+		self.collision_layer = reset_collision_layer
+		$NavigationObstacle3D.avoidance_enabled = true
 
 func transition_to(location: Vector3):
 	target = location
@@ -58,6 +63,8 @@ func align_to_desk():
 		global_position.x = p.x
 		global_position.z = p.z
 		global_rotation = desk.get_node("CartArea").global_rotation
+		if emptying:
+			rotate_y(PI)
 		target_time = 0
 		velocity = Vector3.ZERO
 

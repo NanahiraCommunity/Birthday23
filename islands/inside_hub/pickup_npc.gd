@@ -151,6 +151,12 @@ func advance_cart(cart: Node3D):
 		if marker_pos.distance_squared_to(cart_pos) <= CART_RADIUS * CART_RADIUS:
 			current = i
 			break
+	if current == -2:
+		for i in range(0, next_markers.size(), 2):
+			var marker_pos = Vector2(next_markers[i + 1].global_position.x, next_markers[i + 1].global_position.z)
+			if marker_pos.distance_squared_to(cart_pos) <= CART_RADIUS * CART_RADIUS:
+				current = current_markers.size() + i
+				break
 
 	var target_pos: Node3D = null
 	var final_pos: Node3D = null
@@ -158,14 +164,14 @@ func advance_cart(cart: Node3D):
 	var empty_next = false
 	while true:
 		if next < current_markers.size():
-			if cart_pos_available(current_markers[next].global_position):
+			if cart_pos_available(current_markers[next + 1].global_position):
 				target_pos = current_markers[next]
 				final_pos = current_markers[next + 1]
 				break
 		else:
 			var i = next - current_markers.size()
 			if i < next_markers.size():
-				if cart_pos_available(next_markers[i].global_position):
+				if cart_pos_available(next_markers[i + 1].global_position):
 					target_pos = next_markers[i]
 					final_pos = next_markers[i + 1]
 					empty_next = true
@@ -179,6 +185,7 @@ func advance_cart(cart: Node3D):
 		cart.emptying = true
 		await push_cart_to(cart, target_pos)
 		await push_cart_to(cart, final_pos)
+		await get_tree().create_timer(0.5).timeout
 		# TODO: cart desk is not accurate
 		cart.align_to_desk()
 		cart.emptying = empty_next
@@ -197,10 +204,19 @@ func cart_pos_available(position: Vector3):
 func push_cart_to(cart, target_pos: Node3D):
 	set_target(target_pos, 20.0)
 	pushing_cart = cart
-	cart.disable_avoidance()
+	var lookat = Vector3(cart.global_position.x, global_position.y, cart.global_position.z)
+	global_transform = global_transform.looking_at(lookat)
+	model.transform.origin = Vector3(0, 0, -PUSH_DISTANCE)
+	global_position = model.global_position
+	model.transform.origin = Vector3(0, 0, PUSH_DISTANCE)
+	cart.set_pushing(true)
+	$NavigationAgent3D.radius += 0.05 # can't really make it larger, otherwise it doesn't reach the goal
 	await reached_target
 	pushing_cart = null
-	cart.enable_avoidance()
+	global_position = model.global_position
+	model.transform.origin = Vector3.ZERO
+	$NavigationAgent3D.radius -= 0.05
+	cart.set_pushing(false)
 
 func pickup_letter():
 	var closest_letters = Array(orphan_letters.get_children())
@@ -261,9 +277,9 @@ func _physics_process(delta):
 	var ai_velocity = velocity
 
 	if pushing_cart:
-		pushing_cart.global_transform.basis = global_transform.basis
+		pushing_cart.global_transform = global_transform
 		pushing_cart.rotate_y(PI)
-		pushing_cart.transition_to(global_position + global_transform.basis * Vector3(0, 0, -PUSH_DISTANCE))
+		#pushing_cart.transition_to(global_position + global_transform.basis * Vector3(0, 0, -PUSH_DISTANCE))
 		#ai_velocity += (global_position - pushing_cart.global_position).normalized() * 0.2
 		#global_position += (pushing_cart.global_position - global_position) * delta
 
