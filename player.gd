@@ -35,6 +35,18 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var flight_gravity = gravity * 0.1
 
 var start_jump = false
+var direction = Vector3(0, 0, 0)
+var input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+var sneak = false
+
+enum {
+	IDLE,
+	WALKING,
+	JUMPING,
+	FLYING,
+	TALKING
+}
+var state = IDLE
 
 func _visualize_flight(delta):
 	#var bonePose = skeleton.get_bone_pose(root_bone)
@@ -50,75 +62,51 @@ func _unhandled_input(event):
 	if event.is_action_pressed("jump"):
 		start_jump = true
 
+
 func _physics_process(delta):
-	var on_floor = is_on_floor()
-	var input_dir = Vector3()
+	input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	direction = Vector3(input_dir.x, 0, input_dir.y)
+	sneak = Input.is_action_pressed("sneak")
+	match (state):
+		IDLE:
+			idle()
+		WALKING:
+			walk()
+		FLYING:
+			fly()
+		TALKING:
+			talk()
+
+func idle():
+	if Global.in_dialog:
+		state = TALKING
+		talk()
+		return
+		
+	if direction.length():
+		state = WALKING
+		print("changed to walk")
+		walk()
+		return
 	
-	if not Global.in_dialog:
-		input_dir = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	
-	var direction = Vector3(input_dir.x, 0, input_dir.y)
-	if direction.length_squared() > 1:
-		direction = direction.normalized()
-	direction = camera.transform.basis * direction;
+	
+func walk():
+	# Not sure where dialog is being handled
+	# idk if jumping from walking to a dialog
+	# is even possible. Put this here jic
+	if Global.in_dialog:
+		state = TALKING
+		talk()
+		return
+		
+	
+	return
 
-	if not on_floor:
-		if flying:
-			if start_jump && flight_strokes > 0 && flight_stroke_timer < 0:
-				flight_strokes -= 1
-				velocity.y = FLIGHT_VELOCITY_UP
-				velocity.x = FLIGHT_VELOCITY_FORWARD * direction.x
-				velocity.z = FLIGHT_VELOCITY_FORWARD * direction.z
-				flight_stroke_timer = flight_stroke_timer_max
-			else:
-				velocity.y -= (flight_gravity if Input.is_action_pressed("jump") else gravity) * delta
-				velocity.y *= pow(FLIGHT_DRAG_VERTICAL, delta)
+func fly():
+	return
 
-			flight_stroke_timer -= delta
-		else:
-			if start_jump:
-				flying = true
-				flight_strokes = flight_strokes_max
-				flight_stroke_timer = 0
-				velocity.y = FLIGHT_VELOCITY_UP
-				velocity.x = FLIGHT_VELOCITY_FORWARD * direction.x
-				velocity.z = FLIGHT_VELOCITY_FORWARD * direction.z
-			else:
-				velocity.y -= gravity * delta
+func talk():
+	return
 
-		if direction:
-			var sneak = Input.is_action_pressed("sneak")
-			var speed_multiplier = FLYING_AIR_SPEED_MULTIPLIER if flying else WALK_AIR_SPEED_MULTIPLIER
-			velocity.x += direction.x * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
-			velocity.z += direction.z * (WALK_SPEED if sneak else RUN_SPEED) * speed_multiplier
-		velocity.x *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
-		velocity.z *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
-	else:
-		if flying:
-			flying = false
 
-		if start_jump:
-			velocity.y = JUMP_VELOCITY
-		else:
-			velocity.y -= gravity * delta
-
-		if direction:
-			var sneak = Input.is_action_pressed("sneak")
-			velocity.x = direction.x * (WALK_SPEED if sneak else RUN_SPEED)
-			velocity.z = direction.z * (WALK_SPEED if sneak else RUN_SPEED)
-		else:
-			# reset speed to 0
-			velocity.x = move_toward(velocity.x, 0, STOP_SPEED)
-			velocity.z = move_toward(velocity.z, 0, STOP_SPEED)
-
-	var velocity2d = Vector2(velocity.x, velocity.z)
-	if velocity2d.length_squared() > 0.2 * 0.2:
-		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
-		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
-
-	start_jump = false
-
-	model.set_velocity(velocity)
-	move_and_slide()
-
-	_visualize_flight(delta)
