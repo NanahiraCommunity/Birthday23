@@ -10,12 +10,56 @@ enum Type
 }
 
 @export var type: Type = Type.MIXED
+@export var emptying = false
+
+const SPEED = 10.0
+
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 0.2
 
 var items = 0
+var desk = null
+
+var target = Vector3.INF
+var target_time = 0.0
+
+var items_node: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group("carts")
+	items_node = Node3D.new()
+	add_child(items_node)
+
+func disable_avoidance():
+	$NavigationObstacle3D.avoidance_enabled = false
+
+func enable_avoidance():
+	$NavigationObstacle3D.avoidance_enabled = true
+
+func transition_to(location: Vector3):
+	target = location
+	target_time = 4.0
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	if target != Vector3.INF and target_time > 0:
+		global_position.x += (target.x - global_position.x) * min(1.0, delta * SPEED)
+		global_position.z += (target.z - global_position.z) * min(1.0, delta * SPEED)
+		target_time -= delta
+
+	move_and_slide()
+
+func align_to_desk():
+	if desk:
+		var p = desk.get_node("CartArea").global_position
+		global_position.x = p.x
+		global_position.z = p.z
+		global_rotation = desk.get_node("CartArea").global_rotation
+		target_time = 0
+		velocity = Vector3.ZERO
 
 func get_areas():
 	match type:
@@ -70,9 +114,15 @@ func is_sorted():
 func has_items():
 	return items > 0
 
-func notify_letter(letter):
+func notify_letter(letter: RigidBody3D):
 	items += 1
-	letter.reparent(self)
+	letter.reparent(items_node)
+	await get_tree().create_timer(1.5).timeout
+	letter.freeze = true
 
-func clear():
-	items = 0
+func empty_out():
+	if desk:
+		for child in items_node.get_children():
+			child.queue_free()
+			# TODO: put on desk
+		items = 0

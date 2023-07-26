@@ -1,11 +1,15 @@
 extends "res://npc_character.gd"
 
 const SPEED = 1.2
+const SPEED_PUSHING = 0.4
 const ROTATION_SPEED = 10
+const PUSHING_ROTATION_SPEED = 7
 const STUCK_TIME_THRESHOLD = 4.0
 const STUCK_MARGIN = 0.01
 const TARGET_GOAL_DISTANCE = 0.12
 const LETTER_PICKUP_DISTANCE = 0.3
+const CART_RADIUS = 0.2
+const PUSH_DISTANCE = 0.4
 
 @export var orphan_letters: Node3D
 @export var room_main: Node3D
@@ -27,6 +31,8 @@ var letter_pick_timer: float = 0.0
 var stuck_time: float = 0.0
 var stuck_pos: Vector3 = Vector3.ZERO
 var stuck_retries: int = 0
+
+var pushing_cart: Node3D = null
 
 func _ready():
 	super._ready()
@@ -83,12 +89,20 @@ func start_ai():
 			if carts[i].has_items() and carts[i].is_sorted():
 				random_filled_out_cart = carts[i]
 				break
+		var emptied_cart = null
+		for i in range(0, carts.size()):
+			if carts[i].emptying and not carts[i].has_items():
+				emptied_cart = carts[i]
+				break
 
 		# TODO: elevator
 
 		# priorities:
+		# 0. finished emptying cart
+		if emptied_cart:
+			await advance_cart(emptied_cart)
 		# 1. desk is (almost) empty and has a cart, push to next desk:
-		if min_desk_with_cart and min_desk_with_cart.remaining_items() <= 2:
+		elif min_desk_with_cart and min_desk_with_cart.remaining_items() <= 2:
 			await advance_cart(min_desk_with_cart.cart)
 		# 2. letters on the floor
 		elif has_orphan_letters and letter_pick_timer < 10:
@@ -107,29 +121,86 @@ func start_ai():
 
 	print("AI finished")
 
-func advance_cart(cart):
+func advance_cart(cart: Node3D):
 	print("advance: ", cart.type)
 	letter_pick_timer = 0
 	set_target(cart.get_node("Handle"), 15.0)
 	if not await reached_target:
 		return
-	var markers = []
+	var current_markers = []
+	var next_markers = []
 	match(cart.type):
 		Global.CartType.MIXED:
-			markers = Array(cart_destinations.get_node("TwoSize").get_children())
+			current_markers = Array(cart_destinations.get_node("Mixed").get_children())
+			next_markers = Array(cart_destinations.get_node("TwoSize").get_children())
 		Global.CartType.TWO_SIZE:
-			markers = Array(cart_destinations.get_node("SortedLetters").get_children())
-			markers.append_array(cart_destinations.get_node("SortedPackages").get_children())
+			current_markers = Array(cart_destinations.get_node("TwoSize").get_children())
+			next_markers = Array(cart_destinations.get_node("SortedPackages").get_children())
+			next_markers.append_array(cart_destinations.get_node("SortedLetters").get_children())
 		Global.CartType.SORTED_PACKAGES:
-			markers = Array(cart_destinations.get_node("Elevator").get_children())
+			current_markers = Array(cart_destinations.get_node("SortedPackages").get_children())
+			next_markers = Array(cart_destinations.get_node("Elevator").get_children())
 		Global.CartType.SORTED_LETTERS:
-			markers = Array(cart_destinations.get_node("Elevator").get_children())
+			current_markers = Array(cart_destinations.get_node("SortedLetters").get_children())
+			next_markers = Array(cart_destinations.get_node("Elevator").get_children())
 
-	for marker in markers:
-		# TODO: check if available to go here
-		pass
+	var cart_pos = Vector2(cart.global_position.x, cart.global_position.z)
+	var current = -2
+	for i in range(0, current_markers.size(), 2):
+		var marker_pos = Vector2(current_markers[i + 1].global_position.x, current_markers[i + 1].global_position.z)
+		if marker_pos.distance_squared_to(cart_pos) <= CART_RADIUS * CART_RADIUS:
+			current = i
+			break
+
+	var target_pos: Node3D = null
+	var final_pos: Node3D = null
+	var next = current + 2
+	var empty_next = false
+	while true:
+		if next < current_markers.size():
+			if cart_pos_available(current_markers[next].global_position):
+				target_pos = current_markers[next]
+				final_pos = current_markers[next + 1]
+				break
+		else:
+			var i = next - current_markers.size()
+			if i < next_markers.size():
+				if cart_pos_available(next_markers[i].global_position):
+					target_pos = next_markers[i]
+					final_pos = next_markers[i + 1]
+					empty_next = true
+					break
+			else:
+				# no available spot, leave
+				break
+		next += 2
+
+	if target_pos:
+		cart.emptying = true
+		await push_cart_to(cart, target_pos)
+		await push_cart_to(cart, final_pos)
+		# TODO: cart desk is not accurate
+		cart.align_to_desk()
+		cart.emptying = empty_next
+		if empty_next:
+			set_target(cart.get_node("Handle"), 10.0)
+			await reached_target
+			cart.empty_out()
 
 	letter_pick_timer = 0
+
+func cart_pos_available(position: Vector3):
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, 1, 0), 1 << (8 - 1))
+	return not space_state.intersect_ray(query)
+
+func push_cart_to(cart, target_pos: Node3D):
+	set_target(target_pos, 20.0)
+	pushing_cart = cart
+	cart.disable_avoidance()
+	await reached_target
+	pushing_cart = null
+	cart.enable_avoidance()
 
 func pickup_letter():
 	var closest_letters = Array(orphan_letters.get_children())
@@ -189,15 +260,24 @@ func _physics_process(delta):
 
 	var ai_velocity = velocity
 
+	if pushing_cart:
+		pushing_cart.global_transform.basis = global_transform.basis
+		pushing_cart.rotate_y(PI)
+		pushing_cart.transition_to(global_position + global_transform.basis * Vector3(0, 0, -PUSH_DISTANCE))
+		#ai_velocity += (global_position - pushing_cart.global_position).normalized() * 0.2
+		#global_position += (pushing_cart.global_position - global_position) * delta
+
+	var speed = SPEED_PUSHING if pushing_cart else SPEED
+
 	if not $NavigationAgent3D.is_navigation_finished():
 		var next: Vector3 = $NavigationAgent3D.get_next_path_position()
-		var movement = (next - global_position).normalized() * SPEED
+		var movement = (next - global_position).normalized() * speed
 		ai_velocity.x = movement.x
 		ai_velocity.z = movement.z
 		$NavigationAgent3D.set_velocity(ai_velocity)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 		move_and_slide()
 	model.set_velocity(velocity)
 	update_rotation(delta)
@@ -216,4 +296,5 @@ func update_rotation(delta):
 	var velocity2d = Vector2(velocity.x, velocity.z)
 	if velocity2d.length_squared() > 0.2 * 0.2:
 		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
-		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
+		var rot_speed = PUSHING_ROTATION_SPEED if pushing_cart else ROTATION_SPEED
+		global_transform.basis = global_transform.basis.slerp(target_rotation, rot_speed * delta)

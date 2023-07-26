@@ -37,9 +37,11 @@ func remaining_items():
 func _on_cart_area_body_entered(body: Node3D):
 	if body.is_in_group("carts") and not cart:
 		cart = body
+		body.desk = self
 
 func _on_cart_area_body_exited(body):
 	if body == cart:
+		cart.desk = null
 		cart = null
 
 func _on_letter_area_body_exited(body):

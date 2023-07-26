@@ -65,6 +65,8 @@ visible = false
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="10"]
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_1hsrd")

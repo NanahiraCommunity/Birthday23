@@ -79,8 +79,8 @@ size = Vector3(0.297856, 0.0625748, 0.25434)
 size = Vector3(0.297856, 0.0563789, 0.162717)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
-collision_layer = 10
-collision_mask = 8
+collision_layer = 138
+collision_mask = 136
 script = ExtResource("6_hm0yq")
 type = 1
 

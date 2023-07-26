@@ -20,6 +20,9 @@ func _process(delta):
 		if not desk.cart:
 			# print("no cart")
 			return
+		if desk.cart.emptying:
+			# emptying onto desk
+			return
 		var area = desk.cart.get_target_area(true)
 		if not area:
 			# print("no target area")
