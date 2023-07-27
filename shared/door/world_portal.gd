@@ -22,14 +22,6 @@ func _input(event):
 		get_viewport().set_input_as_handled()
 		scene_switcher.switch_scene(next_scene)
 		
-		# Code below should be replaced
-		
-		#print("scene change: ", next_scene)
-		# fade out
-		#var next: PackedScene = load(next_scene)
-		# wait for screen to turn black
-		#get_tree().change_scene_to_packed(next)
-		# fade in
 
 func _on_body_entered(body):
 	if body == Global.player:
