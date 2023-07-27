@@ -19,7 +19,11 @@ func _input(event):
 	if event.is_action_pressed("interact") and inside and next_scene:
 		get_viewport().set_input_as_handled()
 		print("scene change: ", next_scene)
-		get_tree().change_scene_to_file(next_scene)
+		# fade out
+		var next: PackedScene = load(next_scene)
+		# wait for screen to turn black
+		get_tree().change_scene_to_packed(next)
+		# fade in
 
 func _on_body_entered(body):
 	if body == Global.player:

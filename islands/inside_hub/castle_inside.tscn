@@ -31,7 +31,7 @@ size = Vector3(1.54088, 1.77111, 1.73666)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ctc56"]
 size = Vector3(31.9166, 1, 19.4523)
 
-[node name="Castle" type="Node3D"]
+[node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_na0up")
@@ -61,10 +61,8 @@ platform_on_leave = 2
 shape = SubResource("SphereShape3D_b8hsf")
 
 [node name="DialogBox" parent="." instance=ExtResource("3_ry6jm")]
-visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_3u7si")]
-visible = false
 
 [node name="RoomMain" type="Node3D" parent="."]
 metadata/room_node = true
@@ -235,7 +233,7 @@ shadow_enabled = true
 
 [node name="InteractArea" parent="." instance=ExtResource("4_ih1bi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0282998, 0.00635761, 4.87664)
-next_scene = "res://world.tscn"
+next_scene = "res://islands/hub/hub_world.tscn"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7086, 0)

@@ -1,4 +1,4 @@
-extends "res://npc_character.gd"
+extends "res://shared/npc/npc_character.gd"
 
 const SPEED = 1.2
 const ROTATION_SPEED = 10

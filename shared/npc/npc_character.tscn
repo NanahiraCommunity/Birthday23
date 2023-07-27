@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://igunt2eyo7yq"]
 
-[ext_resource type="Script" path="res://npc_character.gd" id="1_jmm0v"]
+[ext_resource type="Script" path="res://shared/npc/npc_character.gd" id="1_8bvqk"]
 [ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/characters/character.tscn" id="2_75txh"]
 [ext_resource type="Texture2D" uid="uid://dxs66trfote8w" path="res://shared/npc/speech_bubble.png" id="3_jmn2w"]
 
@@ -32,9 +32,9 @@ _data = {
 [node name="NPCCharacter" type="CharacterBody3D"]
 floor_stop_on_slope = false
 floor_block_on_wall = false
-script = ExtResource("1_jmm0v")
+script = ExtResource("1_8bvqk")
 
-[node name="nanahira_papercraft" parent="." instance=ExtResource("2_75txh")]
+[node name="NanahiraPapercraft" parent="." instance=ExtResource("2_75txh")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00304783, 0.178533, -0.00104709)

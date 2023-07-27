@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Material" uid="uid://c71j0q7t6b7cb" path="res://shaders/cardboard_material.tres" id="1_883em"]
-[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="2_82oxn"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_tgr6h"]
+[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="4_8c3g0"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_dpexn"]
 [ext_resource type="ArrayMesh" uid="uid://c711xl6y5ym2o" path="res://islands/hub/island1.obj" id="4_viow8"]
-[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="5_e4pqs"]
+[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="5_pw1g7"]
 [ext_resource type="PackedScene" uid="uid://dc6kil0ny55li" path="res://islands/hub/castle.tscn" id="6_b3hnb"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ueedu"]
@@ -51,7 +51,7 @@ size = Vector3(2.74, 0.025, 0.745)
 [sub_resource type="BoxMesh" id="BoxMesh_w6tla"]
 size = Vector3(2.68, 0.025, 1.335)
 
-[node name="Node3D" type="Node3D"]
+[node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ofiqo")
@@ -104,10 +104,9 @@ platform_on_leave = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
 shape = SubResource("SphereShape3D_qr5sb")
 
-[node name="DialogBox" parent="." instance=ExtResource("5_e4pqs")]
-visible = false
+[node name="DialogBox" parent="." instance=ExtResource("4_8c3g0")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_82oxn")]
+[node name="PauseMenu" parent="." instance=ExtResource("5_pw1g7")]
 visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
