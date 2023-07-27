@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
 
-@onready var skeleton: Skeleton3D = get_node("nanahira_papercraft/Armature/Skeleton3D")
+@onready var skeleton: Skeleton3D = get_node("NanahiraPapercraft/Armature/Skeleton3D")
 @onready var head_bone: int = skeleton.find_bone("Head")
 
 const INTERACT_DISTANCE = 0.5
