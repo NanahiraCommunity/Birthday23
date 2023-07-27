@@ -1,5 +1,7 @@
 extends Area3D
 
+@onready var scene_switcher = get_node("/root/SceneSwitcher")
+
 var _next_scene: String
 @export_file("*.tscn") var next_scene: String:
 	get:
@@ -18,11 +20,15 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("interact") and inside and next_scene:
 		get_viewport().set_input_as_handled()
-		print("scene change: ", next_scene)
+		scene_switcher.switch_scene(next_scene)
+		
+		# Code below should be replaced
+		
+		#print("scene change: ", next_scene)
 		# fade out
-		var next: PackedScene = load(next_scene)
+		#var next: PackedScene = load(next_scene)
 		# wait for screen to turn black
-		get_tree().change_scene_to_packed(next)
+		#get_tree().change_scene_to_packed(next)
 		# fade in
 
 func _on_body_entered(body):

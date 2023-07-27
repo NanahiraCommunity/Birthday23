@@ -39,6 +39,8 @@ func _ready():
 		target_pos = target.global_position
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	camera_position = global_position
+	
+	get_node("/root/SceneSwitcher").curr_camera = self
 
 func _input(event):
 	if event is InputEventMouseMotion:
