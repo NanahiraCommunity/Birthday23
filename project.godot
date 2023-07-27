@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Global="*res://global.gd"
+SceneSwitcher="*res://scene_switcher.tscn"
 
 [editor_plugins]
 

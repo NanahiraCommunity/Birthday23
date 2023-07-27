@@ -3,9 +3,9 @@ extends ColorRect
 @onready var animator = $AnimationPlayer
 
 var next_scene
-var curr_camera
 var player_pos
 
+const HEAD_OFFSET = Vector3(0, 0.15, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,19 +19,21 @@ func _ready():
 
 
 func switch_scene(scene):
+	var camera = get_viewport().get_camera_3d()
 	next_scene = scene
-	player_pos = curr_camera.unproject_position(curr_camera.target.global_position)
+	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
 	material.set_shader_parameter("center", player_pos)
 	animator.play("Out")
 	visible = true
 
 
 func _on_animation_player_animation_finished(anim_name):
+	var camera = get_viewport().get_camera_3d()
 	if anim_name == "Out":
 		print("scene change: ", next_scene)
 		var next: PackedScene = load(next_scene)
 		get_tree().change_scene_to_packed(next)
-		player_pos = curr_camera.unproject_position(curr_camera.target.global_position)
+		player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
 		material.set_shader_parameter("center", player_pos)
 		animator.play("In")
 	else:
