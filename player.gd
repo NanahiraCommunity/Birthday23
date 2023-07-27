@@ -17,7 +17,7 @@ const FLIGHT_DRAG_VERTICAL = 0.5
 const FLIGHT_DRAG_HORIZONTAL = 0.01
 
 @export var camera: Node3D
-@onready var model: Node3D = get_node("nanahira_papercraft")
+@onready var model: Node3D = $NanahiraPapercraft
 @onready var skeleton: Skeleton3D = model.get_node("Armature/Skeleton3D")
 @onready var root_bone: int = skeleton.find_bone("Root")
 

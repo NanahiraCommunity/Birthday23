@@ -6,7 +6,7 @@ const STUCK_TIME_THRESHOLD = 5.0
 const STUCK_MARGIN = 0.01
 const TARGET_GOAL_DISTANCE = 0.3
 
-@onready var model: Node3D = get_node("nanahira_papercraft")
+@onready var model: Node3D = $NanahiraPapercraft
 
 signal reached_target
 
