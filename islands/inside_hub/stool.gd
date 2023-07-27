@@ -80,6 +80,6 @@ func _on_child_order_changed():
 			npc.lookat_player = false
 			animations = npc.get_node("NanahiraPapercraft/AnimationTree")
 
-			npc.global_position = global_position + Vector3(0.05, 0.2, 0)
+			npc.position = Vector3(0.05, 0.2, 0)
 			npc.basis = Basis(Vector3(0, 1, 0), deg_to_rad(-90))
 			animations["parameters/playback"].travel("Sit")
