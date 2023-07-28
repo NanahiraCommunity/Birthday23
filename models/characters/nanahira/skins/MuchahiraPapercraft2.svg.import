@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqcgstsibjpai"
-path="res://.godot/imported/MuchahiraPapercraft1.png-98614a945a4dc4e4cb5283e46f2c3e82.ctex"
+uid="uid://dc0qrh6sttmuk"
+path="res://.godot/imported/MuchahiraPapercraft2.svg-0e655074656c011f274b77de626be7af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/contrib/MuchahiraPapercraft1.png"
-dest_files=["res://.godot/imported/MuchahiraPapercraft1.png-98614a945a4dc4e4cb5283e46f2c3e82.ctex"]
+source_file="res://models/characters/nanahira/skins/MuchahiraPapercraft2.svg"
+dest_files=["res://.godot/imported/MuchahiraPapercraft2.svg-0e655074656c011f274b77de626be7af.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

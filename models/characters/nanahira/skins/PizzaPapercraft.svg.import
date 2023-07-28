@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc0qrh6sttmuk"
-path="res://.godot/imported/MuchahiraPapercraft2.svg-21e6e228d7767169c1529dfd042bc260.ctex"
+uid="uid://drtns5o3k8vha"
+path="res://.godot/imported/PizzaPapercraft.svg-1a1094463038c3d5c858d1f3ced170d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/contrib/MuchahiraPapercraft2.svg"
-dest_files=["res://.godot/imported/MuchahiraPapercraft2.svg-21e6e228d7767169c1529dfd042bc260.ctex"]
+source_file="res://models/characters/nanahira/skins/PizzaPapercraft.svg"
+dest_files=["res://.godot/imported/PizzaPapercraft.svg-1a1094463038c3d5c858d1f3ced170d2.ctex"]
 
 [params]
 

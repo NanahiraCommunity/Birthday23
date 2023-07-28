@@ -1,10 +1,21 @@
 extends CharacterBody3D
 
+const C = preload("res://models/characters/character.gd")
+
 @export var camera: Node3D
 @export var dialog_box: Control
 @export_file("*.dialogue") var dialog_path: String
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
+@export var character: C.Character:
+	get:
+		if not $NanahiraPapercraft:
+			return C.Character.NANAHIRA
+		return $NanahiraPapercraft.character
+	set(value):
+		if not $NanahiraPapercraft:
+			await ready
+		$NanahiraPapercraft.character = value
 
 @onready var skeleton: Skeleton3D = get_node("NanahiraPapercraft/Armature/Skeleton3D")
 @onready var head_bone: int = skeleton.find_bone("Head")

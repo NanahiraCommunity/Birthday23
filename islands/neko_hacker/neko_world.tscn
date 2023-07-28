@@ -95,7 +95,6 @@ shape = SubResource("SphereShape3D_nklwj")
 [node name="DialogBox" parent="." instance=ExtResource("6_k75di")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_47jc1")]
-visible = false
 
 [node name="concert_stage" parent="." instance=ExtResource("5_jd887")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

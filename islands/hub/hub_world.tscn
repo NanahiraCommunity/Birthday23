@@ -71,6 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22991, -2.38419e-07, -7.143
 camera = NodePath("../Node3D/Camera3D")
 dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test.dialogue"
+character = 2
 
 [node name="NPCCharacter2" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_tgr6h")]
 transform = Transform3D(-0.516279, 0, -0.856421, 0, 1, 0, 0.856421, 0, -0.516279, 1.7262, 0, 0.285873)
@@ -78,6 +79,7 @@ camera = NodePath("../Node3D/Camera3D")
 dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test2.dialogue"
 dialog_entry = "bhira"
+character = 5
 
 [node name="NPCCharacter3" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_tgr6h")]
 transform = Transform3D(0.920382, 0, -0.39102, 0, 1, 0, 0.39102, 0, 0.920382, -1.34791, 0, -3.03742)
@@ -85,6 +87,7 @@ camera = NodePath("../Node3D/Camera3D")
 dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test2.dialogue"
 dialog_entry = "ahira"
+character = 4
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -107,7 +110,6 @@ shape = SubResource("SphereShape3D_qr5sb")
 [node name="DialogBox" parent="." instance=ExtResource("4_8c3g0")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_pw1g7")]
-visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
