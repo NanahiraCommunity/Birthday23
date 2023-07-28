@@ -78,5 +78,3 @@ script = ExtResource("2_52mu7")
 libraries = {
 "": SubResource("AnimationLibrary_w2dkt")
 }
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

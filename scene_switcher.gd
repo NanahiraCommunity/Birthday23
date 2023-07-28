@@ -25,16 +25,15 @@ func switch_scene(scene):
 	material.set_shader_parameter("center", player_pos)
 	animator.play("Out")
 	visible = true
-
-
-func _on_animation_player_animation_finished(anim_name):
-	var camera = get_viewport().get_camera_3d()
-	if anim_name == "Out":
-		print("scene change: ", next_scene)
-		var next: PackedScene = load(next_scene)
-		get_tree().change_scene_to_packed(next)
-		player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
-		material.set_shader_parameter("center", player_pos)
-		animator.play("In")
-	else:
-		visible = false
+	await animator.animation_finished
+	print("scene change: ", next_scene)
+	var next: PackedScene = load(next_scene)
+	get_tree().change_scene_to_packed(next)
+	await get_tree().process_frame # scene is adding now
+	await get_tree().process_frame # first frame was rendered
+	camera = get_viewport().get_camera_3d()
+	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
+	material.set_shader_parameter("center", player_pos)
+	animator.play("In")
+	await animator.animation_finished
+	visible = false
