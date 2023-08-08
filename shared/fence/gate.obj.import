@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d1j7k83tcm6q0"
+path="res://.godot/imported/gate.obj-1c753b48def0e4e62db78a6f669ad9e0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/gate.obj-1c753b48def0e4e62db78a6f669ad9e0.mesh"]
+
+source_file="res://shared/fence/gate.obj"
+dest_files=["res://.godot/imported/gate.obj-1c753b48def0e4e62db78a6f669ad9e0.mesh", "res://.godot/imported/gate.obj-1c753b48def0e4e62db78a6f669ad9e0.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
