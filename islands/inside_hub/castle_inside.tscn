@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=25 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
@@ -15,6 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://b6po72onskoa6" path="res://islands/inside_hub/cart_packages.tscn" id="8_8jynb"]
 [ext_resource type="PackedScene" uid="uid://col6gmt7abxmw" path="res://islands/inside_hub/lift.tscn" id="9_56i4s"]
 [ext_resource type="Script" path="res://islands/inside_hub/pickup_npc.gd" id="13_p3jes"]
+[ext_resource type="PackedScene" uid="uid://da7kt5fq2k7fh" path="res://islands/inside_hub/stair_camera_fix.tscn" id="16_1reab"]
+[ext_resource type="Script" path="res://islands/inside_hub/Floor2_Hider.gd" id="16_81b3u"]
+[ext_resource type="PackedScene" uid="uid://ds80xd86nefyx" path="res://islands/inside_hub/inside_hub_F2_model.tscn" id="16_aodwk"]
+[ext_resource type="PackedScene" uid="uid://bmacmv88o4p5b" path="res://islands/inside_hub/door.tscn" id="19_wfp2b"]
 
 [sub_resource type="Environment" id="Environment_na0up"]
 background_mode = 1
@@ -30,6 +34,9 @@ size = Vector3(1.54088, 1.77111, 1.73666)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ctc56"]
 size = Vector3(31.9166, 1, 19.4523)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5wi58"]
+size = Vector3(20, 2, 20)
 
 [node name="World" type="Node3D"]
 
@@ -250,3 +257,88 @@ shape = SubResource("BoxShape3D_ctc56")
 [node name="PickupNPC" parent="." instance=ExtResource("4_k2tdf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29613, 0, -2.82111)
 script = ExtResource("13_p3jes")
+
+[node name="StairCameraFix" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -4)
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="StairCameraFix2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -4)
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="StairCameraFix3" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 4)
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="StairCameraFix4" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4)
+camera = NodePath("../Node3D/Camera3D")
+
+[node name="Floor2" type="Node3D" parent="."]
+script = ExtResource("16_81b3u")
+
+[node name="inside_hub_F2" parent="Floor2" instance=ExtResource("16_aodwk")]
+
+[node name="Area3D" type="Area3D" parent="Floor2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55, 0)
+shape = SubResource("BoxShape3D_5wi58")
+
+[node name="CartIncoming" parent="Floor2" instance=ExtResource("5_qf56q")]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, 2.74285, 1.65, -2.24744)
+functional = false
+
+[node name="Cart2Size" parent="Floor2" instance=ExtResource("6_ftmxq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29987, 1.65, -1.47964)
+functional = false
+
+[node name="CartLetters" parent="Floor2" instance=ExtResource("7_ttggf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9929, 1.65, -1.23792)
+functional = false
+
+[node name="CartPackages" parent="Floor2" instance=ExtResource("8_8jynb")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.29612, 1.65, -0.650218)
+functional = false
+
+[node name="CartIncoming2" parent="Floor2" instance=ExtResource("5_qf56q")]
+transform = Transform3D(0.969312, 0, -0.245832, 0, 1, 0, 0.245832, 0, 0.969312, 1.60299, 1.65, -1.79358)
+functional = false
+
+[node name="Cart2Size2" parent="Floor2" instance=ExtResource("6_ftmxq")]
+transform = Transform3D(0.245832, 0, 0.969312, 0, 1, 0, -0.969312, 0, 0.245832, 0.35258, 1.65, -1.2583)
+functional = false
+
+[node name="CartLetters2" parent="Floor2" instance=ExtResource("7_ttggf")]
+transform = Transform3D(0.245832, 0, 0.969312, 0, 1, 0, -0.969312, 0, 0.245832, 0.757247, 1.65, -1.87065)
+functional = false
+
+[node name="CartPackages2" parent="Floor2" instance=ExtResource("8_8jynb")]
+transform = Transform3D(-0.245832, 0, -0.969312, 0, 1, 0, 0.969312, 0, -0.245832, 1.15563, 1.65, -1.05076)
+functional = false
+
+[node name="CartIncoming3" parent="Floor2" instance=ExtResource("5_qf56q")]
+transform = Transform3D(-0.85837, 0, 0.513032, 0, 1, 0, -0.513032, 0, -0.85837, 0.982411, 1.65, -2.98425)
+functional = false
+
+[node name="Cart2Size3" parent="Floor2" instance=ExtResource("6_ftmxq")]
+transform = Transform3D(-0.513032, 0, -0.85837, 0, 1, 0, 0.85837, 0, -0.513032, 2.33373, 1.65, -3.13916)
+functional = false
+
+[node name="CartLetters3" parent="Floor2" instance=ExtResource("7_ttggf")]
+transform = Transform3D(-0.513032, 0, -0.85837, 0, 1, 0, 0.85837, 0, -0.513032, 1.7707, 1.65, -2.66829)
+functional = false
+
+[node name="CartPackages3" parent="Floor2" instance=ExtResource("8_8jynb")]
+transform = Transform3D(0.513032, 0, 0.85837, 0, 1, 0, -0.85837, 0, 0.513032, 1.6237, 1.65, -3.5679)
+functional = false
+
+[node name="DoorFrame" parent="Floor2" instance=ExtResource("19_wfp2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 1.89)
+locked = false
+
+[node name="DoorFrame2" parent="Floor2" instance=ExtResource("19_wfp2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.65, 1.89)
+
+[node name="DoorFrame3" parent="Floor2" instance=ExtResource("19_wfp2b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.558, 1.65, 1.89)

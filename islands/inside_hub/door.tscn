@@ -1,0 +1,96 @@
+[gd_scene load_steps=14 format=3 uid="uid://bmacmv88o4p5b"]
+
+[ext_resource type="ArrayMesh" uid="uid://cp0oti44jv1we" path="res://islands/inside_hub/door_frame.obj" id="1_j6uvp"]
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="2_2a82b"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="3_odpar"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="4_kgl31"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="5_o80uj"]
+[ext_resource type="Script" path="res://islands/inside_hub/door.gd" id="6_wmyem"]
+[ext_resource type="Texture2D" uid="uid://dlos82op2gjiu" path="res://shared/door/icon.png" id="7_q2nqn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8cgi"]
+render_priority = 0
+shader = ExtResource("2_2a82b")
+shader_parameter/paper_color = Color(0.819608, 0.654902, 0.47451, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(5, 5, 5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_odpar")
+shader_parameter/texture_roughness = ExtResource("5_o80uj")
+shader_parameter/texture_normal = ExtResource("4_kgl31")
+
+[sub_resource type="Gradient" id="Gradient_s8vjo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.748201)
+colors = PackedColorArray(0.718623, 0.608856, 0.488886, 1, 0.577346, 0.469838, 0.388794, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7njeb"]
+gradient = SubResource("Gradient_s8vjo")
+width = 256
+height = 256
+fill = 2
+fill_to = Vector2(0.063, 0.063)
+repeat = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqo7u"]
+render_priority = 0
+shader = ExtResource("2_2a82b")
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(5, 5, 5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_odpar")
+shader_parameter/texture_paper = SubResource("GradientTexture2D_7njeb")
+shader_parameter/texture_roughness = ExtResource("5_o80uj")
+shader_parameter/texture_normal = ExtResource("4_kgl31")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x8mvs"]
+size = Vector3(0.71211, 0.855198, 0.0525478)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mbry4"]
+height = 0.827368
+radius = 0.354759
+
+[node name="DoorFrame" type="MeshInstance3D"]
+mesh = ExtResource("1_j6uvp")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_i8cgi")
+surface_material_override/1 = SubResource("ShaderMaterial_lqo7u")
+script = ExtResource("6_wmyem")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297259, 0.427249, 0.00743151)
+shape = SubResource("BoxShape3D_x8mvs")
+
+[node name="InteractArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0148629, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0160437, 0.422492, 0)
+shape = SubResource("CylinderShape3D_mbry4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.384728, -0.0520706)
+pixel_size = 0.0012
+billboard = 1
+no_depth_test = true
+texture = ExtResource("7_q2nqn")
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_body_exited"]

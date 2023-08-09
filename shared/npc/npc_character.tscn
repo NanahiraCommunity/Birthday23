@@ -63,3 +63,5 @@ path_max_distance = 3.01
 height = 0.5
 radius = 0.1
 neighbor_distance = 5.0
+time_horizon_agents = 0.2
+max_speed = 2.0
