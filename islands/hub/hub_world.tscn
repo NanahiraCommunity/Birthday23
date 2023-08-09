@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=27 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -11,6 +11,8 @@
 [ext_resource type="Shader" path="res://shaders/cardboard_material.gdshader" id="8_hkes2"]
 [ext_resource type="PackedScene" uid="uid://s786q7ptyqgu" path="res://shared/fence/fence8.tscn" id="10_yjkhf"]
 [ext_resource type="PackedScene" uid="uid://2x2itktmd8dx" path="res://shared/fence/gate.tscn" id="11_7xdsa"]
+[ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="12_k7x1g"]
+[ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="13_p013c"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -304,3 +306,96 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.141
 mesh = SubResource("BoxMesh_w6tla")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+
+[node name="WindowF1_1" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.44735, 0.806, 3.208)
+
+[node name="WindowF1_2" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.24735, 0.806, 3.208)
+
+[node name="WindowF1_3" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.04735, 0.806, 3.208)
+
+[node name="WindowF1_4" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.84735, 0.806, 3.208)
+
+[node name="WindowF2_1" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 2.34738, 3.2077)
+
+[node name="WindowF3_1" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 3.22403, 3.2077)
+
+[node name="WindowF2_2" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 2.34738, 3.2077)
+
+[node name="WindowF3_2" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 3.22403, 3.2077)
+
+[node name="WindowF2_3" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 2.34738, 3.2077)
+
+[node name="WindowF3_3" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 3.22403, 3.2077)
+
+[node name="WindowF2_4" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 2.34738, 3.2077)
+
+[node name="WindowF3_4" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 3.22403, 3.2077)
+
+[node name="WindowF2_5" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 2.34738, 3.2077)
+
+[node name="WindowF3_5" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 3.22403, 3.2077)
+
+[node name="WindowF1_5" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.11559, 0.806, 3.208)
+
+[node name="WindowF1_6" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.31559, 0.806, 3.208)
+
+[node name="WindowF1_7" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.51559, 0.806, 3.208)
+
+[node name="WindowF1_8" parent="." instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.71559, 0.806, 3.208)
+
+[node name="WindowF2_6" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 2.34738, 3.2077)
+
+[node name="WindowF3_6" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 3.22403, 3.2077)
+
+[node name="WindowF2_7" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 2.34738, 3.2077)
+
+[node name="WindowF3_7" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 3.22403, 3.2077)
+
+[node name="WindowF2_8" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 2.34738, 3.2077)
+
+[node name="WindowF3_8" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 3.22403, 3.2077)
+
+[node name="WindowF2_9" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 2.34738, 3.2077)
+
+[node name="WindowF3_9" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 3.22403, 3.2077)
+
+[node name="WindowF2_10" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 2.34738, 3.2077)
+
+[node name="WindowF3_10" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 3.22403, 3.2077)
+
+[node name="WindowF3_11" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 3.28718, 2.089)
+
+[node name="WindowF3_12" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 5.25222, 2.089)
+
+[node name="WindowF3_13" parent="." instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 6.75104, 1.95525)

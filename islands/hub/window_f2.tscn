@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://n8wkg1u5mb4m"]
+
+[ext_resource type="ArrayMesh" uid="uid://w7k1c8np583n" path="res://islands/hub/window_F2.obj" id="1_op5ax"]
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="2_0w4af"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="3_kio8w"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="4_1u0i0"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="5_vi0p8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rw03d"]
+render_priority = 0
+shader = ExtResource("2_0w4af")
+shader_parameter/paper_color = Color(0.564706, 0.364706, 0.25098, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_kio8w")
+shader_parameter/texture_roughness = ExtResource("5_vi0p8")
+shader_parameter/texture_normal = ExtResource("4_1u0i0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fltgl"]
+render_priority = 0
+shader = ExtResource("2_0w4af")
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("3_kio8w")
+shader_parameter/texture_roughness = ExtResource("5_vi0p8")
+shader_parameter/texture_normal = ExtResource("4_1u0i0")
+
+[node name="WindowF2" type="MeshInstance3D"]
+mesh = ExtResource("1_op5ax")
+surface_material_override/0 = SubResource("ShaderMaterial_rw03d")
+surface_material_override/1 = SubResource("ShaderMaterial_fltgl")
