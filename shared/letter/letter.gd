@@ -9,6 +9,9 @@ const letter_sprites: Array[Texture2D] = [
 func _ready():
 	$Letter.texture = letter_sprites.pick_random()
 
+func _physics_process(delta):
+	$Letter.global_position = global_position + Vector3(0, 0.01, 0)
+
 func throw_towards(area: CollisionShape3D):
 	self.add_to_group("throwing")
 	self.collision_layer = 0
@@ -19,6 +22,7 @@ func throw_towards(area: CollisionShape3D):
 	await _fly_to(area)
 	self.collision_layer = 2
 	self.collision_mask = 3
+	await get_tree().create_timer(0.05).timeout
 	self.remove_from_group("throwing")
 
 func _fly_to(area: CollisionShape3D):

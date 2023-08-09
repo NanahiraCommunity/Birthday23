@@ -90,6 +90,7 @@ desk = NodePath("../SortingDesk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02811, 0, -2.09932)
 start_letters = 2
 orphan_letters = NodePath("../../OrphanLetters")
+process = 3
 
 [node name="Stool7" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76315, 0.0595909, -2.25088)
@@ -105,8 +106,8 @@ desk = NodePath("../SortingDesk4")
 
 [node name="SortingDesk4" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4894, 0, -2.00253)
-start_letters = 30
 orphan_letters = NodePath("../../OrphanLetters")
+process = 2
 
 [node name="Stool9" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.76315, 0.0595909, -1.30126)
@@ -122,8 +123,8 @@ desk = NodePath("../SortingDesk5")
 
 [node name="SortingDesk5" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4894, 0, -1.05291)
-start_letters = 30
 orphan_letters = NodePath("../../OrphanLetters")
+process = 2
 
 [node name="Stool13" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.72768, 0.0595909, 0.160006)
@@ -139,8 +140,9 @@ desk = NodePath("../SortingDesk7")
 
 [node name="SortingDesk7" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.45393, 0, -0.0883441)
-start_letters = 30
+start_letters = 2
 orphan_letters = NodePath("../../OrphanLetters")
+process = 1
 
 [node name="Stool15" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.72768, 0.0595909, -0.789611)
@@ -158,6 +160,7 @@ desk = NodePath("../SortingDesk8")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.45393, 0, -1.03796)
 start_letters = 30
 orphan_letters = NodePath("../../OrphanLetters")
+process = 1
 
 [node name="Stool17" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.72768, 0.0595909, -1.74322)
@@ -173,51 +176,53 @@ desk = NodePath("../SortingDesk9")
 
 [node name="SortingDesk9" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.45393, 0, -1.99157)
-start_letters = 30
+start_letters = 20
 orphan_letters = NodePath("../../OrphanLetters")
+process = 1
 
 [node name="Stool3" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.95453, 0.0595909, -0.738745)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.95453, 0.0595909, -0.790774)
 desk = NodePath("../SortingDesk2")
 
 [node name="NPCCharacter" parent="RoomMain/Stool3" instance=ExtResource("4_k2tdf")]
 
 [node name="Stool4" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.44181, 0.0595909, -0.738745)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.44181, 0.0595909, -0.790774)
 desk = NodePath("../SortingDesk2")
 
 [node name="NPCCharacter" parent="RoomMain/Stool4" instance=ExtResource("4_k2tdf")]
 
 [node name="SortingDesk2" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.20288, 0, -0.464994)
-start_letters = 4
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.20288, 0, -0.517023)
 orphan_letters = NodePath("../../OrphanLetters")
 
 [node name="Stool5" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.44697, 0.0595909, 0.464481)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.44697, 0.0595909, 0.509556)
 desk = NodePath("../SortingDesk3")
 
 [node name="NPCCharacter" parent="RoomMain/Stool5" instance=ExtResource("4_k2tdf")]
 
 [node name="Stool6" parent="RoomMain" node_paths=PackedStringArray("desk") instance=ExtResource("3_2l40b")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.95969, 0.0595909, 0.464481)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.95969, 0.0595909, 0.509556)
 desk = NodePath("../SortingDesk3")
 
 [node name="NPCCharacter" parent="RoomMain/Stool6" instance=ExtResource("4_k2tdf")]
 
 [node name="SortingDesk3" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.19862, 0, 0.19073)
-start_letters = 6
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.19862, 0, 0.235805)
 orphan_letters = NodePath("../../OrphanLetters")
 
 [node name="CartIncoming" parent="RoomMain" instance=ExtResource("5_qf56q")]
-transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -2.23139, 0, -3.66551)
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -1.92918, 0, -3.73759)
 
 [node name="Cart2Size" parent="RoomMain" instance=ExtResource("6_ftmxq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.74583, 0, -2.10949)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69419, 0, -2.10949)
 
 [node name="CartLetters" parent="RoomMain" instance=ExtResource("7_ttggf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05394, 0, -2.19785)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0633, 0, -1.98439)
+
+[node name="CartLetters2" parent="RoomMain" instance=ExtResource("7_ttggf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10121, 0, -0.981445)
 
 [node name="CartPackages" parent="RoomMain" instance=ExtResource("8_8jynb")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.16599, 2.38419e-07, -1.04409)
@@ -227,56 +232,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.165
 [node name="OrphanLetters" type="Node3D" parent="."]
 
 [node name="CartDestinations" type="Node3D" parent="."]
-
-[node name="Mixed" type="Node3D" parent="CartDestinations"]
-
-[node name="Marker3D" type="Marker3D" parent="CartDestinations/Mixed"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43934, 2.38419e-07, -3.57617)
-
-[node name="Marker3D2" type="Marker3D" parent="CartDestinations/Mixed"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2409, 2.38419e-07, -3.57617)
-
-[node name="TwoSize" type="Node3D" parent="CartDestinations"]
-
-[node name="Marker3D" type="Marker3D" parent="CartDestinations/TwoSize"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60098, 0, -3.01025)
-
-[node name="Marker3D2" type="Marker3D" parent="CartDestinations/TwoSize"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70098, 0, -2.11025)
-
-[node name="SortedPackages" type="Node3D" parent="CartDestinations"]
-
-[node name="Marker3D" type="Marker3D" parent="CartDestinations/SortedPackages"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.06004, 0, -0.109011)
-
-[node name="Marker3D3" type="Marker3D" parent="CartDestinations/SortedPackages"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.11943, 0, -0.941464)
-
-[node name="Marker3D2" type="Marker3D" parent="CartDestinations/SortedPackages"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.06004, 0, -0.101372)
-
-[node name="Marker3D4" type="Marker3D" parent="CartDestinations/SortedPackages"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.11943, 0, -1.99894)
-
-[node name="SortedLetters" type="Node3D" parent="CartDestinations"]
-
-[node name="Marker3D" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08455, 0, -3.19174)
-
-[node name="Marker3D4" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11737, 0, -1.99458)
-
-[node name="Marker3D2" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08455, 0, -3.19395)
-
-[node name="Marker3D5" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11737, 0, -1.03925)
-
-[node name="Marker3D3" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08455, 0, -3.19796)
-
-[node name="Marker3D6" type="Marker3D" parent="CartDestinations/SortedLetters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.11737, 0, -0.105254)
 
 [node name="Elevator" type="Node3D" parent="CartDestinations"]
 
@@ -303,6 +258,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38224, 1.19209e-07, -2.9969
 
 [node name="Marker3D8" type="Marker3D" parent="CartDestinations/Elevator"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48897, 1.19209e-07, -3.58425)
+
+[node name="Idle" type="Node3D" parent="CartDestinations"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.590638, 0, -4.25205)
+
+[node name="Marker3D" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.701277, 0, 0.290477)
+
+[node name="Marker3D2" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0494566, 0, -0.449741)
+
+[node name="Marker3D3" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10405, 0, -0.112291)
+
+[node name="Marker3D4" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.353312, 0, -0.85251)
+
+[node name="Marker3D5" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.13603, 0, -2.89543)
+
+[node name="Marker3D6" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.94152, 0, -3.7885)
+
+[node name="Marker3D7" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.63408, 0, -2.98727)
+
+[node name="Marker3D8" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -3.62664, 0, -3.74569)
+
+[node name="Marker3D9" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -4.18826, -2.38419e-07, -2.77259)
+
+[node name="Marker3D10" type="Marker3D" parent="CartDestinations/Idle"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -4.32196, 0, -3.64898)
+
+[node name="Discard" type="Node3D" parent="CartDestinations"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0.590638, 0, -4.25205)
+
+[node name="Marker3D" type="Marker3D" parent="CartDestinations/Discard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0324304, 0, 1.31167)
+
+[node name="Marker3D2" type="Marker3D" parent="CartDestinations/Discard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.730052, 0, 0.624565)
 
 [node name="WorldLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.5, 0.836516, -0.224144, 0, 0.258819, 0.965926, 0.866025, -0.482963, 0.12941, -2.05981, 0.365944, -0.05182)
@@ -367,6 +364,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="Floor2" type="Node3D" parent="."]
+visible = false
 script = ExtResource("16_81b3u")
 
 [node name="inside_hub_F2" parent="Floor2" instance=ExtResource("16_aodwk")]

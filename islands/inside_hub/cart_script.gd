@@ -13,6 +13,9 @@ enum Type
 @export var emptying = false
 @export var functional = true
 
+@export var spawn_letters: int = 0
+@export var spawn_packages: int = 0
+
 const SPEED = 10.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 0.2
@@ -34,6 +37,15 @@ func _ready():
 	reset_collision_layer = collision_layer
 	items_node = Node3D.new()
 	add_child(items_node)
+
+	while spawn_letters > 0:
+		var a = get_target_area(true)
+		spawn_letter(a)
+		spawn_letters -= 1
+	while spawn_packages > 0:
+		var a = get_target_area(false)
+		spawn_package(a)
+		spawn_packages -= 1
 
 func set_pushing(pushing: bool):
 	if pushing:
@@ -71,6 +83,9 @@ func align_to_desk():
 			rotate_y(PI)
 		target_time = 0
 		velocity = Vector3.ZERO
+		return true
+	else:
+		return false
 
 func get_areas():
 	match type:
@@ -125,6 +140,12 @@ func is_sorted():
 func has_items():
 	return items > 0
 
+func has_letters():
+	return items > 0
+
+func has_packages():
+	return false
+
 func notify_letter(letter: RigidBody3D):
 	items += 1
 	letter.reparent(items_node)
@@ -137,3 +158,26 @@ func empty_out():
 			child.queue_free()
 			# TODO: put on desk
 		items = 0
+
+func spawn_letter(area: CollisionShape3D):
+	var letter_scene = preload("res://shared/letter/letter.tscn")
+	var copy: RigidBody3D = letter_scene.instantiate()
+	items_node.add_child(copy)
+	copy.visible = true
+	copy.rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
+	copy.freeze = true
+	var size = (area.shape as BoxShape3D).size * 0.5
+	copy.position = Vector3(randf_range(-size.x, size.x), randf_range(-size.y, size.y), randf_range(-size.z, size.z))
+	items += 1
+
+func spawn_package(area: CollisionShape3D):
+	# TODO
+	var letter_scene = preload("res://shared/letter/letter.tscn")
+	var copy: RigidBody3D = letter_scene.instantiate()
+	items_node.add_child(copy)
+	copy.visible = true
+	copy.rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
+	copy.freeze = true
+	var size = (area.shape as BoxShape3D).size * 0.5
+	copy.position = Vector3(randf_range(-size.x, size.x), randf_range(-size.y, size.y), randf_range(-size.z, size.z))
+	items += 1

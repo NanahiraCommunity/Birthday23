@@ -73,6 +73,7 @@ size = Vector3(0.228228, 0.0563789, 0.436916)
 collision_layer = 138
 collision_mask = 136
 script = ExtResource("6_ghuyi")
+spawn_letters = 30
 
 [node name="CartIncoming" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_kno5l")

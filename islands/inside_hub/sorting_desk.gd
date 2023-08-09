@@ -4,6 +4,26 @@ extends MeshInstance3D
 @export var start_letters: int = 0
 @export var orphan_letters: Node3D
 
+enum Process
+{
+	NONE,
+	LETTERS,
+	PACKAGES,
+	MIXED
+}
+
+
+@export var process = Process.NONE
+
+func is_mixed():
+	return process == Process.MIXED
+
+func is_letters_only():
+	return process == Process.LETTERS
+
+func is_packages_only():
+	return process == Process.PACKAGES
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.add_to_group("tables")
@@ -12,8 +32,8 @@ func _ready():
 		var copy: RigidBody3D = letter_scene.instantiate()
 		$Letters.add_child(copy)
 		copy.visible = true
-		copy.global_rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
-		copy.global_position += Vector3(randfn(0.0, 0.15) * 0.2, randfn(0.0, 0.15) * 0.15, randfn(0.0, 0.15) * 0.9)
+		copy.rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
+		copy.position += Vector3(randfn(0.0, 0.15) * 0.2, randfn(0.0, 0.15) * 0.15, randfn(0.0, 0.15) * 0.9)
 
 func get_letter(npc):
 	var c = $Letters.get_child_count()

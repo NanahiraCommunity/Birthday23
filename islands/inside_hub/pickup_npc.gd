@@ -1,7 +1,7 @@
 extends "res://shared/npc/npc_character.gd"
 
-const SPEED = 1.2
-const SPEED_PUSHING = 0.4
+const SPEED = 1.4
+const SPEED_PUSHING = 1.1#0.4
 const ROTATION_SPEED = 10
 const PUSHING_ROTATION_SPEED = 7
 const STUCK_TIME_THRESHOLD = 4.0
@@ -34,20 +34,21 @@ var stuck_retries: int = 0
 
 var pushing_cart: Node3D = null
 
+var float_target: Node3D = null
+var float_timeout: float = 0
+
 func _ready():
 	super._ready()
-	
+
 	$NavigationAgent3D.process_mode = Node.PROCESS_MODE_INHERIT
 	NavigationServer3D.agent_set_avoidance_enabled($NavigationAgent3D.get_rid(), true)
 	$NavigationAgent3D.avoidance_enabled = true
 	$NavigationAgent3D.velocity_computed.connect(Callable(_on_velocity_computed))
 	$NavigationAgent3D.navigation_finished.connect(Callable(_navigation_finished.bind(true)))
-	
+
 	start_ai.call_deferred()
 
 func set_target(node: Node3D, timeout: float):
-	var start = global_position
-	var navmap = get_world_3d().navigation_map
 	_target = node
 	navigation_timeout = timeout
 	stuck_time = 0.0
@@ -81,12 +82,12 @@ func start_ai():
 		carts.shuffle()
 		var random_filled_in_cart = null
 		for i in range(0, carts.size()):
-			if carts[i].has_items() and not carts[i].is_sorted():
+			if carts[i].has_items() and not carts[i].desk and not carts[i].is_sorted():
 				random_filled_in_cart = carts[i]
 				break
 		var random_filled_out_cart = null
 		for i in range(0, carts.size()):
-			if carts[i].has_items() and carts[i].is_sorted():
+			if carts[i].has_items() and not carts[i].desk and carts[i].is_sorted():
 				random_filled_out_cart = carts[i]
 				break
 		var emptied_cart = null
@@ -96,105 +97,175 @@ func start_ai():
 				break
 
 		# TODO: elevator
+		var succeeded = true
 
 		# priorities:
 		# 0. finished emptying cart
-		if emptied_cart:
-			await advance_cart(emptied_cart)
+		if emptied_cart and randf() < (0.8 if emptied_cart.desk else 0.05):
+			succeeded = await advance_cart(emptied_cart, true)
 		# 1. desk is (almost) empty and has a cart, push to next desk:
-		elif min_desk_with_cart and min_desk_with_cart.remaining_items() <= 2:
-			await advance_cart(min_desk_with_cart.cart)
-		# 2. letters on the floor
-		elif has_orphan_letters and letter_pick_timer < 10:
-			await pickup_letter()
-		# 3. carts with incoming items are available and there is available desks
-		elif random_filled_in_cart and min_desk_without_cart:
-			await advance_cart(random_filled_in_cart)
+		elif min_desk_with_cart and min_desk_with_cart.remaining_items() <= 2 and randf() < 0.8:
+			succeeded = await advance_cart(min_desk_with_cart.cart, false)
+		# 2. carts with incoming items are available, not at a desk and there is available desks
+		elif random_filled_in_cart and min_desk_without_cart and randf() < 0.8:
+			succeeded = await advance_cart(random_filled_in_cart, false)
+		# 3. letters on the floor
+		elif has_orphan_letters and letter_pick_timer < 10 and randf() < 0.8:
+			succeeded = await pickup_letter()
 		# 4. outgoing carts are ready
-		elif random_filled_out_cart:
-			await advance_cart(random_filled_out_cart)
+		elif random_filled_out_cart and randf() < 0.8:
+			succeeded = await advance_cart(random_filled_out_cart, true)
 		else:
-			# just pick up letters if there is nothing to do
+			# just pick up letters if there is nothing to do and random checks failed
 			await pickup_letter()
 
-		await get_tree().create_timer(0.5 + randf() * 1.5).timeout
+		await get_tree().create_timer(0.5 + randf() * 1.5 if succeeded else 0.05).timeout
 
 	print("AI finished")
 
-func advance_cart(cart: Node3D):
+func advance_cart(cart: Node3D, to_idle_pos: bool):
 	print("advance: ", cart.type)
 	letter_pick_timer = 0
 	set_target(cart.get_node("Handle"), 15.0)
 	if not await reached_target:
-		return
-	var current_markers = []
-	var next_markers = []
+		return false
+
+	const DISCARD = -3
+	const ELEVATOR = -2
+	const RESET = -1
+	const MIXED = 2
+	const LETTERS = 4
+	const PACKAGES = 6
+
+	var target = 0
+	var empty_at_destination = false
+	var fallback_idle = false
+	var fallback_elevator = false
+	var fallback_discard = false
+
 	match(cart.type):
 		Global.CartType.MIXED:
-			current_markers = Array(cart_destinations.get_node("Mixed").get_children())
-			next_markers = Array(cart_destinations.get_node("TwoSize").get_children())
-		Global.CartType.TWO_SIZE:
-			current_markers = Array(cart_destinations.get_node("TwoSize").get_children())
-			next_markers = Array(cart_destinations.get_node("SortedPackages").get_children())
-			next_markers.append_array(cart_destinations.get_node("SortedLetters").get_children())
-		Global.CartType.SORTED_PACKAGES:
-			current_markers = Array(cart_destinations.get_node("SortedPackages").get_children())
-			next_markers = Array(cart_destinations.get_node("Elevator").get_children())
-		Global.CartType.SORTED_LETTERS:
-			current_markers = Array(cart_destinations.get_node("SortedLetters").get_children())
-			next_markers = Array(cart_destinations.get_node("Elevator").get_children())
-
-	var cart_pos = Vector2(cart.global_position.x, cart.global_position.z)
-	var current = -2
-	for i in range(0, current_markers.size(), 2):
-		var marker_pos = Vector2(current_markers[i + 1].global_position.x, current_markers[i + 1].global_position.z)
-		if marker_pos.distance_squared_to(cart_pos) <= CART_RADIUS * CART_RADIUS:
-			current = i
-			break
-	if current == -2:
-		for i in range(0, next_markers.size(), 2):
-			var marker_pos = Vector2(next_markers[i + 1].global_position.x, next_markers[i + 1].global_position.z)
-			if marker_pos.distance_squared_to(cart_pos) <= CART_RADIUS * CART_RADIUS:
-				current = current_markers.size() + i
-				break
-
-	var target_pos: Node3D = null
-	var final_pos: Node3D = null
-	var next = current + 2
-	var empty_next = false
-	while true:
-		if next < current_markers.size():
-			if cart_pos_available(current_markers[next + 1].global_position):
-				target_pos = current_markers[next]
-				final_pos = current_markers[next + 1]
-				break
-		else:
-			var i = next - current_markers.size()
-			if i < next_markers.size():
-				if cart_pos_available(next_markers[i + 1].global_position):
-					target_pos = next_markers[i]
-					final_pos = next_markers[i + 1]
-					empty_next = true
-					break
+			if cart.has_items():
+				target = MIXED
+				empty_at_destination = true
+				# don't discard incoming letters lol
+				#fallback_discard = true
 			else:
-				# no available spot, leave
-				break
-		next += 2
+				target = DISCARD
+		Global.CartType.TWO_SIZE:
+			if cart.has_letters():
+				target = LETTERS
+				empty_at_destination = true
+				fallback_idle = true
+			elif cart.has_packages():
+				target = PACKAGES
+				empty_at_destination = true
+				fallback_idle = true
+			elif to_idle_pos:
+				target = RESET
+			else:
+				target = MIXED
+				fallback_idle = true
+		Global.CartType.SORTED_PACKAGES:
+			if to_idle_pos:
+				target = ELEVATOR if cart.has_items() else RESET
+			else:
+				target = PACKAGES
+				fallback_elevator = true
+		Global.CartType.SORTED_LETTERS:
+			if to_idle_pos:
+				target = ELEVATOR if cart.has_items() else RESET
+			else:
+				target = LETTERS
+				fallback_elevator = true
 
-	if target_pos:
+	if target == 0:
+		return false
+
+	var markers = []
+
+	if target == ELEVATOR:
+		markers = Array(cart_destinations.get_node("Elevator").get_children())
+	elif target == RESET:
+		markers = Array(cart_destinations.get_node("Idle").get_children())
+	elif target == DISCARD:
+		markers = Array(cart_destinations.get_node("Discard").get_children())
+	elif target == MIXED:
+		markers = get_table_markers(func(t): return t.is_mixed() and (empty_at_destination or t.remaining_items() > 0))
+	elif target == LETTERS:
+		markers = get_table_markers(func(t): return t.is_letters_only() and (empty_at_destination or t.remaining_items() > 0))
+	elif target == PACKAGES:
+		markers = get_table_markers(func(t): return t.is_packages_only() and (empty_at_destination or t.remaining_items() > 0))
+
+	var next = _find_available_cart_pos(markers)
+	if next == -1:
+		if fallback_idle and target != RESET:
+			markers = Array(cart_destinations.get_node("Idle").get_children())
+			target = RESET
+		if fallback_elevator and target != ELEVATOR:
+			markers = Array(cart_destinations.get_node("Elevator").get_children())
+			target = ELEVATOR
+		if fallback_discard and target != DISCARD:
+			markers = Array(cart_destinations.get_node("Discard").get_children())
+			target = DISCARD
+		next = _find_available_cart_pos(markers)
+
+	if next != -1:
+		var target_pos = markers[next]
+		var final_pos = markers[next + 1]
+
 		cart.emptying = true
 		await push_cart_to(cart, target_pos)
-		await push_cart_to(cart, final_pos)
+		if target == ELEVATOR or target == DISCARD:
+			await float_cart_to(cart, final_pos)
+		else:
+			if not await push_cart_to(cart, final_pos):
+				return false
 		await get_tree().create_timer(0.5).timeout
 		# TODO: cart desk is not accurate
-		cart.align_to_desk()
-		cart.emptying = empty_next
-		if empty_next:
+		if not cart.align_to_desk():
+			return false
+		cart.emptying = empty_at_destination
+		if empty_at_destination:
 			set_target(cart.get_node("Handle"), 10.0)
 			await reached_target
 			cart.empty_out()
 
+		if target == DISCARD:
+			cart.queue_free()
+		elif target == RESET:
+			cart.emptying = false
+		elif target == ELEVATOR:
+			# TODO: elevator flag
+			cart.emptying = false
+			set_target(cart_destinations.get_node("Elevator/Marker3D"), 5.0)
+			await reached_target
+		elif empty_at_destination and not to_idle_pos:
+			# immediately queue idling
+			await get_tree().create_timer(0.3).timeout
+			return await advance_cart(cart, true)
+
 	letter_pick_timer = 0
+
+	return next != -1
+
+func get_table_markers(filter_dg: Callable):
+	var markers = []
+	for table in room_main.get_children():
+		if table.is_in_group("tables"):
+			var filter_res = filter_dg.call(table)
+			if filter_res:
+				markers.append(table.get_node("OrientationDestination"))
+				markers.append(table.get_node("CartDestination"))
+	return markers
+
+func _find_available_cart_pos(list, start = 0) -> int:
+	var next = start
+	while next < list.size():
+		if cart_pos_available(list[next + 1].global_position):
+			return next
+		next += 2
+	return -1
 
 func cart_pos_available(position: Vector3):
 	var space_state = get_world_3d().direct_space_state
@@ -202,26 +273,49 @@ func cart_pos_available(position: Vector3):
 	return not space_state.intersect_ray(query)
 
 func push_cart_to(cart, target_pos: Node3D):
-	set_target(target_pos, 20.0)
 	pushing_cart = cart
+	cart.set_pushing(true)
+	set_target(target_pos, 20.0)
 	var lookat = Vector3(cart.global_position.x, global_position.y, cart.global_position.z)
 	global_transform = global_transform.looking_at(lookat)
 	model.transform.origin = Vector3(0, 0, -PUSH_DISTANCE)
 	global_position = model.global_position
 	model.transform.origin = Vector3(0, 0, PUSH_DISTANCE)
-	cart.set_pushing(true)
 	$NavigationAgent3D.radius += 0.05 # can't really make it larger, otherwise it doesn't reach the goal
-	await reached_target
+	var result = await reached_target
 	pushing_cart = null
 	global_position = model.global_position
 	model.transform.origin = Vector3.ZERO
 	$NavigationAgent3D.radius -= 0.05
 	cart.set_pushing(false)
+	return result
+
+func float_cart_to(cart, target: Node3D):
+	velocity.x = 0
+	velocity.z = 0
+	pushing_cart = cart
+	cart.set_pushing(true)
+	_target = null
+	_navigation_finished(true)
+	var lookat = Vector3(cart.global_position.x, global_position.y, cart.global_position.z)
+	global_transform = global_transform.looking_at(lookat)
+	model.transform.origin = Vector3(0, 0, -PUSH_DISTANCE)
+	global_position = model.global_position
+	model.transform.origin = Vector3(0, 0, PUSH_DISTANCE)
+	float_target = target
+	float_timeout = 7.0
+	await reached_target
+	global_position = target.global_position
+	_physics_process(0)
+	pushing_cart = null
+	global_position = model.global_position
+	model.transform.origin = Vector3.ZERO
+	cart.set_pushing(false)
 
 func pickup_letter():
 	var closest_letters = Array(orphan_letters.get_children())
 	if closest_letters.size() == 0:
-		return
+		return false
 	closest_letters.sort_custom(func(a, b): a.global_position.distance_squared_to(global_position) < b.global_position.distance_squared_to(global_position))
 	var letter = closest_letters[0]
 	set_target(letter, 5.0)
@@ -230,6 +324,9 @@ func pickup_letter():
 		# TODO: pick up letter, put into cart
 		orphan_letters.remove_child(letter)
 		letter.queue_free()
+		return true
+	else:
+		return false
 
 func _process(delta):
 	super._process(delta)
@@ -241,11 +338,11 @@ func _process(delta):
 			set_target(_target, navigation_timeout)
 		else:
 			timeout -= delta
-			
+
 		if navigation_timeout <= 0:
 			_navigation_finished(false)
 			return
-			
+
 		if global_position.distance_squared_to($NavigationAgent3D.get_final_position()) < TARGET_GOAL_DISTANCE * TARGET_GOAL_DISTANCE:
 			set_target(_target, navigation_timeout)
 			await $NavigationAgent3D.path_changed
@@ -285,7 +382,22 @@ func _physics_process(delta):
 
 	var speed = SPEED_PUSHING if pushing_cart else SPEED
 
-	if not $NavigationAgent3D.is_navigation_finished():
+	if float_target:
+		if global_position.distance_squared_to(float_target.global_position) < TARGET_GOAL_DISTANCE * TARGET_GOAL_DISTANCE:
+			_navigation_finished()
+			float_target = null
+		else:
+			var movement = (float_target.global_position - global_position).normalized() * speed
+			velocity.x = movement.x
+			velocity.z = movement.z
+			# TODO: move_and_slide doesn't always work properly here?!
+			move_and_slide()
+
+			float_timeout -= delta
+			if float_timeout < 0:
+				_navigation_finished(false)
+				float_target = null
+	elif not $NavigationAgent3D.is_navigation_finished():
 		var next: Vector3 = $NavigationAgent3D.get_next_path_position()
 		var movement = (next - global_position).normalized() * speed
 		ai_velocity.x = movement.x
