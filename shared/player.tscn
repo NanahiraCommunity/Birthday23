@@ -19,6 +19,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+wall_min_slide_angle = 0.174533
 script = ExtResource("1_5nyfd")
 
 [node name="NanahiraPapercraft" parent="." instance=ExtResource("2_6ed0s")]
