@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://fsrudih3riei"]
+
+[ext_resource type="Shader" path="res://shaders/transition.gdshader" id="1_x0qi8"]
+[ext_resource type="Script" path="res://scene_switcher.gd" id="2_52mu7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6beq"]
+shader = ExtResource("1_x0qi8")
+shader_parameter/circle_size = 0.0
+shader_parameter/blur = 3.0
+shader_parameter/center = Vector2i(500, 300)
+
+[sub_resource type="Animation" id="Animation_1j1ap"]
+resource_name = "In"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_la2m8"]
+resource_name = "Out"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_oouv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w2dkt"]
+_data = {
+"In": SubResource("Animation_1j1ap"),
+"Out": SubResource("Animation_la2m8"),
+"RESET": SubResource("Animation_oouv2")
+}
+
+[node name="SceneSwitcher" type="ColorRect"]
+process_mode = 3
+material = SubResource("ShaderMaterial_v6beq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_52mu7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w2dkt")
+}

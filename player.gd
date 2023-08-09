@@ -10,6 +10,11 @@ const FLIGHT_VELOCITY_FORWARD = 1.0
 const WALK_AIR_SPEED_MULTIPLIER = 0.12
 const FLYING_AIR_SPEED_MULTIPLIER = 0.15
 const STOP_SPEED = 0.25
+# how wide a step needs to be to auto-walk up
+const MIN_STEP_WIDTH = 0.08
+# how high a step can be at most to auto-walk up
+const MAX_STEP_HEIGHT = 0.115
+const STEP_UP_FORCE = 1.4
 
 const FLY_START_ANIMATION_SPEED = 10.0
 const FLY_END_ANIMATION_SPEED = 30.0
@@ -17,7 +22,7 @@ const FLIGHT_DRAG_VERTICAL = 0.5
 const FLIGHT_DRAG_HORIZONTAL = 0.01
 
 @export var camera: Node3D
-@onready var model: Node3D = get_node("nanahira_papercraft")
+@onready var model: Node3D = $NanahiraPapercraft
 @onready var skeleton: Skeleton3D = model.get_node("Armature/Skeleton3D")
 @onready var root_bone: int = skeleton.find_bone("Root")
 
@@ -40,6 +45,7 @@ var sneak = false
 var jump_held = false
 var jump_pressed
 var on_floor = false
+var is_stair_stepping = false
 
 enum {
 	IDLE,
@@ -79,14 +85,45 @@ func _physics_process(delta):
 			fly(delta)
 		TALKING:
 			talk(delta)
-	
+
 	# Model rotation
 	var velocity2d = Vector2(velocity.x, velocity.z)
 	if velocity2d.length_squared() > 0.2 * 0.2:
 		var target_rotation = Basis(Vector3(0, 1, 0), -atan2(velocity2d.x, -velocity2d.y))
 		global_transform.basis = global_transform.basis.slerp(target_rotation, ROTATION_SPEED * delta)
-		
-	move_and_slide()
+
+	if move_and_slide() and on_floor:
+		if is_stair_stepping:
+			for i in range(0, get_slide_collision_count()):
+				var collision = get_slide_collision(i)
+				if collision.get_normal().y > 0.9:
+					is_stair_stepping = false
+					break
+		else:
+			for i in range(0, get_slide_collision_count()):
+				var collision = get_slide_collision(i)
+				var normal = collision.get_normal()
+
+				var dir = Vector2(normal.x, normal.z).normalized()
+				var walk_dir = velocity2d.normalized()
+
+				var is_wall_collision = abs(normal.y) < 0.7
+				var is_walking_against_wall = abs(dir.dot(walk_dir)) > 0.5
+				if not is_wall_collision or not is_walking_against_wall:
+					continue
+
+				var start = global_position + Vector3(0, MAX_STEP_HEIGHT, 0) - Vector3(dir.x, 0, dir.y) * $CollisionShape3D.shape.radius
+				var end = start - Vector3(dir.x, 0, dir.y) * MIN_STEP_WIDTH
+				var height_end = end + Vector3(0, $CollisionShape3D.shape.height + 0.1, 0)
+				var space_state = get_world_3d().direct_space_state
+				var is_foot_blocked = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(start, end))
+				var is_standing_blocked = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(end, height_end))
+				if is_foot_blocked or is_standing_blocked:
+					continue
+
+				velocity.y += STEP_UP_FORCE
+				is_stair_stepping = true
+				break
 
 
 func idle(delta):

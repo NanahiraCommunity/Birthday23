@@ -98,6 +98,7 @@ func show_next():
 	$MarginContainer/VBoxContainer/DialogSeparator.visible = false
 	for child in option_nodes:
 		$MarginContainer/VBoxContainer.remove_child(child)
+		child.queue_free()
 	option_nodes = []
 
 	next_dialogue = current_line.next_id

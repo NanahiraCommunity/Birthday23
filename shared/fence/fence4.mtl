@@ -1,0 +1,12 @@
+# Blender 3.6.0 MTL File: 'FenceLoop.blend'
+# www.blender.org
+
+newmtl NanahiraPapercraft
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.001473 0.001473 0.001473
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns /home/webfreak/dev/Birthday23/shaders/res/paper_0026_roughness_4k.jpg

@@ -1,4 +1,4 @@
-extends "res://npc_character.gd"
+extends "res://shared/npc/npc_character.gd"
 
 const SPEED = 1.2
 const SPEED_PUSHING = 0.4
@@ -15,7 +15,7 @@ const PUSH_DISTANCE = 0.4
 @export var room_main: Node3D
 @export var cart_destinations: Node3D
 
-@onready var model: Node3D = get_node("nanahira_papercraft")
+@onready var model: Node3D = $NanahiraPapercraft
 
 signal reached_target(reached: bool)
 

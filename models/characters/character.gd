@@ -5,23 +5,54 @@ extends Node3D
 enum Character {
 	NANAHIRA,
 	MESSENGER,
+	NANAHI_2,
+	MUCHAHIRA_1,
+	MUCHAHIRA_2,
+	MUCHAHIRA_3,
+	NANAHIRA_PIZZA,
 }
 
 const VELOCITY_SCALE = 2.0
 
 var last_velocity = Vector3.ZERO
 
-@export var character: Character = Character.NANAHIRA
+var _character: Character = Character.NANAHIRA
+@export var character: Character:
+	get:
+		return _character
+	set(value):
+		_character = value
+		update_character()
+
+func _reskin(texture):
+	$Armature/Skeleton3D/NanahiraPapercraft.visible = true
+	var material: ShaderMaterial = $Armature/Skeleton3D/NanahiraPapercraft.get_surface_override_material(0)
+	material = material.duplicate()
+	material.set_shader_parameter("texture_paper", texture)
+	$Armature/Skeleton3D/NanahiraPapercraft.set_surface_override_material(0, material)
 
 func _ready():
+	update_character()
+
+func update_character():
 	var scene = null
 	var respath = null
 	
 	$Armature/Skeleton3D/NanahiraPapercraft.visible = false
 	
-	match(character):
+	match(_character):
 		Character.NANAHIRA:
 			$Armature/Skeleton3D/NanahiraPapercraft.visible = true
+		Character.NANAHI_2:
+			_reskin(preload("res://models/characters/nanahira/skins/Nanahi.png"))
+		Character.MUCHAHIRA_1:
+			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft1.png"))
+		Character.MUCHAHIRA_2:
+			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft2.png"))
+		Character.MUCHAHIRA_3:
+			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft3.png"))
+		Character.NANAHIRA_PIZZA:
+			_reskin(preload("res://models/characters/nanahira/skins/PizzaPapercraft.png"))
 		Character.MESSENGER:
 			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
 			respath = "Armature/Skeleton3D/MessengerPapercraft"

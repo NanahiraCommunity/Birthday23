@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="Birthday23"
-run/main_scene="res://islands/inside_hub/castle_inside.tscn"
+run/main_scene="res://islands/hub/hub_world.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Global="*res://global.tscn"
+Global="*res://global.gd"
+SceneSwitcher="*res://scene_switcher.tscn"
 
 [editor_plugins]
 

@@ -11,6 +11,7 @@ enum Type
 
 @export var type: Type = Type.MIXED
 @export var emptying = false
+@export var functional = true
 
 const SPEED = 10.0
 
@@ -28,8 +29,9 @@ var items_node: Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if functional:
+		self.add_to_group("carts")
 	reset_collision_layer = collision_layer
-	self.add_to_group("carts")
 	items_node = Node3D.new()
 	add_child(items_node)
 
@@ -46,6 +48,8 @@ func transition_to(location: Vector3):
 	target_time = 4.0
 
 func _physics_process(delta):
+	if not functional:
+		return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
