@@ -147,7 +147,7 @@ shape = SubResource("ConcavePolygonShape3D_qs7wo")
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.57077, -9.53674e-07, 10.7911)
 
 [node name="FenceLine" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.47114, 0.0340571, -2.94131)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.471, 0, -2.941)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine" instance=ExtResource("10_yjkhf")]
@@ -159,7 +159,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54959, -0.000999046, 0.0017
 skeleton = NodePath("../..")
 
 [node name="FenceLine7" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.5313, 0.0340571, 7.73443)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.531, 0, 7.734)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine7" instance=ExtResource("10_yjkhf")]
@@ -175,7 +175,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.891, -0.002, 0.00299835)
 skeleton = NodePath("../..")
 
 [node name="FenceLine6" type="Node3D" parent="."]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.4837, 0.134057, -0.750988)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 11.484, 0.1, -0.751)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine6" instance=ExtResource("10_yjkhf")]
@@ -187,7 +187,7 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 skeleton = NodePath("../..")
 
 [node name="FenceLine2" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.5672, 0.0340571, -2.94131)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4.567, 0, -2.941)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine2" instance=ExtResource("10_yjkhf")]
@@ -199,7 +199,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54959, -0.000999046, 0.0017
 skeleton = NodePath("../..")
 
 [node name="FenceLine3" type="Node3D" parent="."]
-transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -12.5778, 0.0340571, -0.754493)
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -12.578, 0, -0.754)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine3" instance=ExtResource("10_yjkhf")]
@@ -207,7 +207,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79118, -0.000999046, 0.000
 skeleton = NodePath("../..")
 
 [node name="FenceLine4" type="Node3D" parent="."]
-transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -13.627, 0.0340571, 3.38807)
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -13.627, 0, 3.388)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine4" instance=ExtResource("10_yjkhf")]
@@ -219,7 +219,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54959, -0.000999046, 0.0017
 skeleton = NodePath("../..")
 
 [node name="FenceLine5" type="Node3D" parent="."]
-transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -13.627, 0.0340571, 12.0689)
+transform = Transform3D(5.96046e-08, 0, -1, 0, 1, 0, 1, 0, 5.96046e-08, -13.627, 0, 12.069)
 metadata/_edit_group_ = true
 
 [node name="Fence" parent="FenceLine5" instance=ExtResource("10_yjkhf")]
