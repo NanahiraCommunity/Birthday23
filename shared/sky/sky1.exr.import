@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfykanpnb7saq"
-path.bptc="res://.godot/imported/sky1.exr-f9e8d01515fa686ccc813228550f96e9.bptc.ctex"
+path="res://.godot/imported/sky1.exr-f9e8d01515fa686ccc813228550f96e9.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shared/sky/sky1.exr"
-dest_files=["res://.godot/imported/sky1.exr-f9e8d01515fa686ccc813228550f96e9.bptc.ctex"]
+dest_files=["res://.godot/imported/sky1.exr-f9e8d01515fa686ccc813228550f96e9.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
