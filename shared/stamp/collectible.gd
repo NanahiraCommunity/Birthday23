@@ -14,6 +14,7 @@ var test_index = 0
 
 func _ready():
 	test_index = randi_range(0, 2)
+	rotate_y(-sin(global_position.x) * cos(global_position.z) * TAU)
 
 func _process(delta):
 	rotate_y(delta * ROTATE_SPEED)
