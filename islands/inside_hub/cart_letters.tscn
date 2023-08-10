@@ -70,57 +70,60 @@ size = Vector3(0.500201, 0.18802, 0.0204485)
 size = Vector3(0.0850799, 0.0563789, 0.0884892)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 138
+collision_mask = 136
 script = ExtResource("6_53u2n")
 type = 3
 
 [node name="CartLetters" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0495433, 0, 0)
 mesh = ExtResource("1_d7pcw")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_bgff7")
 surface_material_override/1 = SubResource("ShaderMaterial_lqo7u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.0360607, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.0360607, 0)
 shape = SubResource("BoxShape3D_jwfhj")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.160608, 0.240458)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.160608, 0.240458)
 shape = SubResource("BoxShape3D_ywdnq")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.160608, -0.239955)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.160608, -0.239955)
 shape = SubResource("BoxShape3D_ywdnq")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.131714, 0.158284, -0.000423312)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.181257, 0.158284, -0.000423312)
 shape = SubResource("BoxShape3D_oqspo")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.229559, 0.158284, -0.000423312)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.180016, 0.158284, -0.000423312)
 shape = SubResource("BoxShape3D_oqspo")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.109213, 0.128541, -0.000423312)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0596697, 0.128541, -0.000423312)
 shape = SubResource("BoxShape3D_oqspo")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0151284, 0.128541, -0.000423312)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0646717, 0.128541, -0.000423312)
 shape = SubResource("BoxShape3D_oqspo")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.130864, -0.129738)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.130864, -0.129738)
 shape = SubResource("BoxShape3D_ywdnq")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.130864, -0.00520566)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.130864, -0.00520566)
 shape = SubResource("BoxShape3D_ywdnq")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049547, 0.130864, 0.118039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.74019e-06, 0.130864, 0.118039)
 shape = SubResource("BoxShape3D_ywdnq")
 
 [node name="Areas" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0487946, 0.382755, -0.0861754)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00074866, 0.237245, -0.0861754)
 monitoring = false
 monitorable = false
 
@@ -173,7 +176,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.121015, -0.0277585, -0.0981
 shape = SubResource("BoxShape3D_l1bf3")
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0560095, 0, 0)
-radius = 0.33
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00645674, 0.1, 0)
+radius = 0.29
 height = 0.5
-vertices = PackedVector3Array(0.197689, 0, -0.260954, -0.212414, 0, -0.265704, -0.207664, 0, 0.267905, 0.194523, 0, 0.267905)
+
+[node name="Handle" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00652786, 0, -0.46885)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dndimqgmurkds"
-path="res://.godot/imported/letter.svg-ebf62eae99337f0af3d589a4476c62fd.ctex"
+uid="uid://xg8prsdnq7bk"
+path="res://.godot/imported/letter5.svg-dc67a2ea9dcb55c0f1ae70a3ddc56b40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shared/letter/letter.svg"
-dest_files=["res://.godot/imported/letter.svg-ebf62eae99337f0af3d589a4476c62fd.ctex"]
+source_file="res://shared/letter/letter5.svg"
+dest_files=["res://.godot/imported/letter5.svg-dc67a2ea9dcb55c0f1ae70a3ddc56b40.ctex"]
 
 [params]
 

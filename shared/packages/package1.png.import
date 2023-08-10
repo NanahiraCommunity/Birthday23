@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcosytkyx15hm"
-path.s3tc="res://.godot/imported/letter.png-2f5e23bf8449d86d080af8f1caee0792.s3tc.ctex"
+uid="uid://ccuimnh2xy22n"
+path.bptc="res://.godot/imported/package1.png-4a997fac0b60640ab8a35fb9ecae9ef1.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://shared/letter/letter.png"
-dest_files=["res://.godot/imported/letter.png-2f5e23bf8449d86d080af8f1caee0792.s3tc.ctex"]
+source_file="res://shared/packages/package1.png"
+dest_files=["res://.godot/imported/package1.png-4a997fac0b60640ab8a35fb9ecae9ef1.bptc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

@@ -1,7 +1,22 @@
 extends Node
 
+# enums
+
+enum CartType
+{
+	MIXED,
+	TWO_SIZE,
+	SORTED_PACKAGES,
+	SORTED_LETTERS,
+}
+
+# global state
+
 var player: CharacterBody3D
 var in_dialog: bool = false
+
+# per-island state
+
 var neko_world_reset_count = 0
 
 func _ready():

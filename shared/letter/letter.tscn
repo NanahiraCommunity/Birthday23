@@ -1,15 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu1sq83uawsda"]
 
-[ext_resource type="Texture2D" uid="uid://bcosytkyx15hm" path="res://shared/letter/letter.png" id="1_t4qve"]
 [ext_resource type="Script" path="res://shared/letter/letter.gd" id="1_xdgka"]
+[ext_resource type="Texture2D" uid="uid://b888op60du2oy" path="res://shared/letter/letter1.svg" id="2_d678u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh1ec"]
-size = Vector3(0.075, 0.019, 0.131)
+size = Vector3(0.0457979, 0.019, 0.0720995)
 
 [node name="RigidBody3D" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.534, 0)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 mass = 0.05
 gravity_scale = 0.1
 script = ExtResource("1_xdgka")
@@ -17,9 +16,9 @@ metadata/is_letter = true
 
 [node name="Letter" type="Sprite3D" parent="."]
 transform = Transform3D(1.91069e-15, 1, -4.37114e-08, 4.37114e-08, -4.37114e-08, -1, -1, 0, -4.37114e-08, 0, 0, 0)
-pixel_size = 0.001
+pixel_size = 0.0007
 shaded = true
-texture = ExtResource("1_t4qve")
+texture = ExtResource("2_d678u")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_dh1ec")

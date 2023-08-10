@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://igunt2eyo7yq"]
+[gd_scene load_steps=8 format=3 uid="uid://igunt2eyo7yq"]
 
 [ext_resource type="Script" path="res://shared/npc/npc_character.gd" id="1_8bvqk"]
 [ext_resource type="PackedScene" uid="uid://byflm3kvjdyoy" path="res://models/characters/character.tscn" id="2_75txh"]
@@ -6,6 +6,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4y0na"]
 size = Vector3(0.223558, 0.3705, 0.110425)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7avdx"]
+radius = 0.0700621
+height = 0.363271
 
 [sub_resource type="Animation" id="Animation_kdlsd"]
 resource_name = "dialog_hover"
@@ -36,9 +40,14 @@ script = ExtResource("1_8bvqk")
 
 [node name="NanahiraPapercraft" parent="." instance=ExtResource("2_75txh")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="StaticCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00304783, 0.178533, -0.00104709)
 shape = SubResource("BoxShape3D_4y0na")
+
+[node name="DynamicCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182512, 0)
+shape = SubResource("CapsuleShape3D_7avdx")
+disabled = true
 
 [node name="DialogIndicator" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.547495, 0)
@@ -61,7 +70,7 @@ target_desired_distance = 0.1
 path_height_offset = 0.1
 path_max_distance = 3.01
 height = 0.5
-radius = 0.1
+radius = 0.12
 neighbor_distance = 5.0
 time_horizon_agents = 0.2
 max_speed = 2.0

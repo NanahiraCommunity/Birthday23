@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://5e0r6jojpuol"]
+[gd_scene load_steps=16 format=3 uid="uid://5e0r6jojpuol"]
 
 [ext_resource type="ArrayMesh" uid="uid://bswa4v76kk0k0" path="res://islands/inside_hub/sorting_desk.obj" id="1_jfgnk"]
 [ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="2_11vvj"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="4_8t0w3"]
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="5_kthsh"]
 [ext_resource type="Script" path="res://islands/inside_hub/sorting_desk.gd" id="6_k55ox"]
-[ext_resource type="PackedScene" uid="uid://cu1sq83uawsda" path="res://shared/letter/letter.tscn" id="7_0oej3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bgff7"]
 render_priority = 0
@@ -81,9 +80,9 @@ surface_material_override/0 = SubResource("ShaderMaterial_bgff7")
 surface_material_override/1 = SubResource("ShaderMaterial_lqo7u")
 script = ExtResource("6_k55ox")
 
-[node name="Letter" parent="." instance=ExtResource("7_0oej3")]
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0265423, 0.15517, -0.433593)
@@ -105,17 +104,42 @@ shape = SubResource("BoxShape3D_1vc0g")
 
 [node name="CartArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.240619, 0.18749, 0)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CartArea"]
 shape = SubResource("BoxShape3D_vhwfy")
 
 [node name="LetterArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0299593, 0.30458, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0299593, 0.354697, 0)
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LetterArea"]
 shape = SubResource("BoxShape3D_x3dw4")
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, -0.352601)
+radius = 0.25
+height = 0.5
+
+[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, 0.350911)
+radius = 0.25
+height = 0.5
+
+[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266041, 0.1, -0.0080049)
+radius = 0.25
+height = 0.5
+
+[node name="CartDestination" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315191, 0, 0)
+gizmo_extents = 0.1
+
+[node name="OrientationDestination" type="Marker3D" parent="."]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.454192, 0, 0.534573)
+gizmo_extents = 0.05
 
 [connection signal="body_entered" from="CartArea" to="." method="_on_cart_area_body_entered"]
 [connection signal="body_exited" from="CartArea" to="." method="_on_cart_area_body_exited"]

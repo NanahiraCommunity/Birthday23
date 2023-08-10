@@ -7,6 +7,7 @@ const C = preload("res://models/characters/character.gd")
 @export_file("*.dialogue") var dialog_path: String
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
+@export var dynamic_collision: bool = false
 @export var character: C.Character:
 	get:
 		if not $NanahiraPapercraft:
@@ -29,6 +30,11 @@ var dialog_triggered = false
 var head_angle = 0
 var keep_head_time = 0
 var can_talk = false
+
+func _ready():
+	if dynamic_collision:
+		$StaticCollision.disabled = true
+		$DynamicCollision.disabled = false
 
 func _input(event):
 	if event.is_action_pressed("interact") and can_talk:
