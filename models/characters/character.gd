@@ -68,25 +68,25 @@ func update_character():
 			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
 			respath = "Armature/Skeleton3D/MessengerPapercraft"
 		Character.MESSENGER_BLUE:
-			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-			respath = "Armature/Skeleton3D/MessengerPapercraft"
-			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftBlue.png")
+			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
+			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftBlue.png")
 		Character.MESSENGER_GOLD:
-			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-			respath = "Armature/Skeleton3D/MessengerPapercraft"
-			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftGold.png")
+			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
+			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftGold.png")
 		Character.MESSENGER_GREEN:
-			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-			respath = "Armature/Skeleton3D/MessengerPapercraft"
-			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftGreen.png")
+			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
+			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftGreen.png")
 		Character.MESSENGER_MAGENTA:
-			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-			respath = "Armature/Skeleton3D/MessengerPapercraft"
-			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftMagenta.png")
+			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
+			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftMagenta.png")
 		Character.MESSENGER_RED:
-			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
-			respath = "Armature/Skeleton3D/MessengerPapercraft"
-			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftRed.png")
+			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
+			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftRed.png")
 		_:
 			push_warning("Specified character not in enum, can't load!")
 
