@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=28 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://2x2itktmd8dx" path="res://shared/fence/gate.tscn" id="11_7xdsa"]
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="12_k7x1g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="13_p013c"]
+[ext_resource type="PackedScene" uid="uid://co5uyjdsx8gn4" path="res://shared/stamp/confetto_stamp.tscn" id="14_ferfv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -399,3 +400,36 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 5.25222, 2.089)
 
 [node name="WindowF3_13" parent="." instance=ExtResource("13_p013c")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 6.75104, 1.95525)
+
+[node name="ConfettoStamp" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.399002, -10.2692)
+
+[node name="ConfettoStamp7" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.299002, -10.4692)
+
+[node name="ConfettoStamp8" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.199002, -10.6692)
+
+[node name="ConfettoStamp9" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.0990019, -10.8692)
+
+[node name="ConfettoStamp10" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, -0.000998124, -11.0692)
+
+[node name="ConfettoStamp11" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, -0.100998, -11.2692)
+
+[node name="ConfettoStamp2" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.499002, -10.0692)
+
+[node name="ConfettoStamp3" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.599002, -9.86921)
+
+[node name="ConfettoStamp4" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.699002, -9.66921)
+
+[node name="ConfettoStamp5" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.799002, -9.46921)
+
+[node name="ConfettoStamp6" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.899002, -9.26921)

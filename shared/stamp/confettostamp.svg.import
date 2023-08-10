@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbqlbvawp13k5"
-path="res://.godot/imported/confettostamp.svg-8032d84fb3cbe316f70bdbd46f175685.ctex"
+path="res://.godot/imported/confettostamp.svg-7f8012d2b69d7bf1a5e6c1e87a30239d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/contrib/confettostamp.svg"
-dest_files=["res://.godot/imported/confettostamp.svg-8032d84fb3cbe316f70bdbd46f175685.ctex"]
+source_file="res://shared/stamp/confettostamp.svg"
+dest_files=["res://.godot/imported/confettostamp.svg-7f8012d2b69d7bf1a5e6c1e87a30239d.ctex"]
 
 [params]
 

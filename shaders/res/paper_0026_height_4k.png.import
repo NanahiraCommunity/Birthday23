@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vdkf0uhlgqw"
-path.s3tc="res://.godot/imported/paper_0026_height_4k.png-5a8de197a215c232139e09c7d1937cc5.s3tc.ctex"
+path="res://.godot/imported/paper_0026_height_4k.png-5a8de197a215c232139e09c7d1937cc5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shaders/res/paper_0026_height_4k.png"
-dest_files=["res://.godot/imported/paper_0026_height_4k.png-5a8de197a215c232139e09c7d1937cc5.s3tc.ctex"]
+dest_files=["res://.godot/imported/paper_0026_height_4k.png-5a8de197a215c232139e09c7d1937cc5.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

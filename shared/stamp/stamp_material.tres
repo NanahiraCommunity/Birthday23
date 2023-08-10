@@ -1,0 +1,49 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c2uq2y15re4mo"]
+
+[ext_resource type="Texture2D" uid="uid://do30v0u7h45bb" path="res://addons/contrib/confettostamp_height.png" id="1_2bqw3"]
+[ext_resource type="Texture2D" uid="uid://dgtg1r43merms" path="res://shared/stamp/conffetto_stamp_normals.png" id="2_r4cka"]
+
+[sub_resource type="Shader" id="Shader_1h6u1"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec3 primary : source_color;
+uniform vec3 secondary : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform float clearcoat : hint_range(0,1);
+uniform float clearcoat_roughness : hint_range(0,1);
+
+void fragment() {
+	float mask = texture(texture_albedo,UV).r;
+	ALBEDO = mix(primary, secondary, mask);
+	METALLIC = metallic;
+	ROUGHNESS = roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,UV).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+	CLEARCOAT = clearcoat;
+	CLEARCOAT_ROUGHNESS = clearcoat_roughness;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_1h6u1")
+shader_parameter/primary = Color(1, 0.0941176, 0.501961, 1)
+shader_parameter/secondary = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/clearcoat = 1.0
+shader_parameter/clearcoat_roughness = 0.5
+shader_parameter/texture_albedo = ExtResource("1_2bqw3")
+shader_parameter/texture_normal = ExtResource("2_r4cka")
