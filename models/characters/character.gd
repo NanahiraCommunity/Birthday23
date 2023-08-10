@@ -10,6 +10,12 @@ enum Character {
 	MUCHAHIRA_2,
 	MUCHAHIRA_3,
 	NANAHIRA_PIZZA,
+	MESSENGER_BLUE,
+	MESSENGER_GOLD,
+	MESSENGER_GREEN,
+	MESSENGER_MAGENTA,
+	MESSENGER_RED,
+	MESSENGER_NPC_RANDOM,
 }
 
 const VELOCITY_SCALE = 2.0
@@ -24,12 +30,12 @@ var _character: Character = Character.NANAHIRA
 		_character = value
 		update_character()
 
-func _reskin(texture):
-	$Armature/Skeleton3D/NanahiraPapercraft.visible = true
-	var material: ShaderMaterial = $Armature/Skeleton3D/NanahiraPapercraft.get_surface_override_material(0)
+func _reskin(node, texture):
+	node.visible = true
+	var material: ShaderMaterial = node.get_surface_override_material(0)
 	material = material.duplicate()
 	material.set_shader_parameter("texture_paper", texture)
-	$Armature/Skeleton3D/NanahiraPapercraft.set_surface_override_material(0, material)
+	node.set_surface_override_material(0, material)
 
 func _ready():
 	update_character()
@@ -37,31 +43,58 @@ func _ready():
 func update_character():
 	var scene = null
 	var respath = null
-	
+	var skin = null
+
+	if _character == Character.MESSENGER_NPC_RANDOM:
+		_character = randi_range(Character.MESSENGER_BLUE, Character.MESSENGER_RED) as Character
+
 	$Armature/Skeleton3D/NanahiraPapercraft.visible = false
-	
+
 	match(_character):
 		Character.NANAHIRA:
 			$Armature/Skeleton3D/NanahiraPapercraft.visible = true
 		Character.NANAHI_2:
-			_reskin(preload("res://models/characters/nanahira/skins/Nanahi.png"))
+			_reskin($Armature/Skeleton3D/NanahiraPapercraft, preload("res://models/characters/nanahira/skins/Nanahi.png"))
 		Character.MUCHAHIRA_1:
-			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft1.png"))
+			_reskin($Armature/Skeleton3D/NanahiraPapercraft, preload("res://models/characters/nanahira/skins/MuchahiraPapercraft1.png"))
 		Character.MUCHAHIRA_2:
-			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft2.png"))
+			_reskin($Armature/Skeleton3D/NanahiraPapercraft, preload("res://models/characters/nanahira/skins/MuchahiraPapercraft2.png"))
 		Character.MUCHAHIRA_3:
-			_reskin(preload("res://models/characters/nanahira/skins/MuchahiraPapercraft3.png"))
+			_reskin($Armature/Skeleton3D/NanahiraPapercraft, preload("res://models/characters/nanahira/skins/MuchahiraPapercraft3.png"))
 		Character.NANAHIRA_PIZZA:
-			_reskin(preload("res://models/characters/nanahira/skins/PizzaPapercraft.png"))
+			_reskin($Armature/Skeleton3D/NanahiraPapercraft, preload("res://models/characters/nanahira/skins/PizzaPapercraft.png"))
 		Character.MESSENGER:
 			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
 			respath = "Armature/Skeleton3D/MessengerPapercraft"
+		Character.MESSENGER_BLUE:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftBlue.png")
+		Character.MESSENGER_GOLD:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftGold.png")
+		Character.MESSENGER_GREEN:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftGreen.png")
+		Character.MESSENGER_MAGENTA:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftMagenta.png")
+		Character.MESSENGER_RED:
+			scene = preload("res://models/characters/messenger/messenger_papercraft.tscn")
+			respath = "Armature/Skeleton3D/MessengerPapercraft"
+			skin = preload("res://models/characters/messenger/skins/NpcMessengerPapercraftRed.png")
 		_:
 			push_warning("Specified character not in enum, can't load!")
-	
+
 	if scene and respath:
 		var instance = scene.instantiate()
-		instance.get_node(respath).reparent($Armature/Skeleton3D, false)
+		var node = instance.get_node(respath)
+		node.reparent($Armature/Skeleton3D, false)
+		if skin:
+			_reskin(node, skin)
 
 func _process(delta):
 	pass

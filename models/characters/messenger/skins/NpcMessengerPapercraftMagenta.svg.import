@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daxxv20k2agj2"
-path="res://.godot/imported/NpcMessengerPapercraftRed_Page 5.svg-c2de9c21e006c18063f4f00e58945367.ctex"
+uid="uid://blmuj1rhn7sev"
+path="res://.godot/imported/NpcMessengerPapercraftMagenta.svg-1ffa05f56cfacefde2a0c6a8032165f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/contrib/NpcMessengerPapercraftRed_Page 5.svg"
-dest_files=["res://.godot/imported/NpcMessengerPapercraftRed_Page 5.svg-c2de9c21e006c18063f4f00e58945367.ctex"]
+source_file="res://models/characters/messenger/skins/NpcMessengerPapercraftMagenta.svg"
+dest_files=["res://.godot/imported/NpcMessengerPapercraftMagenta.svg-1ffa05f56cfacefde2a0c6a8032165f0.ctex"]
 
 [params]
 
