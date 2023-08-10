@@ -111,7 +111,7 @@ collision_mask = 8
 shape = SubResource("BoxShape3D_vhwfy")
 
 [node name="LetterArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0299593, 0.30458, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0299593, 0.354697, 0)
 collision_layer = 2
 collision_mask = 2
 

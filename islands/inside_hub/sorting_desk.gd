@@ -69,10 +69,18 @@ func _on_letter_area_body_exited(body):
 		body.reparent.call_deferred(orphan_letters)
 
 func _on_letter_area_body_entered(body: Node3D):
-	if body.has_meta("is_letter") and not body.is_in_group("ignore"):
+	if body.is_in_group("letters") and not body.is_in_group("ignore"):
 		body.add_to_group("ignore")
 		_reparent_to_letters.call_deferred(body)
 
 func _reparent_to_letters(body: Node3D):
 	body.reparent($Letters)
 	body.remove_from_group("ignore")
+
+func grab_letter(letter):
+	letter.freeze = true
+	letter.add_to_group("ignore")
+	letter.reparent(orphan_letters)
+	await letter.throw_towards($LetterArea/CollisionShape3D)
+	_reparent_to_letters(letter)
+	letter.freeze = false

@@ -78,6 +78,11 @@ func start_ai():
 			if not desks[i].cart:
 				min_desk_without_cart = desks[i]
 				break
+		var max_desk_without_cart = null
+		for i in range(desks.size(), 1, -1):
+			if desks[i - 1].remaining_items() > 0 and not desks[i - 1].cart:
+				max_desk_without_cart = desks[i - 1]
+				break
 
 		carts.shuffle()
 		var random_filled_in_cart = null
@@ -112,10 +117,27 @@ func start_ai():
 		# 2. carts with incoming items are available, not at a desk and there is available desks
 		elif random_filled_in_cart and min_desk_without_cart and randf() < 0.8:
 			succeeded = await advance_cart(random_filled_in_cart, false)
-		# 3. letters on the floor
+		# 3. desks have items, but no cart to process them
+		elif max_desk_without_cart and randf() < 0.8:
+			var desired_cart = -1
+			var picked_cart = null
+			if max_desk_without_cart.is_mixed():
+				desired_cart = Global.CartType.TWO_SIZE
+			elif max_desk_without_cart.is_letters_only():
+				desired_cart = Global.CartType.SORTED_LETTERS
+			elif max_desk_without_cart.is_packages_only():
+				desired_cart = Global.CartType.SORTED_PACKAGES
+
+			for cart in carts:
+				if not cart.desk and cart.type == desired_cart:
+					picked_cart = cart
+					break
+			if picked_cart:
+				succeeded = await advance_cart(picked_cart, false, max_desk_without_cart)
+		# 4. letters on the floor
 		elif has_orphan_letters and letter_pick_timer < 10 and randf() < 0.8:
 			succeeded = await pickup_letter()
-		# 4. outgoing carts are ready
+		# 5. outgoing carts are ready
 		elif random_filled_out_cart and randf() < 0.8:
 			succeeded = await advance_cart(random_filled_out_cart, true)
 		else:
@@ -126,7 +148,7 @@ func start_ai():
 
 	print("AI finished")
 
-func advance_cart(cart: Node3D, to_idle_pos: bool):
+func advance_cart(cart: Node3D, to_idle_pos: bool, desk_hint: Node3D = null):
 	print("advance: ", cart.type)
 	letter_pick_timer = 0
 	set_target(cart.get_node("Handle"), 15.0)
@@ -193,6 +215,11 @@ func advance_cart(cart: Node3D, to_idle_pos: bool):
 		markers = Array(cart_destinations.get_node("Idle").get_children())
 	elif target == DISCARD:
 		markers = Array(cart_destinations.get_node("Discard").get_children())
+	elif desk_hint:
+		markers = [desk_hint.get_node("OrientationDestination"), desk_hint.get_node("CartDestination")]
+		fallback_idle = false
+		fallback_elevator = false
+		fallback_discard = false
 	elif target == MIXED:
 		markers = get_table_markers(func(t): return t.is_mixed() and (empty_at_destination or t.remaining_items() > 0))
 	elif target == LETTERS:
@@ -232,7 +259,7 @@ func advance_cart(cart: Node3D, to_idle_pos: bool):
 				return false
 			set_target(cart.get_node("Handle"), 10.0)
 			await reached_target
-			cart.empty_out()
+			await cart.empty_out()
 		else:
 			# optional, not required success
 			cart.align_to_desk()

@@ -154,9 +154,14 @@ func notify_letter(letter: RigidBody3D):
 
 func empty_out():
 	if desk:
+		var last = null
 		for child in items_node.get_children():
-			child.queue_free()
-			# TODO: put on desk
+			if last:
+				desk.grab_letter(last)
+			await get_tree().create_timer(0.1).timeout
+			last = child
+		if last:
+			await desk.grab_letter(last)
 		items = 0
 
 func spawn_letter(area: CollisionShape3D):

@@ -7,6 +7,7 @@ const letter_sprites: Array[Texture2D] = [
 ]
 
 func _ready():
+	self.add_to_group("letters")
 	$Letter.texture = letter_sprites.pick_random()
 
 func _physics_process(delta):
@@ -38,10 +39,11 @@ func _fly_to(area: CollisionShape3D):
 	var to = area.global_position
 	var distance = Vector2(from.x, from.z).distance_to(Vector2(to.x, to.z))
 	var time = distance * 1.5
-	tween.tween_method(_position_tween.bind(from, to, distance), 0.0, 1.0, time)
+	tween.tween_method(_position_tween.bind(from, area, distance), 0.0, 1.0, time)
 	await tween.finished
 
-func _position_tween(t: float, from: Vector3, to: Vector3, distance: float):
+func _position_tween(t: float, from: Vector3, area: Node3D, distance: float):
+	var to = area.global_position
 	var p = from.lerp(to, t)
 	var max_h = max(from.y, to.y) + distance * 0.5
 	if t < 0.5:
