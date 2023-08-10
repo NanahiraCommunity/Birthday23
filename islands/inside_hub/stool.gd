@@ -33,7 +33,7 @@ func _process(delta):
 		pick_timeout -= delta
 		if pick_timeout < 0:
 			if item:
-				animations["parameters/playback"].travel("Sit-throw")
+				animations["parameters/Movement/playback"].travel("Sit-throw")
 				_throw_and_notify(item, area)
 			pick_timeout = randf_range(1.0, 3.0)
 
@@ -54,5 +54,5 @@ func _on_child_order_changed():
 
 			npc.position = Vector3(0.05, 0.2, 0)
 			npc.basis = Basis(Vector3(0, 1, 0), deg_to_rad(-90))
-			animations["parameters/playback"].travel("Sit")
+			animations["parameters/Movement/playback"].travel("Sit")
 			break

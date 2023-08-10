@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://byflm3kvjdyoy"]
+[gd_scene load_steps=50 format=3 uid="uid://byflm3kvjdyoy"]
 
 [ext_resource type="PackedScene" uid="uid://b5v002sdy4808" path="res://models/characters/nanahira/nanahira_papercraft.glb" id="1_vjmr4"]
 [ext_resource type="Script" path="res://models/characters/character.gd" id="2_4spq3"]
@@ -26,6 +26,9 @@ shader_parameter/texture_albedo = ExtResource("3_epfh2")
 shader_parameter/texture_paper = ExtResource("6_6djn6")
 shader_parameter/texture_roughness = ExtResource("5_5yljj")
 shader_parameter/texture_normal = ExtResource("4_t4h03")
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_2405l"]
+filters = ["Armature/Skeleton3D:WingL1", "Armature/Skeleton3D:WingL2", "Armature/Skeleton3D:WingL3", "Armature/Skeleton3D:WingR1", "Armature/Skeleton3D:WingR2", "Armature/Skeleton3D:WingR3"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g56u5"]
 animation = &"Fly-stop"
@@ -138,16 +141,82 @@ states/fly-start/position = Vector2(481, 192)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_poj7k"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_knxuw"), "Idle", "fly-start", SubResource("AnimationNodeStateMachineTransition_q63s5"), "Walk", "fly-start", SubResource("AnimationNodeStateMachineTransition_n6diw"), "fly-start", "Fly", SubResource("AnimationNodeStateMachineTransition_ii77c"), "Fly", "Fly-stop", SubResource("AnimationNodeStateMachineTransition_a7urx"), "Fly-stop", "Idle", SubResource("AnimationNodeStateMachineTransition_dtksj"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_jfm6e"), "Sit", "Sit-throw", SubResource("AnimationNodeStateMachineTransition_nqbiy"), "Sit-throw", "Sit", SubResource("AnimationNodeStateMachineTransition_4x46p")]
 graph_offset = Vector2(69, -12)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xg87g"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1g8ct"]
+animation = &"Wing-close"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lgk7j"]
+animation = &"Wing-flap"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b4yjx"]
+animation = &"Wing-open"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e5hec"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iberq"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sw1l"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_67vc1"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2wli"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7i3u"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tcqkb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_olblo"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lv57i"]
+allow_transition_to_self = true
+states/End/position = Vector2(407, -67)
+states/RESET/node = SubResource("AnimationNodeAnimation_xg87g")
+states/RESET/position = Vector2(492, 10)
+states/Start/position = Vector2(580, -67)
+states/Wing-close/node = SubResource("AnimationNodeAnimation_1g8ct")
+states/Wing-close/position = Vector2(388, 100)
+states/Wing-flap/node = SubResource("AnimationNodeAnimation_lgk7j")
+states/Wing-flap/position = Vector2(492, 199)
+states/Wing-open/node = SubResource("AnimationNodeAnimation_b4yjx")
+states/Wing-open/position = Vector2(603, 100)
+transitions = ["Wing-flap", "Wing-close", SubResource("AnimationNodeStateMachineTransition_e5hec"), "Wing-close", "Wing-open", SubResource("AnimationNodeStateMachineTransition_iberq"), "Wing-open", "Wing-flap", SubResource("AnimationNodeStateMachineTransition_3sw1l"), "Wing-open", "Wing-close", SubResource("AnimationNodeStateMachineTransition_67vc1"), "Wing-close", "RESET", SubResource("AnimationNodeStateMachineTransition_f2wli"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u7i3u"), "RESET", "Wing-open", SubResource("AnimationNodeStateMachineTransition_tcqkb"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_olblo")]
+graph_offset = Vector2(49, -22)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_363f6"]
+graph_offset = Vector2(-167, 123)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_2405l")
+nodes/Add2/position = Vector2(360, 120)
+nodes/Movement/node = SubResource("AnimationNodeStateMachine_cvq6l")
+nodes/Movement/position = Vector2(140, 80)
+nodes/Wings/node = SubResource("AnimationNodeStateMachine_lv57i")
+nodes/Wings/position = Vector2(140, 220)
+nodes/output/position = Vector2(600, 160)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Movement", &"Add2", 1, &"Wings"]
+
 [node name="NanahiraPapercraft" instance=ExtResource("1_vjmr4")]
 script = ExtResource("2_4spq3")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/19/position = Vector3(0.01, 0.0426195, 0.0309937)
+bones/19/scale = Vector3(0.15, 0.15, 0.15)
+bones/22/position = Vector3(-0.01, 0.0426195, 0.0309937)
+bones/22/scale = Vector3(0.15, 0.15, 0.15)
 
 [node name="NanahiraPapercraft" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
-tree_root = SubResource("AnimationNodeStateMachine_cvq6l")
+tree_root = SubResource("AnimationNodeBlendTree_363f6")
 anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("..")
 active = true
-parameters/Walk/Blend2/blend_amount = 1.0
-parameters/Walk/TimeScale/scale = 1.0
+parameters/Add2/add_amount = 1.0
+parameters/Movement/Walk/Blend2/blend_amount = 1.0
+parameters/Movement/Walk/TimeScale/scale = 1.0

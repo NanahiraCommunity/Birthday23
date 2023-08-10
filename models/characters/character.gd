@@ -21,6 +21,7 @@ enum Character {
 const VELOCITY_SCALE = 2.0
 
 var last_velocity = Vector3.ZERO
+var in_flight = false
 
 var _character: Character = Character.NANAHIRA
 @export var character: Character:
@@ -99,9 +100,17 @@ func update_character():
 func _process(delta):
 	pass
 
+func flap_wings():
+	if in_flight:
+		$AnimationTree["parameters/Wings/playback"].travel("Wing-flap")
+
 func set_flight(flying: bool):
+	if flying != in_flight:
+		in_flight = flying
+		$AnimationTree["parameters/Wings/playback"].travel("Wing-open" if flying else "RESET")
+
 	if flying:
-		$AnimationTree["parameters/playback"].travel("Fly")
+		$AnimationTree["parameters/Movement/playback"].travel("Fly")
 	else:
 		set_velocity(last_velocity)
 
@@ -111,9 +120,9 @@ func set_velocity(velocity: Vector3):
 	if v > 0.01:
 		var speed = clamp(0.75, 4, v)
 		var blend = clamp(0.2, 1, v)
-		$AnimationTree["parameters/playback"].travel("Walk")
-		$AnimationTree.set("parameters/Walk/Blend2/blend_amount", blend);
-		$AnimationTree["parameters/Walk/TimeScale/scale"] = speed
+		$AnimationTree["parameters/Movement/playback"].travel("Walk")
+		$AnimationTree.set("parameters/Movement/Walk/Blend2/blend_amount", blend);
+		$AnimationTree["parameters/Movement/Walk/TimeScale/scale"] = speed
 	else:
-		$AnimationTree["parameters/playback"].travel("Idle")
-		$AnimationTree["parameters/Walk/TimeScale/scale"] = 1.0
+		$AnimationTree["parameters/Movement/playback"].travel("Idle")
+		$AnimationTree["parameters/Movement/Walk/TimeScale/scale"] = 1.0

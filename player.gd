@@ -31,6 +31,7 @@ func _ready():
 
 var flight_strokes_max = 3
 var flight_strokes = flight_strokes_max
+var flight_stroke_timer_first = 0.5
 var flight_stroke_timer_max = 0.3
 var flight_stroke_timer = 0
 
@@ -82,7 +83,7 @@ func _physics_process(delta):
 		JUMPING:
 			jump(delta)
 		FLYING:
-			fly(delta)
+			fly(delta, false)
 		TALKING:
 			talk(delta)
 
@@ -186,7 +187,8 @@ func jump(delta):
 		
 	if jump_pressed:
 		state = FLYING
-		fly(delta)
+		fly(delta, true)
+		return
 	
 	# Handle jump
 	if direction:
@@ -197,7 +199,7 @@ func jump(delta):
 	velocity.y -= gravity * delta
 
 
-func fly(delta):
+func fly(delta, first_frame: bool):
 	_visualize_flight(delta, true)
 	if on_floor:
 		_visualize_flight(delta, false)
@@ -207,12 +209,14 @@ func fly(delta):
 		walk(delta)
 		return
 
-	if jump_pressed && flight_strokes > 0 && flight_stroke_timer <= 0:
+	if (jump_pressed && flight_strokes > 0 && flight_stroke_timer <= 0) or first_frame:
 		flight_strokes -= 1
 		velocity.y = FLIGHT_VELOCITY_UP
 		velocity.x = FLIGHT_VELOCITY_FORWARD * direction.x
 		velocity.z = FLIGHT_VELOCITY_FORWARD * direction.z
-		flight_stroke_timer = flight_stroke_timer_max
+		flight_stroke_timer = flight_stroke_timer_first if first_frame else flight_stroke_timer_max
+		if not first_frame:
+			model.flap_wings()
 	else:
 		velocity.y -= (flight_gravity if jump_held else gravity) * delta
 		velocity.y *= pow(FLIGHT_DRAG_VERTICAL, delta)
