@@ -53,7 +53,7 @@ func set_target(node: Node3D, timeout: float):
 	navigation_timeout = timeout
 	stuck_time = 0.0
 	stuck_retries = 0
-	$NavigationAgent3D.target_position = node.global_position
+	$NavigationAgent3D.target_position = node.global_position if node else global_position
 
 func start_ai():
 	while is_inside_tree():
@@ -82,17 +82,17 @@ func start_ai():
 		carts.shuffle()
 		var random_filled_in_cart = null
 		for i in range(0, carts.size()):
-			if carts[i].has_items() and not carts[i].desk and not carts[i].is_sorted():
+			if carts[i].has_items() and not carts[i].desk and not carts[i].is_sorted() and carts[i].functional:
 				random_filled_in_cart = carts[i]
 				break
 		var random_filled_out_cart = null
 		for i in range(0, carts.size()):
-			if carts[i].has_items() and not carts[i].desk and carts[i].is_sorted():
+			if carts[i].has_items() and not carts[i].desk and carts[i].is_sorted() and carts[i].functional:
 				random_filled_out_cart = carts[i]
 				break
 		var emptied_cart = null
 		for i in range(0, carts.size()):
-			if carts[i].emptying and not carts[i].has_items():
+			if carts[i].emptying and not carts[i].has_items() and carts[i].functional:
 				emptied_cart = carts[i]
 				break
 
@@ -100,8 +100,11 @@ func start_ai():
 		var succeeded = true
 
 		# priorities:
+		# randomly pick up orphaned letters
+		if has_orphan_letters and letter_pick_timer < 10 and randf() < 0.3:
+			succeeded = await pickup_letter()
 		# 0. finished emptying cart
-		if emptied_cart and randf() < (0.8 if emptied_cart.desk else 0.05):
+		elif emptied_cart and randf() < (0.8 if emptied_cart.desk else 0.05):
 			succeeded = await advance_cart(emptied_cart, true)
 		# 1. desk is (almost) empty and has a cart, push to next desk:
 		elif min_desk_with_cart and min_desk_with_cart.remaining_items() <= 2 and randf() < 0.8:
@@ -222,24 +225,27 @@ func advance_cart(cart: Node3D, to_idle_pos: bool):
 			if not await push_cart_to(cart, final_pos):
 				return false
 		await get_tree().create_timer(0.5).timeout
-		# TODO: cart desk is not accurate
-		if not cart.align_to_desk():
-			return false
 		cart.emptying = empty_at_destination
 		if empty_at_destination:
+			# TODO: cart desk is not accurate
+			if not cart.align_to_desk():
+				return false
 			set_target(cart.get_node("Handle"), 10.0)
 			await reached_target
 			cart.empty_out()
+		else:
+			# optional, not required success
+			cart.align_to_desk()
 
 		if target == DISCARD:
 			cart.queue_free()
 		elif target == RESET:
 			cart.emptying = false
 		elif target == ELEVATOR:
-			# TODO: elevator flag
 			cart.emptying = false
-			set_target(cart_destinations.get_node("Elevator/Marker3D"), 5.0)
-			await reached_target
+			cart.set_functional(false)
+			cart.reparent(room_main.get_node("Lift"))
+			await float_to(cart_destinations.get_node("Elevator/Marker3D"), 3.0)
 		elif empty_at_destination and not to_idle_pos:
 			# immediately queue idling
 			await get_tree().create_timer(0.3).timeout
@@ -291,26 +297,31 @@ func push_cart_to(cart, target_pos: Node3D):
 	return result
 
 func float_cart_to(cart, target: Node3D):
-	velocity.x = 0
-	velocity.z = 0
 	pushing_cart = cart
 	cart.set_pushing(true)
-	_target = null
-	_navigation_finished(true)
+	set_target(null, 1.0)
+	velocity = Vector3.ZERO
+	$NavigationAgent3D.set_velocity_forced(Vector3.ZERO)
 	var lookat = Vector3(cart.global_position.x, global_position.y, cart.global_position.z)
 	global_transform = global_transform.looking_at(lookat)
 	model.transform.origin = Vector3(0, 0, -PUSH_DISTANCE)
 	global_position = model.global_position
 	model.transform.origin = Vector3(0, 0, PUSH_DISTANCE)
-	float_target = target
-	float_timeout = 7.0
-	await reached_target
-	global_position = target.global_position
+	await float_to(target, 6.0)
 	_physics_process(0)
 	pushing_cart = null
 	global_position = model.global_position
 	model.transform.origin = Vector3.ZERO
 	cart.set_pushing(false)
+
+func float_to(target: Node3D, timeout: float):
+	# TODO: floating / modifying velocity is super buggy and I can't figure out why
+	float_target = target
+	float_timeout = timeout
+	await reached_target
+	global_position = target.global_position
+	velocity = Vector3.ZERO
+	$NavigationAgent3D.set_velocity_forced(Vector3.ZERO)
 
 func pickup_letter():
 	var closest_letters = Array(orphan_letters.get_children())
@@ -331,7 +342,7 @@ func pickup_letter():
 func _process(delta):
 	super._process(delta)
 	letter_pick_timer += delta
-	if _target:
+	if _target and not float_target:
 		navigation_timeout -= delta
 		if timeout < 0:
 			timeout = 0.7
@@ -386,6 +397,8 @@ func _physics_process(delta):
 		if global_position.distance_squared_to(float_target.global_position) < TARGET_GOAL_DISTANCE * TARGET_GOAL_DISTANCE:
 			_navigation_finished()
 			float_target = null
+			set_target(null, 1.0)
+			$NavigationAgent3D.set_velocity_forced(Vector3.ZERO)
 		else:
 			var movement = (float_target.global_position - global_position).normalized() * speed
 			velocity.x = movement.x
@@ -397,6 +410,8 @@ func _physics_process(delta):
 			if float_timeout < 0:
 				_navigation_finished(false)
 				float_target = null
+				set_target(null, 1.0)
+				$NavigationAgent3D.set_velocity_forced(Vector3.ZERO)
 	elif not $NavigationAgent3D.is_navigation_finished():
 		var next: Vector3 = $NavigationAgent3D.get_next_path_position()
 		var movement = (next - global_position).normalized() * speed

@@ -181,3 +181,11 @@ func spawn_package(area: CollisionShape3D):
 	var size = (area.shape as BoxShape3D).size * 0.5
 	copy.position = Vector3(randf_range(-size.x, size.x), randf_range(-size.y, size.y), randf_range(-size.z, size.z))
 	items += 1
+
+func set_functional(value):
+	functional = value
+	if value:
+		self.add_to_group("carts")
+	else:
+		while self.is_in_group("carts"):
+			self.remove_from_group("carts")
