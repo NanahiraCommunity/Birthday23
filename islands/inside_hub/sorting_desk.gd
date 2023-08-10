@@ -2,6 +2,7 @@ extends MeshInstance3D
 
 @export var cart: Node3D
 @export var start_letters: int = 0
+@export var start_packages: int = 0
 @export var orphan_letters: Node3D
 
 enum Process
@@ -28,14 +29,33 @@ func is_packages_only():
 func _ready():
 	self.add_to_group("tables")
 	var letter_scene = preload("res://shared/letter/letter.tscn")
-	for i in range(start_letters):
-		var copy: RigidBody3D = letter_scene.instantiate()
+	var package_scene = preload("res://shared/packages/package.tscn")
+
+	var letters = start_letters
+	var packages = start_packages
+
+	for i in range(start_letters + start_packages):
+		var copy: RigidBody3D = null
+		if letters > 0 and packages > 0:
+			if randi_range(0, 1) == 0:
+				copy = letter_scene.instantiate()
+				letters -= 1
+			else:
+				copy = package_scene.instantiate()
+				packages -= 1
+		elif letters > 0:
+			copy = letter_scene.instantiate()
+			letters -= 1
+		else:
+			copy = package_scene.instantiate()
+			packages -= 1
 		$Letters.add_child(copy)
 		copy.visible = true
 		copy.rotation = Vector3(0, randfn(0.0, 0.15) * deg_to_rad(45), 0)
+		copy.global_position = $LetterArea.global_position
 		copy.position += Vector3(randfn(0.0, 0.15) * 0.2, randfn(0.0, 0.15) * 0.15, randfn(0.0, 0.15) * 0.9)
 
-func get_letter(npc):
+func get_post_item(npc):
 	var c = $Letters.get_child_count()
 	var n = min(10, c)
 	var closest = null
@@ -69,7 +89,7 @@ func _on_letter_area_body_exited(body):
 		body.reparent.call_deferred(orphan_letters)
 
 func _on_letter_area_body_entered(body: Node3D):
-	if body.is_in_group("letters") and not body.is_in_group("ignore"):
+	if body.is_in_group("post_items") and not body.is_in_group("ignore"):
 		body.add_to_group("ignore")
 		_reparent_to_letters.call_deferred(body)
 

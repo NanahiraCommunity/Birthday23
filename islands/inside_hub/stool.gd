@@ -23,22 +23,24 @@ func _process(delta):
 		if desk.cart.emptying:
 			# emptying onto desk
 			return
-		var area = desk.cart.get_target_area(true)
+		var item: RigidBody3D = desk.get_post_item(npc)
+		if not item:
+			return
+		var area = desk.cart.get_target_area(item.is_in_group("letters"))
 		if not area:
 			# print("no target area")
 			return
 		pick_timeout -= delta
 		if pick_timeout < 0:
-			var letter: RigidBody3D = desk.get_letter(npc)
-			if letter:
+			if item:
 				animations["parameters/playback"].travel("Sit-throw")
-				_throw_and_notify(letter, area)
+				_throw_and_notify(item, area)
 			pick_timeout = randf_range(1.0, 3.0)
 
-func _throw_and_notify(letter: Node3D, area):
-	await letter.throw_towards(area)
+func _throw_and_notify(item: Node3D, area):
+	await item.throw_towards(area)
 	if desk.cart:
-		desk.cart.notify_letter(letter)
+		desk.cart.notify_item(item)
 
 func _on_child_order_changed():
 	npc = null

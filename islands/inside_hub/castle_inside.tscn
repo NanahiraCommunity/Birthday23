@@ -88,7 +88,8 @@ desk = NodePath("../SortingDesk")
 
 [node name="SortingDesk" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02811, 0, -2.09932)
-start_letters = 2
+start_letters = 15
+start_packages = 4
 orphan_letters = NodePath("../../OrphanLetters")
 process = 3
 
@@ -106,6 +107,7 @@ desk = NodePath("../SortingDesk4")
 
 [node name="SortingDesk4" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4894, 0, -2.00253)
+start_packages = 5
 orphan_letters = NodePath("../../OrphanLetters")
 process = 2
 
@@ -123,6 +125,7 @@ desk = NodePath("../SortingDesk5")
 
 [node name="SortingDesk5" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4894, 0, -1.05291)
+start_packages = 15
 orphan_letters = NodePath("../../OrphanLetters")
 process = 2
 
@@ -140,7 +143,7 @@ desk = NodePath("../SortingDesk7")
 
 [node name="SortingDesk7" parent="RoomMain" node_paths=PackedStringArray("orphan_letters") instance=ExtResource("4_dyp41")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.45393, 0, -0.0883441)
-start_letters = 2
+start_letters = 6
 orphan_letters = NodePath("../../OrphanLetters")
 process = 1
 
@@ -214,18 +217,25 @@ orphan_letters = NodePath("../../OrphanLetters")
 
 [node name="CartIncoming" parent="RoomMain" instance=ExtResource("5_qf56q")]
 transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -1.92918, 0, -3.73759)
+spawn_letters = 25
+spawn_packages = 10
 
 [node name="Cart2Size" parent="RoomMain" instance=ExtResource("6_ftmxq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.69419, 0, -2.10949)
+spawn_letters = 9
+spawn_packages = 3
 
 [node name="CartLetters" parent="RoomMain" instance=ExtResource("7_ttggf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0633, 0, -1.98439)
+spawn_letters = 15
 
 [node name="CartLetters2" parent="RoomMain" instance=ExtResource("7_ttggf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10121, 0, -0.981445)
+spawn_letters = 7
 
 [node name="CartPackages" parent="RoomMain" instance=ExtResource("8_8jynb")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.16599, 2.38419e-07, -1.04409)
+spawn_packages = 9
 
 [node name="Lift" parent="RoomMain" instance=ExtResource("9_56i4s")]
 
