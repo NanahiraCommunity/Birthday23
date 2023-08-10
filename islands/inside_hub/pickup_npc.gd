@@ -216,16 +216,17 @@ func advance_cart(cart: Node3D, to_idle_pos: bool, desk_hint: Node3D = null):
 	elif target == DISCARD:
 		markers = Array(cart_destinations.get_node("Discard").get_children())
 	elif desk_hint:
-		markers = [desk_hint.get_node("OrientationDestination"), desk_hint.get_node("CartDestination")]
+		var n = "OrientationDestination" if empty_at_destination else "OrientationDestination2"
+		markers = [desk_hint.get_node(n), desk_hint.get_node("CartDestination")]
 		fallback_idle = false
 		fallback_elevator = false
 		fallback_discard = false
 	elif target == MIXED:
-		markers = get_table_markers(func(t): return t.is_mixed() and (empty_at_destination or t.remaining_items() > 0))
+		markers = get_table_markers(empty_at_destination, func(t): return t.is_mixed() and (empty_at_destination or t.remaining_items() > 0))
 	elif target == LETTERS:
-		markers = get_table_markers(func(t): return t.is_letters_only() and (empty_at_destination or t.remaining_items() > 0))
+		markers = get_table_markers(empty_at_destination, func(t): return t.is_letters_only() and (empty_at_destination or t.remaining_items() > 0))
 	elif target == PACKAGES:
-		markers = get_table_markers(func(t): return t.is_packages_only() and (empty_at_destination or t.remaining_items() > 0))
+		markers = get_table_markers(empty_at_destination, func(t): return t.is_packages_only() and (empty_at_destination or t.remaining_items() > 0))
 
 	var next = _find_available_cart_pos(markers)
 	if next == -1:
@@ -282,13 +283,13 @@ func advance_cart(cart: Node3D, to_idle_pos: bool, desk_hint: Node3D = null):
 
 	return next != -1
 
-func get_table_markers(filter_dg: Callable):
+func get_table_markers(emptying: bool, filter_dg: Callable):
 	var markers = []
 	for table in room_main.get_children():
 		if table.is_in_group("tables"):
 			var filter_res = filter_dg.call(table)
 			if filter_res:
-				markers.append(table.get_node("OrientationDestination"))
+				markers.append(table.get_node("OrientationDestination" if emptying else "OrientationDestination2"))
 				markers.append(table.get_node("CartDestination"))
 	return markers
 
