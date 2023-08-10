@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=27 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" path="res://islands/inside_hub/Floor2_Hider.gd" id="16_81b3u"]
 [ext_resource type="PackedScene" uid="uid://ds80xd86nefyx" path="res://islands/inside_hub/inside_hub_F2_model.tscn" id="16_aodwk"]
 [ext_resource type="PackedScene" uid="uid://bmacmv88o4p5b" path="res://islands/inside_hub/door.tscn" id="19_wfp2b"]
+[ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="20_a8f4g"]
+[ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="20_pp1vp"]
 
 [sub_resource type="Environment" id="Environment_na0up"]
 background_mode = 1
@@ -442,3 +444,55 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.65, 1.89)
 
 [node name="DoorFrame3" parent="Floor2" instance=ExtResource("19_wfp2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.558, 1.65, 1.89)
+
+[node name="WindowF2_1" parent="Floor2" instance=ExtResource("20_pp1vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90706, 2.19871, 4)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_2" parent="Floor2" instance=ExtResource("20_pp1vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29215, 2.19871, 4)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_3" parent="Floor2" instance=ExtResource("20_pp1vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30665, 2.19871, 4)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_4" parent="Floor2" instance=ExtResource("20_pp1vp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92156, 2.19871, 4)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_1" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07541, 0.470034, 4)
+
+[node name="WindowF1_2" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93697, 0.470034, 4)
+
+[node name="WindowF1_3" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93538, 0.470034, 4)
+
+[node name="WindowF1_4" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07382, 0.470034, 4)
+
+[node name="WindowF1_5" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.49538, 0.470034, 0.345108)
+
+[node name="WindowF1_6" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.49538, 0.470034, 1.20667)
+
+[node name="WindowF1_7" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.49538, 0.470034, -1.35252)
+
+[node name="WindowF1_8" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.49538, 0.470034, -0.490958)
+
+[node name="WindowF1_9" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50366, 0.470034, -0.490958)
+
+[node name="WindowF1_10" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50366, 0.470034, -1.35252)
+
+[node name="WindowF1_11" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50366, 0.470034, 1.20667)
+
+[node name="WindowF1_12" parent="." instance=ExtResource("20_a8f4g")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50366, 0.470034, 0.345108)
