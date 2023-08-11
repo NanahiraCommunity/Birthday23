@@ -136,6 +136,7 @@ kinematic_body = NodePath("../CameraSafeArea")
 [node name="CameraSafeArea" type="CharacterBody3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.874, 1.149, -13.745)
 collision_layer = 0
+collision_mask = 257
 floor_constant_speed = true
 platform_on_leave = 2
 

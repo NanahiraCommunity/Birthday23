@@ -106,6 +106,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "
 3d_render/layer_2="ArtificialBackLight"
 3d_physics/layer_2="Letters"
 3d_physics/layer_4="PlayerOnly"
+3d_physics/layer_9="CameraOnly"
 
 [rendering]
 
