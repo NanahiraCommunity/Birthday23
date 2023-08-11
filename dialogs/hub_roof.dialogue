@@ -1,0 +1,35 @@
+~ start
+???: Why are you up here?
+set current_npc.dialog_entry = "start2"
+=> END
+
+~ start2
+???: No really, you shouldn't be up here!
+set current_npc.dialog_entry = "start3"
+=> END
+
+~ start3
+???: You sure are persistent
+set current_npc.dialog_entry = "start4"
+=> END
+
+~ start4
+???: Do you love Nanahira?
+- Yes
+	???: Me too!
+	???: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession.
+	???: Wait...[wait=1.5] I'm [set dialog.title = "Nanahira"]Nanahira
+	set current_npc.dialog_entry = "like"
+- No
+	???: bad answer
+	set current_npc.dialog_entry = "dislike"
+=> END
+
+~ like
+Nanahira: Thanks for being my fan!
+=> END
+
+~ dislike
+
+???: I don't like you
+=> END

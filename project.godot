@@ -99,7 +99,7 @@ pointing/emulate_mouse_from_touch=false
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "res://dialogs/test2.dialogue", "res://dialogs/neko_concert.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "res://dialogs/test2.dialogue", "res://dialogs/neko_concert.dialogue", "res://dialogs/hub_roof.dialogue")
 
 [layer_names]
 

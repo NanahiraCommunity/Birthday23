@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://tohnssc4b3w"
+path="res://.godot/imported/hub_roof.dialogue-43eef248a4d64bc68517d7869ee9a7a7.tres"
+
+[deps]
+
+source_file="res://dialogs/hub_roof.dialogue"
+dest_files=["res://.godot/imported/hub_roof.dialogue-43eef248a4d64bc68517d7869ee9a7a7.tres"]
+
+[params]
+
+defaults=true
