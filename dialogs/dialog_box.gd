@@ -16,9 +16,11 @@ func _ready():
 func _process(delta):
 	if not visible:
 		Global.in_dialog = false
+		Global.dialog = null
 		return
 	Global.in_dialog = true
-	
+	Global.dialog = self
+
 	$NextIndicator.visible = not rendering and not choosing and next_dialogue != null
 	$Cursor.visible = choosing
 	if choosing:
@@ -92,6 +94,7 @@ func show_next():
 	if not current_line:
 		# No dialog left
 		set_visible(false)
+		Global.current_npc = null
 		rendering = false
 		return
 
@@ -104,7 +107,7 @@ func show_next():
 	next_dialogue = current_line.next_id
 	choosing = false
 
-	$Name.text = current_line.character
+	title = current_line.character
 	$MarginContainer/VBoxContainer/Text.dialogue_line = current_line
 	$MarginContainer/VBoxContainer/Text.type_out()
 
@@ -124,3 +127,9 @@ func show_next():
 			option_nodes.push_back(option)
 		selected_index = 0
 	rendering = false
+
+var title: String:
+	get:
+		return $Name.text
+	set(value):
+		$Name.text = value

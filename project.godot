@@ -21,6 +21,10 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Global="*res://global.gd"
 SceneSwitcher="*res://scene_switcher.tscn"
 
+[dialogue_manager]
+
+general/states=["Global"]
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
