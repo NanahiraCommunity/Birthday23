@@ -157,12 +157,11 @@ animation = &"Wing-open"
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iberq"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sw1l"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_67vc1"]
-switch_mode = 2
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f2wli"]
 switch_mode = 2
@@ -187,10 +186,10 @@ states/Wing-flap/position = Vector2(492, 199)
 states/Wing-open/node = SubResource("AnimationNodeAnimation_b4yjx")
 states/Wing-open/position = Vector2(603, 100)
 transitions = ["Wing-flap", "Wing-close", SubResource("AnimationNodeStateMachineTransition_e5hec"), "Wing-close", "Wing-open", SubResource("AnimationNodeStateMachineTransition_iberq"), "Wing-open", "Wing-flap", SubResource("AnimationNodeStateMachineTransition_3sw1l"), "Wing-open", "Wing-close", SubResource("AnimationNodeStateMachineTransition_67vc1"), "Wing-close", "RESET", SubResource("AnimationNodeStateMachineTransition_f2wli"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u7i3u"), "RESET", "Wing-open", SubResource("AnimationNodeStateMachineTransition_tcqkb"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_olblo")]
-graph_offset = Vector2(49, -22)
+graph_offset = Vector2(9, -172)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_363f6"]
-graph_offset = Vector2(-167, 123)
+graph_offset = Vector2(-157, -25)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_2405l")
 nodes/Add2/position = Vector2(360, 120)
 nodes/Movement/node = SubResource("AnimationNodeStateMachine_cvq6l")
