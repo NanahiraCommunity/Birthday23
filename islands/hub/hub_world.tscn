@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=30 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://2x2itktmd8dx" path="res://shared/fence/gate.tscn" id="11_7xdsa"]
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="12_k7x1g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="13_p013c"]
-[ext_resource type="PackedScene" uid="uid://co5uyjdsx8gn4" path="res://shared/stamp/confetto_stamp.tscn" id="14_ferfv"]
 [ext_resource type="PackedScene" uid="uid://ddyos5n0mdakr" path="res://islands/hub/fountain.tscn" id="15_psfrw"]
+[ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/stamp/stamp_mesh_library.tres" id="16_ubxhu"]
+[ext_resource type="Script" path="res://shared/stamp/collectible_grid_generator.gd" id="17_2e1pr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -109,6 +110,18 @@ dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test2.dialogue"
 dialog_entry = "ahira"
 character = 4
+
+[node name="CollectibleGridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.2, 0.1)
+mesh_library = ExtResource("16_ubxhu")
+cell_size = Vector3(0.2, 0.225, 0.2)
+collision_layer = 0
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(65532, 6, 0, 65532, 65534, 0, 65532, 4, 0, 65532, 2, 0, 65532, 0, 0, -131071, 65480, 0, -65535, 65481, 0, 1, 65482, 0, 65537, 65483, 0, 131073, 65484, 0, 196609, 65485, 0, 262145, 65486, 0, 327681, 65487, 0, 393217, 65488, 0, 393218, 65405, 0)
+}
+script = ExtResource("17_2e1pr")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -309,161 +322,8 @@ mesh = SubResource("BoxMesh_w6tla")
 
 [node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
 
-[node name="WindowF1_1" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.44735, 0.806, 3.208)
-
-[node name="WindowF1_2" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.24735, 0.806, 3.208)
-
-[node name="WindowF1_3" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.04735, 0.806, 3.208)
-
-[node name="WindowF1_4" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.84735, 0.806, 3.208)
-
-[node name="WindowF2_1" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 2.34738, 3.2077)
-
-[node name="WindowF3_1" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 3.22403, 3.2077)
-
-[node name="WindowF2_2" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 2.34738, 3.2077)
-
-[node name="WindowF3_2" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 3.22403, 3.2077)
-
-[node name="WindowF2_3" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 2.34738, 3.2077)
-
-[node name="WindowF3_3" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 3.22403, 3.2077)
-
-[node name="WindowF2_4" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 2.34738, 3.2077)
-
-[node name="WindowF3_4" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 3.22403, 3.2077)
-
-[node name="WindowF2_5" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 2.34738, 3.2077)
-
-[node name="WindowF3_5" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 3.22403, 3.2077)
-
-[node name="WindowF1_5" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.11559, 0.806, 3.208)
-
-[node name="WindowF1_6" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.31559, 0.806, 3.208)
-
-[node name="WindowF1_7" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.51559, 0.806, 3.208)
-
-[node name="WindowF1_8" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.71559, 0.806, 3.208)
-
-[node name="WindowF1_9" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -8.55646, 1.25782, 2.08805)
-
-[node name="WindowF1_10" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -9.22723, 2.75782, 1.73077)
-
-[node name="WindowF1_11" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10.0461, 4.25782, 1.73716)
-
-[node name="WindowF1_12" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.7494, 5.75782, 2.15997)
-
-[node name="WindowF1_13" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 9.53912, 5.75782, 2.08805)
-
-[node name="WindowF1_14" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 8.86835, 4.25782, 1.73077)
-
-[node name="WindowF1_15" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 8.04951, 2.75782, 1.73716)
-
-[node name="WindowF1_16" parent="." instance=ExtResource("12_k7x1g")]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.34618, 1.25782, 2.15997)
-
-[node name="WindowF2_6" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 2.34738, 3.2077)
-
-[node name="WindowF3_6" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 3.22403, 3.2077)
-
-[node name="WindowF2_7" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 2.34738, 3.2077)
-
-[node name="WindowF3_7" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 3.22403, 3.2077)
-
-[node name="WindowF2_8" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 2.34738, 3.2077)
-
-[node name="WindowF3_8" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 3.22403, 3.2077)
-
-[node name="WindowF2_9" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 2.34738, 3.2077)
-
-[node name="WindowF3_9" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 3.22403, 3.2077)
-
-[node name="WindowF2_10" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 2.34738, 3.2077)
-
-[node name="WindowF3_10" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 3.22403, 3.2077)
-
-[node name="WindowF3_11" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 3.28718, 2.089)
-
-[node name="WindowF3_12" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 5.25222, 2.089)
-
-[node name="WindowF3_13" parent="." instance=ExtResource("13_p013c")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 6.75104, 1.95525)
-
-[node name="ConfettoStamp" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.399002, -10.2692)
-
-[node name="ConfettoStamp12" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487931, 1.5593, -25.9891)
-
-[node name="ConfettoStamp7" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.299002, -10.4692)
-
-[node name="ConfettoStamp8" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.199002, -10.6692)
-
-[node name="ConfettoStamp9" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.0990019, -10.8692)
-
-[node name="ConfettoStamp10" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, -0.000998124, -11.0692)
-
-[node name="ConfettoStamp11" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, -0.100998, -11.2692)
-
-[node name="ConfettoStamp2" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.499002, -10.0692)
-
-[node name="ConfettoStamp3" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.599002, -9.86921)
-
-[node name="ConfettoStamp4" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.699002, -9.66921)
-
-[node name="ConfettoStamp5" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.799002, -9.46921)
-
-[node name="ConfettoStamp6" parent="." instance=ExtResource("14_ferfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.899002, -9.26921)
-
 [node name="Fountain" parent="." instance=ExtResource("15_psfrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.486331, -0.000996185, -25.9913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.599944, -0.000996185, -25.9981)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.932785, 0.00173404, 0.36043, -0.0018048, 0.999953, -0.00948161, -0.360429, -0.0094948, -0.932738, -1.49306, 0.243454, -9.04959)
@@ -478,3 +338,161 @@ layers = 2
 light_energy = 0.1
 light_cull_mask = 4293918722
 sky_mode = 1
+
+[node name="Windows" type="Node3D" parent="."]
+
+[node name="WindowF1_1" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.44735, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_2" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.24735, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_3" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.04735, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_4" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.84735, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_1" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_1" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.64735, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_2" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_2" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.64735, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_3" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_3" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.64735, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_4" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_4" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.64735, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_5" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_5" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.64735, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_5" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.11559, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_6" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.31559, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_7" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.51559, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_8" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.71559, 0.806, 3.208)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_9" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -8.55646, 1.25782, 2.08805)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_10" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -9.22723, 2.75782, 1.73077)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_11" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -10.0461, 4.25782, 1.73716)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_12" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.7494, 5.75782, 2.15997)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_13" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 9.53912, 5.75782, 2.08805)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_14" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 8.86835, 4.25782, 1.73077)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_15" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 8.04951, 2.75782, 1.73716)
+skeleton = NodePath("../..")
+
+[node name="WindowF1_16" parent="Windows" instance=ExtResource("12_k7x1g")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 7.34618, 1.25782, 2.15997)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_6" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_6" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.91559, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_7" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_7" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -3.91559, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_8" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_8" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4.91559, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_9" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_9" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.91559, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF2_10" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 2.34738, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_10" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.91559, 3.22403, 3.2077)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_11" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 3.28718, 2.089)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_12" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 5.25222, 2.089)
+skeleton = NodePath("../..")
+
+[node name="WindowF3_13" parent="Windows" instance=ExtResource("13_p013c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 6.75104, 1.95525)
+skeleton = NodePath("../..")
