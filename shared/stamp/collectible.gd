@@ -15,7 +15,7 @@ var test_index = 0
 func _ready():
 	test_index = randi_range(0, 2)
 	rotate_y(-sin(global_position.x) * cos(global_position.z) * TAU)
-	$CSGSphere3D.material_override = $CSGSphere3D.material.duplicate()
+	$GlowShape.material_override = $GlowShape.material.duplicate()
 
 func _process(delta):
 	rotate_y(delta * ROTATE_SPEED)
@@ -46,5 +46,5 @@ func collect():
 
 func glow_scale(s: float):
 	s = clamp(s * 0.05, 1.0, 1.5)
-	$CSGSphere3D.scale = Vector3(s, s, s)
-	$CSGSphere3D.material_override.set_shader_parameter("glow_size", s * 0.19);
+	$GlowShape.scale = Vector3(s, s, s)
+	$GlowShape.material_override.set_shader_parameter("glow_size", s * 0.17);
