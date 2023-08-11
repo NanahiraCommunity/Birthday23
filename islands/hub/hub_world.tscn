@@ -457,3 +457,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.799002, -9.46921)
 
 [node name="ConfettoStamp6" parent="." instance=ExtResource("14_ferfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.899002, -9.26921)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.932785, 0.00173404, 0.36043, -0.0018048, 0.999953, -0.00948161, -0.360429, -0.0094948, -0.932738, -1.49306, 0.243454, -9.04959)
+layers = 2
+light_energy = 0.4
+light_cull_mask = 4293918722
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932785, 0.00173404, -0.36043, 0.0018048, 0.999953, 0.0094816, 0.360429, -0.0094948, 0.932738, -1.49306, 0.243454, -9.04959)
+layers = 2
+light_energy = 0.1
+light_cull_mask = 4293918722
+sky_mode = 1
