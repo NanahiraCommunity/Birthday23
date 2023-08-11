@@ -4,8 +4,9 @@ extends CharacterBody3D
 const WALK_SPEED = 0.75
 const RUN_SPEED = 1.5
 const ROTATION_SPEED = 10
-const JUMP_VELOCITY = 3.5
+const JUMP_VELOCITY = 3.2
 const FLIGHT_VELOCITY_UP = 1.5
+const FLIGHT_START_VELOCITY_UP = 1.2
 const FLIGHT_VELOCITY_FORWARD = 1.0
 const WALK_AIR_SPEED_MULTIPLIER = 0.12
 const FLYING_AIR_SPEED_MULTIPLIER = 0.15
@@ -31,12 +32,13 @@ func _ready():
 
 var flight_strokes_max = 3
 var flight_strokes = flight_strokes_max
-var flight_stroke_timer_first = 0.5
+var flight_stroke_timer_first = 0.2
 var flight_stroke_timer_max = 0.3
 var flight_stroke_timer = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var slowfall_gravity = gravity * 0.7
 var flight_gravity = gravity * 0.1
 
 var start_jump = false
@@ -132,12 +134,12 @@ func idle(delta):
 		state = TALKING
 		talk(delta)
 		return
-		
+
 	if direction.length():
 		state = WALKING
 		walk(delta)
 		return
-		
+
 	if jump_pressed:
 		state = JUMPING
 		on_floor = false
@@ -145,7 +147,7 @@ func idle(delta):
 		velocity.y = JUMP_VELOCITY
 		jump(delta)
 		return
-	
+
 	# Handle idle
 	velocity.x = move_toward(velocity.x, 0, STOP_SPEED)
 	velocity.z = move_toward(velocity.z, 0, STOP_SPEED)
@@ -158,7 +160,7 @@ func walk(delta):
 		state = TALKING
 		talk(delta)
 		return
-		
+
 	if jump_pressed:
 		state = JUMPING
 		on_floor = false
@@ -166,12 +168,12 @@ func walk(delta):
 		velocity.y = JUMP_VELOCITY
 		jump(delta)
 		return
-		
+
 	if not direction:
 		state = IDLE
 		idle(delta)
 		return
-	
+
 	# Handle walk
 	velocity.x = direction.x * (WALK_SPEED if sneak else RUN_SPEED)
 	velocity.z = direction.z * (WALK_SPEED if sneak else RUN_SPEED)
@@ -184,19 +186,19 @@ func jump(delta):
 		state = WALKING
 		walk(delta)
 		return
-		
+
 	if jump_pressed:
 		state = FLYING
 		fly(delta, true)
 		return
-	
+
 	# Handle jump
 	if direction:
 		velocity.x += direction.x * (WALK_SPEED if sneak else RUN_SPEED) * WALK_AIR_SPEED_MULTIPLIER
 		velocity.z += direction.z * (WALK_SPEED if sneak else RUN_SPEED) * WALK_AIR_SPEED_MULTIPLIER
 	velocity.x *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
 	velocity.z *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
-	velocity.y -= gravity * delta
+	velocity.y -= (slowfall_gravity if jump_held else gravity) * delta
 
 
 func fly(delta, first_frame: bool):
@@ -211,7 +213,7 @@ func fly(delta, first_frame: bool):
 
 	if (jump_pressed && flight_strokes > 0 && flight_stroke_timer <= 0) or first_frame:
 		flight_strokes -= 1
-		velocity.y = FLIGHT_VELOCITY_UP
+		velocity.y = FLIGHT_START_VELOCITY_UP if first_frame else FLIGHT_VELOCITY_UP
 		velocity.x = FLIGHT_VELOCITY_FORWARD * direction.x
 		velocity.z = FLIGHT_VELOCITY_FORWARD * direction.z
 		flight_stroke_timer = flight_stroke_timer_first if first_frame else flight_stroke_timer_max
@@ -225,7 +227,7 @@ func fly(delta, first_frame: bool):
 	if direction:
 		velocity.x += direction.x * (WALK_SPEED if sneak else RUN_SPEED) * FLYING_AIR_SPEED_MULTIPLIER
 		velocity.z += direction.z * (WALK_SPEED if sneak else RUN_SPEED) * FLYING_AIR_SPEED_MULTIPLIER
-	
+
 	velocity.x *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
 	velocity.z *= pow(FLIGHT_DRAG_HORIZONTAL, delta)
 
@@ -235,10 +237,10 @@ func talk(delta):
 		state = IDLE
 		idle(delta)
 		return
-	
+
 	velocity = Vector3(0, 0, 0)
 	model.set_velocity(velocity)
-	
+
 	# Ideally, we should make the character turn to face the npc
 	# being talked to here
 
