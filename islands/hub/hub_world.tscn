@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=29 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="12_k7x1g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="13_p013c"]
 [ext_resource type="PackedScene" uid="uid://co5uyjdsx8gn4" path="res://shared/stamp/confetto_stamp.tscn" id="14_ferfv"]
+[ext_resource type="PackedScene" uid="uid://ddyos5n0mdakr" path="res://islands/hub/fountain.tscn" id="15_psfrw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -428,6 +429,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.567253, 6.75104, 1.95525)
 [node name="ConfettoStamp" parent="." instance=ExtResource("14_ferfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.399002, -10.2692)
 
+[node name="ConfettoStamp12" parent="." instance=ExtResource("14_ferfv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.487931, 1.5593, -25.9891)
+
 [node name="ConfettoStamp7" parent="." instance=ExtResource("14_ferfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.299002, -10.4692)
 
@@ -457,6 +461,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.799002, -9.46921)
 
 [node name="ConfettoStamp6" parent="." instance=ExtResource("14_ferfv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.180634, 0.899002, -9.26921)
+
+[node name="Fountain" parent="." instance=ExtResource("15_psfrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.486331, -0.000996185, -25.9913)
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.932785, 0.00173404, 0.36043, -0.0018048, 0.999953, -0.00948161, -0.360429, -0.0094948, -0.932738, -1.49306, 0.243454, -9.04959)
