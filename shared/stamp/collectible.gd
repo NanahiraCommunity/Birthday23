@@ -15,6 +15,7 @@ var test_index = 0
 func _ready():
 	test_index = randi_range(0, 2)
 	rotate_y(-sin(global_position.x) * cos(global_position.z) * TAU)
+	$CSGSphere3D.material_override = $CSGSphere3D.material.duplicate()
 
 func _process(delta):
 	rotate_y(delta * ROTATE_SPEED)
@@ -27,7 +28,9 @@ func _process(delta):
 		var pos = global_position
 		var dx = pos.x - player.x;
 		var dz = pos.z - player.z;
-		if dx * dx + dz * dz < PICKUP_DISTANCE * PICKUP_DISTANCE:
+		var d = dx * dx + dz * dz
+		glow_scale(d)
+		if d < PICKUP_DISTANCE * PICKUP_DISTANCE:
 			var min_pickup = pos.y - PICKUP_DISTANCE
 			var max_pickup = pos.y + PICKUP_DISTANCE
 			var min_player = player.y + Y_MIN
@@ -40,3 +43,8 @@ func _process(delta):
 
 func collect():
 	queue_free()
+
+func glow_scale(s: float):
+	s = clamp(s * 0.05, 1.0, 1.5)
+	$CSGSphere3D.scale = Vector3(s, s, s)
+	$CSGSphere3D.material_override.set_shader_parameter("glow_size", s * 0.15);
