@@ -114,20 +114,21 @@ character = 4
 [node name="CollectibleGridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.2, 0.1)
 mesh_library = ExtResource("16_ubxhu")
-cell_size = Vector3(0.2, 0.225, 0.2)
+cell_size = Vector3(0.2, 0.112, 0.2)
 collision_layer = 0
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(65532, 6, 0, 65532, 65534, 0, 65532, 4, 0, 65532, 2, 0, 65532, 0, 0, -131071, 65480, 0, -65535, 65481, 0, 1, 65482, 0, 65537, 65483, 0, 131073, 65484, 0, 196609, 65485, 0, 262145, 65486, 0, 327681, 65487, 0, 393217, 65488, 0, 393218, 65405, 0)
+"cells": PackedInt32Array(65532, 6, 0, 65532, 65534, 0, 65532, 4, 0, 65532, 2, 0, 65532, 0, 0, -131071, 65480, 0, -65535, 65481, 0, 1, 65482, 0, 65537, 65483, 0, 131073, 65484, 0, 196609, 65485, 0, 262145, 65486, 0, 327681, 65487, 0, 393217, 65488, 0, 786434, 65405, 0, 851971, 65405, 0, 786436, 65405, 0, 655365, 65405, 0, 458758, 65405, 0, 196615, 65405, 0, 262141, 65405, 0, 524286, 65405, 0, 720895, 65405, 0, 786432, 65405, 0, 851969, 65405, 0, 524291, 65405, 0, 524290, 65404, 0, 524289, 65405, 0, 524290, 65406, 0, 262145, 65404, 0, 262144, 65405, 0, 262145, 65406, 0, 262146, 65403, 0, 262147, 65404, 0, 262148, 65405, 0, 262147, 65406, 0, 262146, 65407, 0)
 }
 script = ExtResource("17_2e1pr")
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(2, 5, -131)
 
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.873973, 1.14857, -13.7451)
 current = true
+far = 300.0
 script = ExtResource("4_dpexn")
 target = NodePath("../../Player")
 kinematic_body = NodePath("../CameraSafeArea")

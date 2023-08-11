@@ -6,7 +6,7 @@ const FLOAT_AMPLITUDE = 0.05
 
 const PICKUP_DISTANCE = 0.2
 const Y_MIN = 0.0
-const Y_MAX = 0.36
+const Y_MAX = 0.28
 
 var t = 0.0
 
