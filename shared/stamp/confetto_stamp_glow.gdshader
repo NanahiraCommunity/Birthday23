@@ -14,7 +14,8 @@ vec3 project(vec3 p, vec3 n)
 }
 
 void vertex() {
-	flattened = project(mat3(MODEL_MATRIX) * VERTEX, normalize(CAMERA_POSITION_WORLD - NODE_POSITION_WORLD)) * mat3(VIEW_MATRIX);
+	vec4 v = MODEL_MATRIX * vec4(VERTEX, 1.0);
+	flattened = project(mat3(MODEL_MATRIX) * VERTEX, normalize(CAMERA_POSITION_WORLD - v.xyz)) * mat3(VIEW_MATRIX);
 }
 
 void fragment() {

@@ -47,4 +47,4 @@ func collect():
 func glow_scale(s: float):
 	s = clamp(s * 0.05, 1.0, 1.5)
 	$CSGSphere3D.scale = Vector3(s, s, s)
-	$CSGSphere3D.material_override.set_shader_parameter("glow_size", s * 0.15);
+	$CSGSphere3D.material_override.set_shader_parameter("glow_size", s * 0.19);
