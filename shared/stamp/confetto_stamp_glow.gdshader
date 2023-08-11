@@ -6,7 +6,7 @@ uniform float glow_strength : hint_range(0,10);
 uniform float glow_falloff : hint_range(0.5,2);
 uniform float glow_size;
 
-varying vec4 flattened;
+varying vec3 flattened;
 
 vec3 project(vec3 p, vec3 n)
 {
@@ -14,10 +14,10 @@ vec3 project(vec3 p, vec3 n)
 }
 
 void vertex() {
-	flattened = vec4(project((MODEL_MATRIX * vec4(VERTEX, 0.0)).xyz, normalize(CAMERA_POSITION_WORLD - NODE_POSITION_WORLD)), 1.0) * VIEW_MATRIX;
+	flattened = project(mat3(MODEL_MATRIX) * VERTEX, normalize(CAMERA_POSITION_WORLD - NODE_POSITION_WORLD)) * mat3(VIEW_MATRIX);
 }
 
 void fragment() {
 	ALBEDO = glow_color * glow_strength;
-	ALPHA = pow(max(0.0, glow_size - length(flattened.xyz)), glow_falloff);
+	ALPHA = pow(max(0.0, glow_size - length(flattened)), glow_falloff);
 }
