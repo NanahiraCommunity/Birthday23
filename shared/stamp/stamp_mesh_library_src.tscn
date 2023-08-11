@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ci3ew7k2jhr5g"]
+
+[ext_resource type="Script" path="res://shared/stamp/collectible.gd" id="1_wwcrv"]
+[ext_resource type="ArrayMesh" uid="uid://dw3wo6ebaytes" path="res://shared/stamp/confetto.obj" id="2_uditr"]
+[ext_resource type="Material" uid="uid://c2uq2y15re4mo" path="res://shared/stamp/stamp_material.tres" id="3_h5c3h"]
+
+[node name="ConfettoStamp" type="Node3D"]
+script = ExtResource("1_wwcrv")
+
+[node name="Small" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.469081, -0.173099, 0, 0.167201, 0.453097, -0.12941, 0.0448015, 0.121407, 0.482963, 0, 0, 0)
+layers = 3
+mesh = ExtResource("2_uditr")
+surface_material_override/0 = ExtResource("3_h5c3h")
+
+[node name="Big" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.938161, -0.346199, 1.49012e-08, 0.340939, 0.923908, -0.173648, 0.0601168, 0.16291, 0.984808, 0, 0, 0)
+layers = 3
+mesh = ExtResource("2_uditr")
+surface_material_override/0 = ExtResource("3_h5c3h")

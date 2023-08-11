@@ -10,42 +10,48 @@ const Y_MAX = 0.28
 
 var t = 0.0
 
-var test_index = 0
+var value = 1
+
+var base_scale = 1.0
 
 func _ready():
-	test_index = randi_range(0, 2)
 	t = fmod(global_position.x + global_position.z, TAU)
 	rotate_y(t)
 	$GlowShape.material_override = $GlowShape.material.duplicate()
 
-func _process(delta):
+	var depth = 1.0
+	if value == 1:
+		base_scale = 0.75
+	else:
+		base_scale = 1.5
+		depth = 3.0
+	$Confetto.scale = Vector3(base_scale, base_scale, base_scale * depth)
+
+func _physics_process(delta):
 	rotate_y(delta * ROTATE_SPEED)
 	t += delta * FLOAT_SPEED
 	if t > TAU:
 		t -= TAU
 	$Confetto.position.y = sin(t) * FLOAT_AMPLITUDE
-	if test_index == 0:
-		var player = Global.player.global_position
-		var pos = global_position
-		var dx = pos.x - player.x;
-		var dz = pos.z - player.z;
-		var d = dx * dx + dz * dz
-		glow_scale(d)
-		if d < PICKUP_DISTANCE * PICKUP_DISTANCE:
-			var min_pickup = pos.y - PICKUP_DISTANCE
-			var max_pickup = pos.y + PICKUP_DISTANCE
-			var min_player = player.y + Y_MIN
-			var max_player = player.y + Y_MAX
-			if not (max_player < min_pickup or min_player > max_pickup):
-				collect()
-		test_index = 2
-	else:
-		test_index -= 1
+
+	var player = Global.player.global_position
+	var pos = global_position
+	var dx = pos.x - player.x;
+	var dz = pos.z - player.z;
+	var d = dx * dx + dz * dz
+	glow_scale(d)
+	if d < PICKUP_DISTANCE * PICKUP_DISTANCE:
+		var min_pickup = pos.y - PICKUP_DISTANCE
+		var max_pickup = pos.y + PICKUP_DISTANCE
+		var min_player = player.y + Y_MIN
+		var max_player = player.y + Y_MAX
+		if not (max_player < min_pickup or min_player > max_pickup):
+			collect()
 
 func collect():
 	queue_free()
 
 func glow_scale(s: float):
-	s = clamp(s * 0.05, 1.0, 1.5)
+	s = clamp(s * 0.05, 1.0, 1.5) * base_scale
 	$GlowShape.scale = Vector3(s, s, s)
 	$GlowShape.material_override.set_shader_parameter("glow_size", s * 0.17);
