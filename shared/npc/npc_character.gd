@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 const C = preload("res://models/characters/character.gd")
 
-@export var camera: Node3D
 @export var dialog_box: Control
 @export_file("*.dialogue") var dialog_path: String
 @export var dialog_entry: String = "start"
