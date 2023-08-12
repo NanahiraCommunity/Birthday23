@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=43 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="23_mltwx"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="23_yvfsn"]
 [ext_resource type="PackedScene" uid="uid://cym7ce0ufnnec" path="res://shared/collectible/taiyaki.tscn" id="24_17d2l"]
+[ext_resource type="PackedScene" uid="uid://dfwssfmg8nxgn" path="res://shared/fence/gate_door.tscn" id="26_6mylm"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -683,3 +684,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6863, 2.68526, -25.9084)
 
 [node name="Taiyaki4" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59817, 3.48263, -28.5294)
+
+[node name="gate_door" parent="." instance=ExtResource("26_6mylm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.366, -0.001, -2.984)
+
+[node name="gate_door2" parent="." instance=ExtResource("26_6mylm")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.266685, -0.001, -2.984)
