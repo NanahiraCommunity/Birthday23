@@ -79,7 +79,7 @@ func start_ai():
 				min_desk_without_cart = desks[i]
 				break
 		var max_desk_without_cart = null
-		for i in range(desks.size(), 1, -1):
+		for i in range(desks.size(), 0, -1):
 			if desks[i - 1].remaining_items() > 0 and not desks[i - 1].cart:
 				max_desk_without_cart = desks[i - 1]
 				break
