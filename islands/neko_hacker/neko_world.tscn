@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=13 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="ArrayMesh" uid="uid://c711xl6y5ym2o" path="res://islands/hub/island1.obj" id="2_eka2j"]
@@ -6,8 +6,7 @@
 [ext_resource type="Material" uid="uid://c71j0q7t6b7cb" path="res://shaders/cardboard_material.tres" id="3_m52tl"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_ggigq"]
 [ext_resource type="PackedScene" uid="uid://c5r668vdr1t38" path="res://islands/neko_hacker/concert_stage.tscn" id="5_jd887"]
-[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="6_k75di"]
-[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="7_47jc1"]
+[ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="7_47jc1"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_yo2yj"]
 ground_color = Color(0.0392157, 0.686275, 0.823529, 1)
@@ -42,24 +41,18 @@ shadow_bias = 0.03
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00913632, 0.0551019, -7.71808)
 camera = NodePath("../Node3D/Camera3D")
 
-[node name="Kassan" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_sy3b2")]
+[node name="Kassan" parent="." instance=ExtResource("2_sy3b2")]
 transform = Transform3D(0.54619, 0, 0.837662, 0, 1, 0, -0.837662, 0, 0.54619, 1.01694, 0.4, -4.175)
-camera = NodePath("../Node3D/Camera3D")
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/neko_concert.dialogue"
 dialog_entry = "kassan"
 
-[node name="Sera" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_sy3b2")]
+[node name="Sera" parent="." instance=ExtResource("2_sy3b2")]
 transform = Transform3D(0.730329, 0, -0.683095, 0, 1, 0, 0.683095, 0, 0.730329, -0.862169, 0.4, -4.175)
-camera = NodePath("../Node3D/Camera3D")
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/neko_concert.dialogue"
 dialog_entry = "sera"
 
-[node name="Nanahira" parent="." node_paths=PackedStringArray("camera", "dialog_box") instance=ExtResource("2_sy3b2")]
+[node name="Nanahira" parent="." instance=ExtResource("2_sy3b2")]
 transform = Transform3D(0.99951, 0, -0.0312886, 0, 1, 0, 0.0312886, 0, 0.99951, 0.046, 0.4, -4.175)
-camera = NodePath("../Node3D/Camera3D")
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/neko_concert.dialogue"
 dialog_entry = "nanahira"
 
@@ -92,9 +85,7 @@ platform_on_leave = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
 shape = SubResource("SphereShape3D_nklwj")
 
-[node name="DialogBox" parent="." instance=ExtResource("6_k75di")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("7_47jc1")]
+[node name="UI" parent="." instance=ExtResource("7_47jc1")]
 
 [node name="concert_stage" parent="." instance=ExtResource("5_jd887")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

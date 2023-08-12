@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvwfpj8elepkn"]
+[gd_scene load_steps=2 format=3 uid="uid://cvwfpj8elepkn"]
 
-[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="1_lcx1f"]
-[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="2_xx607"]
+[ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="2_xx607"]
 
 [node name="World" type="Node3D"]
 
-[node name="DialogBox" parent="." instance=ExtResource("1_lcx1f")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("2_xx607")]
+[node name="UI" parent="." instance=ExtResource("2_xx607")]

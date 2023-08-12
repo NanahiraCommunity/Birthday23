@@ -37,6 +37,8 @@ var active_quests: Array[Quest]
 var current_npc: CharacterBody3D
 # Dialog script, if currently in dialog
 var dialog: Control
+# Current UI, if available
+var UI: Control
 
 func register_quest(quest: Quest):
 	_available_quests[quest.quest_id] = quest

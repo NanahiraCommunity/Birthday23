@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 const C = preload("res://models/characters/character.gd")
 
-@export var dialog_box: Control
 @export_file("*.dialogue") var dialog_path: String
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
@@ -39,7 +38,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("interact") and can_talk:
 		Global.current_npc = self
-		dialog_box.trigger_dialog(dialog_path, dialog_entry)
+		Global.UI.DialogBox.trigger_dialog(dialog_path, dialog_entry)
 		get_viewport().set_input_as_handled()
 
 func _process(delta):

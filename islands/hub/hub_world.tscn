@@ -1,14 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=42 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_tgr6h"]
-[ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="4_8c3g0"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="4_5188e"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_dpexn"]
 [ext_resource type="ArrayMesh" uid="uid://c711xl6y5ym2o" path="res://islands/hub/island1.obj" id="4_viow8"]
 [ext_resource type="Script" path="res://shared/collectible/collectible_grid_generator.gd" id="5_d6g4h"]
-[ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://pause_menu.tscn" id="5_pw1g7"]
+[ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="5_pw1g7"]
 [ext_resource type="PackedScene" uid="uid://dc6kil0ny55li" path="res://islands/hub/castle.tscn" id="6_b3hnb"]
 [ext_resource type="Shader" path="res://shaders/cardboard_material.gdshader" id="8_hkes2"]
 [ext_resource type="PackedScene" uid="uid://s786q7ptyqgu" path="res://shared/fence/fence8.tscn" id="10_yjkhf"]
@@ -132,22 +131,19 @@ shadow_bias = 0.03
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505235, 0.0430359, -20.0923)
 camera = NodePath("../Node3D/Camera3D")
 
-[node name="NPCCharacter" parent="." node_paths=PackedStringArray("dialog_box") instance=ExtResource("2_tgr6h")]
+[node name="NPCCharacter" parent="." instance=ExtResource("2_tgr6h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55378, 4.0085, 11.6376)
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/hub_roof.dialogue"
 character = 5
 
-[node name="NPCCharacter2" parent="." node_paths=PackedStringArray("dialog_box") instance=ExtResource("2_tgr6h")]
+[node name="NPCCharacter2" parent="." instance=ExtResource("2_tgr6h")]
 transform = Transform3D(-0.516279, 0, -0.856421, 0, 1, 0, 0.856421, 0, -0.516279, 1.7262, 0, 0.285873)
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test2.dialogue"
 dialog_entry = "bhira"
 character = 5
 
-[node name="NPCCharacter3" parent="." node_paths=PackedStringArray("dialog_box") instance=ExtResource("2_tgr6h")]
+[node name="NPCCharacter3" parent="." instance=ExtResource("2_tgr6h")]
 transform = Transform3D(0.920382, 0, -0.39102, 0, 1, 0, 0.39102, 0, 0.920382, -0.980716, 0, -3.31197)
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/test2.dialogue"
 dialog_entry = "ahira"
 character = 4
@@ -185,9 +181,7 @@ platform_on_leave = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
 shape = SubResource("SphereShape3D_qr5sb")
 
-[node name="DialogBox" parent="." instance=ExtResource("4_8c3g0")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("5_pw1g7")]
+[node name="UI" parent="." instance=ExtResource("5_pw1g7")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(0.770469, 0, 0.637478, 0, 1, 0, -0.637478, 0, 0.770469, 4.235, 1.90735e-06, 3.29318)
@@ -652,9 +646,8 @@ transform = Transform3D(-0.982117, 0, 0.188273, 0, 1, 0, -0.188273, 0, -0.982117
 [node name="houses13" parent="." instance=ExtResource("22_iwaws")]
 transform = Transform3D(0.982117, 0, -0.188273, 0, 1, 0, 0.188273, 0, 0.982117, -6.35574, -0.000995351, -11.1484)
 
-[node name="NPCCharacter4" parent="." node_paths=PackedStringArray("dialog_box") instance=ExtResource("2_tgr6h")]
+[node name="NPCCharacter4" parent="." instance=ExtResource("2_tgr6h")]
 transform = Transform3D(-0.155348, 0, -0.98786, 0, 1, 0, 0.98786, 0, -0.155348, 0.356827, 0.00177657, -21.3211)
-dialog_box = NodePath("../DialogBox")
 dialog_path = "res://dialogs/hub_taiyaki.dialogue"
 character = 8
 
