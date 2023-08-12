@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=42 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="21_gsucw"]
 [ext_resource type="PackedScene" uid="uid://3lejahn2jnx7" path="res://islands/hub/houses_2.tscn" id="22_iwaws"]
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="23_mltwx"]
+[ext_resource type="Script" path="res://quests/register_child_quests.gd" id="23_yvfsn"]
 [ext_resource type="PackedScene" uid="uid://cym7ce0ufnnec" path="res://shared/collectible/taiyaki.tscn" id="24_17d2l"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
@@ -653,16 +654,32 @@ transform = Transform3D(0.982117, 0, -0.188273, 0, 1, 0, 0.188273, 0, 0.982117, 
 [node name="NPCCharacter4" parent="." node_paths=PackedStringArray("dialog_box") instance=ExtResource("2_tgr6h")]
 transform = Transform3D(-0.155348, 0, -0.98786, 0, 1, 0, 0.98786, 0, -0.155348, 0.356827, 0.00177657, -21.3211)
 dialog_box = NodePath("../DialogBox")
+dialog_path = "res://dialogs/hub_taiyaki.dialogue"
 character = 8
 
 [node name="Quests" type="Node3D" parent="."]
+script = ExtResource("23_yvfsn")
 
-[node name="CollectItemsQuest" type="Node" parent="Quests"]
+[node name="hub_collect_taiyaki" type="Node" parent="Quests"]
 script = ExtResource("23_mltwx")
 collect_type = 1
-collect_amount = 8
-quest_id = &"collect_taiyaki"
+collect_amount = 4
+quest_id = &"hub_collect_taiyaki"
 description = "Collect Taiyaki"
 
-[node name="Taiyaki" parent="Quests/CollectItemsQuest" instance=ExtResource("24_17d2l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25339, 1.94245, -19.3201)
+[node name="SampleTaiyaki" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358865, 0.525903, -21.3269)
+builtin_billboard = true
+
+[node name="Taiyaki" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.23268, 1.94245, -19.3801)
+
+[node name="Taiyaki2" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.83979, 1.94245, -22.8154)
+
+[node name="Taiyaki3" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6863, 2.68526, -25.9084)
+
+[node name="Taiyaki4" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59817, 3.48263, -28.5294)

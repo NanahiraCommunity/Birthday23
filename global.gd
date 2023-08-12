@@ -27,13 +27,59 @@ var collectibles: PackedInt32Array = [
 	0, # TAIYAKI
 ]
 
-var quests: Array[Quest]
+var _completed_quests: Array[StringName]
+# StringName -> Quest
+var _available_quests: Dictionary = {}
+var active_quests: Array[Quest]
 
 # Set when interacting (opening dialog) with an NPC
 # Usable for `set current_npc.dialog_entry = ""` to set persistent NPC talking state
 var current_npc: CharacterBody3D
 # Dialog script, if currently in dialog
 var dialog: Control
+
+func register_quest(quest: Quest):
+	_available_quests[quest.quest_id] = quest
+
+func unregister_quest(quest: Quest):
+	_available_quests.erase(quest.quest_id)
+
+func start_quest(qid: StringName):
+	var quest = _available_quests.get(qid)
+	assert(quest, "Quest " + qid + " not found!")
+	if quest:
+		active_quests.append(quest)
+		quest.start()
+		print("Starting quest " + qid + ": " + quest.description)
+
+func end_quest(qid: StringName):
+	for i in range(0, active_quests.size()):
+		if active_quests[i].quest_id == qid:
+			print("Ended quest " + qid)
+			if active_quests[i].done:
+				_completed_quests.append(qid)
+			active_quests[i].end()
+			active_quests.remove_at(i)
+			return true
+	assert(false, "Failed ending quest '" + qid + "', it wasn't started!")
+	return false
+
+func did_complete_quest(qid: StringName):
+	return _completed_quests.find(qid) != -1
+
+func in_quest(qid: StringName):
+	for i in range(0, active_quests.size()):
+		if active_quests[i].quest_id == qid:
+			return true
+	return false
+
+func is_quest_complete(qid: StringName):
+	var quest = _available_quests.get(qid)
+	assert(quest, "Quest " + qid + " not found!")
+	if quest:
+		return quest.done
+	else:
+		return false
 
 # per-island state
 

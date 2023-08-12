@@ -3,6 +3,7 @@ extends "res://shared/collectible/collectible.gd"
 var t = 0.0
 
 @export var glow_visibility = 1.0
+@export var builtin_billboard = false
 
 func _ready():
 	t = fmod(global_position.x + global_position.z, TAU)
@@ -13,7 +14,8 @@ func _ready():
 	animation = "Collect"
 
 	# billboard just set for editor, we implement our own billboard for animation support
-	$Sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
+	if not builtin_billboard:
+		$Sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 
 func _physics_process(delta):
 	t += delta

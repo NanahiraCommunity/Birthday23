@@ -1,0 +1,39 @@
+~ start
+if did_complete_quest("hub_collect_taiyaki")
+	set current_npc.dialog_entry = "done2"
+	=> done2
+if in_quest("hub_collect_taiyaki")
+	set current_npc.dialog_entry = "in_quest"
+	=> in_quest
+
+Taiyaki Girl: *sob*
+- What's wrong?
+	Taiyaki Girl: I was supposed to deliver these Taiyaki, but... now they are all on the rooftops
+	- How did that happen?
+		Taiyaki Girl: nevermind that, can you help me pick up the Taiyaki? I have collected the ones I lost on the ground, but I'm afraid of heights so I don't want to climb the rooftops.
+		- Sure
+			do start_quest("hub_collect_taiyaki")
+			set current_npc.hide_quest_indicator = true
+			set current_npc.dialog_entry = "in_quest"
+			Taiyaki Girl: thanks, *sob*, this is how they look like, there should be 4 more on the rooftops.
+- *ignore her*
+	=> END
+=> END
+
+~ in_quest
+if is_quest_complete("hub_collect_taiyaki")
+	Taiyaki Girl: thx
+	set current_npc.dialog_entry = "done"
+	set current_npc.hide_quest_indicator = false
+	do end_quest("hub_collect_taiyaki")
+else
+	Taiyaki Girl: The Taiyaki should be on the rooftops around us here
+=> END
+
+~ done
+Taiyaki Girl: thanks for your help earlier!
+=> END
+
+~ done2
+Taiyaki Girl: I remember you! You helped me before, thanks again.
+=> END

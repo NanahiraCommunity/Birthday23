@@ -7,6 +7,7 @@ const C = preload("res://models/characters/character.gd")
 @export var dialog_entry: String = "start"
 @export var lookat_player: bool = true
 @export var dynamic_collision: bool = false
+@export var hide_quest_indicator: bool = false
 @export var character: C.Character:
 	get:
 		if not $NanahiraPapercraft:
@@ -37,15 +38,17 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("interact") and can_talk:
-		dialog_box.trigger_dialog(dialog_path, dialog_entry)
 		Global.current_npc = self
+		dialog_box.trigger_dialog(dialog_path, dialog_entry)
 		get_viewport().set_input_as_handled()
 
 func _process(delta):
 	var direction = global_position - Global.player.global_position
 	var distance_squared = direction.length_squared()
 
-	$DialogIndicator.visible = (dialog_path and dialog_entry and not Global.in_dialog
+	$DialogIndicator.visible = (dialog_path
+		and dialog_entry
+		and not Global.in_dialog
 		and distance_squared < INDICATOR_MAX_DISTANCE * INDICATOR_MAX_DISTANCE)
 	$DialogIndicator.modulate = Color(1, 1, 1, 1) if can_talk else Color(1, 1, 1, 0.5)
 
@@ -54,6 +57,9 @@ func _process(delta):
 		can_talk = true
 	else:
 		can_talk = false
+
+	if hide_quest_indicator:
+		$DialogIndicator.visible = false
 
 	if lookat_player:
 		var target_angle = head_angle

@@ -27,6 +27,7 @@ func _finished():
 ## Must be called when the quest gets added to the quests array
 func start():
 	_started = true
+	process_mode = Node.PROCESS_MODE_INHERIT
 	for node in show_nodes:
 		_start_node(node)
 
@@ -37,12 +38,12 @@ func start():
 			_start_node(child)
 
 func _start_node(node):
-	node.process_mode = Node.PROCESS_MODE_INHERIT
 	if node is Node3D or node is CanvasItem:
 		node.visible = true
 
 ## Must be called before the quest gets removed from the quests array
 func end():
+	process_mode = Node.PROCESS_MODE_DISABLED
 	var n = get_child_count()
 	for i in range(n, 0, -1):
 		var child = get_child(i - 1)
@@ -57,6 +58,5 @@ func end():
 	_started = false
 
 func _end_node(node):
-	node.process_mode = Node.PROCESS_MODE_DISABLED
 	if node is Node3D or node is CanvasItem:
 		node.visible = false

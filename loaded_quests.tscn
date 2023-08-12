@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://d4cypassulpkj"]
+
+[node name="LoadedQuests" type="Node"]
+editor_description = "This is an autoload that will have all registered quests reparented to."
