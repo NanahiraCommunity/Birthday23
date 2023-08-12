@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4wjkeh7qqg2u"
-path.bptc="res://.godot/imported/confettostamp_height.png-5446c6e29dfd93e38889897ec06bae19.bptc.ctex"
+uid="uid://d0p84pplbrvye"
+path.s3tc="res://.godot/imported/taiyaki.png-38dc7190ee1b5190543e96d0720f30f9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://shared/stamp/confettostamp_height.png"
-dest_files=["res://.godot/imported/confettostamp_height.png-5446c6e29dfd93e38889897ec06bae19.bptc.ctex"]
+source_file="res://shared/collectible/taiyaki.png"
+dest_files=["res://.godot/imported/taiyaki.png-38dc7190ee1b5190543e96d0720f30f9.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

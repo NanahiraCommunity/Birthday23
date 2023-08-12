@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c2uq2y15re4mo"]
 
-[ext_resource type="Texture2D" uid="uid://4wjkeh7qqg2u" path="res://shared/stamp/confettostamp_height.png" id="1_2bqw3"]
-[ext_resource type="Texture2D" uid="uid://dgtg1r43merms" path="res://shared/stamp/conffetto_stamp_normals.png" id="2_r4cka"]
+[ext_resource type="Texture2D" uid="uid://4wjkeh7qqg2u" path="res://shared/collectible/confettostamp_height.png" id="1_2bqw3"]
+[ext_resource type="Texture2D" uid="uid://dgtg1r43merms" path="res://shared/collectible/conffetto_stamp_normals.png" id="2_r4cka"]
 
 [sub_resource type="Shader" id="Shader_1h6u1"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's StandardMaterial3D.

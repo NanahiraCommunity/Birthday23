@@ -10,10 +10,24 @@ enum CartType
 	SORTED_LETTERS,
 }
 
+enum Collectible
+{
+	# must be strictly incrementing, since you can use Collectible.XYZ as index to `collectibles`
+	STAMP,
+	TAIYAKI
+}
+
 # global state
 
 var player: CharacterBody3D
 var in_dialog: bool = false
+
+var collectibles: PackedInt32Array = [
+	0, # STAMP
+	0, # TAIYAKI
+]
+
+var quests: Array[Quest]
 
 # Set when interacting (opening dialog) with an NPC
 # Usable for `set current_npc.dialog_entry = ""` to set persistent NPC talking state
@@ -26,7 +40,7 @@ var dialog: Control
 var neko_world_reset_count = 0
 
 func _ready():
-	pass
+	assert(collectibles.size() == Collectible.values().size())
 
 func _process(delta):
 	pass

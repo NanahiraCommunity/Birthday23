@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://co5uyjdsx8gn4"]
+
+[ext_resource type="Script" path="res://shared/collectible/confetto_stamp.gd" id="1_saiys"]
+[ext_resource type="ArrayMesh" uid="uid://dw3wo6ebaytes" path="res://shared/collectible/confetto.obj" id="2_inx7l"]
+[ext_resource type="Material" uid="uid://c2uq2y15re4mo" path="res://shared/collectible/stamp_material.tres" id="3_p1xtf"]
+[ext_resource type="Shader" path="res://shared/collectible/confetto_stamp_glow.gdshader" id="4_24ho0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbalm"]
+render_priority = 0
+shader = ExtResource("4_24ho0")
+shader_parameter/glow_color = Color(1, 0.0941176, 0.501961, 1)
+shader_parameter/glow_strength = 10.0
+shader_parameter/glow_falloff = 1.825
+shader_parameter/glow_size = 0.17
+shader_parameter/glow_visibility = 1.0
+
+[sub_resource type="Animation" id="Animation_0d87t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Confetto:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confetto:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.354302)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confetto:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:glow_visibility")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_m8tg8"]
+resource_name = "CollectBig"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Confetto:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0590619, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confetto:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.354302), Vector3(1.5708, -1.0472, 0.354302), Vector3(6.28319, -1.0472, 0.354302)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Confetto:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.1, 0.1, 0.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:glow_visibility")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jj0c6"]
+resource_name = "CollectSmall"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Confetto:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.08, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Confetto:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.354302), Vector3(0, -3.14159, 0.354302)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:glow_visibility")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 2.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Confetto:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.75, 0.75, 0.75), Vector3(0.85, 0.85, 0.85), Vector3(0.2, 0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8hcw8"]
+_data = {
+"CollectBig": SubResource("Animation_m8tg8"),
+"CollectSmall": SubResource("Animation_jj0c6"),
+"RESET": SubResource("Animation_0d87t")
+}
+
+[node name="ConfettoStamp" type="Node3D"]
+script = ExtResource("1_saiys")
+color_big = Color(0.619608, 0.415686, 1, 1)
+
+[node name="Confetto" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.937889, -0.346936, 0, 0.346936, 0.937889, 0, 0, 0, 1, 0, 0, 0)
+layers = 3
+mesh = ExtResource("2_inx7l")
+surface_material_override/0 = ExtResource("3_p1xtf")
+
+[node name="GlowShape" type="CSGCylinder3D" parent="."]
+flip_faces = true
+radius = 0.16
+height = 0.3
+sides = 16
+material = SubResource("ShaderMaterial_jbalm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8hcw8")
+}

@@ -1,7 +1,7 @@
 extends GridMap
 
 func _ready():
-	var stamp = preload("res://shared/stamp/confetto_stamp.tscn")
+	var stamp = preload("res://shared/collectible/confetto_stamp.tscn")
 	var p = get_parent()
 	for pos in get_used_cells():
 		var s = stamp.instantiate()
@@ -17,6 +17,6 @@ func get_value(index: int):
 	if index == 0:
 		return 1
 	elif index == 1:
-		return 5
+		return 10
 	else:
 		assert(false)
