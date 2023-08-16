@@ -32,7 +32,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "Quest 1"
 fit_content = true
 autowrap_mode = 0
 

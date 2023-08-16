@@ -6,8 +6,8 @@
 
 [sub_resource type="Gradient" id="Gradient_l6wsw"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.158924, 1)
-colors = PackedColorArray(1, 1, 1, 0.8, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.158924, 0.744792, 1)
+colors = PackedColorArray(1, 1, 1, 0.8, 1, 1, 1, 0.407782, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ceq7w"]
 gradient = SubResource("Gradient_l6wsw")
@@ -16,7 +16,6 @@ width = 512
 [node name="QuestSubline" type="MarginContainer"]
 size_flags_horizontal = 0
 script = ExtResource("1_kf0av")
-finished = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -42,7 +41,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "Quest 1"
 fit_content = true
 autowrap_mode = 0
 
