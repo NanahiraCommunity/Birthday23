@@ -31,6 +31,7 @@ var _completed_quests: Array[StringName]
 # StringName -> Quest
 var _available_quests: Dictionary = {}
 var active_quests: Array[Quest]
+signal active_quests_changed
 
 var neko_hacker_available = false
 var camellia_available = false
@@ -56,6 +57,7 @@ func start_quest(qid: StringName):
 		active_quests.append(quest)
 		quest.start()
 		print("Starting quest " + qid + ": " + quest.description)
+		active_quests_changed.emit()
 
 func end_quest(qid: StringName):
 	for i in range(0, active_quests.size()):
@@ -65,6 +67,7 @@ func end_quest(qid: StringName):
 				_completed_quests.append(qid)
 			active_quests[i].end()
 			active_quests.remove_at(i)
+			active_quests_changed.emit()
 			return true
 	assert(false, "Failed ending quest '" + qid + "', it wasn't started!")
 	return false

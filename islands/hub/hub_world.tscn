@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=44 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="20_k3ogq"]
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="21_gsucw"]
 [ext_resource type="PackedScene" uid="uid://3lejahn2jnx7" path="res://islands/hub/houses_2.tscn" id="22_iwaws"]
+[ext_resource type="Script" path="res://quests/quest.gd" id="23_l6rqf"]
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="23_mltwx"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="23_yvfsn"]
 [ext_resource type="PackedScene" uid="uid://cym7ce0ufnnec" path="res://shared/collectible/taiyaki.tscn" id="24_17d2l"]
@@ -661,6 +662,11 @@ collect_type = 1
 collect_amount = 4
 quest_id = &"hub_collect_taiyaki"
 description = "Collect Taiyaki"
+
+[node name="hub_collect_taiyaki_markers" type="Node" parent="Quests/hub_collect_taiyaki"]
+script = ExtResource("23_l6rqf")
+quest_id = &"hub_collect_taiyaki_markers"
+description = "Jump onto the rooftop"
 
 [node name="SampleTaiyaki" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
 process_mode = 4

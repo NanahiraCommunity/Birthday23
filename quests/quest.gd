@@ -13,6 +13,8 @@ extends Node
 ## Can be used in the UI.
 @export var done: bool = false
 
+signal updated
+signal started
 signal finished
 
 var _started = false
@@ -23,6 +25,7 @@ func _ready():
 
 func _finished():
 	done = true
+	updated.emit()
 
 ## Must be called when the quest gets added to the quests array
 func start():
@@ -37,9 +40,14 @@ func start():
 		else:
 			_start_node(child)
 
+	started.emit()
+
 func _start_node(node):
 	if node is Node3D or node is CanvasItem:
 		node.visible = true
+
+func get_text():
+	return description
 
 ## Must be called before the quest gets removed from the quests array
 func end():

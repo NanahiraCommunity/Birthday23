@@ -22,10 +22,10 @@ Taiyaki Girl: *sob*
 
 ~ in_quest
 if is_quest_complete("hub_collect_taiyaki")
-	Taiyaki Girl: thx
 	set current_npc.dialog_entry = "done"
 	set current_npc.hide_quest_indicator = false
 	do end_quest("hub_collect_taiyaki")
+	Taiyaki Girl: thx
 else
 	Taiyaki Girl: The Taiyaki should be on the rooftops around us here
 => END

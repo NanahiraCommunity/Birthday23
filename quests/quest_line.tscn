@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cika70opqmi42"]
+
+[ext_resource type="Texture2D" uid="uid://bdj6p0v5elsq6" path="res://quests/quest_marker.svg" id="1_7d0yw"]
+[ext_resource type="Script" path="res://quests/quest_line.gd" id="1_cqcjk"]
+[ext_resource type="Texture2D" uid="uid://bdal2agshtf2h" path="res://quests/quest_marker_done.svg" id="3_aq4xb"]
+
+[node name="MarginContainer" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+size_flags_horizontal = 0
+script = ExtResource("1_cqcjk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 1, 1, 0.75)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Unfinished" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_7d0yw")
+
+[node name="Finished" type="TextureRect" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_aq4xb")
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Quest 1"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Padding" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2

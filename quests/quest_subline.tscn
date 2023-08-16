@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://7rmhmdsb1d5p"]
+
+[ext_resource type="Script" path="res://quests/quest_line.gd" id="1_kf0av"]
+[ext_resource type="Texture2D" uid="uid://b72qeb3qoo0dn" path="res://quests/subquest_marker.svg" id="1_v4xpo"]
+[ext_resource type="Texture2D" uid="uid://qei4uxyhdypx" path="res://quests/subquest_marker_done.svg" id="3_fufsi"]
+
+[sub_resource type="Gradient" id="Gradient_l6wsw"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.158924, 1)
+colors = PackedColorArray(1, 1, 1, 0.8, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ceq7w"]
+gradient = SubResource("Gradient_l6wsw")
+width = 512
+
+[node name="QuestSubline" type="MarginContainer"]
+size_flags_horizontal = 0
+script = ExtResource("1_kf0av")
+finished = null
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_ceq7w")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Unfinished" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_v4xpo")
+
+[node name="Finished" type="TextureRect" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_fufsi")
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Quest 1"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Padding" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2

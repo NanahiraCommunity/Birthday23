@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://w2nb3hku11pg"]
+[gd_scene load_steps=5 format=3 uid="uid://w2nb3hku11pg"]
 
 [ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="1_8c3g0"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_mu2t7"]
 [ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://ui/pause_menu.tscn" id="2_xx607"]
+[ext_resource type="PackedScene" uid="uid://dvynxoha4vplm" path="res://ui/quests_list.tscn" id="4_51mva"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -19,3 +20,5 @@ layout_mode = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_xx607")]
 layout_mode = 1
+
+[node name="QuestsList" parent="." instance=ExtResource("4_51mva")]
