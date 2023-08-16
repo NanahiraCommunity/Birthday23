@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1h68genurwme"]
+
+[ext_resource type="Script" path="res://quests/waypoint_3d.gd" id="1_6iuvr"]
+[ext_resource type="Texture2D" uid="uid://c8batmwlk6qvk" path="res://quests/waypoint_marker.svg" id="1_eq6u5"]
+
+[node name="Waypoint3D" type="Node3D"]
+script = ExtResource("1_6iuvr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_eq6u5")

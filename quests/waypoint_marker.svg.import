@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b72qeb3qoo0dn"
-path="res://.godot/imported/subquest_marker.svg-62e45488857f7ad46f2d72bb04a9a5c8.ctex"
+uid="uid://c8batmwlk6qvk"
+path="res://.godot/imported/waypoint_marker.svg-e474e4b778965aa2949aaae53c744701.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://quests/subquest_marker.svg"
-dest_files=["res://.godot/imported/subquest_marker.svg-62e45488857f7ad46f2d72bb04a9a5c8.ctex"]
+source_file="res://quests/waypoint_marker.svg"
+dest_files=["res://.godot/imported/waypoint_marker.svg-e474e4b778965aa2949aaae53c744701.ctex"]
 
 [params]
 
