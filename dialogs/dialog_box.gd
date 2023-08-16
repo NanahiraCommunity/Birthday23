@@ -37,7 +37,7 @@ func _process(delta):
 
 	$NinePatchRect.size = $MarginContainer.size
 	$NinePatchRect.position = $MarginContainer.position
-	$Name.position.y = $MarginContainer.position.y
+	$Name.position.y = $MarginContainer.position.y + 5
 
 func _input(event: InputEvent) -> void:
 	if not visible:
