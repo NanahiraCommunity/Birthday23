@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=43 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -25,17 +25,18 @@
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="23_yvfsn"]
 [ext_resource type="PackedScene" uid="uid://cym7ce0ufnnec" path="res://shared/collectible/taiyaki.tscn" id="24_17d2l"]
 [ext_resource type="PackedScene" uid="uid://dfwssfmg8nxgn" path="res://shared/fence/gate_door.tscn" id="26_6mylm"]
+[ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="26_gpwt4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
 
-[sub_resource type="Sky" id="Sky_ygrpd"]
+[sub_resource type="Sky" id="Sky_viioq"]
 sky_material = SubResource("PanoramaSkyMaterial_c3803")
 
 [sub_resource type="Environment" id="Environment_ofiqo"]
 background_mode = 2
 background_energy_multiplier = 0.15
-sky = SubResource("Sky_ygrpd")
+sky = SubResource("Sky_viioq")
 ambient_light_source = 3
 ambient_light_color = Color(0.682353, 0.819608, 0.827451, 1)
 ambient_light_sky_contribution = 0.7
@@ -126,6 +127,20 @@ transform = Transform3D(0.62867, 0.642557, 0.438058, -0.0108483, -0.555993, 0.83
 light_energy = 1.5
 shadow_enabled = true
 shadow_bias = 0.03
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.932785, 0.00173404, 0.360429, -0.0018048, 0.999953, -0.00948161, -0.360429, -0.0094948, -0.932738, -1.49306, 0.243454, -9.04959)
+layers = 2
+light_energy = 0.4
+light_cull_mask = 4293918722
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.932785, 0.00173404, -0.360429, 0.0018048, 0.999953, 0.00948161, 0.360429, -0.0094948, 0.932738, -1.49306, 0.243454, -9.04959)
+layers = 2
+light_energy = 0.1
+light_cull_mask = 4293918722
+sky_mode = 1
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_0d04h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505235, 0.0430359, -20.0923)
@@ -370,20 +385,6 @@ mesh = SubResource("BoxMesh_w6tla")
 
 [node name="Fountain" parent="." instance=ExtResource("15_psfrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60014, -0.000996185, -22.6002)
-
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.932785, 0.00173404, 0.36043, -0.0018048, 0.999953, -0.00948161, -0.360429, -0.0094948, -0.932738, -1.49306, 0.243454, -9.04959)
-layers = 2
-light_energy = 0.4
-light_cull_mask = 4293918722
-sky_mode = 1
-
-[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.932785, 0.00173404, -0.36043, 0.0018048, 0.999953, 0.0094816, 0.360429, -0.0094948, 0.932738, -1.49306, 0.243454, -9.04959)
-layers = 2
-light_energy = 0.1
-light_cull_mask = 4293918722
-sky_mode = 1
 
 [node name="Windows" type="Node3D" parent="."]
 
@@ -683,3 +684,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.366
 
 [node name="gate_door2" parent="." instance=ExtResource("26_6mylm")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.266685, -0.001, -2.984)
+
+[node name="Quickwarp" parent="." instance=ExtResource("26_gpwt4")]
+transform = Transform3D(-0.789438, 0, -0.613831, 0, 1, 0, 0.613831, 0, -0.789438, 1.4667, -0.00101826, -9.63702)

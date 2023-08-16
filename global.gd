@@ -32,9 +32,12 @@ var _completed_quests: Array[StringName]
 var _available_quests: Dictionary = {}
 var active_quests: Array[Quest]
 
+var neko_hacker_available = false
+var camellia_available = false
+
 # Set when interacting (opening dialog) with an NPC
 # Usable for `set current_npc.dialog_entry = ""` to set persistent NPC talking state
-var current_npc: CharacterBody3D
+var current_npc: Node3D
 # Dialog script, if currently in dialog
 var dialog: Control
 # Current UI, if available

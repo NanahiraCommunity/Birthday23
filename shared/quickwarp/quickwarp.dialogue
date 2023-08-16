@@ -1,0 +1,13 @@
+~ start
+
+Quickwarp: Where would you like to go?
+- Neko World [if neko_hacker_available]
+	do current_npc.warp("islands/neko_hacker/neko_world.tscn")
+	=> END
+- Camellia Island [if camellia_available]
+	do current_npc.warp("islands/camellia/camellia_world.tscn")
+	=> END
+- Nevermind
+	=> END
+
+=> END

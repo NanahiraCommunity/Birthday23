@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://bimaorkxlb84v"]
+
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="1_cusxc"]
+[ext_resource type="Script" path="res://shared/quickwarp/quickwarp.gd" id="1_nyd6o"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="2_i8w5e"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="3_oo18j"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="4_c00b5"]
+[ext_resource type="Texture2D" uid="uid://dlos82op2gjiu" path="res://shared/door/icon.png" id="5_dd010"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4aan6"]
+render_priority = 0
+shader = ExtResource("1_cusxc")
+shader_parameter/paper_color = Color(0.713726, 0.486275, 0.333333, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_i8w5e")
+shader_parameter/texture_roughness = ExtResource("4_c00b5")
+shader_parameter/texture_normal = ExtResource("3_oo18j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qy5y1"]
+render_priority = 0
+shader = ExtResource("1_cusxc")
+shader_parameter/paper_color = Color(0.439216, 0.231373, 0.14902, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_i8w5e")
+shader_parameter/texture_roughness = ExtResource("4_c00b5")
+shader_parameter/texture_normal = ExtResource("3_oo18j")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cvmou"]
+radius = 0.808051
+height = 1.87231
+
+[node name="Quickwarp" type="Node3D"]
+script = ExtResource("1_nyd6o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+use_collision = true
+size = Vector3(0.02, 0.5, 0.02)
+material = SubResource("ShaderMaterial_4aan6")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.962332, 0, -0.271877, 0, 1, 0, 0.271877, 0, 0.962332, -0.00444804, -0.0540111, 0.0176259)
+use_collision = true
+polygon = PackedVector2Array(-0.114303, 0.468383, 0.09848, 0.490548, 0.152784, 0.528228, 0.0829646, 0.565908, -0.12871, 0.53931, -0.0998954, 0.507171)
+depth = 0.01
+material = SubResource("ShaderMaterial_qy5y1")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.835513, 0.0866956, 0.542588, -0.103209, 0.99466, 0, -0.53969, -0.0560001, 0.839999, -0.0250136, -0.138426, 0.039468)
+use_collision = true
+polygon = PackedVector2Array(-0.114303, 0.468383, 0.09848, 0.490548, 0.152784, 0.528228, 0.0829646, 0.565908, -0.12871, 0.53931, -0.0998954, 0.507171)
+depth = 0.01
+material = SubResource("ShaderMaterial_qy5y1")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.557869, -0.0102052, 0.829866, -0.01829, 0.999833, 7.43089e-09, -0.829727, -0.0151783, -0.557962, -0.00249714, -0.215806, 0.0119915)
+use_collision = true
+polygon = PackedVector2Array(-0.114303, 0.468383, 0.09848, 0.490548, 0.152784, 0.528228, 0.0829646, 0.565908, -0.12871, 0.53931, -0.0998954, 0.507171)
+depth = 0.01
+material = SubResource("ShaderMaterial_qy5y1")
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.922349, -0.127593, -0.364682, -0.13703, 0.990567, -2.97782e-09, 0.361242, 0.0499722, -0.931132, 0.0840867, -0.289669, -0.0230426)
+use_collision = true
+polygon = PackedVector2Array(-0.114303, 0.468383, 0.09848, 0.490548, 0.152784, 0.528228, 0.0829646, 0.565908, -0.12871, 0.53931, -0.0998954, 0.507171)
+depth = 0.01
+material = SubResource("ShaderMaterial_qy5y1")
+
+[node name="InteractArea" type="Area3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00227582, 0.63391, -0.00124434)
+pixel_size = 0.0012
+billboard = 1
+no_depth_test = true
+texture = ExtResource("5_dd010")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30091, 0)
+shape = SubResource("CapsuleShape3D_cvmou")
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
