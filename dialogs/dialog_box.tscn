@@ -45,7 +45,6 @@ _data = {
 }
 
 [node name="DialogBox" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 7
 anchor_left = 0.5
@@ -69,8 +68,8 @@ patch_margin_left = 31
 patch_margin_top = 38
 patch_margin_right = 107
 patch_margin_bottom = 28
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 1
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [node name="Name" type="RichTextLabel" parent="."]
 layout_mode = 2
