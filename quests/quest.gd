@@ -23,6 +23,9 @@ func _ready():
 	finished.connect(_finished)
 	end()
 
+func _ended():
+	pass
+
 func _finished():
 	done = true
 	updated.emit()
@@ -51,11 +54,11 @@ func get_text():
 
 ## Must be called before the quest gets removed from the quests array
 func end():
+	_ended()
 	process_mode = Node.PROCESS_MODE_DISABLED
 	var n = get_child_count()
 	for i in range(n, 0, -1):
 		var child = get_child(i - 1)
-		print(child)
 		if child is Quest:
 			child.end()
 		else:
@@ -66,5 +69,5 @@ func end():
 	_started = false
 
 func _end_node(node):
-	if node is Node3D or node is CanvasItem:
+	if node is Node3D or node is Node2D or node is CanvasItem:
 		node.visible = false

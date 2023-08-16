@@ -10,6 +10,8 @@ var marker: Node3D
 
 func start():
 	super()
+	var children = get_children()
+
 	if show_marker:
 		marker = preload("res://quests/waypoint_3d.tscn").instantiate()
 		add_child(marker)
@@ -18,7 +20,7 @@ func start():
 
 	markers = []
 	current = -1
-	for child in get_children():
+	for child in children:
 		if child is Node3D:
 			# can be CollisionShape3D or anything really that will get reparented to Area3D
 			# can group multiple CollisionShape3D by making them children of a Node3D
@@ -28,9 +30,18 @@ func start():
 			markers.append(child)
 			current += 1
 			area.body_entered.connect(_body_entered.bind(current))
-			max = current
 	assert(current >= 0, "Missing children (CollisionShape3D) in waypoint quest")
 	current = -1
+	max = markers.size() - 1
+
+func _finished():
+	_ended()
+	super()
+
+func _ended():
+	if marker:
+		marker.queue_free()
+		marker = null
 
 func _process(delta):
 	if not done and marker:
@@ -43,7 +54,5 @@ func _body_entered(body: Node, i: int):
 		return
 	if body == Global.player:
 		current = max(current, i)
-		if current >= max:
-			marker.visible = false
-			marker = null
+		if i >= max:
 			finished.emit()
