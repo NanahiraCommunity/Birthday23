@@ -25,6 +25,7 @@ LoadedQuests="res://loaded_quests.tscn"
 [dialogue_manager]
 
 general/states=["Global"]
+general/include_all_responses=true
 
 [editor_plugins]
 

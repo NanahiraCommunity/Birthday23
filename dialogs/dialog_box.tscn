@@ -135,6 +135,7 @@ theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
 text = "Option"
 fit_content = true
 

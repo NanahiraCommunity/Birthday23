@@ -10,6 +10,8 @@ var rendering = false
 var selected_index = 0
 var option_nodes = []
 
+signal picked_selection(int)
+
 func _ready():
 	pass
 
@@ -26,10 +28,12 @@ func _process(delta):
 	if choosing:
 		$Cursor.global_position.y = option_nodes[selected_index].global_position.y
 		for i in range(len(option_nodes)):
-			if i == selected_index:
-				option_nodes[i].modulate.a = 1
+			if not current_line.responses[i].is_allowed:
+				option_nodes[i].modulate.a = 0.4
+			elif i == selected_index:
+				option_nodes[i].modulate.a = 1.0
 			else:
-				option_nodes[i].modulate.a = 0.5
+				option_nodes[i].modulate.a = 0.6
 
 	$NinePatchRect.size = $MarginContainer.size
 	$NinePatchRect.position = $MarginContainer.position
@@ -52,8 +56,13 @@ func _input(event: InputEvent) -> void:
 				selected_index = 0
 			handled = true
 		if event.is_action_pressed("ui_accept"):
-			next_dialogue = current_line.responses[selected_index].next_id
-			show_next()
+			if not current_line.responses[selected_index].is_allowed:
+				# TODO: play sound
+				pass
+			else:
+				picked_selection.emit(selected_index)
+				next_dialogue = current_line.responses[selected_index].next_id
+				show_next()
 			handled = true
 	else:
 		if event.is_action_pressed("ui_accept"):
@@ -112,14 +121,14 @@ func show_next():
 	$MarginContainer/VBoxContainer/Text.type_out()
 
 	await $MarginContainer/VBoxContainer/Text.finished_typing
-	
+
 	if current_line.responses:
 		choosing = true
 		$MarginContainer/VBoxContainer/DialogSeparator.visible = true
 		for response in current_line.responses:
 			var option: RichTextLabel = $MarginContainer/VBoxContainer/OptionTemplate.duplicate()
 			if not response.is_allowed:
-				option.text = "[color=#00000060]" + response.text + "[/color]"
+				option.text = "[color=#000000]" + response.text + "[/color]"
 			else:
 				option.text = response.text
 			option.visible = true
