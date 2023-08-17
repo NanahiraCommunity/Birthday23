@@ -7,6 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://b6soqux55vjnb" path="res://dialogs/dialog_separator.svg" id="4_sutl5"]
 [ext_resource type="Texture2D" uid="uid://k76gdy6dtp80" path="res://dialogs/dialog_cursor.svg" id="5_elhst"]
 
+[sub_resource type="Animation" id="Animation_2vmqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, -29)]
+}
+
 [sub_resource type="Animation" id="Animation_0p0gr"]
 resource_name = "idle"
 loop_mode = 1
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-22, -29), Vector2(-22, -20)]
-}
-
-[sub_resource type="Animation" id="Animation_2vmqy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-22, -29)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y7s6h"]
@@ -74,7 +74,6 @@ axis_stretch_vertical = 2
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 36
-theme_override_constants/margin_top = 6
 
 [node name="Name" type="RichTextLabel" parent="NameContainer"]
 layout_mode = 2
@@ -93,7 +92,7 @@ fit_content = true
 custom_minimum_size = Vector2(0, 218)
 layout_mode = 2
 theme_override_constants/margin_left = 36
-theme_override_constants/margin_top = 56
+theme_override_constants/margin_top = 48
 theme_override_constants/margin_right = 44
 theme_override_constants/margin_bottom = 32
 
@@ -102,7 +101,7 @@ layout_mode = 2
 
 [node name="Text" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/default_color = Color(0.666667, 0.164706, 0.054902, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 0.784314)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -126,7 +125,7 @@ stretch_mode = 1
 [node name="OptionTemplate" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
-theme_override_colors/default_color = Color(0.666667, 0.164706, 0.054902, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 0.784314)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -169,4 +168,4 @@ libraries = {
 position = Vector2(40, 110)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_elhst")
-offset = Vector2(-35, 20)
+offset = Vector2(-35, 33)

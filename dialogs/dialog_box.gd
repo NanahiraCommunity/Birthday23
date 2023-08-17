@@ -103,6 +103,8 @@ func show_next():
 		rendering = false
 		return
 
+	current_line.text = Global.preprocess_bbcode(current_line.text)
+
 	$MarginContainer/VBoxContainer/DialogSeparator.visible = false
 	for child in option_nodes:
 		$MarginContainer/VBoxContainer.remove_child(child)
@@ -124,9 +126,9 @@ func show_next():
 		for response in current_line.responses:
 			var option: RichTextLabel = $MarginContainer/VBoxContainer/OptionTemplate.duplicate()
 			if not response.is_allowed:
-				option.text = "[color=#000000]" + response.text + "[/color]"
+				option.text = "[color=#000000]" + Global.preprocess_bbcode(response.text) + "[/color]"
 			else:
-				option.text = response.text
+				option.text = Global.preprocess_bbcode(response.text)
 			option.visible = true
 			$MarginContainer/VBoxContainer.add_child(option)
 			option_nodes.push_back(option)
@@ -137,4 +139,4 @@ var title: String:
 	get:
 		return $NameContainer/Name.text
 	set(value):
-		$NameContainer/Name.text = value
+		$NameContainer/Name.text = Global.preprocess_bbcode(value)

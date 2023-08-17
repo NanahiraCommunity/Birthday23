@@ -664,7 +664,7 @@ script = ExtResource("23_mltwx")
 collect_type = 1
 collect_amount = 4
 quest_id = &"hub_collect_taiyaki"
-description = "Collect Taiyaki"
+description = "Collect [b]Taiyaki[/b]"
 
 [node name="hub_collect_taiyaki_markers" type="Node" parent="Quests/hub_collect_taiyaki"]
 script = ExtResource("24_yjym4")

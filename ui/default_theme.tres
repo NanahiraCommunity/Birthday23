@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://b3wr3q8xfqjbw"]
 
-[ext_resource type="FontFile" uid="uid://cf5pnx318ej72" path="res://fonts/BIZUDGothic-Regular.ttf" id="2_uiwjs"]
+[ext_resource type="FontFile" uid="uid://cou7sviv7snde" path="res://fonts/CherryBombOne-Regular.ttf" id="2_uiwjs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh5un"]
 content_margin_left = 8.0

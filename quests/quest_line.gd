@@ -8,7 +8,7 @@ var _text: String
 	set(value):
 		_text = value
 		if $HBoxContainer/Label:
-			$HBoxContainer/Label.text = value
+			$HBoxContainer/Label.text = Global.preprocess_bbcode(value)
 
 var _finished: bool
 @export var finished: bool:
@@ -23,9 +23,8 @@ var _finished: bool
 var freeing: bool = false
 
 func _ready():
-	$HBoxContainer/Label.text = text
-	$HBoxContainer/Finished.visible = finished
-	$HBoxContainer/Unfinished.visible = not finished
+	text = _text
+	finished = _finished
 
 func mark_finished():
 	finished = true

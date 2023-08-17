@@ -8,9 +8,9 @@ if in_quest("hub_collect_taiyaki")
 
 Taiyaki Girl: *sob*
 - What's wrong?
-	Taiyaki Girl: I was supposed to deliver these Taiyaki, but... now they are all on the rooftops
+	Taiyaki Girl: I was supposed to deliver these [b]Taiyaki[/b], but... now they are all on the rooftops
 	- How did that happen?
-		Taiyaki Girl: nevermind that, can you help me pick up the Taiyaki? I have collected the ones I lost on the ground, but I'm afraid of heights so I don't want to climb the rooftops.
+		Taiyaki Girl: nevermind that, can you help me pick up the [b]Taiyaki[/b]? I have collected the ones I lost on the ground, but I'm afraid of heights so I don't want to climb the rooftops.
 		- Sure
 			do start_quest("hub_collect_taiyaki")
 			set current_npc.hide_quest_indicator = true
@@ -27,7 +27,7 @@ if is_quest_complete("hub_collect_taiyaki")
 	do end_quest("hub_collect_taiyaki")
 	Taiyaki Girl: thx
 else
-	Taiyaki Girl: The Taiyaki should be on the rooftops around us here
+	Taiyaki Girl: The [b]Taiyaki[/b] should be on the rooftops around us here
 => END
 
 ~ done

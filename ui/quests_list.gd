@@ -56,9 +56,9 @@ func add_quests(quests: Array[Quest]):
 
 func status_updater(quest: Quest, node: Node, root: bool):
 	while not quest.done:
-		node.text = quest.get_text()
+		node.text = Global.preprocess_bbcode(quest.get_text())
 		await quest.updated
-	node.text = quest.get_text()
+	node.text = Global.preprocess_bbcode(quest.get_text())
 	node.mark_finished()
 	if not root:
 		await get_tree().create_timer(3.0).timeout

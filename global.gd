@@ -19,6 +19,15 @@ enum Collectible
 
 # global state
 
+func _ready():
+	assert(collectibles.size() == Collectible.values().size())
+
+func _process(delta):
+	pass
+
+func preprocess_bbcode(text: String) -> String:
+	return text.replace("[b]", "[color=#aa2a0e]").replace("[/b]", "[/color]")
+
 var player: CharacterBody3D
 var in_dialog: bool = false
 
@@ -92,12 +101,6 @@ func is_quest_complete(qid: StringName):
 # per-island state
 
 var neko_world_reset_count = 0
-
-func _ready():
-	assert(collectibles.size() == Collectible.values().size())
-
-func _process(delta):
-	pass
 
 func give_kassan_letter():
 	neko_world_reset_count += 1
