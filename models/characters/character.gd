@@ -97,6 +97,7 @@ func update_character():
 		self.add_child(instance)
 		var node = instance.get_node(respath)
 		node.reparent($Armature/Skeleton3D, false)
+		instance.queue_free()
 		if skin:
 			_reskin(node, skin)
 
