@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b3wr3q8xfqjbw"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b3wr3q8xfqjbw"]
 
 [ext_resource type="FontFile" uid="uid://cf5pnx318ej72" path="res://fonts/BIZUDGothic-Regular.ttf" id="2_uiwjs"]
 
@@ -81,6 +81,13 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmmtx"]
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [resource]
 default_font = ExtResource("2_uiwjs")
 Button/colors/font_color = Color(0, 0, 0, 1)
@@ -93,3 +100,4 @@ Button/styles/hover = SubResource("StyleBoxFlat_dm8xo")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_mnnk5")
 Button/styles/normal = SubResource("StyleBoxFlat_eeyn8")
 Button/styles/pressed = SubResource("StyleBoxFlat_t4acj")
+Panel/styles/panel = SubResource("StyleBoxFlat_mmmtx")

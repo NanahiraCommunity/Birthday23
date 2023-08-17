@@ -1,26 +1,105 @@
-[gd_scene load_steps=6 format=3 uid="uid://7rmhmdsb1d5p"]
+[gd_scene load_steps=8 format=3 uid="uid://7rmhmdsb1d5p"]
 
 [ext_resource type="Script" path="res://quests/quest_line.gd" id="1_kf0av"]
 [ext_resource type="Texture2D" uid="uid://b72qeb3qoo0dn" path="res://quests/subquest_marker.svg" id="1_v4xpo"]
 [ext_resource type="Texture2D" uid="uid://qei4uxyhdypx" path="res://quests/subquest_marker_done.svg" id="3_fufsi"]
 
-[sub_resource type="Gradient" id="Gradient_l6wsw"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.158924, 0.744792, 1)
-colors = PackedColorArray(1, 1, 1, 0.8, 1, 1, 1, 0.407782, 1, 1, 1, 0)
+[sub_resource type="Animation" id="Animation_cwu16"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ceq7w"]
-gradient = SubResource("Gradient_l6wsw")
-width = 512
+[sub_resource type="Animation" id="Animation_n86wc"]
+resource_name = "hide"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, -0.11316, -64, -0.1, 24.982, 0.25, 0),
+"times": PackedFloat32Array(0.2, 0.7)
+}
+
+[sub_resource type="Animation" id="Animation_dwwjd"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-64, -0.1, 24.982, 0.1, 21.1266, 0, -0.2, -0.463687, 0.2, -0.11316),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hry5f"]
+_data = {
+"RESET": SubResource("Animation_cwu16"),
+"hide": SubResource("Animation_n86wc"),
+"show": SubResource("Animation_dwwjd")
+}
 
 [node name="QuestSubline" type="MarginContainer"]
+offset_right = 70.0
+offset_bottom = 48.0
 size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("1_kf0av")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 2
-texture = SubResource("GradientTexture1D_ceq7w")
-expand_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -45,5 +124,10 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="Padding" type="TextureRect" parent="HBoxContainer"]
-custom_minimum_size = Vector2(48, 0)
+custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hry5f")
+}

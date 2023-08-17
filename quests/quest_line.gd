@@ -20,6 +20,8 @@ var _finished: bool
 			$HBoxContainer/Finished.visible = value
 			$HBoxContainer/Unfinished.visible = not value
 
+var freeing: bool = false
+
 func _ready():
 	$HBoxContainer/Label.text = text
 	$HBoxContainer/Finished.visible = finished
@@ -27,3 +29,25 @@ func _ready():
 
 func mark_finished():
 	finished = true
+
+func show_animated():
+	if $AnimationPlayer and $AnimationPlayer.has_animation("show"):
+		$AnimationPlayer.play("show")
+		await $AnimationPlayer.animation_finished
+
+func hide_animated():
+	if $AnimationPlayer and $AnimationPlayer.has_animation("hide"):
+		$AnimationPlayer.play("hide")
+		await $AnimationPlayer.animation_finished
+
+func hide_animated_and_free():
+	if freeing:
+		return
+	freeing = true
+	await hide_animated()
+	var tween = get_tree().create_tween()
+	$Panel.custom_minimum_size.y = size.y
+	$HBoxContainer.queue_free()
+	tween.set_ease(Tween.EASE_OUT).tween_property($Panel, "custom_minimum_size:y", 0, 0.15)
+	await tween.finished
+	queue_free()
