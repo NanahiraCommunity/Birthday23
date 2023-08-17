@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cou7sviv7snde"
-path="res://.godot/imported/CherryBombOne-Regular.ttf-e38f3ee2b84bc70cd24f7ac643a2983a.fontdata"
+uid="uid://f5thlr0h5dn2"
+path="res://.godot/imported/NatsuzemiMaruGothic.ttf-09e7bd0bf93b7c5fdf30cf4f2eb5e600.fontdata"
 
 [deps]
 
-source_file="res://fonts/CherryBombOne-Regular.ttf"
-dest_files=["res://.godot/imported/CherryBombOne-Regular.ttf-e38f3ee2b84bc70cd24f7ac643a2983a.fontdata"]
+source_file="res://fonts/NatsuzemiMaruGothic.ttf"
+dest_files=["res://.godot/imported/NatsuzemiMaruGothic.ttf-09e7bd0bf93b7c5fdf30cf4f2eb5e600.fontdata"]
 
 [params]
 

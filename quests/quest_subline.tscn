@@ -92,11 +92,12 @@ _data = {
 }
 
 [node name="QuestSubline" type="MarginContainer"]
-offset_right = 70.0
+offset_right = 274.0
 offset_bottom = 48.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_kf0av")
+text = "test TEXT ななひー大好き〜"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 2
@@ -114,12 +115,17 @@ visible = false
 layout_mode = 2
 texture = ExtResource("3_fufsi")
 
-[node name="Label" type="RichTextLabel" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="RichTextLabel" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
+text = "test TEXT ななひー大好き〜"
 fit_content = true
 autowrap_mode = 0
 

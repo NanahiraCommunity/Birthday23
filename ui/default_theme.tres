@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=9 format=3 uid="uid://b3wr3q8xfqjbw"]
 
-[ext_resource type="FontFile" uid="uid://cou7sviv7snde" path="res://fonts/CherryBombOne-Regular.ttf" id="2_uiwjs"]
+[ext_resource type="FontFile" uid="uid://f5thlr0h5dn2" path="res://fonts/NatsuzemiMaruGothic.ttf" id="1_447iy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh5un"]
 content_margin_left = 8.0
@@ -89,7 +89,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [resource]
-default_font = ExtResource("2_uiwjs")
+default_font = ExtResource("1_447iy")
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)

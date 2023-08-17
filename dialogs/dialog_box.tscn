@@ -74,6 +74,7 @@ axis_stretch_vertical = 2
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = -1
 
 [node name="Name" type="RichTextLabel" parent="NameContainer"]
 layout_mode = 2
@@ -85,7 +86,7 @@ theme_override_font_sizes/italics_font_size = 24
 theme_override_font_sizes/bold_italics_font_size = 24
 theme_override_font_sizes/mono_font_size = 24
 bbcode_enabled = true
-text = "キャラ　Name"
+text = "test TEXT ななひー大好き〜"
 fit_content = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -108,7 +109,7 @@ theme_override_font_sizes/italics_font_size = 20
 theme_override_font_sizes/bold_italics_font_size = 20
 theme_override_font_sizes/mono_font_size = 20
 bbcode_enabled = true
-text = "This is [b]placeholder text[/b]! TODO: Please replace dialog background and font"
+text = "これは[color=#aa2a0e]プレースホルダーテキスト[/color]です！TODO: ダイアログの背景とフォントを置き換えてください。"
 fit_content = true
 script = ExtResource("3_a1hd0")
 skip_action = ""
