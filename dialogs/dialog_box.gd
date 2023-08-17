@@ -1,4 +1,4 @@
-extends Control
+extends MarginContainer
 
 var dialogue: DialogueResource # loaded resource to the .dialogue file
 var next_dialogue: String      # id/title of dialog set being displayed
@@ -23,7 +23,7 @@ func _process(delta):
 	Global.in_dialog = true
 	Global.dialog = self
 
-	$NextIndicator.visible = not rendering and not choosing and next_dialogue != null
+	$MarginContainer/BottomRight/NextIndicator.visible = not rendering and not choosing and next_dialogue != null
 	$Cursor.visible = choosing
 	if choosing:
 		$Cursor.global_position.y = option_nodes[selected_index].global_position.y
@@ -35,14 +35,10 @@ func _process(delta):
 			else:
 				option_nodes[i].modulate.a = 0.6
 
-	$NinePatchRect.size = $MarginContainer.size
-	$NinePatchRect.position = $MarginContainer.position
-	$Name.position.y = $MarginContainer.position.y + 5
-
 func _input(event: InputEvent) -> void:
 	if not visible:
 		return
-	
+
 	var handled = false
 	if choosing:
 		if event.is_action_pressed("ui_up") or event.is_action_pressed("walk_up"):
@@ -87,7 +83,7 @@ func trigger_dialog(path, _next_dialogue: String):
 
 	dialogue = load(path)
 	next_dialogue = _next_dialogue
-	
+
 	set_visible(true)
 	show_next()
 
@@ -97,7 +93,7 @@ func show_next():
 		return
 
 	rendering = true
-	
+
 	current_line = await dialogue.get_next_dialogue_line(next_dialogue) if dialogue else null
 
 	if not current_line:
@@ -139,6 +135,6 @@ func show_next():
 
 var title: String:
 	get:
-		return $Name.text
+		return $NameContainer/Name.text
 	set(value):
-		$Name.text = value
+		$NameContainer/Name.text = value

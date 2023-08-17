@@ -27,6 +27,11 @@ LoadedQuests="res://loaded_quests.tscn"
 general/states=["Global"]
 general/include_all_responses=true
 
+[display]
+
+window/size/viewport_width=950
+window/size/viewport_height=535
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")

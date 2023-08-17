@@ -7,62 +7,61 @@
 [ext_resource type="Texture2D" uid="uid://b6soqux55vjnb" path="res://dialogs/dialog_separator.svg" id="4_sutl5"]
 [ext_resource type="Texture2D" uid="uid://k76gdy6dtp80" path="res://dialogs/dialog_cursor.svg" id="5_elhst"]
 
-[sub_resource type="Animation" id="Animation_mrnud"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_dvqdu"]
+[sub_resource type="Animation" id="Animation_0p0gr"]
 resource_name = "idle"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 10)]
+"values": [Vector2(-22, -29), Vector2(-22, -20)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w8m6r"]
+[sub_resource type="Animation" id="Animation_2vmqy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-22, -29)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7s6h"]
 _data = {
-"RESET": SubResource("Animation_mrnud"),
-"idle": SubResource("Animation_dvqdu")
+"RESET": SubResource("Animation_2vmqy"),
+"idle": SubResource("Animation_0p0gr")
 }
 
-[node name="DialogBox" type="Control"]
-layout_mode = 3
+[node name="DialogBox" type="MarginContainer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -498.0
-offset_top = -228.0
-offset_right = 505.0
-offset_bottom = -10.9991
+offset_left = -450.0
+offset_top = -242.0
+offset_right = 450.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
 script = ExtResource("1_sbwbj")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
-offset_right = 1003.0
-offset_bottom = 216.0
 texture = ExtResource("2_jlh5g")
 patch_margin_left = 31
 patch_margin_top = 38
@@ -71,12 +70,14 @@ patch_margin_bottom = 28
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="Name" type="RichTextLabel" parent="."]
+[node name="NameContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-offset_left = 35.0
-offset_top = 5.0
-offset_right = 963.0
-offset_bottom = 39.0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 6
+
+[node name="Name" type="RichTextLabel" parent="NameContainer"]
+layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/default_color = Color(0.956863, 0.929412, 0.870588, 1)
 theme_override_font_sizes/normal_font_size = 24
@@ -89,19 +90,12 @@ text = "キャラ　Name"
 fit_content = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -212.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 45
-theme_override_constants/margin_right = 40
-theme_override_constants/margin_bottom = 30
+custom_minimum_size = Vector2(0, 218)
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 56
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -123,8 +117,11 @@ seconds_per_step = 0.015
 pause_at_characters = ".,?!"
 
 [node name="DialogSeparator" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 texture = ExtResource("4_sutl5")
+expand_mode = 2
+stretch_mode = 1
 
 [node name="OptionTemplate" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 visible = false
@@ -139,19 +136,37 @@ bbcode_enabled = true
 text = "Option"
 fit_content = true
 
-[node name="NextIndicator" type="Sprite2D" parent="."]
-position = Vector2(959, 173)
+[node name="BottomRight" type="Control" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="NextIndicator" type="TextureRect" parent="MarginContainer/BottomRight"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 16.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(0.854, 0.854)
+size_flags_horizontal = 8
+size_flags_vertical = 8
 texture = ExtResource("4_oa1es")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NextIndicator"]
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/BottomRight/NextIndicator"]
 libraries = {
-"": SubResource("AnimationLibrary_w8m6r")
+"": SubResource("AnimationLibrary_y7s6h")
 }
 
 [node name="Cursor" type="Sprite2D" parent="."]
 position = Vector2(40, 110)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_elhst")
-offset = Vector2(-35, 30)
+offset = Vector2(-35, 20)

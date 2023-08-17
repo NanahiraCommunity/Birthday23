@@ -14,11 +14,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mu2t7")
 
+[node name="QuestsList" parent="." instance=ExtResource("4_51mva")]
+
 [node name="DialogBox" parent="." instance=ExtResource("1_8c3g0")]
 visible = false
 layout_mode = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2_xx607")]
+visible = false
 layout_mode = 1
-
-[node name="QuestsList" parent="." instance=ExtResource("4_51mva")]
