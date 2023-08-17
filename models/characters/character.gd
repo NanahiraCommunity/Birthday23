@@ -38,10 +38,12 @@ func _reskin(node, texture):
 	material.set_shader_parameter("texture_paper", texture)
 	node.set_surface_override_material(0, material)
 
-func _ready():
-	update_character()
 
 func update_character():
+	if not is_inside_tree():
+		return
+	if not has_node("Armature/Skeleton3D/NanahiraPapercraft"):
+		await $Armature/Skeleton3D/NanahiraPapercraft.ready
 	var scene = null
 	var respath = null
 	var skin = null
@@ -92,6 +94,7 @@ func update_character():
 
 	if scene and respath:
 		var instance = scene.instantiate()
+		self.add_child(instance)
 		var node = instance.get_node(respath)
 		node.reparent($Armature/Skeleton3D, false)
 		if skin:
