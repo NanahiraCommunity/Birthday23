@@ -29,8 +29,8 @@ general/include_all_responses=true
 
 [display]
 
-window/size/viewport_width=950
-window/size/viewport_height=535
+window/size/viewport_width=1180
+window/size/viewport_height=664
 
 [editor_plugins]
 
