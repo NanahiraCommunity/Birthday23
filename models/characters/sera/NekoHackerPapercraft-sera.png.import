@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bme11dxkrsyp5"
-path="res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"
+uid="uid://dayqvfe3um07g"
+path.s3tc="res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://models/characters/nanahira/skins/Nanahi.png"
-dest_files=["res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"]
+source_file="res://models/characters/sera/NekoHackerPapercraft-sera.png"
+dest_files=["res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

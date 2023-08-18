@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bme11dxkrsyp5"
-path="res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"
+uid="uid://va0m0er8hiuv"
+path="res://.godot/imported/FullFlavourPapercraft.svg-c9d2699a644d4cafe726e82172f02a09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/characters/nanahira/skins/Nanahi.png"
-dest_files=["res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"]
+source_file="res://models/characters/fullflavor/skins/FullFlavourPapercraft.svg"
+dest_files=["res://.godot/imported/FullFlavourPapercraft.svg-c9d2699a644d4cafe726e82172f02a09.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

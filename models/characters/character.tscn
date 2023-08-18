@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://byflm3kvjdyoy"]
+[gd_scene load_steps=58 format=3 uid="uid://byflm3kvjdyoy"]
 
 [ext_resource type="PackedScene" uid="uid://b5v002sdy4808" path="res://models/characters/nanahira/nanahira_papercraft.glb" id="1_vjmr4"]
 [ext_resource type="Script" path="res://models/characters/character.gd" id="2_4spq3"]
@@ -27,8 +27,38 @@ shader_parameter/texture_paper = ExtResource("6_6djn6")
 shader_parameter/texture_roughness = ExtResource("5_5yljj")
 shader_parameter/texture_normal = ExtResource("4_t4h03")
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_hdmcb"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:ArmLowerL", "Armature/Skeleton3D:ArmLowerR", "Armature/Skeleton3D:ArmUpperL", "Armature/Skeleton3D:ArmUpperR", "Armature/Skeleton3D:HandL", "Armature/Skeleton3D:HandR"]
+
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_2405l"]
-filters = ["Armature/Skeleton3D:WingL1", "Armature/Skeleton3D:WingL2", "Armature/Skeleton3D:WingL3", "Armature/Skeleton3D:WingR1", "Armature/Skeleton3D:WingR2", "Armature/Skeleton3D:WingR3"]
+filter_enabled = true
+filters = ["Armature/Skeleton3D:HairLong", "Armature/Skeleton3D:HairTie", "Armature/Skeleton3D:WingL1", "Armature/Skeleton3D:WingL2", "Armature/Skeleton3D:WingL3", "Armature/Skeleton3D:WingR1", "Armature/Skeleton3D:WingR2", "Armature/Skeleton3D:WingR3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_268p3"]
+animation = &"HoldR"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_35olr"]
+animation = &"RESET"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f8t47"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qlrj8"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gr1lo"]
+xfade_time = 0.25
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f56qj"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_psjok"]
+states/End/position = Vector2(601, 100)
+states/HoldR/node = SubResource("AnimationNodeAnimation_268p3")
+states/HoldR/position = Vector2(395, 230)
+states/RESET/node = SubResource("AnimationNodeAnimation_35olr")
+states/RESET/position = Vector2(395, 100)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_f8t47"), "RESET", "HoldR", SubResource("AnimationNodeStateMachineTransition_qlrj8"), "HoldR", "RESET", SubResource("AnimationNodeStateMachineTransition_gr1lo"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_f56qj")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g56u5"]
 animation = &"Fly-stop"
@@ -177,7 +207,7 @@ advance_mode = 2
 allow_transition_to_self = true
 states/End/position = Vector2(407, -67)
 states/RESET/node = SubResource("AnimationNodeAnimation_xg87g")
-states/RESET/position = Vector2(492, 10)
+states/RESET/position = Vector2(492, 9)
 states/Start/position = Vector2(580, -67)
 states/Wing-close/node = SubResource("AnimationNodeAnimation_1g8ct")
 states/Wing-close/position = Vector2(388, 100)
@@ -186,27 +216,48 @@ states/Wing-flap/position = Vector2(492, 199)
 states/Wing-open/node = SubResource("AnimationNodeAnimation_b4yjx")
 states/Wing-open/position = Vector2(603, 100)
 transitions = ["Wing-flap", "Wing-close", SubResource("AnimationNodeStateMachineTransition_e5hec"), "Wing-close", "Wing-open", SubResource("AnimationNodeStateMachineTransition_iberq"), "Wing-open", "Wing-flap", SubResource("AnimationNodeStateMachineTransition_3sw1l"), "Wing-open", "Wing-close", SubResource("AnimationNodeStateMachineTransition_67vc1"), "Wing-close", "RESET", SubResource("AnimationNodeStateMachineTransition_f2wli"), "Start", "RESET", SubResource("AnimationNodeStateMachineTransition_u7i3u"), "RESET", "Wing-open", SubResource("AnimationNodeStateMachineTransition_tcqkb"), "RESET", "End", SubResource("AnimationNodeStateMachineTransition_olblo")]
-graph_offset = Vector2(9, -172)
+graph_offset = Vector2(52.75, -17)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_363f6"]
-graph_offset = Vector2(-157, -25)
+graph_offset = Vector2(-21.9126, 53.6829)
 nodes/Add2/node = SubResource("AnimationNodeAdd2_2405l")
-nodes/Add2/position = Vector2(360, 120)
+nodes/Add2/position = Vector2(360, 100)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_hdmcb")
+"nodes/Add2 2/position" = Vector2(580, 80)
+nodes/Arms/node = SubResource("AnimationNodeStateMachine_psjok")
+nodes/Arms/position = Vector2(340, 320)
 nodes/Movement/node = SubResource("AnimationNodeStateMachine_cvq6l")
 nodes/Movement/position = Vector2(140, 80)
 nodes/Wings/node = SubResource("AnimationNodeStateMachine_lv57i")
-nodes/Wings/position = Vector2(140, 220)
-nodes/output/position = Vector2(600, 160)
-node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Movement", &"Add2", 1, &"Wings"]
+nodes/Wings/position = Vector2(140, 200)
+nodes/output/position = Vector2(800, 120)
+node_connections = [&"output", 0, &"Add2 2", &"Add2", 0, &"Movement", &"Add2", 1, &"Wings", &"Add2 2", 0, &"Add2", &"Add2 2", 1, &"Arms"]
 
 [node name="NanahiraPapercraft" instance=ExtResource("1_vjmr4")]
 script = ExtResource("2_4spq3")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.145172, 0)
+bones/0/rotation = Quaternion(-2.98023e-08, 1.19209e-07, 3.19734e-36, 1)
+bones/1/rotation = Quaternion(0.98992, 1.11946e-07, 8.62154e-08, -0.141628)
+bones/2/rotation = Quaternion(-0.27222, 1.44555e-07, 1.07954e-07, 0.962235)
+bones/3/rotation = Quaternion(0.793968, 1.04314e-08, 1.82613e-07, 0.607959)
+bones/4/rotation = Quaternion(0.98992, 9.36135e-08, 1.28437e-07, -0.141625)
+bones/5/rotation = Quaternion(-0.272218, 6.48965e-08, 1.1749e-07, 0.962236)
+bones/6/rotation = Quaternion(0.79397, 2.77732e-08, 1.05391e-07, 0.607957)
+bones/13/rotation = Quaternion(-7.42916e-08, -5.4504e-08, 0.939693, 0.34202)
+bones/15/rotation = Quaternion(-1.93281e-07, -4.47391e-08, -0.507572, 0.861609)
+bones/16/rotation = Quaternion(-2.483e-07, -3.87301e-08, 0.939693, -0.34202)
+bones/18/rotation = Quaternion(-3.44599e-08, -2.89574e-07, 0.507572, 0.861609)
 bones/19/position = Vector3(0.01, 0.0426195, 0.0309937)
 bones/19/scale = Vector3(0.15, 0.15, 0.15)
+bones/20/rotation = Quaternion(0.0506243, 0.00727057, -0.177305, 0.982826)
+bones/21/rotation = Quaternion(0.0511769, -0.00745343, -0.179369, 0.982422)
 bones/22/position = Vector3(-0.01, 0.0426195, 0.0309937)
+bones/22/rotation = Quaternion(0.277405, -0.461624, 0.486959, 0.687619)
 bones/22/scale = Vector3(0.15, 0.15, 0.15)
+bones/23/rotation = Quaternion(0.180257, -0.00727039, 0.0388258, 0.982826)
+bones/24/rotation = Quaternion(0.182338, 0.00745328, 0.0393101, 0.982422)
 
 [node name="NanahiraPapercraft" parent="Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_wd5h7")
@@ -217,5 +268,6 @@ anim_player = NodePath("../AnimationPlayer")
 advance_expression_base_node = NodePath("..")
 active = true
 parameters/Add2/add_amount = 1.0
+"parameters/Add2 2/add_amount" = 1.0
 parameters/Movement/Walk/Blend2/blend_amount = 1.0
 parameters/Movement/Walk/TimeScale/scale = 1.0

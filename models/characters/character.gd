@@ -16,6 +16,9 @@ enum Character {
 	MESSENGER_MAGENTA,
 	MESSENGER_RED,
 	MESSENGER_NPC_RANDOM,
+	KASSAN,
+	SERA,
+	HARUKA_NANA,
 }
 
 const VELOCITY_SCALE = 2.0
@@ -24,6 +27,7 @@ var last_velocity = Vector3.ZERO
 var in_flight = false
 
 var _character: Character = Character.NANAHIRA
+var _applied_character: Character = -1
 @export var character: Character:
 	get:
 		return _character
@@ -38,12 +42,16 @@ func _reskin(node, texture):
 	material.set_shader_parameter("texture_paper", texture)
 	node.set_surface_override_material(0, material)
 
+func _ready():
+	if _applied_character != _character:
+		update_character()
 
 func update_character():
 	if not is_inside_tree():
 		return
 	if not has_node("Armature/Skeleton3D/NanahiraPapercraft"):
 		await $Armature/Skeleton3D/NanahiraPapercraft.ready
+	_applied_character = _character
 	var scene = null
 	var respath = null
 	var skin = null
@@ -89,15 +97,27 @@ func update_character():
 			scene = preload("res://models/characters/messenger_npc/messenger_npc.tscn")
 			respath = "Armature/Skeleton3D/MessengerPapercraftNPC"
 			skin = preload("res://models/characters/messenger_npc/skins/NpcMessengerPapercraftRed.png")
+		Character.KASSAN:
+			scene = preload("res://models/characters/kassan/kassan.tscn")
+			respath = "Armature/Skeleton3D/Kassan"
+			skin = preload("res://models/characters/kassan/NekoHackerPapercraft-kassan.png")
+		Character.SERA:
+			scene = preload("res://models/characters/sera/sera.tscn")
+			respath = "Armature/Skeleton3D/Sera"
+			skin = preload("res://models/characters/sera/NekoHackerPapercraft-sera.png")
+		Character.HARUKA_NANA:
+			scene = preload("res://models/characters/haruka_nana/haruka_nana.tscn")
+			respath = "Armature/Skeleton3D/HarukaNana"
+			skin = preload("res://models/characters/haruka_nana/skins/HarukaNanaPapercraft.png")
 		_:
 			push_warning("Specified character not in enum, can't load!")
 
 	if scene and respath:
 		var instance = scene.instantiate()
-		self.add_child(instance)
+		#self.add_child(instance)
 		var node = instance.get_node(respath)
 		node.reparent($Armature/Skeleton3D, false)
-		instance.queue_free()
+		#instance.queue_free()
 		if skin:
 			_reskin(node, skin)
 
@@ -130,3 +150,6 @@ func set_velocity(velocity: Vector3):
 	else:
 		$AnimationTree["parameters/Movement/playback"].travel("Idle")
 		$AnimationTree["parameters/Movement/Walk/TimeScale/scale"] = 1.0
+
+func set_holding(holding: bool):
+	$AnimationTree["parameters/Arms/playback"].travel("HoldR" if holding else "RESET")

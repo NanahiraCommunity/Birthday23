@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bme11dxkrsyp5"
-path="res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"
+uid="uid://bdm86mp5t4da0"
+path="res://.godot/imported/HarukaNanaPapercraft.png-44c64e2828a934903b09262ef6b87e0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/characters/nanahira/skins/Nanahi.png"
-dest_files=["res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"]
+source_file="res://models/characters/haruka_nana/skins/HarukaNanaPapercraft.png"
+dest_files=["res://.godot/imported/HarukaNanaPapercraft.png-44c64e2828a934903b09262ef6b87e0c.ctex"]
 
 [params]
 

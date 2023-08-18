@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bme11dxkrsyp5"
-path="res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"
+uid="uid://chkb140q0ar2e"
+path="res://.godot/imported/MinihiraOrange.svg-888a62349cc7bea50d1cbd5a1828fc9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/characters/nanahira/skins/Nanahi.png"
-dest_files=["res://.godot/imported/Nanahi.png-afe291baf313f736dc1bfd38de202315.ctex"]
+source_file="res://models/characters/minihira/skins/MinihiraOrange.svg"
+dest_files=["res://.godot/imported/MinihiraOrange.svg-888a62349cc7bea50d1cbd5a1828fc9b.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,7 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
