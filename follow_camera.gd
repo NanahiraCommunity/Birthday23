@@ -95,11 +95,13 @@ func solve_constraints():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	if not target:
+		return
+
 	var speed = Vector3.ZERO
-	if target:
-		var new_pos = target.global_position
-		speed = new_pos - real_pos
-		real_pos = new_pos
+	var new_pos = target.global_position
+	speed = new_pos - real_pos
+	real_pos = new_pos
 	var velocity = speed.length()
 
 	_process_mouse(delta)
