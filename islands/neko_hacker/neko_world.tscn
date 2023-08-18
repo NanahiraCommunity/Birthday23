@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=39 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="AudioStream" uid="uid://dprqvi6emadk8" path="res://addons/contrib/happydiamo_nekohacker_phase_1.mp3" id="1_m4ln8"]
@@ -17,6 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="11_j6tda"]
 [ext_resource type="PackedScene" uid="uid://byaqj8ky2wbph" path="res://islands/neko_hacker/audience_npc.tscn" id="12_hr6tu"]
 [ext_resource type="Script" path="res://islands/neko_hacker/audience_spawner.gd" id="13_co2uf"]
+[ext_resource type="Script" path="res://islands/neko_hacker/assign_viewport_texture.tres.gd" id="15_0f3xu"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch.gdshader" id="18_wf3ms"]
+[ext_resource type="Texture2D" uid="uid://bdhlmva24gqqc" path="res://islands/neko_hacker/binary.png" id="20_5ma7d"]
+[ext_resource type="Texture2D" uid="uid://c0mb14tbkfwv2" path="res://islands/neko_hacker/shader_screenshot.png" id="20_alnls"]
+[ext_resource type="ArrayMesh" uid="uid://2h5q33d6ebrn" path="res://islands/neko_hacker/generic_npc.obj" id="21_y5u61"]
+[ext_resource type="ArrayMesh" uid="uid://0s0w0ydwi32m" path="res://islands/neko_hacker/generic_npc_hands.obj" id="22_ycssx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjsti"]
 panorama = ExtResource("2_2f2xg")
@@ -82,39 +88,48 @@ size = Vector2(1.44, 0.81)
 [sub_resource type="Shader" id="Shader_rga8c"]
 code = "shader_type spatial;
 render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform sampler2D texture_emission : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform sampler2D viewport : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
 
 void fragment() {
 	vec2 base_uv = UV;
 	ALBEDO = vec3(0);
-	vec3 emission_tex = texture(texture_emission,base_uv).rgb;
+	vec3 emission_tex = texture(viewport,base_uv).rgb;
 	EMISSION = emission_tex;
 }
 "
 
-[sub_resource type="ImageTexture" id="ImageTexture_w4s7w"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_748fg"]
 render_priority = 0
 shader = SubResource("Shader_rga8c")
-shader_parameter/texture_emission = SubResource("ImageTexture_w4s7w")
-
-[sub_resource type="GDScript" id="GDScript_g545r"]
-script/source = "extends CSGMesh3D
-
-var setup = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var m = material.duplicate()
-	m.set_shader_parameter(\"texture_emission\", get_viewport().get_texture())
-	material_override = m
-
-func _process(delta):
-	pass
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kpr3x"]
+
+[sub_resource type="Gradient" id="Gradient_582d0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(0.716667, 0, 1, 1, 0, 0.5, 1, 1, 0, 1, 0.6, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yq78a"]
+gradient = SubResource("Gradient_582d0")
+width = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cure6"]
+render_priority = 0
+shader = ExtResource("18_wf3ms")
+shader_parameter/screen_segments = Vector2(10, 20)
+shader_parameter/bpm = 145.0
+shader_parameter/bpm_offset_s = -4.2
+shader_parameter/max_pixel_offset = 10.0
+shader_parameter/pixel_drift = 0.1
+shader_parameter/viewport = ExtResource("20_alnls")
+shader_parameter/binary_texture = ExtResource("20_5ma7d")
+shader_parameter/fresnel_color = SubResource("GradientTexture1D_yq78a")
+
+[sub_resource type="PrismMesh" id="PrismMesh_ktwrx"]
+
+[sub_resource type="TextMesh" id="TextMesh_dehin"]
+text = "your ad here"
+font_size = 64
 
 [node name="World" type="Node3D"]
 
@@ -151,7 +166,7 @@ light_cull_mask = 4293918722
 sky_mode = 1
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_7j1kp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.378581, 0.0551024, -13.7078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86965, 0.0551029, -14.6675)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="Kassan" parent="." instance=ExtResource("2_sy3b2")]
@@ -183,7 +198,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_otvg6")
 surface_material_override/1 = SubResource("ShaderMaterial_oglun")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.900106, -4.76837e-07, -16.0112)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38637, -4.76837e-07, -15.0631)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.553924, 1.14857, -0.211639)
@@ -246,13 +261,13 @@ cone_scale = 1.5
 transform = Transform3D(-1, 2.68221e-07, 1.15463e-14, 0, -4.37114e-08, -1, -2.68221e-07, -1, 4.37114e-08, 3.728, 1.601, -5.006)
 mesh = SubResource("PlaneMesh_qvtgk")
 material = SubResource("ShaderMaterial_748fg")
-script = SubResource("GDScript_g545r")
+script = ExtResource("15_0f3xu")
 
 [node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
 transform = Transform3D(-1, 2.68221e-07, 1.15463e-14, 0, -4.37114e-08, -1, -2.68221e-07, -1, 4.37114e-08, -3.72832, 1.60129, -5.00633)
 mesh = SubResource("PlaneMesh_qvtgk")
 material = SubResource("ShaderMaterial_748fg")
-script = SubResource("GDScript_g545r")
+script = ExtResource("15_0f3xu")
 
 [node name="Quickwarp" parent="." instance=ExtResource("11_j6tda")]
 transform = Transform3D(-0.999769, 0, 0.0214834, 0, 1, 0, -0.0214834, 0, -0.999769, -1.62445, -0.0024758, -18.1606)
@@ -383,3 +398,52 @@ visible = false
 use_collision = true
 size = Vector3(12.5, 2, 16)
 material = SubResource("ShaderMaterial_kpr3x")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60698, 0.4, -13.4465)
+polygon = PackedVector2Array(1.87545, 0.615958, 2.15739, 0.034223, 1.27639, -0.283468, 0.997765, 0.507829, 0.463243, 0.229988, 0.160978, 0.724502, 0.506745, 0.981804, 0.907821, 1.13066, 1.02624, 0.798392, 1.40695, 1.22267, 1.95747, 1.09334, 2.55251, 1.21416, 2.82935, 0.680534, 2.46649, 0.335511)
+depth = 0.3
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0871558, 0.996195, 0, -0.996195, 0.0871558, 1.01111, 1.04343, -13.499)
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.06587, 1.0225, -13.2821)
+sides = 32
+ring_sides = 32
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.73421, 0.604508, -13.508)
+mesh = SubResource("PrismMesh_ktwrx")
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86361, 0.902488, -13.508)
+mesh = ExtResource("21_y5u61")
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86361, 0.902488, -13.508)
+mesh = ExtResource("22_ycssx")
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.963952, 2.47081, -13.508)
+mesh = SubResource("TextMesh_dehin")
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.60698, 0.4, -13.4465)
+size = Vector3(1, 0.5, 0.2)
+material = SubResource("ShaderMaterial_cure6")
+script = ExtResource("15_0f3xu")
