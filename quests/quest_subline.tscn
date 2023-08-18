@@ -92,7 +92,7 @@ _data = {
 }
 
 [node name="QuestSubline" type="MarginContainer"]
-offset_right = 274.0
+offset_right = 374.0
 offset_bottom = 48.0
 size_flags_horizontal = 0
 size_flags_vertical = 0

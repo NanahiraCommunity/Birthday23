@@ -30,6 +30,10 @@ var head_angle = 0
 var keep_head_time = 0
 var can_talk = false
 
+var controller: Node3D:
+	get:
+		return $NanahiraPapercraft
+
 func _ready():
 	if dynamic_collision:
 		$StaticCollision.disabled = true

@@ -1,14 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://l3b78fhqrhf2"]
+[gd_scene load_steps=10 format=3 uid="uid://l3b78fhqrhf2"]
 
 [ext_resource type="Shader" path="res://islands/neko_hacker/stage_light.gdshader" id="1_kgnju"]
+[ext_resource type="Script" path="res://islands/neko_hacker/stage_light.gd" id="1_u6mh0"]
 [ext_resource type="Shader" path="res://islands/neko_hacker/stage_light_bulb.gdshader" id="2_l1wyb"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_inm2o"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_km5mg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ppmis"]
-size = Vector3(1, 1, 0.302215)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_veqij"]
+height = 0.29846
+radius = 0.100453
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnvq2"]
+render_priority = 0
+shader = ExtResource("2_l1wyb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6jl5v"]
 render_priority = 0
@@ -22,11 +28,8 @@ shader = ExtResource("1_kgnju")
 shader_parameter/multiplier = 0.2
 shader_parameter/height = 2.5
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnvq2"]
-render_priority = 0
-shader = ExtResource("2_l1wyb")
-
 [node name="stage_light" type="Node3D"]
+script = ExtResource("1_u6mh0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -56,16 +59,24 @@ mesh = SubResource("BoxMesh_km5mg")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("BoxShape3D_ppmis")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_veqij")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.154046)
 light_energy = 10.0
-spot_range = 3.5
+spot_range = 3.82114
+spot_attenuation = 3.0
 spot_angle = 20.2931
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="LightBulb" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.151204)
+radius = 0.09
+height = 0.00781377
+sides = 32
+material = SubResource("ShaderMaterial_pnvq2")
+
+[node name="Cone1" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.14303)
 flip_faces = true
 radius = 0.684363
@@ -74,7 +85,7 @@ sides = 32
 cone = true
 material = SubResource("ShaderMaterial_6jl5v")
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+[node name="Cone2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.957247)
 flip_faces = true
 radius = 0.816812
@@ -83,7 +94,7 @@ sides = 32
 cone = true
 material = SubResource("ShaderMaterial_xqnr7")
 
-[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+[node name="Cone3" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.005)
 flip_faces = true
 radius = 0.626792
@@ -92,7 +103,7 @@ sides = 32
 cone = true
 material = SubResource("ShaderMaterial_xqnr7")
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+[node name="Cone4" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1.00693)
 flip_faces = true
 radius = 0.347587
@@ -100,10 +111,3 @@ height = 2.25034
 sides = 32
 cone = true
 material = SubResource("ShaderMaterial_xqnr7")
-
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.151204)
-radius = 0.09
-height = 0.00781377
-sides = 32
-material = SubResource("ShaderMaterial_pnvq2")

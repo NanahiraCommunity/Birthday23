@@ -27,5 +27,4 @@ func _on_interact_area_body_exited(body):
 		$InteractArea/Sprite3D.visible = false
 
 func warp(scene_path: String):
-	var scene = load(scene_path)
-	scene_switcher.switch_scene(scene)
+	scene_switcher.switch_scene(scene_path)

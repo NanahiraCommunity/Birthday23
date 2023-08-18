@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2eq4qgyyxe28"
+path="res://.godot/imported/microphone.obj-ae418f1b2553ec973ec0709e454f4717.mesh"
+
+[deps]
+
+files=["res://.godot/imported/microphone.obj-ae418f1b2553ec973ec0709e454f4717.mesh"]
+
+source_file="res://islands/neko_hacker/microphone.obj"
+dest_files=["res://.godot/imported/microphone.obj-ae418f1b2553ec973ec0709e454f4717.mesh", "res://.godot/imported/microphone.obj-ae418f1b2553ec973ec0709e454f4717.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
