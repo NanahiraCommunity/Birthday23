@@ -70,6 +70,8 @@ func _visualize_flight(delta, is_flying):
 	model.set_flight(is_flying)
 
 func _physics_process(delta):
+	RenderingServer.global_shader_parameter_set("player_world_position", global_position)
+
 	sneak = Input.is_action_pressed("sneak")
 	jump_held = Input.is_action_pressed("jump")
 	jump_pressed = Input.is_action_just_pressed("jump")

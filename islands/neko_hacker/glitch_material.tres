@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://cwpgdykb8y1vp"]
+
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch_pass3.gdshader" id="1_p22ct"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch_pass2.gdshader" id="2_l1vwv"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch.gdshader" id="3_e5tqb"]
+[ext_resource type="Texture2D" uid="uid://bdhlmva24gqqc" path="res://islands/neko_hacker/binary.png" id="4_1ib4t"]
+[ext_resource type="Texture2D" uid="uid://c0mb14tbkfwv2" path="res://islands/neko_hacker/shader_screenshot.png" id="5_agu8o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1iyf"]
+render_priority = 1
+shader = ExtResource("1_p22ct")
+shader_parameter/ring_size = 0.5
+shader_parameter/ring_width = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ixml"]
+render_priority = -1
+next_pass = SubResource("ShaderMaterial_p1iyf")
+shader = ExtResource("2_l1vwv")
+shader_parameter/player_sphere_distance = 0.9
+
+[sub_resource type="Gradient" id="Gradient_582d0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(0.716667, 0, 1, 1, 0, 0.5, 1, 1, 0, 1, 0.6, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yq78a"]
+gradient = SubResource("Gradient_582d0")
+width = 4
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_8ixml")
+shader = ExtResource("3_e5tqb")
+shader_parameter/screen_segments = Vector2(10, 20)
+shader_parameter/opacity = 1.0
+shader_parameter/bpm = 145.0
+shader_parameter/bpm_offset_s = -4.2
+shader_parameter/max_pixel_offset = 10.0
+shader_parameter/pixel_drift = 0.1
+shader_parameter/viewport = ExtResource("5_agu8o")
+shader_parameter/binary_texture = ExtResource("4_1ib4t")
+shader_parameter/fresnel_color = SubResource("GradientTexture1D_yq78a")
