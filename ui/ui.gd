@@ -10,6 +10,9 @@ var PauseMenu: Node:
 
 func _ready():
 	Global.UI = self
+	if get_node_or_null("/root/SceneSwitcher/BGM"):
+		$BGM.stop()
+		$BGM.queue_free()
 
 func _enter_tree():
 	Global.UI = self
@@ -23,3 +26,14 @@ func _process(delta):
 	var ui_scale = min(scale_w, scale_h)
 	if get_tree().root.content_scale_factor != ui_scale:
 		get_tree().root.content_scale_factor = ui_scale
+
+func get_bgm() -> AudioStreamPlayer2D:
+	# will be reparented on scene switch
+	var bgm = get_node_or_null("/root/SceneSwitcher/BGM")
+	if bgm:
+		return bgm
+	else:
+		return $BGM
+
+func set_audio_pan(pos: Vector2):
+	get_bgm().position = pos * 2000.0

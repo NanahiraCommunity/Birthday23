@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://w2nb3hku11pg"]
+[gd_scene load_steps=6 format=3 uid="uid://w2nb3hku11pg"]
 
 [ext_resource type="PackedScene" uid="uid://bar7wftpdkyu0" path="res://dialogs/dialog_box.tscn" id="1_8c3g0"]
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_mu2t7"]
 [ext_resource type="PackedScene" uid="uid://bx4enm717273p" path="res://ui/pause_menu.tscn" id="2_xx607"]
 [ext_resource type="PackedScene" uid="uid://dvynxoha4vplm" path="res://ui/quests_list.tscn" id="4_51mva"]
+[ext_resource type="AudioStream" uid="uid://8n6podjo4rgl" path="res://addons/contrib/ima2nddraft.mp3" id="5_i1hvs"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -23,3 +24,10 @@ layout_mode = 1
 [node name="PauseMenu" parent="." instance=ExtResource("2_xx607")]
 visible = false
 layout_mode = 1
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("5_i1hvs")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
