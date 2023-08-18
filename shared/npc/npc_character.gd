@@ -46,7 +46,7 @@ func _input(event):
 		get_viewport().set_input_as_handled()
 
 func _process(delta):
-	var direction = global_position - Global.player.global_position
+	var direction = skeleton.to_local(Global.player.global_position)
 	var distance_squared = direction.length_squared()
 
 	$DialogIndicator.visible = (dialog_path
@@ -69,7 +69,7 @@ func _process(delta):
 		keep_head_time -= delta
 		if distance_squared <= WATCH_DISTANCE * WATCH_DISTANCE:
 			direction = direction.normalized()
-			target_angle = fmod(-atan2(-direction.x, direction.z) + 2 * TAU, TAU)
+			target_angle = fmod(-atan2(direction.x, -direction.z) + 2 * TAU, TAU)
 			if target_angle > MAX_HEAD_ROTATION && target_angle < TAU - MAX_HEAD_ROTATION:
 				target_angle = 0
 				keep_head_time = 0
