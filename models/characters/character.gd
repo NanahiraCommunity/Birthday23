@@ -151,5 +151,6 @@ func set_velocity(velocity: Vector3):
 		$AnimationTree["parameters/Movement/playback"].travel("Idle")
 		$AnimationTree["parameters/Movement/Walk/TimeScale/scale"] = 1.0
 
-func set_holding(holding: bool):
-	$AnimationTree["parameters/Arms/playback"].travel("HoldR" if holding else "RESET")
+func set_arms(animation: String):
+	# animation like HandsR or RESET
+	$AnimationTree["parameters/Arms/playback"].travel(animation)
