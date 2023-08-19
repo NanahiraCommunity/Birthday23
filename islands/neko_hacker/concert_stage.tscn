@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5r668vdr1t38"]
+[gd_scene load_steps=17 format=3 uid="uid://c5r668vdr1t38"]
 
 [ext_resource type="PackedScene" uid="uid://dxp47dy0yxaa" path="res://islands/neko_hacker/concert_hall_static.tscn" id="1_pocga"]
 [ext_resource type="PackedScene" uid="uid://l3b78fhqrhf2" path="res://islands/neko_hacker/stage_light.tscn" id="2_xjkmc"]
 [ext_resource type="Script" path="res://islands/neko_hacker/assign_viewport_texture.tres.gd" id="3_th4x8"]
 [ext_resource type="PackedScene" uid="uid://byaqj8ky2wbph" path="res://islands/neko_hacker/audience_npc.tscn" id="4_0iqs3"]
+[ext_resource type="Script" path="res://islands/neko_hacker/rave_controller.gd" id="4_vb0ct"]
 [ext_resource type="Script" path="res://islands/neko_hacker/audience_spawner.gd" id="5_2xebj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ph6n"]
@@ -199,82 +200,92 @@ mesh = SubResource("PlaneMesh_0oahb")
 material = SubResource("ShaderMaterial_4xjwo")
 script = ExtResource("3_th4x8")
 
-[node name="AudienceNPC" parent="." instance=ExtResource("4_0iqs3")]
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -6.03807)
+visible = false
+use_collision = true
+size = Vector3(12.5, 2, 16)
+material = SubResource("ShaderMaterial_iejpo")
+
+[node name="RaveController" type="Node3D" parent="."]
+script = ExtResource("4_vb0ct")
+
+[node name="AudienceNPC" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.12817, -0.001, -3.09124)
 
-[node name="AudienceNPC2" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC2" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.21414, -0.001, -3.2793)
 
-[node name="AudienceNPC8" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC8" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.08518, -0.001, -3.45124)
 
-[node name="AudienceNPC9" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC9" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.32284, -0.001, -3.56707)
 
-[node name="AudienceNPC11" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC11" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.36996, -0.001, -3.78437)
 
-[node name="AudienceNPC12" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC12" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.11205, -0.001, -3.81123)
 
-[node name="AudienceNPC3" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC3" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.24385, -0.001, -2.87622)
 
-[node name="AudienceNPC10" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC10" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -1.18641, -0.001, -2.09858)
 
-[node name="AudienceNPC13" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC13" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -1.12897, -0.001, -1.86883)
 
-[node name="AudienceNPC14" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC14" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -1.47802, -0.001, -1.95278)
 
-[node name="AudienceNPC15" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC15" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -1.62825, -0.001, -1.76279)
 
-[node name="AudienceNPC16" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC16" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -1.94637, -0.001, -1.90418)
 
-[node name="AudienceNPC17" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC17" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.99591, 0, 0.0903544, 0, 1, 0, -0.0903544, 0, 0.99591, -2.3617, -0.001, -1.78488)
 
-[node name="AudienceNPC18" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC18" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 1.1686, -0.001, -2.10742)
 
-[node name="AudienceNPC19" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC19" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 1.16418, -0.001, -1.78488)
 
-[node name="AudienceNPC20" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC20" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 1.36301, -0.001, -1.89534)
 
-[node name="AudienceNPC21" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC21" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 1.6502, -0.001, -2.04998)
 
-[node name="AudienceNPC22" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC22" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 1.65462, -0.001, -1.7186)
 
-[node name="AudienceNPC23" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC23" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 2.02135, -0.001, -1.81581)
 
-[node name="AudienceNPC24" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC24" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 2.40133, -0.001, -1.76721)
 
-[node name="AudienceNPC25" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC25" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.987002, 0, -0.160708, 0, 1, 0, 0.160708, 0, 0.987002, 2.40133, -0.001, -1.76721)
 
-[node name="AudienceNPC4" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC4" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.12284, -0.001, -3.24491)
 
-[node name="AudienceNPC5" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC5" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.25926, -0.001, -3.47512)
 
-[node name="AudienceNPC6" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC6" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.14842, -0.001, -3.74797)
 
-[node name="AudienceNPC7" parent="." instance=ExtResource("4_0iqs3")]
+[node name="AudienceNPC7" parent="RaveController" instance=ExtResource("4_0iqs3")]
 transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.38716, -0.001, -3.67123)
 
-[node name="AudienceSpawner" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.28788)
 flip_faces = true
 size = Vector3(1.91807, 0.6, 3.10487)
@@ -283,7 +294,7 @@ rng_seed = 3651
 density = 4.0
 z0_probability = 0.7
 
-[node name="AudienceSpawner8" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner8" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104401, 0, -8.22267)
 flip_faces = true
 size = Vector3(1.42002, 0.6, 1.52298)
@@ -293,7 +304,7 @@ density = 4.0
 z0_probability = 0.5
 z1_probability = 0.4
 
-[node name="AudienceSpawner9" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner9" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104401, 0, -6.17689)
 flip_faces = true
 size = Vector3(0.654527, 0.6, 2.52598)
@@ -303,7 +314,7 @@ density = 4.0
 z0_probability = 0.5
 z1_probability = 0.7
 
-[node name="AudienceSpawner2" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner2" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.960707, 0, -0.277566, 0, 1, 0, 0.277566, 0, 0.960707, 2.51376, 0, -3.24602)
 flip_faces = true
 size = Vector3(2.05122, 0.6, 2.599)
@@ -312,7 +323,7 @@ rng_seed = 3651
 density = 4.0
 z0_probability = 0.7
 
-[node name="AudienceSpawner3" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner3" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.96991, 0, 0.243463, 0, 1, 0, -0.243463, 0, 0.96991, -2.61999, 0, -3.23363)
 flip_faces = true
 size = Vector3(2.17387, 0.6, 2.599)
@@ -321,7 +332,7 @@ rng_seed = 3651
 density = 4.0
 z0_probability = 0.7
 
-[node name="AudienceSpawner4" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner4" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.99019, 0, 0.139726, 0, 1, 0, -0.139726, 0, 0.99019, -1.30712, 0, -4.25084)
 flip_faces = true
 size = Vector3(0.776229, 0.6, 0.990596)
@@ -331,7 +342,7 @@ density = 4.0
 z0_probability = 0.7
 z1_probability = 0.9
 
-[node name="AudienceSpawner6" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner6" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.99019, 0, 0.139726, 0, 1, 0, -0.139726, 0, 0.99019, -2.54482, 0, -6.6203)
 flip_faces = true
 size = Vector3(4.19668, 0.6, 4.03581)
@@ -341,7 +352,7 @@ density = 4.0
 z0_probability = 0.4
 z1_probability = 0.7
 
-[node name="AudienceSpawner7" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner7" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.983543, 0, -0.180674, 0, 1, 0, 0.180674, 0, 0.983543, 2.62293, 0, -6.54799)
 flip_faces = true
 size = Vector3(3.83574, 0.6, 4.03581)
@@ -351,7 +362,7 @@ density = 4.0
 z0_probability = 0.5
 z1_probability = 0.7
 
-[node name="AudienceSpawner5" type="CSGBox3D" parent="."]
+[node name="AudienceSpawner5" type="CSGBox3D" parent="RaveController"]
 transform = Transform3D(0.98528, 0, -0.170949, 0, 1, 0, 0.170949, 0, 0.98528, 1.30169, 0, -4.32501)
 flip_faces = true
 size = Vector3(0.776229, 0.6, 0.903261)
@@ -360,10 +371,3 @@ rng_seed = 3651
 density = 4.0
 z0_probability = 0.7
 z1_probability = 0.9
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -6.03807)
-visible = false
-use_collision = true
-size = Vector3(12.5, 2, 16)
-material = SubResource("ShaderMaterial_iejpo")

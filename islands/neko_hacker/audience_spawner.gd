@@ -25,6 +25,6 @@ func _ready():
 			var npc = npc_scene.instantiate()
 			npc.transform = transform
 			npc.translate(Vector3(xl / density - w, 0, zl / density - h))
-			get_parent().add_child.call_deferred(npc)
+			get_parent().add_audience.call_deferred(npc)
 	seed(next_seed)
 	queue_free()
