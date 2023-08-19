@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxp47dy0yxaa"]
+[gd_scene load_steps=12 format=3 uid="uid://dxp47dy0yxaa"]
 
 [ext_resource type="PackedScene" uid="uid://n23c01l74sal" path="res://islands/neko_hacker/concert_hall.glb" id="1_at5gq"]
 [ext_resource type="Texture2D" uid="uid://b0mb4vigcgb2y" path="res://islands/neko_hacker/concert_hall_ao.png" id="2_bfo0n"]
+[ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="3_ul5ig"]
+[ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="4_nykxg"]
+[ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="5_q4qge"]
+[ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="6_7lu4h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhrdx"]
 albedo_texture = ExtResource("2_bfo0n")
@@ -9,16 +13,52 @@ ao_light_affect = 1.0
 ao_texture = ExtResource("2_bfo0n")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wejdc"]
-albedo_color = Color(0.701961, 0.494118, 0.4, 1)
+albedo_color = Color(0.45098, 0.372549, 0.337255, 1)
 albedo_texture = ExtResource("2_bfo0n")
 ao_light_affect = 1.0
 ao_texture = ExtResource("2_bfo0n")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1a4s"]
-albedo_color = Color(0.6, 0.0901961, 0.368627, 1)
+albedo_color = Color(0.368627, 0.168627, 0.278431, 1)
 albedo_texture = ExtResource("2_bfo0n")
 ao_light_affect = 1.0
 ao_texture = ExtResource("2_bfo0n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4kes"]
+render_priority = 0
+shader = ExtResource("3_ul5ig")
+shader_parameter/paper_color = Color(0.733333, 0.733333, 0.733333, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 1.0
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("4_nykxg")
+shader_parameter/texture_roughness = ExtResource("6_7lu4h")
+shader_parameter/texture_normal = ExtResource("5_q4qge")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wok3s"]
+render_priority = 0
+shader = ExtResource("3_ul5ig")
+shader_parameter/paper_color = Color(0.301961, 0.301961, 0.301961, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.05
+shader_parameter/normal_scale = 0.6
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("4_nykxg")
+shader_parameter/texture_roughness = ExtResource("6_7lu4h")
+shader_parameter/texture_normal = ExtResource("5_q4qge")
 
 [node name="concert_hall" instance=ExtResource("1_at5gq")]
 
@@ -30,15 +70,86 @@ surface_material_override/2 = SubResource("StandardMaterial3D_p1a4s")
 
 [node name="DomeMid_001" parent="." index="1"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
 
 [node name="DomeMid_002" parent="." index="2"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
 
 [node name="DomeMid_003" parent="." index="3"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
 
 [node name="Cube_001" parent="." index="4"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Cube_002" parent="." index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Cube_003" parent="." index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
 
 [node name="Cube" parent="." index="7"]
 cast_shadow = 0
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_004" parent="." index="8"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_005" parent="." index="9"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_006" parent="." index="10"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Plane" parent="Plane_001" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane2" parent="Plane_001" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane3" parent="Plane_001" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane4" parent="Plane_001" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane5" parent="Plane_001" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane6" parent="Plane_001" index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane7" parent="Plane_001" index="6"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane8" parent="Plane_001" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane9" parent="Plane_001" index="8"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Plane10" parent="Plane_001" index="9"]
+surface_material_override/0 = SubResource("ShaderMaterial_k4kes")
+
+[node name="Cube_007" parent="." index="12"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_008" parent="." index="13"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_009" parent="." index="14"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_010" parent="." index="15"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_011" parent="." index="16"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_012" parent="." index="17"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")
+
+[node name="Cube_013" parent="." index="18"]
+surface_material_override/0 = SubResource("ShaderMaterial_wok3s")

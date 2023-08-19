@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=27 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="AudioStream" uid="uid://dprqvi6emadk8" path="res://addons/contrib/happydiamo_nekohacker_phase_1.mp3" id="1_m4ln8"]
@@ -14,11 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="8_824jw"]
 [ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="9_w4ddl"]
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="10_16tpb"]
-[ext_resource type="PackedScene" uid="uid://l3b78fhqrhf2" path="res://islands/neko_hacker/stage_light.tscn" id="10_h2kqo"]
 [ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="11_j6tda"]
-[ext_resource type="PackedScene" uid="uid://byaqj8ky2wbph" path="res://islands/neko_hacker/audience_npc.tscn" id="12_hr6tu"]
-[ext_resource type="Script" path="res://islands/neko_hacker/audience_spawner.gd" id="13_co2uf"]
 [ext_resource type="Script" path="res://islands/neko_hacker/assign_viewport_texture.tres.gd" id="15_0f3xu"]
+[ext_resource type="Material" uid="uid://cwpgdykb8y1vp" path="res://islands/neko_hacker/glitch_material.tres" id="16_5wxkx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjsti"]
 panorama = ExtResource("2_2f2xg")
@@ -132,28 +130,6 @@ shader_parameter/texture_normal = ExtResource("9_w4ddl")
 [sub_resource type="SphereShape3D" id="SphereShape3D_nklwj"]
 radius = 0.15
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_qvtgk"]
-size = Vector2(1.44, 0.81)
-
-[sub_resource type="Shader" id="Shader_rga8c"]
-code = "shader_type spatial;
-render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
-uniform sampler2D viewport : source_color, hint_default_black,filter_linear_mipmap,repeat_enable;
-
-void fragment() {
-	vec2 base_uv = UV;
-	ALBEDO = vec3(0);
-	vec3 emission_tex = texture(viewport,base_uv).rgb;
-	EMISSION = emission_tex;
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_748fg"]
-render_priority = 0
-shader = SubResource("Shader_rga8c")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpr3x"]
-
 [node name="World" type="Node3D"]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
@@ -189,7 +165,7 @@ light_cull_mask = 4293918722
 sky_mode = 1
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_7j1kp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.950927, 0.0551029, -4.02615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51458, 0.0551029, -15.3817)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="Kassan" parent="." instance=ExtResource("2_sy3b2")]
@@ -238,7 +214,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_otvg6")
 surface_material_override/1 = SubResource("ShaderMaterial_oglun")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.38637, -4.76837e-07, -15.0631)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.20921, -4.76837e-07, -16.588)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, -0.553924, 1.14857, -0.211639)
@@ -258,183 +234,14 @@ shape = SubResource("SphereShape3D_nklwj")
 
 [node name="UI" parent="." instance=ExtResource("7_47jc1")]
 
-[node name="concert_stage" parent="." instance=ExtResource("5_jd887")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-
-[node name="stage_light" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.979519, -0.142377, -0.142377, 0.14736, -0.0250329, -0.988766, 0.137214, -0.989496, 0.045502, 1.30744, 2.9912, -3.80561)
-player_only_light = false
-
-[node name="stage_light2" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.999753, -0.0157091, -0.0157091, 0.0162589, -0.035504, -0.999237, 0.0151394, -0.999246, 0.0357517, 0.0660665, 2.96133, -3.81644)
-player_only_light = false
-
-[node name="stage_light3" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.990462, 0.0974322, 0.0974322, -0.100842, -0.0306961, -0.994429, -0.0938986, -0.994769, 0.0402285, -1.16079, 2.94928, -3.78601)
-player_only_light = false
-
-[node name="stage_light4" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.827175, -0.128645, 0.547021, 0.129028, 0.903957, 0.407694, -0.546931, 0.407816, -0.731132, -2.43183, 2.87881, -4.31945)
-cone_scale = 1.5
-
-[node name="stage_light5" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.770911, 0.0668845, 0.633422, 0.0994414, 0.994916, 0.01597, -0.629134, 0.0753, -0.773642, -3.71703, 2.87881, -4.31945)
-cone_scale = 1.5
-
-[node name="stage_light6" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(0.886407, -0.245552, -0.392413, -0.0419774, -0.886859, 0.460131, -0.461001, -0.39139, -0.796425, 2.55964, 2.87881, -4.31945)
-cone_scale = 1.5
-
-[node name="stage_light8" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(-0.771689, -0.0542824, 0.633679, 0.487013, 0.590367, 0.643651, -0.409041, 0.805309, -0.429144, -2.43183, 0.444827, -4.92648)
-cone_scale = 1.5
-
-[node name="stage_light9" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(0.808185, -0.0924578, -0.581627, 0.412662, -0.615707, 0.67128, -0.420176, -0.782533, -0.45945, 2.55964, 0.444827, -4.92648)
-cone_scale = 1.5
-
-[node name="stage_light7" parent="." instance=ExtResource("10_h2kqo")]
-transform = Transform3D(0.866561, -0.145391, -0.477425, -0.166002, -0.986125, -0.000998065, -0.470655, 0.0801185, -0.878672, 3.84485, 2.87881, -4.31945)
-cone_scale = 1.5
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 2.68221e-07, 1.15463e-14, 0, -4.37114e-08, -1, -2.68221e-07, -1, 4.37114e-08, 3.728, 1.601, -5.006)
-mesh = SubResource("PlaneMesh_qvtgk")
-material = SubResource("ShaderMaterial_748fg")
-script = ExtResource("15_0f3xu")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="."]
-transform = Transform3D(-1, 2.68221e-07, 1.15463e-14, 0, -4.37114e-08, -1, -2.68221e-07, -1, 4.37114e-08, -3.72832, 1.60129, -5.00633)
-mesh = SubResource("PlaneMesh_qvtgk")
-material = SubResource("ShaderMaterial_748fg")
-script = ExtResource("15_0f3xu")
-
 [node name="Quickwarp" parent="." instance=ExtResource("11_j6tda")]
 transform = Transform3D(-0.999769, 0, 0.0214834, 0, 1, 0, -0.0214834, 0, -0.999769, -1.62445, -0.0024758, -18.1606)
 
-[node name="AudienceNPC" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.12817, -0.001, -7.05317)
-
-[node name="AudienceNPC2" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.21414, -0.001, -7.24123)
-
-[node name="AudienceNPC8" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.08518, -0.001, -7.41317)
-
-[node name="AudienceNPC9" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.32284, -0.001, -7.529)
-
-[node name="AudienceNPC11" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.36996, -0.001, -7.7463)
-
-[node name="AudienceNPC12" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.977999, 0, -0.208611, 0, 1, 0, 0.208611, 0, 0.977999, 1.11205, -0.001, -7.77316)
-
-[node name="AudienceNPC3" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.13137, -0.001, -6.934)
-
-[node name="AudienceNPC4" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.12284, -0.001, -7.20684)
-
-[node name="AudienceNPC5" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.25926, -0.001, -7.43705)
-
-[node name="AudienceNPC6" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.14842, -0.001, -7.7099)
-
-[node name="AudienceNPC7" parent="." instance=ExtResource("12_hr6tu")]
-transform = Transform3D(0.983647, 0, 0.180107, 0, 1, 0, -0.180107, 0, 0.983647, -1.38716, -0.001, -7.63316)
-
-[node name="AudienceSpawner" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.59379)
-flip_faces = true
-size = Vector3(1.91807, 0.6, 2.599)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.7
-
-[node name="AudienceSpawner8" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104401, 0, -12.1846)
-flip_faces = true
-size = Vector3(1.42002, 0.6, 1.52298)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.0
-z1_probability = 0.25
-
-[node name="AudienceSpawner9" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104401, 0, -10.5142)
-flip_faces = true
-size = Vector3(0.654527, 0.6, 1.77574)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.25
-z1_probability = 0.5
-
-[node name="AudienceSpawner2" type="CSGBox3D" parent="."]
-transform = Transform3D(0.960707, 0, -0.277566, 0, 1, 0, 0.277566, 0, 0.960707, 2.33998, 0, -7.25816)
-flip_faces = true
-size = Vector3(1.91807, 0.6, 2.599)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.7
-
-[node name="AudienceSpawner3" type="CSGBox3D" parent="."]
-transform = Transform3D(0.958681, 0, 0.284484, 0, 1, 0, -0.284484, 0, 0.958681, -2.34129, 0, -7.25777)
-flip_faces = true
-size = Vector3(1.91807, 0.6, 2.599)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.7
-
-[node name="AudienceSpawner4" type="CSGBox3D" parent="."]
-transform = Transform3D(0.99019, 0, 0.139726, 0, 1, 0, -0.139726, 0, 0.99019, -1.30712, 0, -8.21277)
-flip_faces = true
-size = Vector3(0.776229, 0.6, 0.990596)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.7
-z1_probability = 0.9
-
-[node name="AudienceSpawner6" type="CSGBox3D" parent="."]
-transform = Transform3D(0.99019, 0, 0.139726, 0, 1, 0, -0.139726, 0, 0.99019, -2.12621, 0, -10.6413)
-flip_faces = true
-size = Vector3(3.58057, 0.6, 4.03581)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.0
-z1_probability = 0.7
-
-[node name="AudienceSpawner7" type="CSGBox3D" parent="."]
-transform = Transform3D(0.983543, 0, -0.180674, 0, 1, 0, 0.180674, 0, 0.983543, 2.28388, 0, -10.5722)
-flip_faces = true
-size = Vector3(3.50452, 0.6, 4.03581)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.0
-z1_probability = 0.7
-
-[node name="AudienceSpawner5" type="CSGBox3D" parent="."]
-transform = Transform3D(0.98528, 0, -0.170949, 0, 1, 0, 0.170949, 0, 0.98528, 1.30169, 0, -8.28694)
-flip_faces = true
-size = Vector3(0.776229, 0.6, 0.903261)
-script = ExtResource("13_co2uf")
-rng_seed = 3651
-density = 4.0
-z0_probability = 0.7
-z1_probability = 0.9
+[node name="concert_stage" parent="." instance=ExtResource("5_jd887")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -10)
-visible = false
-use_collision = true
-size = Vector3(12.5, 2, 16)
-material = SubResource("ShaderMaterial_kpr3x")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93527, 0.767031, -14.4751)
+size = Vector3(1.72916, 1.4691, 0.358506)
+material = ExtResource("16_5wxkx")
+script = ExtResource("15_0f3xu")
