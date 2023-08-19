@@ -1,31 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxp47dy0yxaa"]
+[gd_scene load_steps=6 format=3 uid="uid://dxp47dy0yxaa"]
 
 [ext_resource type="PackedScene" uid="uid://n23c01l74sal" path="res://islands/neko_hacker/concert_hall.glb" id="1_at5gq"]
 [ext_resource type="Texture2D" uid="uid://b0mb4vigcgb2y" path="res://islands/neko_hacker/concert_hall_ao.png" id="2_bfo0n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhrdx"]
-albedo_color = Color(2, 2, 2, 1)
+albedo_texture = ExtResource("2_bfo0n")
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_bfo0n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wejdc"]
+albedo_color = Color(0.701961, 0.494118, 0.4, 1)
+albedo_texture = ExtResource("2_bfo0n")
+ao_light_affect = 1.0
+ao_texture = ExtResource("2_bfo0n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1a4s"]
+albedo_color = Color(0.6, 0.0901961, 0.368627, 1)
 albedo_texture = ExtResource("2_bfo0n")
 ao_light_affect = 1.0
 ao_texture = ExtResource("2_bfo0n")
 
 [node name="concert_hall" instance=ExtResource("1_at5gq")]
 
-[node name="Cube" parent="." index="0"]
-cast_shadow = 0
-
-[node name="DomeMid" parent="." index="1"]
+[node name="DomeMid" parent="." index="0"]
 cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_xhrdx")
+surface_material_override/1 = SubResource("StandardMaterial3D_wejdc")
+surface_material_override/2 = SubResource("StandardMaterial3D_p1a4s")
 
-[node name="DomeMid_001" parent="." index="2"]
+[node name="DomeMid_001" parent="." index="1"]
 cast_shadow = 0
 
-[node name="DomeMid_002" parent="." index="3"]
+[node name="DomeMid_002" parent="." index="2"]
 cast_shadow = 0
 
-[node name="DomeMid_003" parent="." index="4"]
+[node name="DomeMid_003" parent="." index="3"]
 cast_shadow = 0
 
-[node name="Cube_001" parent="." index="5"]
+[node name="Cube_001" parent="." index="4"]
+cast_shadow = 0
+
+[node name="Cube" parent="." index="7"]
 cast_shadow = 0
