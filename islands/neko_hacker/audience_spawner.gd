@@ -3,6 +3,7 @@ extends CSGBox3D
 @export var rng_seed: int = 1
 @export var density: float = 2.0
 @export var random_distribution: float = 0.1
+@export var corrupt: bool = false
 
 @export_range(0.0, 1.0) var z0_probability: float = 1.0
 @export_range(0.0, 1.0) var z1_probability: float = 1.0
@@ -25,6 +26,8 @@ func _ready():
 			var npc = npc_scene.instantiate()
 			npc.transform = transform
 			npc.translate(Vector3(xl / density - w, 0, zl / density - h))
+			if corrupt:
+				npc.corrupt(get_viewport())
 			get_parent().add_audience.call_deferred(npc)
 	seed(next_seed)
 	queue_free()
