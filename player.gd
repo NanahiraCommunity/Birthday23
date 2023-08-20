@@ -27,10 +27,18 @@ const FLIGHT_DRAG_HORIZONTAL = 0.01
 @onready var skeleton: Skeleton3D = model.get_node("Armature/Skeleton3D")
 @onready var root_bone: int = skeleton.find_bone("Root")
 
+var oob_height: float = -20
+
 func _ready():
 	Global.player = self
 
-var flight_strokes_max = 3
+func _enter_tree():
+	await get_tree().process_frame
+	var oobnode = get_tree().current_scene.get_node_or_null("OOBHeight")
+	if oobnode:
+		oob_height = oobnode.global_position.y
+
+var flight_strokes_max = 2
 var flight_strokes = flight_strokes_max
 var flight_stroke_timer_first = 0.2
 var flight_stroke_timer_max = 0.3
@@ -75,7 +83,10 @@ func reset():
 	model.set_flight(false)
 
 func _physics_process(delta):
-	RenderingServer.global_shader_parameter_set("player_world_position", global_position)
+	var gpos = global_position
+	RenderingServer.global_shader_parameter_set("player_world_position", gpos)
+	if gpos.y < oob_height:
+		animate_oob()
 
 	sneak = Input.is_action_pressed("sneak")
 	jump_held = Input.is_action_pressed("jump")
@@ -259,4 +270,14 @@ func talk(delta):
 	# Ideally, we should make the character turn to face the npc
 	# being talked to here
 
+var _animating_oob = false
+func animate_oob():
+	if _animating_oob:
+		return
+	_animating_oob = true
+	SFX.play(preload("res://sfx/falldown.wav"))
+	await SceneSwitcher.fade_to_black()
+	Global.respawn_scene()
+	await SceneSwitcher.unfade_from_black()
+	_animating_oob = false
 

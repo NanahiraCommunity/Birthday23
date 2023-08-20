@@ -107,6 +107,13 @@ func is_quest_complete(qid: StringName):
 	else:
 		return false
 
+func respawn_scene():
+	if neko_world:
+		# better performance
+		neko_world.reload()
+	else:
+		get_tree().reload_current_scene()
+
 # per-island state
 
 var neko_world = null
