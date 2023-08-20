@@ -26,7 +26,7 @@ func _process(delta):
 	pass
 
 func preprocess_bbcode(text: String) -> String:
-	return text.replace("[b]", "[color=#aa2a0e]").replace("[/b]", "[/color]")
+	return text.replace("[b]", "[color=#aa2a0e]").replace("[/b]", "[/color]").replace("\\n", "\n")
 
 var player: CharacterBody3D
 var in_dialog: bool = false
