@@ -136,3 +136,12 @@ func _physics_process(delta):
 	solve_constraints()
 
 	look_at(lookat_pos + LOOKAT_OFFSET)
+
+func teleport(new_cam_pos: Vector3):
+	camera_position = new_cam_pos
+	global_position = new_cam_pos
+	real_pos = target.global_position
+	lookat_pos = real_pos
+	height_offset = 0.0
+	solve_constraints()
+	look_at(lookat_pos + LOOKAT_OFFSET)
