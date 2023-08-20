@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c5r668vdr1t38"]
+[gd_scene load_steps=18 format=3 uid="uid://c5r668vdr1t38"]
 
 [ext_resource type="PackedScene" uid="uid://dxp47dy0yxaa" path="res://islands/neko_hacker/concert_hall_static.tscn" id="1_pocga"]
 [ext_resource type="PackedScene" uid="uid://l3b78fhqrhf2" path="res://islands/neko_hacker/stage_light.tscn" id="2_xjkmc"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://byaqj8ky2wbph" path="res://islands/neko_hacker/audience_npc.tscn" id="4_0iqs3"]
 [ext_resource type="Script" path="res://islands/neko_hacker/rave_controller.gd" id="4_vb0ct"]
 [ext_resource type="Script" path="res://islands/neko_hacker/audience_spawner.gd" id="5_2xebj"]
+[ext_resource type="PackedScene" uid="uid://270g3h41drvg" path="res://islands/neko_hacker/bugs.tscn" id="7_7p3xv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5ph6n"]
 
@@ -371,3 +372,12 @@ rng_seed = 3651
 density = 4.0
 z0_probability = 0.7
 z1_probability = 0.9
+
+[node name="bugs" parent="." instance=ExtResource("7_7p3xv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39244, 0, -13.263)
+
+[node name="bugs2" parent="." instance=ExtResource("7_7p3xv")]
+transform = Transform3D(0.790935, 0, 0.6119, 0, 1, 0, -0.6119, 0, 0.790935, -5.87842, -2.38419e-07, 0.917224)
+
+[node name="bugs3" parent="." instance=ExtResource("7_7p3xv")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 6.2456, 0.571901, -1.46255)
