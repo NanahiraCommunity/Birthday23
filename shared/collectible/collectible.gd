@@ -11,6 +11,7 @@ const Y_MAX = 0.48
 @export var type: Global.Collectible = Global.Collectible.STAMP
 @export var value = 1
 @export var animation: String
+@export var sfx: AudioStream
 
 var collected = false
 func _physics_process(delta):
@@ -29,7 +30,7 @@ func _physics_process(delta):
 			collect()
 			return
 
-func set_distance(d: float):
+func set_distance(_d: float):
 	# overridable
 	pass
 
@@ -37,6 +38,8 @@ func collect():
 	collected = true
 	Global.collectibles[type] += value
 	if animation:
+		if sfx:
+			SFX.play(sfx)
 		$AnimationPlayer.play(animation)
 		await $AnimationPlayer.animation_finished
 	queue_free()

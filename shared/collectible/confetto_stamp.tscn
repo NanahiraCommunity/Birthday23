@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://co5uyjdsx8gn4"]
+[gd_scene load_steps=11 format=3 uid="uid://co5uyjdsx8gn4"]
 
 [ext_resource type="Script" path="res://shared/collectible/confetto_stamp.gd" id="1_saiys"]
 [ext_resource type="ArrayMesh" uid="uid://dw3wo6ebaytes" path="res://shared/collectible/confetto.obj" id="2_inx7l"]
+[ext_resource type="AudioStream" uid="uid://bxwoajfx206nv" path="res://sfx/pickup_coin.wav" id="2_tryss"]
 [ext_resource type="Material" uid="uid://c2uq2y15re4mo" path="res://shared/collectible/stamp_material.tres" id="3_p1xtf"]
 [ext_resource type="Shader" path="res://shared/collectible/confetto_stamp_glow.gdshader" id="4_24ho0"]
 
@@ -180,6 +181,7 @@ _data = {
 [node name="ConfettoStamp" type="Node3D"]
 script = ExtResource("1_saiys")
 color_big = Color(0.619608, 0.415686, 1, 1)
+sfx = ExtResource("2_tryss")
 
 [node name="Confetto" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.937889, -0.346936, 0, 0.346936, 0.937889, 0, 0, 0, 1, 0, 0, 0)
