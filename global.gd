@@ -14,7 +14,8 @@ enum Collectible
 {
 	# must be strictly incrementing, since you can use Collectible.XYZ as index to `collectibles`
 	STAMP,
-	TAIYAKI
+	TAIYAKI,
+	BUGS,
 }
 
 # global state
@@ -34,7 +35,13 @@ var in_dialog: bool = false
 var collectibles: PackedInt32Array = [
 	0, # STAMP
 	0, # TAIYAKI
+	0, # BUGS
 ]
+
+func collect_animated(c: Collectible, n: int):
+	for i in range(0, n):
+		collectibles[c] += 1
+		await get_tree().create_timer(0.2).timeout
 
 var _completed_quests: Array[StringName]
 # StringName -> Quest
