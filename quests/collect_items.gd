@@ -8,15 +8,19 @@ extends Quest
 var offset_amount: int = 0
 var last_amount: int = 0
 
+var collected: int:
+	get:
+		return Global.collectibles[collect_type] + offset_amount
+
 func start():
 	super()
-	if not ignore_current_global_count:
+	last_amount = Global.collectibles[collect_type]
+	if ignore_current_global_count:
 		offset_amount = -Global.collectibles[collect_type]
-		last_amount = Global.collectibles[collect_type]
 
 func _process(delta):
 	if not done:
-		var count = Global.collectibles[collect_type] + offset_amount
+		var count = collected
 		if count >= collect_amount:
 			finished.emit()
 		elif Global.collectibles[collect_type] != last_amount:
@@ -24,5 +28,4 @@ func _process(delta):
 			updated.emit()
 
 func get_text():
-	var collected = Global.collectibles[collect_type] + offset_amount
 	return description + "   " + str(collected) + " / " + str(collect_amount)

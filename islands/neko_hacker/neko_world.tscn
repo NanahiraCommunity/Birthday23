@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=75 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="Script" path="res://islands/neko_hacker/neko_world_loader.gd" id="1_86hvk"]
@@ -10,6 +10,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b2eq4qgyyxe28" path="res://islands/neko_hacker/microphone.obj" id="5_ilkbb"]
 [ext_resource type="Script" path="res://shared/npc/npc_holding.gd" id="5_o8wuw"]
 [ext_resource type="ArrayMesh" uid="uid://c2m4e46t20hdc" path="res://islands/neko_hacker/guitar.obj" id="6_05cld"]
+[ext_resource type="Script" path="res://islands/neko_hacker/neko_hacker_player.gd" id="6_h2sbx"]
 [ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="7_47jc1"]
 [ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="7_x6s04"]
 [ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="8_824jw"]
@@ -20,18 +21,24 @@
 [ext_resource type="PackedScene" uid="uid://cnqeyhpwa7581" path="res://islands/neko_hacker/concert_hall_stage2_static.tscn" id="16_jdj8j"]
 [ext_resource type="Material" uid="uid://cwpgdykb8y1vp" path="res://islands/neko_hacker/glitch_material.tres" id="17_bebpu"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="17_cd3bw"]
+[ext_resource type="Script" path="res://islands/neko_hacker/stage2.gd" id="17_ywuvk"]
 [ext_resource type="Script" path="res://shared/collectible/collectible_grid_generator.gd" id="18_6gflc"]
 [ext_resource type="PackedScene" uid="uid://270g3h41drvg" path="res://islands/neko_hacker/bugs.tscn" id="20_a0nvy"]
 [ext_resource type="Script" path="res://islands/neko_hacker/rave_controller.gd" id="21_3ntny"]
 [ext_resource type="MeshLibrary" uid="uid://djxgl2hv7ukx0" path="res://islands/neko_hacker/asteroids/asteroids.tres" id="22_dp4lo"]
 [ext_resource type="Script" path="res://islands/neko_hacker/audience_spawner.gd" id="22_j32ub"]
 [ext_resource type="Script" path="res://islands/neko_hacker/glitch_surface.gd" id="25_j82a0"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch_pass3.gdshader" id="26_o4ng8"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="26_sy007"]
 [ext_resource type="ArrayMesh" uid="uid://2h5q33d6ebrn" path="res://islands/neko_hacker/generic_npc.obj" id="27_icfrp"]
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="27_j6pmh"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch_pass2.gdshader" id="27_r74s2"]
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch.gdshader" id="28_j30xj"]
 [ext_resource type="Script" path="res://quests/waypoint_quest.gd" id="28_p78hx"]
 [ext_resource type="Texture2D" uid="uid://bme11dxkrsyp5" path="res://models/characters/nanahira/skins/Nanahi.png" id="28_tvkf6"]
 [ext_resource type="Script" path="res://shared/camera_helper/camera_helper.gd" id="28_xou70"]
+[ext_resource type="Texture2D" uid="uid://c0mb14tbkfwv2" path="res://islands/neko_hacker/shader_screenshot.png" id="29_ajubm"]
+[ext_resource type="Script" path="res://islands/neko_hacker/countdown.gd" id="33_lki60"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjsti"]
 panorama = ExtResource("2_2f2xg")
@@ -93,6 +100,242 @@ particles_anim_loop = true
 [sub_resource type="QuadMesh" id="QuadMesh_eurxq"]
 material = SubResource("StandardMaterial3D_vrufp")
 size = Vector2(0.05, 0.05)
+
+[sub_resource type="Shader" id="Shader_3u3yo"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's ParticleProcessMaterial.
+
+shader_type particles;
+uniform float amount;
+uniform vec3 direction;
+uniform float spawn_spread;
+uniform float spread;
+uniform float flatness;
+uniform float initial_linear_velocity_min;
+uniform float initial_angle_min;
+uniform float angular_velocity_min;
+uniform float orbit_velocity_min;
+uniform float linear_accel_min;
+uniform float radial_accel_min;
+uniform float tangent_accel_min;
+uniform float damping_min;
+uniform float scale_min;
+uniform float hue_variation_min;
+uniform float anim_speed_min;
+uniform float anim_offset_min;
+uniform float initial_linear_velocity_max;
+uniform float initial_angle_max;
+uniform float angular_velocity_max;
+uniform float orbit_velocity_max;
+uniform float linear_accel_max;
+uniform float radial_accel_max;
+uniform float tangent_accel_max;
+uniform float damping_max;
+uniform float scale_max;
+uniform float hue_variation_max;
+uniform float anim_speed_max;
+uniform float anim_offset_max;
+uniform float lifetime_randomness;
+uniform float emission_sphere_radius;
+uniform vec4 color_value : source_color;
+uniform vec3 gravity;
+uniform sampler2D color_ramp : repeat_disable;
+uniform sampler2D angular_velocity_texture : repeat_disable;
+
+
+float rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+float rand_from_seed_m1_p1(inout uint seed) {
+	return rand_from_seed(seed) * 2.0 - 1.0;
+}
+
+uint hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+void start() {
+	uint base_number = NUMBER;
+	uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+	float angle_rand = rand_from_seed(alt_seed);
+	float scale_rand = rand_from_seed(alt_seed);
+	float hue_rot_rand = rand_from_seed(alt_seed);
+	float anim_offset_rand = rand_from_seed(alt_seed);
+	float pi = 3.14159;
+	float degree_to_rad = pi / 180.0;
+
+	float tex_angle = 1.0;
+	float tex_anim_offset = 1.0;
+	float spread_rad = spread * degree_to_rad;
+	if (RESTART_VELOCITY) {
+		float tex_linear_velocity = 1.0;
+		{
+			float angle1_rad = rand_from_seed_m1_p1(alt_seed) * spread_rad;
+			angle1_rad += direction.x != 0.0 ? atan(direction.y, direction.x) : sign(direction.y) * (pi / 2.0);
+			vec3 rot = vec3(cos(angle1_rad), sin(angle1_rad), 0.0);
+			VELOCITY = rot * mix(initial_linear_velocity_min,initial_linear_velocity_max, rand_from_seed(alt_seed));
+		}
+	}
+	float base_angle = (tex_angle) * mix(initial_angle_min, initial_angle_max, angle_rand);
+	CUSTOM.x = base_angle * degree_to_rad;
+	CUSTOM.y = 0.0;
+	CUSTOM.w = (1.0 - lifetime_randomness * rand_from_seed(alt_seed));
+
+	if (RESTART_ROT_SCALE) {
+		TRANSFORM[0].xyz = vec3(1.0, 0.0, 0.0);
+		TRANSFORM[1].xyz = vec3(0.0, 1.0, 0.0);
+		TRANSFORM[2].xyz = vec3(0.0, 0.0, 1.0);
+	}
+
+	if (RESTART_POSITION) {
+		float t = rand_from_seed(alt_seed) * 2.0 * pi;
+		float donut = rand_from_seed(alt_seed); // 0 - 1
+		float radius = emission_sphere_radius + donut * spawn_spread;
+		donut = donut * 2.0 - 1.0; // -1 - 1
+		float height = sqrt(1.0 - donut * donut);
+		TRANSFORM[3].xyz = vec3(radius * cos(t), radius * sin(t), sign(rand_from_seed(alt_seed) - 0.5) * height);
+		if (RESTART_VELOCITY) VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
+		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+		VELOCITY.z = 0.0;
+	}
+}
+
+void process() {
+	uint base_number = NUMBER;
+	uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
+	float angle_rand = rand_from_seed(alt_seed);
+	float scale_rand = rand_from_seed(alt_seed);
+	float hue_rot_rand = rand_from_seed(alt_seed);
+	float anim_offset_rand = rand_from_seed(alt_seed);
+	float pi = 3.14159;
+	float degree_to_rad = pi / 180.0;
+
+	CUSTOM.y += DELTA / LIFETIME;
+	float time = CUSTOM.y + float(INDEX) / amount;
+	float tv = CUSTOM.y / CUSTOM.w;
+	float tex_linear_velocity = 1.0;
+	float tex_orbit_velocity = 1.0;
+	float tex_angular_velocity = textureLod(angular_velocity_texture, vec2(tv, 0.0), 0.0).r;
+	float tex_linear_accel = 1.0;
+	float tex_radial_accel = 1.0;
+	float tex_tangent_accel = 1.0;
+	float tex_damping = 1.0;
+	float tex_angle = 1.0;
+	float tex_anim_speed = 1.0;
+	float tex_anim_offset = 1.0;
+	vec3 force = gravity;
+	vec3 pos = TRANSFORM[3].xyz;
+
+	if (time <= 1.85) {
+		// apply linear acceleration
+		force += length(VELOCITY) > 0.0 ? normalize(VELOCITY) * tex_linear_accel * mix(linear_accel_min, linear_accel_max, rand_from_seed(alt_seed)) : vec3(0.0);
+		// apply radial acceleration
+		vec3 org = EMISSION_TRANSFORM[3].xyz;
+		vec3 diff = pos - org;
+		force += length(diff) > 0.0 ? normalize(diff) * tex_radial_accel * mix(radial_accel_min, radial_accel_max, rand_from_seed(alt_seed)) : vec3(0.0);
+		// apply tangential acceleration;
+		float tangent_accel_val = tex_tangent_accel * mix(tangent_accel_min, tangent_accel_max, rand_from_seed(alt_seed));
+		force += length(diff.yx) > 0.0 ? vec3(normalize(diff.yx * vec2(-1.0, 1.0)), 0.0) * tangent_accel_val : vec3(0.0);
+		force += ATTRACTOR_FORCE;
+
+		// apply attractor forces
+		VELOCITY += force * DELTA;
+		
+		// orbit velocity
+		float orbit_amount = tex_orbit_velocity * mix(orbit_velocity_min, orbit_velocity_max, rand_from_seed(alt_seed));
+		if (orbit_amount != 0.0) {
+		     float ang = orbit_amount * DELTA * pi * 2.0;
+		     mat2 rot = mat2(vec2(cos(ang), -sin(ang)), vec2(sin(ang), cos(ang)));
+		     TRANSFORM[3].xy -= diff.xy;
+		     TRANSFORM[3].xy += rot * diff.xy;
+		}
+		float dmp = mix(damping_min, damping_max, rand_from_seed(alt_seed));
+		if (dmp * tex_damping > 0.0) {
+			float v = length(VELOCITY);
+			float damp = tex_damping * dmp;
+			v -= damp * DELTA;
+			if (v < 0.0) {
+				VELOCITY = vec3(0.0);
+			} else {
+				VELOCITY = normalize(VELOCITY) * v;
+			}
+		}
+		float base_angle = (tex_angle) * mix(initial_angle_min, initial_angle_max, angle_rand);
+		base_angle += CUSTOM.y * LIFETIME * (tex_angular_velocity) * mix(angular_velocity_min,angular_velocity_max, rand_from_seed(alt_seed));
+		CUSTOM.x = base_angle * degree_to_rad;
+		COLOR = textureLod(color_ramp, vec2(time * 0.5, 0.0), 0.0);
+		
+		if (time >= 1.8) {
+			VELOCITY -= TRANSFORM[3].xyz * (1.0 - DELTA);
+		}
+	}
+
+	TRANSFORM[0] = vec4(cos(CUSTOM.x), -sin(CUSTOM.x), 0.0, 0.0);
+	TRANSFORM[1] = vec4(sin(CUSTOM.x), cos(CUSTOM.x), 0.0, 0.0);
+	TRANSFORM[2] = vec4(0.0, 0.0, 1.0, 0.0);
+	if (CUSTOM.y > CUSTOM.w) {
+		ACTIVE = false;
+	}
+}
+
+"
+
+[sub_resource type="Gradient" id="Gradient_e3tk8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.604478, 0.868159)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.0980392, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vnai8"]
+gradient = SubResource("Gradient_e3tk8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkquh"]
+shader = SubResource("Shader_3u3yo")
+shader_parameter/amount = 20000.0
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spawn_spread = 2.0
+shader_parameter/spread = 45.0
+shader_parameter/flatness = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/orbit_velocity_min = 0.25
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_max = 0.3
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_max = 0.01
+shader_parameter/anim_offset_max = 1.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_sphere_radius = 2.0
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, -1e-06, 0)
+shader_parameter/color_ramp = SubResource("GradientTexture1D_vnai8")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_nklwj"]
 radius = 0.15
@@ -213,6 +456,41 @@ outer_radius = 2.0
 inner_radius = 3.0
 outer_radius = 2.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p1iyf"]
+render_priority = 1
+shader = ExtResource("26_o4ng8")
+shader_parameter/ring_size = 0.5
+shader_parameter/ring_width = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ixml"]
+render_priority = -1
+next_pass = SubResource("ShaderMaterial_p1iyf")
+shader = ExtResource("27_r74s2")
+shader_parameter/player_sphere_distance = 0.9
+
+[sub_resource type="Gradient" id="Gradient_582d0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(0.716667, 0, 1, 1, 0, 0.5, 1, 1, 0, 1, 0.6, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yq78a"]
+gradient = SubResource("Gradient_582d0")
+width = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4qs37"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_8ixml")
+shader = ExtResource("28_j30xj")
+shader_parameter/screen_segments = Vector2(10, 20)
+shader_parameter/opacity = 0.1
+shader_parameter/bpm = 145.0
+shader_parameter/bpm_offset_s = -4.2
+shader_parameter/max_pixel_offset = 10.0
+shader_parameter/pixel_drift = 0.1
+shader_parameter/viewport = ExtResource("29_ajubm")
+shader_parameter/binary_texture = ExtResource("4_hexcu")
+shader_parameter/fresnel_color = SubResource("GradientTexture1D_yq78a")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1uqs3"]
 render_priority = 0
 shader = ExtResource("7_x6s04")
@@ -253,6 +531,9 @@ radius = 0.376175
 [sub_resource type="SphereShape3D" id="SphereShape3D_kf7bf"]
 radius = 0.209
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_m8xcp"]
+radius = 1.35282
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_86hvk")
 
@@ -287,16 +568,28 @@ process_material = SubResource("ParticleProcessMaterial_2rji4")
 draw_pass_1 = SubResource("QuadMesh_eurxq")
 
 [node name="OOBHeight" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.1875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.9575, 0)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_7j1kp")]
 transform = Transform3D(0.244817, 0, -0.969569, 0, 1, 0, 0.969569, 0, 0.244817, 1.01758, 2.82932, -9.34907)
+script = ExtResource("6_h2sbx")
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="ParticlesAttractor" type="GPUParticlesAttractorSphere3D" parent="Player"]
 strength = 100.0
 attenuation = 9.51366
 radius = 0.5
+
+[node name="Timelimit" type="GPUParticles3D" parent="Player"]
+transform = Transform3D(0.244817, 0.96957, -4.23812e-08, 0, -4.37114e-08, -1, -0.96957, 0.244817, -1.07013e-08, 0, 0, 0)
+visible = false
+emitting = false
+amount = 20000
+lifetime = 5.0
+visibility_aabb = AABB(-1, -0.5, -1, 2, 2, 2)
+local_coords = true
+process_material = SubResource("ShaderMaterial_fkquh")
+draw_pass_1 = SubResource("QuadMesh_eurxq")
 
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02006, -0.700256, -40.3442)
@@ -389,6 +682,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73845, 2.38419e-07, -12.10
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07885, 0.321783, -13.0884)
 
 [node name="Stage2" type="Node3D" parent="."]
+process_mode = 4
+script = ExtResource("17_ywuvk")
 
 [node name="BGM" type="AudioStreamPlayer" parent="Stage2"]
 stream = ExtResource("1_m4ln8")
@@ -659,11 +954,40 @@ size = Vector3(1.65167, 0.195643, 2.48698)
 material = ExtResource("17_bebpu")
 script = ExtResource("25_j82a0")
 
+[node name="RestrictArea" type="Node3D" parent="Stage2/ConcertStage2/Glitches"]
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Stage2/ConcertStage2/Glitches/RestrictArea"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 5.0844, -1.02959, -40.1754)
+use_collision = true
+size = Vector3(6, 5.2, 0.194418)
+material = SubResource("ShaderMaterial_4qs37")
+script = ExtResource("25_j82a0")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Stage2/ConcertStage2/Glitches/RestrictArea"]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 1.6203, -1.02959, -42.1754)
+use_collision = true
+size = Vector3(6, 5.2, 0.194418)
+material = SubResource("ShaderMaterial_4qs37")
+script = ExtResource("25_j82a0")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Stage2/ConcertStage2/Glitches/RestrictArea"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 4.90235, -1.02959, -43.86)
+use_collision = true
+size = Vector3(4.22381, 5.2, 0.194418)
+material = SubResource("ShaderMaterial_4qs37")
+script = ExtResource("25_j82a0")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Stage2/ConcertStage2/Glitches/RestrictArea"]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 1.80235, -1.02959, -38.4907)
+use_collision = true
+size = Vector3(4.11722, 5.2, 0.194418)
+material = SubResource("ShaderMaterial_4qs37")
+script = ExtResource("25_j82a0")
+
 [node name="FloatingNPC" type="StaticBody3D" parent="Stage2/ConcertStage2"]
 transform = Transform3D(15, 0, 0, 0, -6.55671e-07, -15, 0, 15, -6.55671e-07, 5.31836, 2.77564, -21.6567)
 
 [node name="GenericNpc" type="MeshInstance3D" parent="Stage2/ConcertStage2/FloatingNPC"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("27_icfrp")
 skeleton = NodePath("../../../..")
 surface_material_override/0 = SubResource("ShaderMaterial_1uqs3")
@@ -798,4 +1122,29 @@ description = "Speak with Kassan"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/stage2_after_squash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.962443, 0.442976, -3.73026)
-shape = SubResource("SphereShape3D_kf7bf")
+shape = SubResource("SphereShape3D_m8xcp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Countdown" type="Label" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 32.0
+offset_right = 27.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "00:00"
+script = ExtResource("33_lki60")
