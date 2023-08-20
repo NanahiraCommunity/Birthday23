@@ -17,15 +17,25 @@ func _ready():
 #	if Input.is_action_just_pressed("jump"):
 #		switch_scene("some")
 
-
-func switch_scene(scene):
+func fade_to_black():
 	var camera = get_viewport().get_camera_3d()
-	next_scene = scene
 	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
 	material.set_shader_parameter("center", player_pos)
 	animator.play("Out")
 	visible = true
 	await animator.animation_finished
+
+func unfade_from_black():
+	var camera = get_viewport().get_camera_3d()
+	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
+	material.set_shader_parameter("center", player_pos)
+	animator.play("In")
+	await animator.animation_finished
+	visible = false
+
+func switch_scene(scene):
+	next_scene = scene
+	await fade_to_black()
 	var bgm = Global.UI.get_node_or_null("BGM")
 	if bgm:
 		bgm.reparent(self)
@@ -45,9 +55,4 @@ func switch_scene(scene):
 		bgm.stop()
 
 	await get_tree().process_frame # first frame was rendered
-	camera = get_viewport().get_camera_3d()
-	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
-	material.set_shader_parameter("center", player_pos)
-	animator.play("In")
-	await animator.animation_finished
-	visible = false
+	await unfade_from_black()

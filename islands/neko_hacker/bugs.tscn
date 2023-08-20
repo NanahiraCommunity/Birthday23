@@ -1,16 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://270g3h41drvg"]
+[gd_scene load_steps=20 format=3 uid="uid://270g3h41drvg"]
 
 [ext_resource type="Texture2D" uid="uid://bdhlmva24gqqc" path="res://islands/neko_hacker/binary.png" id="1_2brbs"]
 [ext_resource type="Script" path="res://islands/neko_hacker/bugs.gd" id="1_i2fxj"]
 [ext_resource type="Shader" path="res://islands/neko_hacker/bug_particle_emitter.gdshader" id="2_rthx5"]
 [ext_resource type="Shader" path="res://islands/neko_hacker/bugs_core.gdshader" id="3_g8nor"]
 
-[sub_resource type="Gradient" id="Gradient_ndol0"]
+[sub_resource type="Gradient" id="Gradient_ivuiu"]
 offsets = PackedFloat32Array(0.637097, 1)
 colors = PackedColorArray(0, 0.372549, 0, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_v5i34"]
-gradient = SubResource("Gradient_ndol0")
+gradient = SubResource("Gradient_ivuiu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4s62e"]
 lifetime_randomness = 0.2
@@ -28,7 +28,7 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrufp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mncjq"]
 blend_mode = 1
 depth_draw_mode = 2
 shading_mode = 0
@@ -41,7 +41,7 @@ particles_anim_v_frames = 64
 particles_anim_loop = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_7s5xm"]
-material = SubResource("StandardMaterial3D_vrufp")
+material = SubResource("StandardMaterial3D_mncjq")
 size = Vector2(0.05, 0.05)
 
 [sub_resource type="Gradient" id="Gradient_a63ph"]
@@ -75,6 +75,13 @@ shader = ExtResource("3_g8nor")
 [sub_resource type="SphereShape3D" id="SphereShape3D_7ov5o"]
 radius = 0.160321
 
+[sub_resource type="Gradient" id="Gradient_ndol0"]
+offsets = PackedFloat32Array(0.637097, 1)
+colors = PackedColorArray(0, 0.372549, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iskqp"]
+gradient = SubResource("Gradient_ndol0")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uvy41"]
 emission_shape = 2
 emission_sphere_radius = 0.2
@@ -87,7 +94,7 @@ linear_accel_min = -4.0
 radial_accel_min = 10.0
 radial_accel_max = 10.0
 angle_max = 360.0
-color_ramp = SubResource("GradientTexture1D_v5i34")
+color_ramp = SubResource("GradientTexture1D_iskqp")
 anim_speed_max = 0.01
 anim_offset_max = 1.0
 collision_mode = 1

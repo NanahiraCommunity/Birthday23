@@ -20,6 +20,7 @@ func _exit_tree():
 		if stage != loaded_stage:
 			# loaded_stage is a child node, so freed automatically
 			stage.free()
+	Global.neko_world = null
 
 func reload():
 	if loaded_stage:
@@ -45,3 +46,20 @@ func prepare_stage(stage: Node):
 func give_letter():
 	stage_idx += 1
 	reload()
+
+func glitch_death():
+	# called from player.gd
+	$Player.visible = false
+	SFX.play(preload("res://sfx/explosion.wav"))
+	$Player.reset()
+	$Player.process_mode = Node.PROCESS_MODE_DISABLED
+	$PlayerExplosion.global_position = $Player.global_position
+	$PlayerExplosion.visible = true
+	$PlayerExplosion.emitting = true
+	await get_tree().create_timer(1.5).timeout
+	await SceneSwitcher.fade_to_black()
+	reload()
+	$Player.visible = true
+	$PlayerExplosion.visible = false
+	$Player.process_mode = Node.PROCESS_MODE_INHERIT
+	await SceneSwitcher.unfade_from_black()
