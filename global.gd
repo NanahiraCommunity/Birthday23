@@ -49,8 +49,8 @@ var _available_quests: Dictionary = {}
 var active_quests: Array[Quest]
 signal active_quests_changed
 
-var neko_hacker_available = OS.is_debug_build()
-var camellia_available = OS.is_debug_build()
+var neko_hacker_available = false
+var camellia_available = false
 
 # Set when interacting (opening dialog) with an NPC
 # Usable for `set current_npc.dialog_entry = ""` to set persistent NPC talking state
