@@ -104,7 +104,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
 script = ExtResource("2_wuott")
-mainmenu_scene = "res://main_menu.tscn"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
