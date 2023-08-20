@@ -10,6 +10,8 @@ var rendering = false
 var selected_index = 0
 var option_nodes = []
 
+var can_skip = true
+
 signal picked_selection(int)
 
 func _ready():
@@ -45,17 +47,22 @@ func _input(event: InputEvent) -> void:
 			selected_index -= 1
 			if selected_index < 0:
 				selected_index = len(option_nodes) - 1
+			SFX.play(preload("res://sfx/drip.wav"))
 			handled = true
 		if event.is_action_pressed("ui_down") or event.is_action_pressed("walk_down"):
 			selected_index += 1
 			if selected_index >= len(option_nodes):
 				selected_index = 0
+			SFX.play(preload("res://sfx/drip.wav"))
 			handled = true
 		if event.is_action_pressed("ui_accept"):
 			if not current_line.responses[selected_index].is_allowed:
-				# TODO: play sound
+				# deny sound
+				SFX.play(preload("res://sfx/bonk.wav"))
 				pass
 			else:
+				# accept sound
+				SFX.play(preload("res://sfx/drip.wav"))
 				picked_selection.emit(selected_index)
 				next_dialogue = current_line.responses[selected_index].next_id
 				show_next()
@@ -63,13 +70,14 @@ func _input(event: InputEvent) -> void:
 	else:
 		if event.is_action_pressed("ui_accept"):
 			if rendering:
-				# copied from their skip code
-				# Run any inline mutations that haven't been run yet
-				for i in range($MarginContainer/VBoxContainer/Text.visible_characters, $MarginContainer/VBoxContainer/Text.get_total_character_count()):
-					$MarginContainer/VBoxContainer/Text.mutate_inline_mutations(i)
-				$MarginContainer/VBoxContainer/Text.visible_characters = $MarginContainer/VBoxContainer/Text.get_total_character_count()
-				$MarginContainer/VBoxContainer/Text.is_typing = false
-				$MarginContainer/VBoxContainer/Text.finished_typing.emit()
+				if can_skip:
+					# copied from their skip code
+					# Run any inline mutations that haven't been run yet
+					for i in range($MarginContainer/VBoxContainer/Text.visible_characters, $MarginContainer/VBoxContainer/Text.get_total_character_count()):
+						$MarginContainer/VBoxContainer/Text.mutate_inline_mutations(i)
+					$MarginContainer/VBoxContainer/Text.visible_characters = $MarginContainer/VBoxContainer/Text.get_total_character_count()
+					$MarginContainer/VBoxContainer/Text.is_typing = false
+					$MarginContainer/VBoxContainer/Text.finished_typing.emit()
 			else:
 				show_next()
 			handled = true
@@ -80,6 +88,8 @@ func _input(event: InputEvent) -> void:
 func trigger_dialog(path, _next_dialogue: String):
 	# Display the dialog UI
 	choosing = false
+	Global.in_dialog = true
+	Global.dialog = self
 
 	dialogue = load(path)
 	next_dialogue = _next_dialogue
@@ -140,3 +150,13 @@ var title: String:
 		return $NameContainer/Name.text
 	set(value):
 		$NameContainer/Name.text = Global.preprocess_bbcode(value)
+
+var speed_stack: PackedFloat32Array = []
+func push_speed(seconds_per_step: float):
+	speed_stack.append($MarginContainer/VBoxContainer/Text.seconds_per_step)
+	$MarginContainer/VBoxContainer/Text.seconds_per_step = seconds_per_step
+
+func pop_speed():
+	var speed = speed_stack.size() - 1
+	speed_stack.remove_at(speed_stack.size() - 1)
+	$MarginContainer/VBoxContainer/Text.seconds_per_step = speed
