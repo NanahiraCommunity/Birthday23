@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://chvu5dme6e452"]
+
+[ext_resource type="Script" path="res://shared/camera_helper/camera_helper.gd" id="1_whds6"]
+
+[node name="CameraHelper" type="Area3D"]
+script = ExtResource("1_whds6")

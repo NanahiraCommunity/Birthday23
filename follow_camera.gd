@@ -142,6 +142,7 @@ func teleport(new_cam_pos: Vector3):
 	global_position = new_cam_pos
 	real_pos = target.global_position
 	lookat_pos = real_pos
+	target_pos = real_pos
 	height_offset = 0.0
 	solve_constraints()
 	look_at(lookat_pos + LOOKAT_OFFSET)

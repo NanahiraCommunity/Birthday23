@@ -19,14 +19,11 @@ if not is_quest_complete("stage2_squash_bugs")
 	do dialog.push_speed(0.1)
 	System: [shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake]
 	do dialog.pop_speed()
-	- [color=#ff00ff]GOTO[/color] _start
-		do neko_world.reload()
-		=> END
-	- ...
+	- [color=#ff00ff]RETURN[/color]
 		=> END
 else
 	do end_quest("stage2_squash_bugs")
-	do end_quest("stage2_after_squash")
+	do try_end_quest("stage2_after_squash")
 	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?
 	null: ModuleNotFoundError@builtin.d(0)\n----------------\n??:? _d_assertp [0x5630b7fb8fac]\n??:? _Dmain [0x5630b7fb0ff0]
 	do neko_world.give_letter()

@@ -76,6 +76,9 @@ func start_quest(qid: StringName):
 		active_quests_changed.emit()
 
 func end_quest(qid: StringName):
+	assert(try_end_quest(qid), "Failed ending quest '" + qid + "', it wasn't started!")
+
+func try_end_quest(qid: StringName) -> bool:
 	for i in range(0, active_quests.size()):
 		if active_quests[i].quest_id == qid:
 			print("Ended quest " + qid)
@@ -85,7 +88,6 @@ func end_quest(qid: StringName):
 			active_quests.remove_at(i)
 			active_quests_changed.emit()
 			return true
-	assert(false, "Failed ending quest '" + qid + "', it wasn't started!")
 	return false
 
 func did_complete_quest(qid: StringName):
