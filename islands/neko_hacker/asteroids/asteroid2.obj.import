@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cphfrer2ip8te"
+path="res://.godot/imported/asteroid2.obj-6f53b31aeeedec6f2437dfdd63873438.mesh"
+
+[deps]
+
+files=["res://.godot/imported/asteroid2.obj-6f53b31aeeedec6f2437dfdd63873438.mesh"]
+
+source_file="res://islands/neko_hacker/asteroids/asteroid2.obj"
+dest_files=["res://.godot/imported/asteroid2.obj-6f53b31aeeedec6f2437dfdd63873438.mesh", "res://.godot/imported/asteroid2.obj-6f53b31aeeedec6f2437dfdd63873438.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
