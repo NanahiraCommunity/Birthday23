@@ -21,6 +21,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 Global="*res://global.gd"
 SceneSwitcher="*res://scene_switcher.tscn"
 LoadedQuests="res://loaded_quests.tscn"
+SFX="*res://sfx/sfx.tscn"
 
 [dialogue_manager]
 
