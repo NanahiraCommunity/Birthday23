@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://270g3h41drvg"]
+[gd_scene load_steps=15 format=3 uid="uid://270g3h41drvg"]
 
 [ext_resource type="Texture2D" uid="uid://bdhlmva24gqqc" path="res://islands/neko_hacker/binary.png" id="1_2brbs"]
 [ext_resource type="Shader" path="res://islands/neko_hacker/bug_particle_emitter.gdshader" id="2_rthx5"]
+[ext_resource type="Material" uid="uid://cwpgdykb8y1vp" path="res://islands/neko_hacker/glitch_material.tres" id="3_fa5ta"]
+[ext_resource type="Script" path="res://islands/neko_hacker/assign_viewport_texture.tres.gd" id="4_njthm"]
 
 [sub_resource type="Gradient" id="Gradient_ndol0"]
 offsets = PackedFloat32Array(0.637097, 1)
@@ -85,3 +87,9 @@ lifetime = 3.0
 speed_scale = 0.5
 process_material = SubResource("ShaderMaterial_hvt37")
 draw_pass_1 = SubResource("BoxMesh_liptj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0.707107, 0, -0.579228, 0.579228, -0.573576, -0.40558, 0.40558, 0.819152, 0, 0, 0)
+size = Vector3(0.2, 0.2, 0.2)
+material = ExtResource("3_fa5ta")
+script = ExtResource("4_njthm")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=25 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="AudioStream" uid="uid://dprqvi6emadk8" path="res://addons/contrib/happydiamo_nekohacker_phase_1.mp3" id="1_m4ln8"]
@@ -15,8 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="9_w4ddl"]
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="10_16tpb"]
 [ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="11_j6tda"]
-[ext_resource type="Script" path="res://islands/neko_hacker/assign_viewport_texture.tres.gd" id="15_0f3xu"]
-[ext_resource type="Material" uid="uid://cwpgdykb8y1vp" path="res://islands/neko_hacker/glitch_material.tres" id="16_5wxkx"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjsti"]
 panorama = ExtResource("2_2f2xg")
@@ -168,6 +166,11 @@ sky_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.51458, 0.0551029, -15.3817)
 camera = NodePath("../Node3D/Camera3D")
 
+[node name="ParticlesAttractor" type="GPUParticlesAttractorSphere3D" parent="Player"]
+strength = 100.0
+attenuation = 9.51366
+radius = 0.5
+
 [node name="Kassan" parent="." instance=ExtResource("2_sy3b2")]
 transform = Transform3D(0.54619, 0, 0.837662, 0, 1, 0, -0.837662, 0, 0.54619, 0.965717, 0.4, -3.72504)
 dialog_path = "res://dialogs/neko_concert.dialogue"
@@ -239,9 +242,3 @@ transform = Transform3D(-0.999769, 0, 0.0214834, 0, 1, 0, -0.0214834, 0, -0.9997
 
 [node name="concert_stage" parent="." instance=ExtResource("5_jd887")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.93527, 0.767031, -14.4751)
-size = Vector3(1.72916, 1.4691, 0.358506)
-material = ExtResource("16_5wxkx")
-script = ExtResource("15_0f3xu")

@@ -1,19 +1,21 @@
 ~ kassan
 
+set player.get_node("ParticlesAttractor").radius = 8.0
 Kassan: Hello! I am Kassan!
-if Global.neko_world_reset_count == 0:
+if neko_world_reset_count == 0:
 	Kassan: Is that a letter for me?
 	- Yes
 		You give Kassan the letter.
 		Kassan: Thank you!
 		*game starts to glitch*
-		do Global.give_kassan_letter()
+		do give_kassan_letter()
 	- No
+		set player.get_node("ParticlesAttractor").radius = 0.5
 		Kassan: I see. Must be for someone else then!
-elif Global.neko_world_reset_count == 1:
+elif neko_world_reset_count == 1:
 	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?
 	*game starts to glitch*
-	do Global.give_kassan_letter()
+	do give_kassan_letter()
 else:
 	Kassan: ...
 
