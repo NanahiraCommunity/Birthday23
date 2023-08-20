@@ -25,7 +25,9 @@ func fade_to_black():
 	visible = true
 	await animator.animation_finished
 
-func unfade_from_black():
+func unfade_from_black(delay: float = 0.0):
+	if delay > 0.0:
+		await get_tree().create_timer(delay).timeout
 	var camera = get_viewport().get_camera_3d()
 	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
 	material.set_shader_parameter("center", player_pos)

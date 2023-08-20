@@ -277,7 +277,7 @@ func animate_oob():
 	_animating_oob = true
 	SFX.play(preload("res://sfx/falldown.wav"))
 	await SceneSwitcher.fade_to_black()
-	Global.respawn_scene()
-	await SceneSwitcher.unfade_from_black()
+	await Global.respawn_scene()
+	await SceneSwitcher.unfade_from_black(0.5)
 	_animating_oob = false
 
