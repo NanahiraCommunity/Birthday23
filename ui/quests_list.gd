@@ -1,5 +1,6 @@
 extends Control
 
+# map of current root quest IDs -> UI elements
 var current_quests: Dictionary
 
 func _ready():
@@ -40,8 +41,11 @@ func add_quests(quests: Array[Quest]):
 	var quest_line = preload("res://quests/quest_line.tscn")
 	var quest_subline = preload("res://quests/quest_subline.tscn")
 	for quest in quests:
+		if current_quests.has(quest.quest_id):
+			continue
+
 		var node = quest_line.instantiate()
-		status_updater(quest, node, true)
+		status_updater(quest, node, null)
 		node.show_animated()
 		$VBoxContainer.add_child(node)
 		current_quests[quest.quest_id] = node
@@ -49,17 +53,16 @@ func add_quests(quests: Array[Quest]):
 		for child in quest.get_children():
 			if child is Quest:
 				var subnode = quest_subline.instantiate()
-				status_updater(child, subnode, false)
+				status_updater(child, subnode, node)
 				subnode.show_animated()
 				$VBoxContainer.add_child(subnode)
-				current_quests[child.quest_id] = subnode
+				# don't add to current_quests, since this is a sub-quest
 
-func status_updater(quest: Quest, node: Node, root: bool):
+func status_updater(quest: Quest, node: Node, child_of: Node):
 	while not quest.done:
 		node.text = Global.preprocess_bbcode(quest.get_text())
 		await quest.updated
 	node.text = Global.preprocess_bbcode(quest.get_text())
 	node.mark_finished()
-	if not root:
-		await get_tree().create_timer(3.0).timeout
-		await node.hide_animated_and_free()
+	if child_of:
+		await node.hide_animated_and_free(3.0)

@@ -42,10 +42,11 @@ func hide_animated():
 		$AnimationPlayer.play("hide")
 		await $AnimationPlayer.animation_finished
 
-func hide_animated_and_free():
-	if freeing:
-		return
+func hide_animated_and_free(timeout: float = 0.0):
+	assert(not freeing, "attempted to animated free twice")
 	freeing = true
+	if timeout > 0.0:
+		await get_tree().create_timer(timeout).timeout
 	await hide_animated()
 	var tween = get_tree().create_tween()
 	$Panel.custom_minimum_size.y = size.y
