@@ -1,24 +1,39 @@
 ~ kassan
-
 Kassan: Hello! I am Kassan!
-if neko_world_reset_count == 0:
-	set player.get_node("ParticlesAttractor").radius = 8.0
-	Kassan: Is that a letter for me?
-	- Yes
-		You give Kassan the letter.
-		Kassan: Thank you!
-		*game starts to glitch*
-		do give_kassan_letter()
-	- No
-		set player.get_node("ParticlesAttractor").radius = 0.5
-		Kassan: I see. Must be for someone else then!
-elif neko_world_reset_count == 1:
-	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?
-	*game starts to glitch*
-	do give_kassan_letter()
-else:
-	Kassan: ...
+set player.get_node("ParticlesAttractor").radius = 8.0
+Kassan: Is that a letter for me?
+- Yes
+	You give Kassan the letter.
+	set dialog.can_skip = false
+	Kassan: Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color]
+	System: [shake rate=20.0 level=5 connected=1]bug detected; [color=red]killing child[/color][/shake]
+	set dialog.can_skip = true
+	do neko_world.give_letter()
+- No
+	Kassan: I see. Must be for someone else then!
+set player.get_node("ParticlesAttractor").radius = 0.5
+=> END
 
+~ kassan2
+if not is_quest_complete("stage2_squash_bugs")
+	do dialog.push_speed(0.1)
+	System: [shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake]
+	do dialog.pop_speed()
+	- [color=#ff00ff]GOTO[/color] _start
+		do neko_world.reload()
+		=> END
+	- ...
+		=> END
+else
+	do end_quest("stage2_squash_bugs")
+	do end_quest("stage2_after_squash")
+	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?
+	null: ModuleNotFoundError@builtin.d(0)\n----------------\n??:? _d_assertp [0x5630b7fb8fac]\n??:? _Dmain [0x5630b7fb0ff0]
+	do neko_world.give_letter()
+=> END
+
+ ~kassan3
+Kassan: ...
 => END
 
 ~ sera
@@ -27,8 +42,38 @@ Sera: Hi... I am Sera.
 
 => END
 
-~ nanahira
+~ sera2
+if did_complete_quest("stage2_squash_bugs")
+	set current_npc.dialog_entry = "sera2_done"
+	=> sera2_done
 
-Nanahira: I am Nanahira!
+Sera: Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely!
+do start_quest("stage2_squash_bugs")
+set current_npc.hide_quest_indicator = true
+set current_npc.dialog_entry = "sera2_quest"
+
+~ sera2_quest
+if is_quest_complete("stage2_squash_bugs")
+	=> sera2_done
+else
+	Sera: Stamp on the [color=green]bug nests[/color] to squash them
+
+=> END
+
+~ sera2_done
+
+Sera: [b]Kassan[/b] might know how to restore the world...
+
+=> END
+
+~ nana
+
+Haruka Nana: I am Haruka Nana!
+
+=> END
+
+~ nana2
+
+Haruka Nana: I am Nanahira! ... no wait, I am Haruka Nana!
 
 => END

@@ -35,5 +35,10 @@ func get_bgm() -> AudioStreamPlayer2D:
 	else:
 		return $BGM
 
+func switch_bgm(stream: AudioStream):
+	var bgm = get_bgm()
+	bgm.stream = stream
+	bgm.play()
+
 func set_audio_pan(pos: Vector2):
 	get_bgm().position = pos * 2000.0
