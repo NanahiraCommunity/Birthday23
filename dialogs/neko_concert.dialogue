@@ -1,8 +1,8 @@
 ~ kassan
 
-set player.get_node("ParticlesAttractor").radius = 8.0
 Kassan: Hello! I am Kassan!
 if neko_world_reset_count == 0:
+	set player.get_node("ParticlesAttractor").radius = 8.0
 	Kassan: Is that a letter for me?
 	- Yes
 		You give Kassan the letter.
