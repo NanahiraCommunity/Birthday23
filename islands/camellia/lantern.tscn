@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://ky7ul07l33xs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7ldu"]
+albedo_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_64n8w"]
+albedo_color = Color(1, 0.231373, 0.188235, 1)
+emission_enabled = true
+emission = Color(1, 0.231373, 0.188235, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.072, 0)
+radius = 0.025
+height = 0.145
+sides = 20
+material = SubResource("StandardMaterial3D_t7ldu")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.072, 0)
+radius = 0.04
+height = 0.12
+sides = 20
+material = SubResource("StandardMaterial3D_64n8w")

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://vqi7hfe8uwsf"]
+
+[node name="LanternLight" type="OmniLight3D"]
+light_color = Color(1, 0.262745, 0.180392, 1)
+omni_range = 3.044

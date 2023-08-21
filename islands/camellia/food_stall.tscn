@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://k0yj614d7e0f"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.399684, 0.09, 0)
+use_collision = true
+size = Vector3(0.3, 0.18, 0.7)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.35, -0.375)
+use_collision = true
+radius = 0.01
+height = 0.7
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.35, 0.375)
+use_collision = true
+radius = 0.01
+height = 0.7
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.287, -0.375)
+use_collision = true
+radius = 0.01
+height = 0.574
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.287, 0.375)
+use_collision = true
+radius = 0.01
+height = 0.574
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.212, 0.285, 0)
+use_collision = true
+size = Vector3(0.005, 0.57, 0.78)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.165857, 0.98615, 0, -0.98615, 0.165857, 0, 0, 0, 1, 0.178, 0.637, 0)
+use_collision = true
+size = Vector3(0.005, 0.793, 0.78)

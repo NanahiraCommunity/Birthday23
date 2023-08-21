@@ -7,6 +7,7 @@ const C = preload("res://models/characters/character.gd")
 @export var lookat_player: bool = true
 @export var dynamic_collision: bool = false
 @export var hide_quest_indicator: bool = false
+@export var interact_point: Marker3D = null
 @export var character: C.Character:
 	get:
 		if not $NanahiraPapercraft:
@@ -46,7 +47,11 @@ func _input(event):
 		get_viewport().set_input_as_handled()
 
 func _process(delta):
-	var direction = skeleton.to_local(Global.player.global_position)
+	var direction: Vector3
+	if interact_point == null:
+		direction = skeleton.to_local(Global.player.global_position)
+	else:
+		direction = interact_point.to_local(Global.player.global_position)
 	var distance_squared = direction.length_squared()
 
 	$DialogIndicator.visible = (dialog_path
