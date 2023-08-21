@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://e2apjyqkrq7d"
+
+[deps]
+
+files=["res://i18n/hub_roof.en.translation", "res://i18n/hub_roof.ja.translation"]
+
+source_file="res://i18n/hub_roof.csv"
+dest_files=["res://i18n/hub_roof.en.translation", "res://i18n/hub_roof.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0

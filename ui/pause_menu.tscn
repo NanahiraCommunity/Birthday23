@@ -128,21 +128,22 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 
 [node name="PauseText" type="RichTextLabel" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "[center]Game is paused[/center]"
+text = "PAUSE_TEXT"
+fit_content = true
 
 [node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Resume"
+text = "MENU_RESUME"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "Quit"
+text = "MENU_QUIT"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

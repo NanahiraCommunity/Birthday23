@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dlkq86snn4qii"
+
+[deps]
+
+files=["res://i18n/neko_concert.en.translation", "res://i18n/neko_concert.ja.translation"]
+
+source_file="res://i18n/neko_concert.csv"
+dest_files=["res://i18n/neko_concert.en.translation", "res://i18n/neko_concert.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0

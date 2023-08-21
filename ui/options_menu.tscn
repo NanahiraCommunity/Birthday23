@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=3 uid="uid://djoo6dx7hmcnn"]
+
+[ext_resource type="Script" path="res://ui/options_menu.gd" id="1_xi5dg"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_qt4ss"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xi5dg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -166.5
+offset_right = 300.0
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Video" type="MarginContainer" parent="MarginContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer/GridContainer/Video"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="Fullscreen" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_FULLSCREEN"
+
+[node name="Fullscreen2" type="CheckBox" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+
+[node name="Borderless" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_BORDERLESS"
+
+[node name="Borderless2" type="CheckBox" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+
+[node name="VSync" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_VSYNC"
+
+[node name="VSync2" type="CheckBox" parent="MarginContainer2/VBoxContainer/GridContainer/Video/GridContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+
+[node name="Audio" type="MarginContainer" parent="MarginContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer/GridContainer/Audio"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="Master" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_VOLUME_MASTER"
+
+[node name="Master2" type="HSlider" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="BGM" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_VOLUME_BGM"
+
+[node name="BGM2" type="HSlider" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="SFX" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_VOLUME_SFX"
+
+[node name="SFX2" type="HSlider" parent="MarginContainer2/VBoxContainer/GridContainer/Audio/GridContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.001
+
+[node name="Language" type="MarginContainer" parent="MarginContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 12
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer2/VBoxContainer/GridContainer/Language"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+columns = 2
+
+[node name="English" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Language/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_LANG_EN"
+
+[node name="English2" type="CheckButton" parent="MarginContainer2/VBoxContainer/GridContainer/Language/GridContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qt4ss")
+flat = true
+
+[node name="Japanese" type="Label" parent="MarginContainer2/VBoxContainer/GridContainer/Language/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "OPT_LANG_JA"
+
+[node name="Japanese2" type="CheckButton" parent="MarginContainer2/VBoxContainer/GridContainer/Language/GridContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_qt4ss")
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BackButton" type="Button" parent="MarginContainer2/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MENU_BACK"

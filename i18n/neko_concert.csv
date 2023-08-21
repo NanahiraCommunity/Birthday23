@@ -1,0 +1,50 @@
+keys,en,ja
+Kassan,Kassan,かっさん
+System,System,SYSTEM
+null,null,null
+Sera,Sera,Sera
+Haruka Nana,Haruka Nana,春歌ナナ
+t3b355aa01b,Hello! I am Kassan!,
+t41cc240d99,Is that a letter for me?,
+t6d499d67b2,Yes,
+t2289c3746a,You give Kassan the letter.,
+t97fe594009,Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color],
+ta028ca5bef,[shake rate=20.0 level=5 connected=1]bug detected; [color=red]killing child[/color][/shake],
+t4af09b8595,No,
+t5504685dd6,I see. Must be for someone else then!,
+tee4e9badb9,[shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake],[shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake]
+t2ec0c34fa7,[color=#ff00ff]RETURN[/color],
+t9b773985dd,Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?,
+ta8eabe31ef,"ModuleNotFoundError@builtin.d(0)
+----------------
+??:? _d_assertp [0x5630b7fb8fac]
+??:? _Dmain [0x5630b7fb0ff0]",
+t8cf79b7d78,"Help, I'm locked in!",
+t32195f00bc,"There must be some way to open this door, can you help me get out?",
+t84e3f43fd3,Try pressing the buttons in the order how they light up.,
+t2240fd94e6,Thank you for resucing me! I found the bug causing this whole mess in my cell!,
+tfdef35a83c,Let me just fix it really quick...,
+t06f5bc5162,Hi... I am Sera.,
+t14f9616e95,"Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely!",
+ta30cad91d3,Stamp on the [color=green]bug nests[/color] to squash them,
+t50661bd7e7,[b]Kassan[/b] might know how to restore the world...,
+t2926822867,I like Warabimochi,わらびもち好きです
+tec9c3230a7,"I am Nanahira! ... no wait, I am Haruka Nana!",
+t4259018832,I don't understand what's happening...,
+tb65e57a28e,Everyone is suddenly gone as well...,
+t9859ec2567,...,
+td31bb673de,"I was suddenly holding this button - I don't want to press it, you can have it!",
+t5feedb4ea2,Press the Button,
+tcf4349133d,"Eeek, more bugs!",
+td6dd0b507e,Hello! I am Kassan!,
+t4cadd6f820,Is that a letter for me?,
+t0f8f9135d7,Yes,
+t10332f168d,... this time we are safe,
+t8679c3319b,You give Kassan the letter.,
+tf00a709d38,"Thanks for the letter and all your help! Also I have this letter here I would like you to bring to Fullflavor Girl on Camellia Island, could you deliver it for me?",
+t70d18cc3b3,Sure,
+tc6f1f4182f,No,
+t47aaa0ce7f,I see. Must be for someone else then!,
+tf49fa2a489,Have you delivered the letter yet?,
+t3e0a9d9686,Thank you for helping Kassan and us out there!,
+t554c55afcf,Thank you for helping us out there with all these bugs!,

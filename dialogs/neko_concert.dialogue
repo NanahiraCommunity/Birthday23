@@ -1,31 +1,31 @@
 ~ kassan
-Kassan: Hello! I am Kassan!
+Kassan: Hello! I am Kassan! [ID:t3b355aa01b]
 set player.get_node("ParticlesAttractor").radius = 8.0
-Kassan: Is that a letter for me?
-- Yes
-	You give Kassan the letter.
+Kassan: Is that a letter for me? [ID:t41cc240d99]
+- Yes [ID:t6d499d67b2]
+	You give Kassan the letter. [ID:t2289c3746a]
 	set dialog.can_skip = false
-	Kassan: Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color]
-	System: [shake rate=20.0 level=5 connected=1]bug detected; [color=red]killing child[/color][/shake]
+	Kassan: Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color] [ID:t97fe594009]
+	System: [shake rate=20.0 level=5 connected=1]bug detected; [color=red]killing child[/color][/shake] [ID:ta028ca5bef]
 	set dialog.can_skip = true
 	do neko_world.give_letter()
-- No
-	Kassan: I see. Must be for someone else then!
+- No [ID:t4af09b8595]
+	Kassan: I see. Must be for someone else then! [ID:t5504685dd6]
 set player.get_node("ParticlesAttractor").radius = 0.5
 => END
 
 ~ kassan2
 if not is_quest_complete("stage2_squash_bugs")
 	do dialog.push_speed(0.1)
-	System: [shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake]
+	System: [shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake] [ID:tee4e9badb9]
 	do dialog.pop_speed()
-	- [color=#ff00ff]RETURN[/color]
+	- [color=#ff00ff]RETURN[/color] [ID:t2ec0c34fa7]
 		=> END
 else
 	do end_quest("stage2_squash_bugs")
 	do try_end_quest("stage2_after_squash")
-	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?
-	null: ModuleNotFoundError@builtin.d(0)\n----------------\n??:? _d_assertp [0x5630b7fb8fac]\n??:? _Dmain [0x5630b7fb0ff0]
+	Kassan: Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before? [ID:t9b773985dd]
+	null: ModuleNotFoundError@builtin.d(0)\n----------------\n??:? _d_assertp [0x5630b7fb8fac]\n??:? _Dmain [0x5630b7fb0ff0] [ID:ta8eabe31ef]
 	do neko_world.give_letter()
 => END
 
@@ -33,23 +33,23 @@ else
 do end_quest("stage3_squash_bugs")
 do start_quest("stage3_simon_says")
 set current_npc.dialog_entry = "kassan3_quest"
-Kassan: Help, I'm locked in!
-Kassan: There must be some way to open this door, can you help me get out?
+Kassan: Help, I'm locked in! [ID:t8cf79b7d78]
+Kassan: There must be some way to open this door, can you help me get out? [ID:t32195f00bc]
 => END
 
 ~ kassan3_quest
 if not is_quest_complete("stage3_simon_says")
-	Kassan: Try pressing the buttons in the order how they light up.
+	Kassan: Try pressing the buttons in the order how they light up. [ID:t84e3f43fd3]
 else
-	Kassan: Thank you for resucing me! I found the bug causing this whole mess in my cell!
-	Kassan: Let me just fix it really quick...
+	Kassan: Thank you for resucing me! I found the bug causing this whole mess in my cell! [ID:t2240fd94e6]
+	Kassan: Let me just fix it really quick... [ID:tfdef35a83c]
 	do end_quest("stage3_simon_says")
 	do neko_world.give_letter()
 => END
 
 ~ sera
 
-Sera: Hi... I am Sera.
+Sera: Hi... I am Sera. [ID:t06f5bc5162]
 
 => END
 
@@ -58,7 +58,7 @@ if did_complete_quest("stage2_squash_bugs")
 	set current_npc.dialog_entry = "sera2_done"
 	=> sera2_done
 
-Sera: Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely!
+Sera: Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely! [ID:t14f9616e95]
 do start_quest("stage2_squash_bugs")
 set current_npc.hide_quest_indicator = true
 set current_npc.dialog_entry = "sera2_quest"
@@ -67,59 +67,63 @@ set current_npc.dialog_entry = "sera2_quest"
 if is_quest_complete("stage2_squash_bugs")
 	=> sera2_done
 else
-	Sera: Stamp on the [color=green]bug nests[/color] to squash them
+	Sera: Stamp on the [color=green]bug nests[/color] to squash them [ID:ta30cad91d3]
 
 => END
 
 ~ sera2_done
 
-Sera: [b]Kassan[/b] might know how to restore the world...
+Sera: [b]Kassan[/b] might know how to restore the world... [ID:t50661bd7e7]
 
 => END
 
 ~ nana
 
-Haruka Nana: I am Haruka Nana!
+Haruka Nana: I am Haruka Nana! [ID:t2926822867]
 
 => END
 
 ~ nana2
-
-Haruka Nana: I am Nanahira! ... no wait, I am Haruka Nana!
+Haruka Nana: I am Nanahira! ... no wait, I am Haruka Nana! [ID:tec9c3230a7]
 => END
 
 ~ nana3
-Haruka Nana: I don't understand what's happening...
-Haruka Nana: Everyone is suddenly gone as well...
-Haruka Nana: ...
-Haruka Nana: I was suddenly holding this button - I don't want to press it, you can have it!
-- Press the Button
+Haruka Nana: I don't understand what's happening... [ID:t4259018832]
+Haruka Nana: Everyone is suddenly gone as well... [ID:tb65e57a28e]
+Haruka Nana: ... [ID:t9859ec2567]
+Haruka Nana: I was suddenly holding this button - I don't want to press it, you can have it! [ID:td31bb673de]
+- Press the Button [ID:t5feedb4ea2]
 	set current_npc.dialog_entry = "nana3_done"
 	do start_quest("stage3_squash_bugs")
 => nana3_done
 
 ~ nana3_done
-Haruka Nana: Eeek, more bugs!
+Haruka Nana: Eeek, more bugs! [ID:tcf4349133d]
 => END
 
 ~ kassan_complete
-Kassan: Hello! I am Kassan!
-Kassan: Is that a letter for me?
-- Yes
-	Kassan: ... this time we are safe
-	You give Kassan the letter.
-	Kassan: Thanks for the letter and all your help! Also I have this letter here I would like you to bring to Fullflavor Girl on Camellia Island, could you deliver it for me?
-	- Sure
+Kassan: Hello! I am Kassan! [ID:td6dd0b507e]
+Kassan: Is that a letter for me? [ID:t4cadd6f820]
+- Yes [ID:t0f8f9135d7]
+	Kassan: ... this time we are safe [ID:t10332f168d]
+	You give Kassan the letter. [ID:t8679c3319b]
+	Kassan: Thanks for the letter and all your help! Also I have this letter here I would like you to bring to Fullflavor Girl on Camellia Island, could you deliver it for me? [ID:tf00a709d38]
+	- Sure [ID:t70d18cc3b3]
 		set camellia_available = true
+		set current_npc.dialog_entry = "kassan_complete2"
 		do start_quest("visit_camellia_island")
-- No
-	Kassan: I see. Must be for someone else then!
+- No [ID:tc6f1f4182f]
+	Kassan: I see. Must be for someone else then! [ID:t47aaa0ce7f]
+=> END
+
+~ kassan_complete2
+Kassan: Have you delivered the letter yet? [ID:tf49fa2a489]
 => END
 
 ~ sera_complete
-Sera: Thank you for helping Kassan and us out there!
+Sera: Thank you for helping Kassan and us out there! [ID:t3e0a9d9686]
 => END
 
 ~ nana_complete
-Haruka Nana: Thank you for helping us out there with all these bugs!
+Haruka Nana: Thank you for helping us out there with all these bugs! [ID:t554c55afcf]
 => END

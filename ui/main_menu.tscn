@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bcv4ub1453f4y"]
 
-[ext_resource type="Script" path="res://MainMenu.gd" id="1_iamkv"]
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_yair3"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,26 +9,35 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_iamkv")
+script = ExtResource("1_yair3")
 start_scene = "res://islands/hub/hub_world.tscn"
-options_scene = "res://options_menu.tscn"
+options_scene = "res://ui/options_menu.tscn"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -86.5
+offset_right = 125.0
+offset_bottom = 86.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "MENU_START"
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "MENU_OPTIONS"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Quit"
+text = "MENU_QUIT"

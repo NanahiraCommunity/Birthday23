@@ -28,4 +28,4 @@ func _process(delta):
 			updated.emit()
 
 func get_text():
-	return description + "   " + str(collected) + " / " + str(collect_amount)
+	return tr(description) + "   " + str(collected) + " / " + str(collect_amount)

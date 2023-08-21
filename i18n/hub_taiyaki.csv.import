@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dbxd1jusxpq5d"
+
+[deps]
+
+files=["res://i18n/hub_taiyaki.en.translation", "res://i18n/hub_taiyaki.ja.translation"]
+
+source_file="res://i18n/hub_taiyaki.csv"
+dest_files=["res://i18n/hub_taiyaki.en.translation", "res://i18n/hub_taiyaki.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0

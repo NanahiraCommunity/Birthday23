@@ -1,35 +1,35 @@
 ~ start
-???: Why are you up here?
+???: Why are you up here? [ID:tfc7908f730]
 set current_npc.dialog_entry = "start2"
 => END
 
 ~ start2
-???: No really, you shouldn't be up here!
+???: No really, you shouldn't be up here! [ID:tf982e50833]
 set current_npc.dialog_entry = "start3"
 => END
 
 ~ start3
-???: You sure are persistent
+???: You sure are persistent [ID:t8e3d900e15]
 set current_npc.dialog_entry = "start4"
 => END
 
 ~ start4
-???: Do you love Nanahira?
-- Yes
-	???: Me too!
-	???: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession.
-	???: Wait...[wait=1.5] I'm [set dialog.title = "Nanahira"]Nanahira
+???: Do you love Nanahira? [ID:tf2667e0aac]
+- Yes [ID:tb57509736c]
+	???: Me too! [ID:ta40d0d35dc]
+	???: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession. [ID:t977efed699]
+	???: Wait...[wait=1.5] I'm [set dialog.title = "Nanahira"]Nanahira [ID:t34fe697e85]
 	set current_npc.dialog_entry = "like"
-- No
-	???: bad answer
+- No [ID:t6f2957ea0e]
+	???: bad answer [ID:t624eb17c17]
 	set current_npc.dialog_entry = "dislike"
 => END
 
 ~ like
-Nanahira: Thanks for being my fan!
+Nanahira: Thanks for being my fan! [ID:t8950baea66]
 => END
 
 ~ dislike
 
-???: I don't like you
+???: I don't like you [ID:ta5a5c4eed1]
 => END

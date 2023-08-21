@@ -57,7 +57,7 @@ func _start_node(node):
 		node.visible = true
 
 func get_text():
-	return description
+	return tr(description)
 
 ## Must be called before the quest gets removed from the quests array
 func end():

@@ -1,0 +1,23 @@
+keys,en,ja
+OPT_FULLSCREEN,Fullscreen,
+OPT_BORDERLESS,Borderless,
+OPT_VSYNC,Vsync,
+OPT_VOLUME_MASTER,Master,
+OPT_VOLUME_BGM,BGM,
+OPT_VOLUME_SFX,SFX,
+OPT_LANG_EN,English,English
+OPT_LANG_JA,日本語,日本語
+MENU_BACK,Back,
+MENU_START,Play,
+MENU_RESUME,Resume,
+MENU_OPTIONS,Options,
+MENU_QUIT,Quit,
+PAUSE_TEXT,[center]Game is paused,
+Q_COLLECT_TAIYAKI,Collect [b]Taiyaki[/b],
+Q_COLLECT_TAIYAKI_MARKERS,Jump onto the rooftop,
+Q_STAGE2_SQUASH_BUGS,Squash [b]Bug Nests[/b],
+Q_STAGE2_SQUASH_BUGS_MARKERS,Jump on the marked bug nests,
+Q_STAGE2_AFTER_SQUASH,Speak with Kassan,
+Q_STAGE3_SQUASH_BUGS,Squash [b]Bug Nests[/b],
+Q_STAGE3_SIMON_SAYS,Help Kassan get out,
+Q_VISIT_CAMELLIA_ISLAND,Leave the Area,

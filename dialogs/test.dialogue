@@ -1,13 +1,13 @@
 ~ start
 
-Nanahira: Hello!
-Nanahira: This is my [b]dialog[/b]!
-Nanahira: Do you love ななひら?
-- Yes
-	Nanahira: Me too!
-	Nanahira: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession.
-	Nanahira: Wait...[wait=1.5] I'm Nanahira
-- No
-	Nanahira: AAAAAAAAAAAAAAaaaaaaaaaaaaaaa aaAAAAAAAAAaaaaAAAaaaaAAAaaaaaaaaaaaAaaAAaaA AaaAAAAAAaaAAAAAAAAaaaaaAAAaaAAAAAAAaaaaaAAAAAaAAAAaaaaaAA AaaAAAAAAAaaaaaaaAAAAaaaaAAAAaaaaaaaaaaaAAAaaaaAAAAAAAA aaaaaaaaaaaaaaaaAAAaaAAAaaaaAAAaaaaaaaaaaaaaaaaAAaaaAAaa aaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaAAAAAAAAAAAAaaaAAAAAAAAAAAAAaaaaaaaaaaaa aAAAAAAAAAAAAAAAaaaaaaaaaaaaaAAAAaaaaaaaaaaaaaaaaaaaAAAAaaaaaaaaaaaaAAAAa AAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAaaaaaAAAaaaAAaaAAAaaaAAAaaaAAaaAAaaaaaa AAAAAAAAAAAAaaaaaaaAAAaaAAaaAAaaAAaaaaaaAAaaAAAAAAAaaaaa
+Nanahira: Hello! [ID:t53e09d663f]
+Nanahira: This is my [b]dialog[/b]! [ID:t1456c81243]
+Nanahira: Do you love ななひら? [ID:ta9fb424a29]
+- Yes [ID:t28b39dfc46]
+	Nanahira: Me too! [ID:tdd5d561fe5]
+	Nanahira: I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession. [ID:t826e099e1f]
+	Nanahira: Wait...[wait=1.5] I'm Nanahira [ID:t95c5649cdb]
+- No [ID:taee0a8d4cc]
+	Nanahira: AAAAAAAAAAAAAAaaaaaaaaaaaaaaa aaAAAAAAAAAaaaaAAAaaaaAAAaaaaaaaaaaaAaaAAaaA AaaAAAAAAaaAAAAAAAAaaaaaAAAaaAAAAAAAaaaaaAAAAAaAAAAaaaaaAA AaaAAAAAAAaaaaaaaAAAAaaaaAAAAaaaaaaaaaaaAAAaaaaAAAAAAAA aaaaaaaaaaaaaaaaAAAaaAAAaaaaAAAaaaaaaaaaaaaaaaaAAaaaAAaa aaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaaAAAAAAAAAAAAaaaAAAAAAAAAAAAAaaaaaaaaaaaa aAAAAAAAAAAAAAAAaaaaaaaaaaaaaAAAAaaaaaaaaaaaaaaaaaaaAAAAaaaaaaaaaaaaAAAAa AAAAAAAAAAaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAAAAAAAAaaaaaAAAaaaAAaaAAAaaaAAAaaaAAaaAAaaaaaa AAAAAAAAAAAAaaaaaaaAAAaaAAaaAAaaAAaaaaaaAAaaAAAAAAAaaaaa [ID:t64be976c0c]
 
 => END

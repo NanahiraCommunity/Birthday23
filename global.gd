@@ -52,7 +52,7 @@ var _available_quests: Dictionary = {}
 var active_quests: Array[Quest]
 signal active_quests_changed
 
-var neko_hacker_available = false
+var neko_hacker_available = true
 var camellia_available = false
 
 # Set when interacting (opening dialog) with an NPC
@@ -75,7 +75,7 @@ func start_quest(qid: StringName):
 	if quest:
 		active_quests.append(quest)
 		quest.start()
-		print("Starting quest " + qid + ": " + quest.description)
+		print("Starting quest " + qid + ": " + quest.get_text())
 		active_quests_changed.emit()
 
 func end_quest(qid: StringName):

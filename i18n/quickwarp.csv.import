@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://gocvxa38emqp"
+
+[deps]
+
+files=["res://i18n/quickwarp.en.translation", "res://i18n/quickwarp.ja.translation"]
+
+source_file="res://i18n/quickwarp.csv"
+dest_files=["res://i18n/quickwarp.en.translation", "res://i18n/quickwarp.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0

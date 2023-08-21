@@ -656,6 +656,15 @@ transform = Transform3D(-0.155348, 0, -0.98786, 0, 1, 0, 0.98786, 0, -0.155348, 
 dialog_path = "res://dialogs/hub_taiyaki.dialogue"
 character = 8
 
+[node name="gate_door" parent="." instance=ExtResource("26_6mylm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.366, -0.001, -2.984)
+
+[node name="gate_door2" parent="." instance=ExtResource("26_6mylm")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.266685, -0.001, -2.984)
+
+[node name="Quickwarp" parent="." instance=ExtResource("26_gpwt4")]
+transform = Transform3D(-0.789438, 0, -0.613831, 0, 1, 0, 0.613831, 0, -0.789438, 1.4667, -0.00101826, -9.63702)
+
 [node name="Quests" type="Node3D" parent="."]
 script = ExtResource("23_yvfsn")
 
@@ -664,12 +673,12 @@ script = ExtResource("23_mltwx")
 collect_type = 1
 collect_amount = 4
 quest_id = &"hub_collect_taiyaki"
-description = "Collect [b]Taiyaki[/b]"
+description = "Q_COLLECT_TAIYAKI"
 
 [node name="hub_collect_taiyaki_markers" type="Node" parent="Quests/hub_collect_taiyaki"]
 script = ExtResource("24_yjym4")
 quest_id = &"hub_collect_taiyaki_markers"
-description = "Jump onto the rooftop"
+description = "Q_COLLECT_TAIYAKI_MARKERS"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/hub_collect_taiyaki/hub_collect_taiyaki_markers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.23261, 2.01308, -19.3812)
@@ -703,12 +712,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6863, 2.68526, -25.9084)
 
 [node name="Taiyaki4" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59817, 3.48263, -28.5294)
-
-[node name="gate_door" parent="." instance=ExtResource("26_6mylm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.366, -0.001, -2.984)
-
-[node name="gate_door2" parent="." instance=ExtResource("26_6mylm")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.266685, -0.001, -2.984)
-
-[node name="Quickwarp" parent="." instance=ExtResource("26_gpwt4")]
-transform = Transform3D(-0.789438, 0, -0.613831, 0, 1, 0, 0.613831, 0, -0.789438, 1.4667, -0.00101826, -9.63702)
