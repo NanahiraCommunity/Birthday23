@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://d17ng66g5ru6y"]
+[gd_scene load_steps=88 format=3 uid="uid://d17ng66g5ru6y"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="Script" path="res://islands/neko_hacker/neko_world_loader.gd" id="1_86hvk"]
@@ -39,6 +39,14 @@
 [ext_resource type="Script" path="res://shared/camera_helper/camera_helper.gd" id="28_xou70"]
 [ext_resource type="Texture2D" uid="uid://c0mb14tbkfwv2" path="res://islands/neko_hacker/shader_screenshot.png" id="29_ajubm"]
 [ext_resource type="Script" path="res://islands/neko_hacker/countdown.gd" id="33_lki60"]
+[ext_resource type="Material" uid="uid://dq6ob0ugw1708" path="res://islands/neko_hacker/glitch_solid.tres" id="35_57vp6"]
+[ext_resource type="Script" path="res://islands/neko_hacker/stage_complete.gd" id="36_m5ark"]
+[ext_resource type="Script" path="res://islands/neko_hacker/simon_says.gd" id="40_btv3e"]
+[ext_resource type="PackedScene" uid="uid://dscgwwlmv7vd0" path="res://islands/neko_hacker/simon_says_button.tscn" id="41_dptmx"]
+[ext_resource type="AudioStream" uid="uid://d1ulwww2dqc3e" path="res://sfx/a.wav" id="42_knmkv"]
+[ext_resource type="AudioStream" uid="uid://b4ur84abfh17o" path="res://sfx/c.wav" id="43_b2x3o"]
+[ext_resource type="AudioStream" uid="uid://bxu5v0fjt34uq" path="res://sfx/e.wav" id="44_6pt4b"]
+[ext_resource type="AudioStream" uid="uid://0jo8y6fevhbh" path="res://sfx/g.wav" id="45_0ikac"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjsti"]
 panorama = ExtResource("2_2f2xg")
@@ -534,6 +542,120 @@ radius = 0.209
 [sub_resource type="SphereShape3D" id="SphereShape3D_m8xcp"]
 radius = 1.35282
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tidst"]
+size = Vector3(4.46629, 3.32258, 4.89117)
+
+[sub_resource type="Animation" id="Animation_a7qro"]
+resource_name = "hide_buttons"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/Button4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.793314, -1), Vector3(0, -0.991512, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Button1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, -0.793, 0), Vector3(1, -0.991198, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/Button2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1, -0.793, 0), Vector3(-1, -0.991198, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/Button3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.793, 1), Vector3(0, -0.991198, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e14so"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/Button4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.793, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Button1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, -0.793, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/Button2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1, -0.793, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/Button3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.793, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sdbcs"]
+_data = {
+"RESET": SubResource("Animation_e14so"),
+"hide_buttons": SubResource("Animation_a7qro")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_x70tf"]
+radius = 1.04274
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_86hvk")
 
@@ -683,6 +805,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07885, 0.321783, -13.0884)
 
 [node name="Stage2" type="Node3D" parent="."]
 process_mode = 4
+visible = false
 script = ExtResource("17_ywuvk")
 
 [node name="BGM" type="AudioStreamPlayer" parent="Stage2"]
@@ -1056,6 +1179,122 @@ transform = Transform3D(-0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, -0.261431
 [node name="CameraSpawn" type="Marker3D" parent="Stage2"]
 transform = Transform3D(-0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, -0.261431, 1.25423, -0.431225, -39.8475)
 
+[node name="Stage3" type="Node3D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Stage3"]
+transform = Transform3D(0.827401, -0.0467409, 0.559663, -0.393091, 0.66353, 0.636559, -0.401107, -0.746688, 0.530632, 5.29844, 41.0525, 16.8873)
+light_energy = 0.05
+shadow_enabled = true
+shadow_bias = 0.03
+
+[node name="DirectionalLight3D_Front" type="DirectionalLight3D" parent="Stage3"]
+transform = Transform3D(0.804467, 0.0597356, -0.590985, -0.000265723, 0.994967, 0.100208, 0.593997, -0.0804567, 0.800434, 2.62388, 40.2435, 15.7267)
+light_energy = 0.2
+sky_mode = 1
+
+[node name="PlayerSpawn" type="Marker3D" parent="Stage3"]
+transform = Transform3D(-0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, -0.261431, 9.97781, 40.2418, 19.8038)
+
+[node name="CameraSpawn" type="Marker3D" parent="Stage3"]
+transform = Transform3D(-0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, -0.261431, 8.85674, 40.9768, 19.7844)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Stage3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 40, 20)
+use_collision = true
+size = Vector3(4, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Stage3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, 40, 20)
+use_collision = true
+size = Vector3(1, 0.4, 1)
+material = ExtResource("35_57vp6")
+
+[node name="Kassan" parent="Stage3" instance=ExtResource("2_sy3b2")]
+transform = Transform3D(-0.998531, 0, 0.0541834, 0, 1, 0, -0.0541834, 0, -0.998531, 19, 29.1, -14.7)
+dialog_path = "res://dialogs/neko_concert.dialogue"
+dialog_entry = "kassan3"
+character = 13
+
+[node name="Nana" parent="Stage3" instance=ExtResource("2_sy3b2")]
+transform = Transform3D(0.0312886, 0, 0.99951, 0, 1, 0, -0.99951, 0, 0.0312886, 14, 40.103, 20)
+dialog_path = "res://dialogs/neko_concert.dialogue"
+dialog_entry = "nana3"
+character = 15
+
+[node name="StageComplete" type="Node3D" parent="."]
+process_mode = 4
+script = ExtResource("36_m5ark")
+
+[node name="Kassan" parent="StageComplete" instance=ExtResource("2_sy3b2")]
+transform = Transform3D(0.54619, 0, 0.837662, 0, 1, 0, -0.837662, 0, 0.54619, 0.965717, 0.279597, 0.290507)
+dialog_path = "res://dialogs/neko_concert.dialogue"
+dialog_entry = "kassan_complete"
+character = 13
+
+[node name="Sera" parent="StageComplete" instance=ExtResource("2_sy3b2")]
+transform = Transform3D(0.730329, 0, -0.683095, 0, 1, 0, 0.683095, 0, 0.730329, -0.979249, 0.279597, 0.209317)
+script = ExtResource("5_o8wuw")
+debug_adjust = false
+item_offset = Vector3(-0.018, 0.008, 0.1)
+item_rotation = Vector3(-60, 268.8, 0.2)
+animation = "Hold-guitar"
+lock_bone = "HandL"
+dialog_path = "res://dialogs/neko_concert.dialogue"
+dialog_entry = "sera_complete"
+character = 14
+
+[node name="Item" type="MeshInstance3D" parent="StageComplete/Sera"]
+transform = Transform3D(0.931979, 0.0595604, 0.357587, -0.362496, 0.162812, 0.917655, -0.00356367, -0.984858, 0.173328, 0.00797391, 0.142325, -0.0604653)
+mesh = ExtResource("6_05cld")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bqoi8")
+surface_material_override/1 = SubResource("ShaderMaterial_2yhex")
+surface_material_override/2 = SubResource("ShaderMaterial_fphcx")
+
+[node name="Nana" parent="StageComplete" instance=ExtResource("2_sy3b2")]
+transform = Transform3D(0.99951, 0, -0.0312886, 0, 1, 0, 0.0312886, 0, 0.99951, 0.0289532, 0.279597, 0.316627)
+script = ExtResource("5_o8wuw")
+debug_adjust = false
+item_offset = Vector3(0, 0, 0)
+item_rotation = Vector3(-70, -10, 0)
+animation = "HoldR"
+lock_bone = "HandR"
+dialog_path = "res://dialogs/neko_concert.dialogue"
+dialog_entry = "nana_complete"
+character = 15
+
+[node name="Item" type="MeshInstance3D" parent="StageComplete/Nana"]
+transform = Transform3D(0.999511, 0, 0.0312886, 0, 1, 0, -0.0312886, 0, 0.999511, 0.0221217, 0.140527, -0.0801356)
+mesh = ExtResource("5_ilkbb")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("ShaderMaterial_otvg6")
+surface_material_override/1 = SubResource("ShaderMaterial_oglun")
+
+[node name="Quickwarp" parent="StageComplete" instance=ExtResource("11_j6tda")]
+transform = Transform3D(-0.999769, 0, 0.0214834, 0, 1, 0, -0.0214834, 0, -0.999769, -3.84251, -0.124365, -14.217)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="StageComplete"]
+transform = Transform3D(0.62867, 0.642557, 0.438058, -0.0108483, -0.555993, 0.831116, 0.777596, -0.52725, -0.342566, 6.26983, 11.841, -5.83063)
+light_energy = 0.05
+shadow_enabled = true
+shadow_bias = 0.03
+
+[node name="DirectionalLight3D_Front" type="DirectionalLight3D" parent="StageComplete"]
+transform = Transform3D(-0.999901, -0.0016724, 0.0139539, -0.000265725, 0.994967, 0.100208, -0.0140512, 0.100194, -0.994869, 0.339267, 0.243454, -6.99126)
+light_energy = 0.2
+sky_mode = 1
+
+[node name="concert_stage" parent="StageComplete" instance=ExtResource("15_aocob")]
+
+[node name="PlayerSpawn" type="Marker3D" parent="StageComplete"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.73845, 2.38419e-07, -12.1086)
+
+[node name="CameraSpawn" type="Marker3D" parent="StageComplete"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.07885, 0.321783, -13.0884)
+
 [node name="Quests" type="Node3D" parent="."]
 script = ExtResource("26_sy007")
 
@@ -1123,6 +1362,402 @@ description = "Speak with Kassan"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/stage2_after_squash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.962443, 0.442976, -3.73026)
 shape = SubResource("SphereShape3D_m8xcp")
+
+[node name="stage3_squash_bugs" type="Node" parent="Quests"]
+script = ExtResource("27_j6pmh")
+collect_type = 2
+collect_amount = 3
+ignore_current_global_count = true
+quest_id = &"stage3_squash_bugs"
+description = "Squash [b]Bug Nests[/b]"
+
+[node name="bugs" parent="Quests/stage3_squash_bugs" instance=ExtResource("20_a0nvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 40.11, 20)
+
+[node name="bugs2" parent="Quests/stage3_squash_bugs" instance=ExtResource("20_a0nvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 45.11, 10)
+
+[node name="bugs3" parent="Quests/stage3_squash_bugs" instance=ExtResource("20_a0nvy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 29.11, -12.5)
+
+[node name="Platforms" type="Node3D" parent="Quests/stage3_squash_bugs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0, 20)
+use_collision = true
+size = Vector3(4, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, 10)
+use_collision = true
+size = Vector3(4, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D33" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -11, -12.5)
+use_collision = true
+size = Vector3(4, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D34" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -11, -15)
+use_collision = true
+size = Vector3(1.1, 0.2, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D35" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -10.2, -15)
+use_collision = true
+size = Vector3(1.1, 0.2, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D36" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, -10.6, -15)
+use_collision = true
+size = Vector3(0.1, 0.6, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D37" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, -10.6, -15)
+use_collision = true
+size = Vector3(0.1, 0.6, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D38" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19, -10.6, -15.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.9)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D44" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.1, -10.6, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D46" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.3, -10.6, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.7, -10.6, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.9, -10.6, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, 3)
+use_collision = true
+size = Vector3(1, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5, -1)
+use_collision = true
+size = Vector3(1, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.15, -3)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.25, -3.3)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.35, -3.6)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.45, -3.9)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.55, -4.2)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.65, -4.5)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.75, -4.8)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.85, -5.1)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.95, -5.4)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D26" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.05, -5.7)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D27" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.15, -6)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D28" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.25, -6.3)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D29" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.35, -6.6)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D30" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.45, -6.9)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D31" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.55, -7.2)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D32" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 6.65, -7.5)
+use_collision = true
+size = Vector3(1, 0.1, 0.5)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 19, 5.8, 1)
+use_collision = true
+size = Vector3(0.9, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 22, 1, 20)
+use_collision = true
+size = Vector3(1, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 25, 2, 18)
+use_collision = true
+size = Vector3(1, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 25.5, 3, 14.5)
+use_collision = true
+size = Vector3(1, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 23.5, 4, 11.5)
+use_collision = true
+size = Vector3(1, 0.2, 1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 5.6, -12.6)
+use_collision = true
+inner_radius = 4.0
+outer_radius = 6.0
+sides = 32
+ring_sides = 24
+material = ExtResource("35_57vp6")
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 2.6, -12.6)
+use_collision = true
+inner_radius = 3.0
+outer_radius = 5.0
+sides = 32
+ring_sides = 24
+material = ExtResource("35_57vp6")
+
+[node name="CSGTorus3D3" type="CSGTorus3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -0.400002, -12.6)
+use_collision = true
+inner_radius = 2.0
+outer_radius = 4.0
+sides = 32
+ring_sides = 24
+material = ExtResource("35_57vp6")
+
+[node name="CSGTorus3D4" type="CSGTorus3D" parent="Quests/stage3_squash_bugs/Platforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -3.4, -12.6)
+use_collision = true
+inner_radius = 1.0
+outer_radius = 3.0
+sides = 32
+ring_sides = 24
+material = ExtResource("35_57vp6")
+
+[node name="stage3_simon_says" type="Node" parent="Quests" node_paths=PackedStringArray("respawn_pos", "respawn_camera")]
+script = ExtResource("40_btv3e")
+respawn_pos = NodePath("../../Stage3/PlayerSpawn")
+respawn_camera = NodePath("../../Stage3/CameraSpawn")
+quest_id = &"stage3_simon_says"
+description = "Help Kassan get out"
+
+[node name="Node3D" type="Node3D" parent="Quests/stage3_simon_says"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 29.5206, -8.56062)
+
+[node name="Button1" parent="Quests/stage3_simon_says/Node3D" instance=ExtResource("41_dptmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.793, 0)
+color_dark = Color(0.235294, 0, 0, 1)
+color_pressed = Color(0.882353, 0, 0.231373, 1)
+sound = ExtResource("42_knmkv")
+
+[node name="Button2" parent="Quests/stage3_simon_says/Node3D" instance=ExtResource("41_dptmx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.793, 0)
+color_dark = Color(0, 0.235294, 0, 1)
+color_pressed = Color(0, 0.945098, 0.368627, 1)
+sound = ExtResource("43_b2x3o")
+
+[node name="Button3" parent="Quests/stage3_simon_says/Node3D" instance=ExtResource("41_dptmx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.793, 1)
+color_dark = Color(0.235294, 0.235294, 0, 1)
+color_pressed = Color(0.941176, 0.811765, 0, 1)
+sound = ExtResource("44_6pt4b")
+
+[node name="Button4" parent="Quests/stage3_simon_says/Node3D" instance=ExtResource("41_dptmx")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, -0.793, -1)
+color_dark = Color(0, 0, 0.235294, 1)
+color_pressed = Color(0.254902, 0.219608, 0.976471, 1)
+sound = ExtResource("45_0ikac")
+
+[node name="CSGBox3D39" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -4.47035e-08, 0, 4.47035e-08, 1, 0, -0.524319, 0)
+use_collision = true
+size = Vector3(3.5, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.520626, -3.93938)
+use_collision = true
+size = Vector3(4, 0.2, 4)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D41" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.520626, -6.43938)
+use_collision = true
+size = Vector3(1.1, 0.2, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D43" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.279373, -6.43938)
+use_collision = true
+size = Vector3(1.1, 0.2, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D45" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.120626, -6.43938)
+use_collision = true
+size = Vector3(0.1, 0.6, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D47" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.120626, -6.43938)
+use_collision = true
+size = Vector3(0.1, 0.6, 1.1)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D48" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.120626, -6.93938)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.9)
+material = ExtResource("35_57vp6")
+
+[node name="FirstTrigger" type="Area3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.64852)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/stage3_simon_says/Node3D/FirstTrigger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.27093)
+shape = SubResource("BoxShape3D_tidst")
+
+[node name="Bars" type="Node3D" parent="Quests/stage3_simon_says/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -29.5206, 8.56062)
+
+[node name="CSGBox3D40" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D/Bars"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.7, 29.4, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D42" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D/Bars"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 18.9, 29.4, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D51" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D/Bars"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.1, 29.4, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="CSGBox3D52" type="CSGBox3D" parent="Quests/stage3_simon_says/Node3D/Bars"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.3, 29.4, -14.5)
+use_collision = true
+size = Vector3(0.1, 0.6, 0.05)
+material = ExtResource("35_57vp6")
+
+[node name="NewPlayerSpawn" type="Marker3D" parent="Quests/stage3_simon_says"]
+transform = Transform3D(0.745592, 0, 0.666402, 0, 1, 0, -0.666402, 0, 0.745592, 18.3213, 29.1321, -12.7054)
+
+[node name="NewCameraSpawn" type="Marker3D" parent="Quests/stage3_simon_says"]
+transform = Transform3D(0.745592, 0, 0.666402, 0, 1, 0, -0.666402, 0, 0.745592, 17.8361, 29.8671, -13.7162)
+
+[node name="Animations" type="AnimationPlayer" parent="Quests/stage3_simon_says"]
+libraries = {
+"": SubResource("AnimationLibrary_sdbcs")
+}
+
+[node name="visit_camellia_island" type="Node" parent="Quests"]
+script = ExtResource("28_p78hx")
+quest_id = &"visit_camellia_island"
+description = "Leave the Area"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/visit_camellia_island"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.78924, 0.189581, -14.188)
+shape = SubResource("SphereShape3D_x70tf")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

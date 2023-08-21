@@ -29,8 +29,22 @@ else
 	do neko_world.give_letter()
 => END
 
- ~kassan3
-Kassan: ...
+~ kassan3
+do end_quest("stage3_squash_bugs")
+do start_quest("stage3_simon_says")
+set current_npc.dialog_entry = "kassan3_quest"
+Kassan: Help, I'm locked in!
+Kassan: There must be some way to open this door, can you help me get out?
+=> END
+
+~ kassan3_quest
+if not is_quest_complete("stage3_simon_says")
+	Kassan: Try pressing the buttons in the order how they light up.
+else
+	Kassan: Thank you for resucing me! I found the bug causing this whole mess in my cell!
+	Kassan: Let me just fix it really quick...
+	do end_quest("stage3_simon_says")
+	do neko_world.give_letter()
 => END
 
 ~ sera
@@ -72,5 +86,40 @@ Haruka Nana: I am Haruka Nana!
 ~ nana2
 
 Haruka Nana: I am Nanahira! ... no wait, I am Haruka Nana!
+=> END
 
+~ nana3
+Haruka Nana: I don't understand what's happening...
+Haruka Nana: Everyone is suddenly gone as well...
+Haruka Nana: ...
+Haruka Nana: I was suddenly holding this button - I don't want to press it, you can have it!
+- Press the Button
+	set current_npc.dialog_entry = "nana3_done"
+	do start_quest("stage3_squash_bugs")
+=> nana3_done
+
+~ nana3_done
+Haruka Nana: Eeek, more bugs!
+=> END
+
+~ kassan_complete
+Kassan: Hello! I am Kassan!
+Kassan: Is that a letter for me?
+- Yes
+	Kassan: ... this time we are safe
+	You give Kassan the letter.
+	Kassan: Thanks for the letter and all your help! Also I have this letter here I would like you to bring to Fullflavor Girl on Camellia Island, could you deliver it for me?
+	- Sure
+		set camellia_available = true
+		do start_quest("visit_camellia_island")
+- No
+	Kassan: I see. Must be for someone else then!
+=> END
+
+~ sera_complete
+Sera: Thank you for helping Kassan and us out there!
+=> END
+
+~ nana_complete
+Haruka Nana: Thank you for helping us out there with all these bugs!
 => END

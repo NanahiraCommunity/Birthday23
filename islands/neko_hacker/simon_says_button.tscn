@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dscgwwlmv7vd0"]
+
+[ext_resource type="Script" path="res://islands/neko_hacker/simon_says_button.gd" id="1_cmhdf"]
+[ext_resource type="Shader" uid="uid://dh7el7cncgljs" path="res://islands/neko_hacker/simon_says_button.tres" id="2_mlpsx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4lk2n"]
+height = 0.127327
+radius = 0.46764
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cdn0q"]
+render_priority = 0
+shader = ExtResource("2_mlpsx")
+shader_parameter/albedo = Color(0, 0.152941, 0, 1)
+shader_parameter/emission = Color(0, 0.898039, 0.333333, 1)
+shader_parameter/pressed = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2677"]
+albedo_color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[node name="Button" type="Node3D"]
+script = ExtResource("1_cmhdf")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49002, 0)
+shape = SubResource("CylinderShape3D_4lk2n")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+use_collision = true
+height = 1.0
+sides = 48
+material = SubResource("ShaderMaterial_cdn0q")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+use_collision = true
+radius = 0.55
+height = 1.0
+sides = 48
+material = SubResource("StandardMaterial3D_i2677")

@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dq6ob0ugw1708"]
+
+[ext_resource type="Shader" path="res://islands/neko_hacker/glitch_solid.gdshader" id="1_ipgbt"]
+[ext_resource type="Texture2D" uid="uid://bdhlmva24gqqc" path="res://islands/neko_hacker/binary.png" id="4_0cfif"]
+
+[sub_resource type="Gradient" id="Gradient_582d0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75)
+colors = PackedColorArray(0.716667, 0, 1, 1, 0, 0.5, 1, 1, 0, 1, 0.6, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yq78a"]
+gradient = SubResource("Gradient_582d0")
+width = 4
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ipgbt")
+shader_parameter/screen_segments = Vector2(10, 20)
+shader_parameter/opacity = 1.0
+shader_parameter/bpm = 145.0
+shader_parameter/bpm_offset_s = -4.2
+shader_parameter/max_pixel_offset = 10.0
+shader_parameter/pixel_drift = 0.1
+shader_parameter/binary_texture = ExtResource("4_0cfif")
+shader_parameter/fresnel_color = SubResource("GradientTexture1D_yq78a")

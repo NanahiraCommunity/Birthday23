@@ -1,0 +1,24 @@
+[gd_resource type="Shader" format=3 uid="uid://dh7el7cncgljs"]
+
+[resource]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx;
+uniform vec3 albedo : source_color;
+uniform vec3 emission : source_color;
+uniform bool pressed;
+
+varying float dist;
+
+void vertex() {
+	dist = length(VERTEX.xz);
+}
+
+void fragment() {
+	ALBEDO = albedo;
+	SPECULAR = pressed ? 0.2 : 0.04;
+	ROUGHNESS = 0.2;
+	EMISSION = emission * (pressed ? 1.0 : 0.0) * pow(1.0 - dist, 2.0);
+}
+"

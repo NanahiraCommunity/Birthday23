@@ -1,15 +1,20 @@
 extends Node3D
 
-var stage_idx = 1
+var stage_idx = 0
 var loaded_stage: Node = null
 var stages: Array[Node] = []
 var timeout_deaths = 0
 
 func _ready():
 	Global.neko_world = self
+	if Global.is_quest_complete("stage3_simon_says"):
+		stage_idx = 3
+
 	stages = [
 		$Stage1,
-		$Stage2
+		$Stage2,
+		$Stage3,
+		$StageComplete
 	]
 	for stage in stages:
 		remove_child(stage)

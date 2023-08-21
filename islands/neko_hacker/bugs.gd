@@ -3,6 +3,7 @@ extends Node3D
 var destroying = false
 
 func _ready():
+	add_to_group("bugs")
 	$Area3D.body_entered.connect(_body_entered)
 
 func _body_entered(body: Node3D):
