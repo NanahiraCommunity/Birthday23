@@ -6,6 +6,7 @@ var t = 0.0
 @export var builtin_billboard = false
 
 func _ready():
+	super()
 	t = fmod(global_position.x + global_position.z, TAU)
 	rotate_y(t)
 	$GlowShape.material_override = $GlowShape.material.duplicate()

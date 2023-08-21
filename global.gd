@@ -18,6 +18,9 @@ enum Collectible
 	BUGS,
 }
 
+var collected_dynamics = {}
+var collected_grids = {}
+
 # global state
 
 func _ready():
