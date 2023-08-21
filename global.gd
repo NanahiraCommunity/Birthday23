@@ -96,6 +96,12 @@ func did_complete_quest(qid: StringName):
 func in_quest(qid: StringName):
 	for i in range(0, active_quests.size()):
 		if active_quests[i].quest_id == qid:
+			return true
+	return false
+
+func get_quest(qid: StringName):
+	for i in range(0, active_quests.size()):
+		if active_quests[i].quest_id == qid:
 			return active_quests[i]
 	return null
 
