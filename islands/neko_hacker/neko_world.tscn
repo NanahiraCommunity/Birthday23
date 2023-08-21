@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_7j1kp"]
 [ext_resource type="Script" path="res://islands/neko_hacker/neko_world_loader.gd" id="1_86hvk"]
-[ext_resource type="AudioStream" uid="uid://dprqvi6emadk8" path="res://addons/contrib/happydiamo_nekohacker_phase_1.mp3" id="1_m4ln8"]
 [ext_resource type="Texture2D" uid="uid://ba4plgu5qrcg2" path="res://shared/sky/neko/spacescape.exr" id="2_2f2xg"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_sy3b2"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="4_ggigq"]
@@ -23,6 +22,7 @@
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="17_cd3bw"]
 [ext_resource type="Script" path="res://islands/neko_hacker/stage2.gd" id="17_ywuvk"]
 [ext_resource type="Script" path="res://shared/collectible/collectible_grid_generator.gd" id="18_6gflc"]
+[ext_resource type="AudioStream" uid="uid://c002fd3cccewi" path="res://islands/neko_hacker/endlesserrorloop.mp3" id="19_bdpar"]
 [ext_resource type="PackedScene" uid="uid://270g3h41drvg" path="res://islands/neko_hacker/bugs.tscn" id="20_a0nvy"]
 [ext_resource type="Script" path="res://islands/neko_hacker/rave_controller.gd" id="21_3ntny"]
 [ext_resource type="MeshLibrary" uid="uid://djxgl2hv7ukx0" path="res://islands/neko_hacker/asteroids/asteroids.tres" id="22_dp4lo"]
@@ -545,57 +545,6 @@ radius = 1.35282
 [sub_resource type="BoxShape3D" id="BoxShape3D_tidst"]
 size = Vector3(4.46629, 3.32258, 4.89117)
 
-[sub_resource type="Animation" id="Animation_a7qro"]
-resource_name = "hide_buttons"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D/Button4:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.793314, -1), Vector3(0, -0.991512, -1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/Button1:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, -0.793, 0), Vector3(1, -0.991198, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/Button2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1, -0.793, 0), Vector3(-1, -0.991198, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Node3D/Button3:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -0.793, 1), Vector3(0, -0.991198, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_e14so"]
 length = 0.001
 tracks/0/type = "value"
@@ -645,6 +594,57 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, -0.793, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a7qro"]
+resource_name = "hide_buttons"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/Button4:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.793314, -1), Vector3(0, -0.991512, -1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Button1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, -0.793, 0), Vector3(1, -0.991198, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/Button2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1, -0.793, 0), Vector3(-1, -0.991198, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/Button3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.793, 1), Vector3(0, -0.991198, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sdbcs"]
@@ -809,7 +809,7 @@ visible = false
 script = ExtResource("17_ywuvk")
 
 [node name="BGM" type="AudioStreamPlayer" parent="Stage2"]
-stream = ExtResource("1_m4ln8")
+stream = ExtResource("19_bdpar")
 
 [node name="Kassan" parent="Stage2" instance=ExtResource("2_sy3b2")]
 transform = Transform3D(0.54619, 0, 0.837662, 0, 1, 0, -0.837662, 0, 0.54619, 0.965717, 0.279597, -3.72504)
