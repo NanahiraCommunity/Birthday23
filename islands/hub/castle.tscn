@@ -152,7 +152,7 @@ shape = SubResource("ConcavePolygonShape3D_gtg6m")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494863, 2, -3.43298)
 
 [node name="BrickWall2" parent="FrontWall" index="0" instance=ExtResource("1_o4xqg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21489, 0, -0.354536)
+transform = Transform3D(0.996969, 0, 0.0777979, 0, 1, 0, -0.0777979, 0, 0.996969, 1.21489, 0, -0.309136)
 
 [node name="BrickWall5" parent="FrontWall" index="1" instance=ExtResource("1_o4xqg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.365799, 0, -0.354536)
