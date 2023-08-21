@@ -1,0 +1,76 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn6xy2x6qxx31"]
+
+[ext_resource type="PackedScene" uid="uid://ky7ul07l33xs" path="res://islands/camellia/lantern.tscn" id="1_e6byu"]
+[ext_resource type="PackedScene" uid="uid://vqi7hfe8uwsf" path="res://islands/camellia/lantern_light.tscn" id="2_lvlh0"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Lantern" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.00933508, 0)
+
+[node name="Lantern2" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -0.2)
+
+[node name="Lantern5" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 0.2)
+
+[node name="Lantern3" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -0.4)
+
+[node name="Lantern6" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 0.4)
+
+[node name="Lantern4" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -0.6)
+
+[node name="Lantern8" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -0.8)
+
+[node name="Lantern9" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -1)
+
+[node name="Lantern10" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -1.2)
+
+[node name="Lantern11" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -1.4)
+
+[node name="Lantern12" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -1.6)
+
+[node name="Lantern13" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, -1.8)
+
+[node name="Lantern7" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 0.6)
+
+[node name="Lantern14" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 0.8)
+
+[node name="Lantern15" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 1)
+
+[node name="Lantern16" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 1.2)
+
+[node name="Lantern17" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 1.4)
+
+[node name="Lantern18" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 1.6)
+
+[node name="Lantern19" parent="." instance=ExtResource("1_e6byu")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.009, 1.8)
+
+[node name="Light" parent="." instance=ExtResource("2_lvlh0")]
+
+[node name="Light2" parent="." instance=ExtResource("2_lvlh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.056, 1.2)
+
+[node name="Light3" parent="." instance=ExtResource("2_lvlh0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.056, -1.2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+radius = 0.009
+height = 3.95
