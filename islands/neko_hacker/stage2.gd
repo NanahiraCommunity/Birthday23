@@ -6,14 +6,14 @@ var started = false
 func start(_world):
 	world = _world
 	started = false # since we respawned
-	var q = Global.in_quest("stage2_squash_bugs")
+	var q = Global.get_quest("stage2_squash_bugs")
 	if q:
 		start_death_timer(q)
 	else:
 		Global.active_quests_changed.connect(_recheck_quests)
 
 func _recheck_quests():
-	var q = Global.in_quest("stage2_squash_bugs")
+	var q = Global.get_quest("stage2_squash_bugs")
 	if q:
 		start_death_timer(q)
 		Global.active_quests_changed.disconnect(_recheck_quests)
