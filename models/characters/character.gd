@@ -19,6 +19,14 @@ enum Character {
 	KASSAN,
 	SERA,
 	HARUKA_NANA,
+	MALE_ELF,
+	FULLFLAVOR_GIRL,
+	MINIHIRA_BLUE,
+	MINIHIRA_GREEN,
+	MINIHIRA_ORANGE,
+	MINIHIRA_YELLOW,
+	POMI,
+	TWINTAIL,
 }
 
 const VELOCITY_SCALE = 2.0
@@ -109,6 +117,34 @@ func update_character():
 			scene = preload("res://models/characters/haruka_nana/haruka_nana.tscn")
 			respath = "Armature/Skeleton3D/HarukaNana"
 			skin = preload("res://models/characters/haruka_nana/skins/HarukaNanaPapercraft.png")
+		Character.MALE_ELF:
+			scene = preload("res://models/characters/elf/elf.tscn")
+			respath = "Armature/Skeleton3D/ElfPapercraft"
+		Character.FULLFLAVOR_GIRL:
+			scene = preload("res://models/characters/fullflavor/fullflavor.tscn")
+			respath = "Armature/Skeleton3D/FullflavorPapercraft"
+		Character.MINIHIRA_BLUE:
+			scene = preload("res://models/characters/fullflavor/minihira.tscn")
+			respath = "Armature/Skeleton3D/Minihira"
+			skin = preload("res://models/characters/fullflavor/skins/MinihiraBlue.png")
+		Character.MINIHIRA_GREEN:
+			scene = preload("res://models/characters/fullflavor/minihira.tscn")
+			respath = "Armature/Skeleton3D/Minihira"
+			skin = preload("res://models/characters/fullflavor/skins/MinihiraGreen.png")
+		Character.MINIHIRA_ORANGE:
+			scene = preload("res://models/characters/fullflavor/minihira.tscn")
+			respath = "Armature/Skeleton3D/Minihira"
+			skin = preload("res://models/characters/fullflavor/skins/MinihiraOrange.png")
+		Character.MINIHIRA_YELLOW:
+			scene = preload("res://models/characters/fullflavor/minihira.tscn")
+			respath = "Armature/Skeleton3D/Minihira"
+			skin = preload("res://models/characters/fullflavor/skins/MinihiraYellow.png")
+		Character.POMI:
+			scene = preload("res://models/characters/pomi/pomi.tscn")
+			respath = "Armature/Skeleton3D/HarukaNana"
+		Character.TWINTAIL:
+			scene = preload("res://models/characters/twintail/twintail.tscn")
+			respath = "Armature/Skeleton3D/TwintailValentine"
 		_:
 			push_warning("Specified character not in enum, can't load!")
 
@@ -154,3 +190,9 @@ func set_velocity(velocity: Vector3):
 func set_arms(animation: String):
 	# animation like HandsR or RESET
 	$AnimationTree["parameters/Arms/playback"].travel(animation)
+
+func set_movement_animation(animation: String, instant: bool = false):
+	if instant:
+		$AnimationTree["parameters/Movement/playback"].start(animation)
+	else:
+		$AnimationTree["parameters/Movement/playback"].travel(animation)

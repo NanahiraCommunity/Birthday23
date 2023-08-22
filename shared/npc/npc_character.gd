@@ -8,6 +8,7 @@ const C = preload("res://models/characters/character.gd")
 @export var dynamic_collision: bool = false
 @export var hide_quest_indicator: bool = false
 @export var interact_point: Marker3D = null
+@export var animation_entry: String
 @export var character: C.Character:
 	get:
 		if not $NanahiraPapercraft:
@@ -45,6 +46,10 @@ func _input(event):
 		Global.current_npc = self
 		Global.UI.DialogBox.trigger_dialog(dialog_path, dialog_entry)
 		get_viewport().set_input_as_handled()
+
+func _on_child_order_changed():
+	if controller and animation_entry:
+		controller.set_movement_animation(animation_entry)
 
 func _process(delta):
 	var direction: Vector3
@@ -85,5 +90,7 @@ func _process(delta):
 			target_angle = 0
 
 		var pose = Quaternion(Vector3(0, 1, 0), head_angle)
+		var t = skeleton.get_bone_global_pose_no_override(head_bone)
+		t.basis = Basis(pose).scaled(t.basis.get_scale())
 		head_angle = lerp_angle(head_angle, target_angle, 0.03)
-		skeleton.set_bone_global_pose_override(head_bone, pose, 1.0, true)
+		skeleton.set_bone_global_pose_override(head_bone, t, 1.0, true)
