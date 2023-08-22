@@ -28,9 +28,9 @@
    inkscape:deskcolor="#d1d1d1"
    inkscape:document-units="in"
    inkscape:export-bgcolor="#ffffffff"
-   inkscape:zoom="1.5724083"
-   inkscape:cx="168.84927"
-   inkscape:cy="832.16297"
+   inkscape:zoom="0.78620415"
+   inkscape:cx="178.70676"
+   inkscape:cy="1085.5959"
    inkscape:window-width="1366"
    inkscape:window-height="713"
    inkscape:window-x="-8"
@@ -1377,7 +1377,11 @@
    class="fil8"
    d="M 173.17,8179.56 H 843.93 V 11929.4 H 173.17 Z m 766.59,0 h 654.79 v 3754.17 H 939.76 Z"
    id="path269"
-   style="fill:#fef2dc;fill-opacity:1" />&#10;  </g>&#10;  <path
+   style="fill:#fef2dc;fill-opacity:1" />&#10;  <path
+   class="fil8"
+   d="M 173.17,8846.8244 H 843.93 V 11263.675 H 173.17 Z m 766.59,0 h 654.79 V 11266.466 H 939.76 Z"
+   id="path36"
+   style="fill:#ffffff;fill-opacity:1;stroke-width:0.802821" /></g>&#10;  <path
    class="fil53"
    d="m 180.86,9965.43 h 662.27 v 776.89 H 180.86 Z m 764.16,0 h 649.54 v 776.89 H 945.02 Z"
    id="path270" />&#10;  <path
