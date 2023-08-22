@@ -61,12 +61,12 @@ environment = SubResource("Environment_na0up")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_4pj2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09359, 0.0528373, -1.46358)
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../CameraGroup/Camera3D")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="CameraGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33438, 0.883262, 0.193773)
 
-[node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
+[node name="Camera3D" type="Camera3D" parent="CameraGroup" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(1, -8.7423e-08, 1.51421e-07, 9.47311e-16, 0.866025, 0.5, -1.74846e-07, -0.5, 0.866025, -2.32728, 0, -0.796576)
 current = true
 script = ExtResource("3_8r8sj")
@@ -75,13 +75,13 @@ kinematic_body = NodePath("../CameraSafeArea")
 height = 0.9
 speed_height = 0.2
 
-[node name="CameraSafeArea" type="CharacterBody3D" parent="Node3D"]
+[node name="CameraSafeArea" type="CharacterBody3D" parent="CameraGroup"]
 collision_layer = 0
 collision_mask = 257
 floor_constant_speed = true
 platform_on_leave = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraGroup/CameraSafeArea"]
 shape = SubResource("SphereShape3D_b8hsf")
 
 [node name="UI" parent="." instance=ExtResource("4_3u7si")]
@@ -413,19 +413,19 @@ character = 12
 
 [node name="StairCameraFix" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -4)
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../CameraGroup/Camera3D")
 
 [node name="StairCameraFix2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, -4)
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../CameraGroup/Camera3D")
 
 [node name="StairCameraFix3" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, 4)
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../CameraGroup/Camera3D")
 
 [node name="StairCameraFix4" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("16_1reab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0, 4)
-camera = NodePath("../Node3D/Camera3D")
+camera = NodePath("../CameraGroup/Camera3D")
 
 [node name="Floor2" type="Node3D" parent="."]
 visible = false
