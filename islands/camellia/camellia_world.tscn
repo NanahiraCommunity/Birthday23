@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cvwfpj8elepkn"]
+[gd_scene load_steps=43 format=3 uid="uid://cvwfpj8elepkn"]
 
 [ext_resource type="AudioStream" uid="uid://bckbj3r8g062a" path="res://islands/camellia/nanahirafangame_forbidenpizza.wav" id="1_7dodf"]
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_xo1hg"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" path="res://islands/camellia/table.tscn" id="10_hv8l1"]
 [ext_resource type="PackedScene" path="res://islands/camellia/microwave.tscn" id="10_ipgrb"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="11_tttmk"]
+[ext_resource type="PackedScene" uid="uid://bx7gx1d13p8nv" path="res://islands/camellia/minihira.tscn" id="14_snhn7"]
 [ext_resource type="PackedScene" uid="uid://isobc4i517mw" path="res://islands/camellia/lantern_row.tscn" id="14_x6xk2"]
 [ext_resource type="PackedScene" uid="uid://hov8yahtdh7r" path="res://islands/camellia/lantern_row_long.tscn" id="15_7t0o4"]
 [ext_resource type="PackedScene" uid="uid://bpw21ckw5jd47" path="res://islands/camellia/island_shape.tscn" id="18_vepf8"]
@@ -51,6 +52,9 @@ ssao_detail = 2.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eondv"]
 radius = 0.15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mx5in"]
+size = Vector3(2.2, 3.84195, 2.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7nnh"]
 albedo_color = Color(0.180392, 0.188235, 0.188235, 1)
@@ -180,13 +184,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, -0.25)
 [node name="Pizzahira" parent="FestivalArea" instance=ExtResource("7_pm2ox")]
 transform = Transform3D(0.758715, 0, 0.651423, 0, 1, 0, -0.651423, 0, 0.758715, 0.31632, 6.55651e-07, 6.35904)
 dialog_entry = ""
-interact_point = NodePath("")
 character = 6
 
 [node name="Microwave" parent="FestivalArea" instance=ExtResource("10_ipgrb")]
 transform = Transform3D(0.978133, 0, 0.20798, 0, 1, 0, -0.20798, 0, 0.978133, -0.126632, 0.20037, 6.32765)
 
 [node name="Stage" parent="FestivalArea" instance=ExtResource("4_mm0r7")]
+
+[node name="FullflavorGirl" parent="FestivalArea/Stage" instance=ExtResource("7_pm2ox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+character = 17
+
+[node name="MinihiraBlue" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.238)
+character = 18
+
+[node name="MinihiraGreen" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.3, 1.262)
+character = 19
+
+[node name="MinihiraOrange" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.25, 0.3, 0.012)
+character = 20
+
+[node name="MinihiraYellow" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
+transform = Transform3D(1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, 1.25, 0.3, 0.0119999)
+character = 21
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FestivalArea/Stage"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FestivalArea/Stage/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2317, 0)
+shape = SubResource("BoxShape3D_mx5in")
 
 [node name="FoodStall" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.82534, 0, 0.564636, 0, 1, 0, -0.564636, 0, 0.82534, -4.99224, 4.76837e-07, 6.19689)
