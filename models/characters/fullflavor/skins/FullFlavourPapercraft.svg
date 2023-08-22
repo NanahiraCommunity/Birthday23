@@ -9,7 +9,7 @@
    style="clip-rule:evenodd;fill-rule:evenodd;image-rendering:optimizeQuality;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
    viewBox="0 0 8262.111 14606.22"
    id="svg287"
-   sodipodi:docname="FullFlavourPapercraft new cenah mah.svg"
+   sodipodi:docname="FullFlavourPapercraft.svg"
    inkscape:export-filename="FullFlavourPapercraft.png"
    inkscape:export-xdpi="150"
    inkscape:export-ydpi="150"
@@ -28,9 +28,9 @@
    inkscape:deskcolor="#d1d1d1"
    inkscape:document-units="in"
    inkscape:export-bgcolor="#ffffffff"
-   inkscape:zoom="0.5559303"
-   inkscape:cx="114.22295"
-   inkscape:cy="756.38978"
+   inkscape:zoom="1.5724083"
+   inkscape:cx="168.84927"
+   inkscape:cy="832.16297"
    inkscape:window-width="1366"
    inkscape:window-height="713"
    inkscape:window-x="-8"
@@ -1376,7 +1376,8 @@
    id="g269">&#10;   <path
    class="fil8"
    d="M 173.17,8179.56 H 843.93 V 11929.4 H 173.17 Z m 766.59,0 h 654.79 v 3754.17 H 939.76 Z"
-   id="path269" />&#10;  </g>&#10;  <path
+   id="path269"
+   style="fill:#fef2dc;fill-opacity:1" />&#10;  </g>&#10;  <path
    class="fil53"
    d="m 180.86,9965.43 h 662.27 v 776.89 H 180.86 Z m 764.16,0 h 649.54 v 776.89 H 945.02 Z"
    id="path270" />&#10;  <path
