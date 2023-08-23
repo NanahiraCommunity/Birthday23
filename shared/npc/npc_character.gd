@@ -52,12 +52,11 @@ func _on_child_order_changed():
 		controller.set_movement_animation(animation_entry)
 
 func _process(delta):
-	var direction: Vector3
-	if interact_point == null:
-		direction = skeleton.global_position - Global.player.global_position
-	else:
-		direction = interact_point.global_position - Global.player.global_position
+	# used for head turning / looking at player
+	var direction: Vector3 = skeleton.to_local(Global.player.global_position)
 	var distance_squared = direction.length_squared()
+	if interact_point != null:
+		distance_squared = interact_point.global_position.distance_squared_to(Global.player.global_position)
 
 	$DialogIndicator.visible = (dialog_path
 		and dialog_entry
