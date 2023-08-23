@@ -141,7 +141,7 @@ func update_character():
 			skin = preload("res://models/characters/fullflavor/skins/MinihiraYellow.png")
 		Character.POMI:
 			scene = preload("res://models/characters/pomi/pomi.tscn")
-			respath = "Armature/Skeleton3D/HarukaNana"
+			respath = "Armature/Skeleton3D/Pomi"
 		Character.TWINTAIL:
 			scene = preload("res://models/characters/twintail/twintail.tscn")
 			respath = "Armature/Skeleton3D/TwintailValentine"
