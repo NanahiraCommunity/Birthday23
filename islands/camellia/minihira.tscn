@@ -8,6 +8,7 @@ size = Vector3(2.4, 1.8, 1.2)
 
 [node name="Minihira" instance=ExtResource("1_y35es")]
 script = ExtResource("2_81cap")
+dynamic_collision = true
 
 [node name="DefendArea" type="Area3D" parent="." index="5"]
 

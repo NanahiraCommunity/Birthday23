@@ -112,7 +112,7 @@ pointing/emulate_mouse_from_touch=false
 [internationalization]
 
 locale/translations=PackedStringArray("res://i18n/translations.en.translation", "res://i18n/translations.ja.translation", "res://i18n/neko_concert.en.translation", "res://i18n/hub_taiyaki.en.translation", "res://i18n/hub_roof.en.translation", "res://i18n/test2.en.translation", "res://i18n/test.en.translation", "res://i18n/hub_roof.ja.translation", "res://i18n/hub_taiyaki.ja.translation", "res://i18n/neko_concert.ja.translation", "res://i18n/test2.ja.translation", "res://i18n/test.ja.translation", "res://i18n/quickwarp.en.translation", "res://i18n/quickwarp.ja.translation")
-locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "res://dialogs/test2.dialogue", "res://dialogs/neko_concert.dialogue", "res://dialogs/hub_roof.dialogue", "res://dialogs/hub_taiyaki.dialogue", "res://shared/quickwarp/quickwarp.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogs/test.dialogue", "res://dialogs/test2.dialogue", "res://dialogs/neko_concert.dialogue", "res://dialogs/hub_roof.dialogue", "res://dialogs/hub_taiyaki.dialogue", "res://shared/quickwarp/quickwarp.dialogue", "res://dialogs/camellia_world.dialogue")
 locale/include_text_server_data=true
 locale/test="ja"
 

@@ -3,23 +3,25 @@ extends Label
 var remaining_countdown: float = 0.0
 var last_render_time: int = 0
 var aborted: bool = false
+var active: bool = false
 
 signal done
 signal tick(abort: bool)
 
 func reset():
-	visible = false
+	active = false
 	aborted = true
 	tick.emit(false)
 
 func set_time(time: float):
 	rerender()
 	aborted = true
+	active = true
 	tick.emit(false)
 	remaining_countdown = time
 
 func _process(delta):
-	if remaining_countdown > 0.0 and visible:
+	if remaining_countdown > 0.0 and visible and active:
 		remaining_countdown -= delta
 		if remaining_countdown < 0.0:
 			remaining_countdown = 0.0
@@ -31,7 +33,7 @@ func _process(delta):
 
 		if remaining_countdown == 0.0:
 			done.emit()
-			visible = false
+			active = false
 
 func rerender():
 	var total = int(ceil(remaining_countdown))

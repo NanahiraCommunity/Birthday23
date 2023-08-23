@@ -1,6 +1,6 @@
 extends Node3D
 
-var stage_idx = 0
+var stage_idx = 1
 var loaded_stage: Node = null
 var stages: Array[Node] = []
 var timeout_deaths = 0
@@ -73,6 +73,7 @@ func glitch_death():
 func abort_countdown_death():
 	$Player/Timelimit.emitting = false
 	$Player/Timelimit.visible = false
+	$Control/Countdown.visible = false
 	$Control/Countdown.reset()
 
 func countdown_death(seconds: float):
@@ -88,12 +89,17 @@ func countdown_death(seconds: float):
 		if not await $Control/Countdown.tick:
 			$Player/Timelimit.visible = false
 			$Player/Timelimit.emitting = false
+			$Control/Countdown.visible = false
 			return
 	# for particles, and just for fairness as well
 	await get_tree().create_timer(0.3).timeout
 	if $Control/Countdown.aborted:
+		$Player/Timelimit.visible = false
+		$Player/Timelimit.emitting = false
+		$Control/Countdown.visible = false
 		return
 	glitch_death()
 	timeout_deaths += 1
 	$Player/Timelimit.visible = false
 	$Player/Timelimit.emitting = false
+	$Control/Countdown.visible = false

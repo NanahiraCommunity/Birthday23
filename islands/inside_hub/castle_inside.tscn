@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=29 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bmacmv88o4p5b" path="res://islands/inside_hub/door.tscn" id="19_wfp2b"]
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="20_a8f4g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="20_pp1vp"]
+[ext_resource type="PackedScene" uid="uid://brbran7yg3jdg" path="res://islands/inside_hub/shelve.tscn" id="21_sk7v3"]
 
 [sub_resource type="Environment" id="Environment_na0up"]
 background_mode = 1
@@ -356,11 +357,9 @@ shadow_blur = 2.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.54063, 1.28334, 3.08646)
-shadow_enabled = true
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.60192, 1.28334, 3.08646)
-shadow_enabled = true
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.73309, 1.28334, -0.95067)
@@ -548,3 +547,42 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.5036
 
 [node name="WindowF1_12" parent="." instance=ExtResource("20_a8f4g")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.50366, 0.470034, 0.345108)
+
+[node name="shelve" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -0.837205, -0.0356064, 2.23954)
+
+[node name="shelve2" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -0.837205, -0.0356064, 2.63876)
+
+[node name="shelve3" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -0.837205, -0.0356064, 3.03502)
+
+[node name="shelve5" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.8058, -0.0356064, 3.72739)
+
+[node name="shelve6" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 0.8058, -0.0356064, 3.32817)
+
+[node name="shelve7" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(0.3, 0, -8.88178e-16, 0, 0.3, 0, 8.88178e-16, 0, 0.3, 1.26789, -0.0356064, 2.2014)
+
+[node name="shelve4" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, -0.3, 0, 0.3, 0, 0.3, 0, -1.31134e-08, -0.837205, -0.0356064, 3.42169)
+
+[node name="shelve8" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, -0.0356064, 3.42169)
+
+[node name="shelve9" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, -0.0356064, 3.03502)
+
+[node name="shelve10" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, 0.275064, 3.42169)
+
+[node name="shelve11" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, 0.275064, 3.03502)
+
+[node name="shelve12" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, 0.57901, 3.42169)
+
+[node name="shelve13" parent="." instance=ExtResource("21_sk7v3")]
+transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, 0.57901, 3.03502)

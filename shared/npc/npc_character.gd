@@ -54,14 +54,14 @@ func _on_child_order_changed():
 func _process(delta):
 	var direction: Vector3
 	if interact_point == null:
-		direction = skeleton.to_local(Global.player.global_position)
+		direction = skeleton.global_position - Global.player.global_position
 	else:
-		direction = interact_point.to_local(Global.player.global_position)
+		direction = interact_point.global_position - Global.player.global_position
 	var distance_squared = direction.length_squared()
 
 	$DialogIndicator.visible = (dialog_path
 		and dialog_entry
-		and not Global.in_dialog
+		and not Global.in_ui
 		and distance_squared < INDICATOR_MAX_DISTANCE * INDICATOR_MAX_DISTANCE)
 	$DialogIndicator.modulate = Color(1, 1, 1, 1) if can_talk else Color(1, 1, 1, 0.5)
 

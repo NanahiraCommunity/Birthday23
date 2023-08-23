@@ -34,6 +34,11 @@ func preprocess_bbcode(text: String) -> String:
 
 var player: CharacterBody3D
 var in_dialog: bool = false
+var block_player_ui: int = 0 # the same thing, but not auto-reset when dialogs are closing
+var in_ui: bool:
+	get:
+		assert(block_player_ui >= 0)
+		return in_dialog or block_player_ui > 0
 
 var collectibles: PackedInt32Array = [
 	0, # STAMP
@@ -68,6 +73,12 @@ func register_quest(quest: Quest):
 
 func unregister_quest(quest: Quest):
 	_available_quests.erase(quest.quest_id)
+
+func try_start_quest(qid: StringName):
+	for i in range(0, active_quests.size()):
+		if active_quests[i].quest_id == qid:
+			return
+	start_quest(qid)
 
 func start_quest(qid: StringName):
 	var quest = _available_quests.get(qid)
@@ -126,3 +137,7 @@ func respawn_scene():
 # per-island state
 
 var neko_world = null
+
+# camellia world
+
+var boosted = true

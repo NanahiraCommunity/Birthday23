@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cvwfpj8elepkn"]
+[gd_scene load_steps=44 format=3 uid="uid://cvwfpj8elepkn"]
 
 [ext_resource type="AudioStream" uid="uid://bckbj3r8g062a" path="res://islands/camellia/nanahirafangame_forbidenpizza.wav" id="1_7dodf"]
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_xo1hg"]
@@ -7,18 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://dpm6gklw5oqw1" path="res://islands/camellia/stage.tscn" id="4_mm0r7"]
 [ext_resource type="Shader" path="res://islands/camellia/nightsky.gdshader" id="4_sb1mh"]
 [ext_resource type="Texture2D" uid="uid://doon4ou12otrg" path="res://shared/sky/camellia/spacescape.exr" id="5_3mwxc"]
-[ext_resource type="PackedScene" path="res://islands/camellia/food_stall.tscn" id="6_6hpqe"]
+[ext_resource type="PackedScene" uid="uid://k0yj614d7e0f" path="res://islands/camellia/food_stall.tscn" id="6_6hpqe"]
 [ext_resource type="Script" path="res://shared/collectible/collectible_grid_generator.gd" id="6_d7fbk"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="7_n4h0l"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="7_pm2ox"]
 [ext_resource type="Script" path="res://quests/quest.gd" id="8_26f5k"]
-[ext_resource type="PackedScene" path="res://islands/camellia/table.tscn" id="10_hv8l1"]
-[ext_resource type="PackedScene" path="res://islands/camellia/microwave.tscn" id="10_ipgrb"]
+[ext_resource type="PackedScene" uid="uid://bws7xcbhqw7y3" path="res://islands/camellia/table.tscn" id="10_hv8l1"]
+[ext_resource type="PackedScene" uid="uid://dlce5qpaogob2" path="res://islands/camellia/microwave.tscn" id="10_ipgrb"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="11_tttmk"]
 [ext_resource type="PackedScene" uid="uid://bx7gx1d13p8nv" path="res://islands/camellia/minihira.tscn" id="14_snhn7"]
 [ext_resource type="PackedScene" uid="uid://isobc4i517mw" path="res://islands/camellia/lantern_row.tscn" id="14_x6xk2"]
 [ext_resource type="PackedScene" uid="uid://hov8yahtdh7r" path="res://islands/camellia/lantern_row_long.tscn" id="15_7t0o4"]
 [ext_resource type="PackedScene" uid="uid://bpw21ckw5jd47" path="res://islands/camellia/island_shape.tscn" id="18_vepf8"]
+[ext_resource type="PackedScene" uid="uid://mj4c1acfyvdr" path="res://islands/camellia/drums_minigame.tscn" id="20_guac5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwd1j"]
 shader = ExtResource("4_sb1mh")
@@ -197,18 +198,26 @@ character = 17
 
 [node name="MinihiraBlue" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1.238)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "minihira_blue"
 character = 18
 
 [node name="MinihiraGreen" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0.3, 1.262)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "minihira_green"
 character = 19
 
 [node name="MinihiraOrange" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.25, 0.3, 0.012)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "minihira_orange"
 character = 20
 
 [node name="MinihiraYellow" parent="FestivalArea/Stage" instance=ExtResource("14_snhn7")]
 transform = Transform3D(1.94707e-07, 0, -1, 0, 1, 0, 1, 0, 1.94707e-07, 1.25, 0.3, 0.0119999)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "minihira_yellow"
 character = 21
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FestivalArea/Stage"]
@@ -250,19 +259,29 @@ transform = Transform3D(-0.752783, 0, 0.658269, 0, 1, 0, -0.658269, 0, -0.752783
 [node name="FoodStall9" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(-0.752783, 0, 0.658269, 0, 1, 0, -0.658269, 0, -0.752783, 4.41905, 5.96046e-07, 6.09849)
 
-[node name="FoodStall10" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
+[node name="GameStall" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.61573, 0, -0.787957, 0, 1, 0, 0.787957, 0, 0.61573, -5.35455, 4.76837e-07, -4.12899)
 
-[node name="FoodStall11" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
+[node name="NPCCharacter" parent="FestivalArea/GameStall" node_paths=PackedStringArray("interact_point") instance=ExtResource("7_pm2ox")]
+transform = Transform3D(-8.9407e-08, 0, -1, 0, 1, 0, 1, 0, -8.9407e-08, 0.119583, 0.00999922, 0.025568)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "drums_minigame"
+interact_point = NodePath("Marker3D")
+character = 16
+
+[node name="Marker3D" type="Marker3D" parent="FestivalArea/GameStall/NPCCharacter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 7.15256e-07, 0.183863, -0.315598)
+
+[node name="GameStall2" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.61573, 0, -0.787957, 0, 1, 0, 0.787957, 0, 0.61573, -4.705, 4.76837e-07, -4.645)
 
-[node name="FoodStall12" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
+[node name="GameStall3" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.61573, 0, -0.787957, 0, 1, 0, 0.787957, 0, 0.61573, -4.05667, 4.76837e-07, -5.15826)
 
-[node name="FoodStall13" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
+[node name="GameStall4" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.61573, 0, -0.787957, 0, 1, 0, 0.787957, 0, 0.61573, -3.4086, 5.96046e-07, -5.66286)
 
-[node name="FoodStall14" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
+[node name="GameStall5" parent="FestivalArea" instance=ExtResource("6_6hpqe")]
 transform = Transform3D(0.61573, 0, -0.787957, 0, 1, 0, 0.787957, 0, 0.61573, -2.76159, 7.15256e-07, -6.1664)
 
 [node name="Table" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
@@ -287,19 +306,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.191504, -3.66941e-07, 6.05
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21689, -1.28523e-07, 6.00488)
 
 [node name="Table8" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.878515, 1.09896e-07, -4.33913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.50426, 1.09896e-07, -4.3849)
 
 [node name="Table9" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.608599, 3.48315e-07, -4.33309)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0171494, 3.48315e-07, -4.37886)
 
 [node name="Table10" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98541, 3.48315e-07, -4.30056)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35966, 3.48315e-07, -4.34633)
 
 [node name="Table11" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30181, 3.48315e-07, -6.21258)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.676062, 3.48315e-07, -5.87348)
 
 [node name="Table12" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0170449, 3.48315e-07, -6.31961)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.642793, 3.48315e-07, -5.98051)
 
 [node name="Table13" parent="FestivalArea" instance=ExtResource("10_hv8l1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.76956, 2.29105e-07, 1.79801)
@@ -550,3 +569,6 @@ size = Vector3(0.561581, 1.01223, 1)
 material = SubResource("StandardMaterial3D_mju4d")
 
 [node name="island_shape" parent="." instance=ExtResource("18_vepf8")]
+
+[node name="DrumsMinigame" parent="." instance=ExtResource("20_guac5")]
+visible = false

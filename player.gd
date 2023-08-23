@@ -156,7 +156,7 @@ func _physics_process(delta):
 
 
 func idle(delta):
-	if Global.in_dialog:
+	if Global.in_ui:
 		state = TALKING
 		talk(delta)
 		return
@@ -182,7 +182,7 @@ func idle(delta):
 
 
 func walk(delta):
-	if Global.in_dialog:
+	if Global.in_ui:
 		state = TALKING
 		talk(delta)
 		return
@@ -259,7 +259,7 @@ func fly(delta, first_frame: bool):
 
 
 func talk(delta):
-	if not Global.in_dialog:
+	if not Global.in_ui:
 		state = IDLE
 		idle(delta)
 		return

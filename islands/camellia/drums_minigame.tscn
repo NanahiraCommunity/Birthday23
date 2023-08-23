@@ -1,0 +1,219 @@
+[gd_scene load_steps=8 format=3 uid="uid://mj4c1acfyvdr"]
+
+[ext_resource type="Script" path="res://islands/camellia/drums_minigame.gd" id="1_budqu"]
+[ext_resource type="Texture2D" uid="uid://dg06wadpj8f8l" path="res://dialogs/dialog_box.svg" id="2_l4o5u"]
+[ext_resource type="Script" path="res://shared/countdown/countdown.gd" id="3_7xm44"]
+[ext_resource type="Texture2D" uid="uid://cg2ak5wpo3vfq" path="res://islands/camellia/drum0.png" id="4_xeh33"]
+[ext_resource type="Texture2D" uid="uid://bq3opw1ihwsi4" path="res://islands/camellia/drum1.png" id="5_3qexe"]
+[ext_resource type="Texture2D" uid="uid://c5ifb86f5jnnx" path="res://islands/camellia/drum2.png" id="6_ck4m4"]
+[ext_resource type="Texture2D" uid="uid://c2c3yaiutd7mx" path="res://islands/camellia/drum3.png" id="7_nbkqs"]
+
+[node name="DrumsMinigame" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+script = ExtResource("1_budqu")
+
+[node name="Drums" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Drums"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="Highscores" type="MarginContainer" parent="Drums/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="Drums/VBoxContainer/Highscores"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Drums/VBoxContainer/Highscores"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Drums/VBoxContainer/Highscores/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Name" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Yellow Minihira"
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "10000"
+horizontal_alignment = 2
+
+[node name="Name2" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Fein-chan"
+horizontal_alignment = 2
+
+[node name="Score2" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "9727"
+horizontal_alignment = 2
+
+[node name="Name5" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Soflan-chan"
+horizontal_alignment = 2
+
+[node name="Score5" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1234"
+horizontal_alignment = 2
+
+[node name="Name6" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Bunny detective"
+horizontal_alignment = 2
+
+[node name="Score6" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "24"
+horizontal_alignment = 2
+
+[node name="Name4" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Pollino-sis"
+horizontal_alignment = 2
+
+[node name="Score4" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 2
+
+[node name="Name3" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Mononon"
+horizontal_alignment = 2
+
+[node name="Score3" type="Label" parent="Drums/VBoxContainer/Highscores/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "-2147483648"
+horizontal_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Drums/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Drums/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_l4o5u")
+patch_margin_left = 31
+patch_margin_top = 38
+patch_margin_right = 107
+patch_margin_bottom = 28
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="NameContainer" type="MarginContainer" parent="Drums/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = -1
+
+[node name="Name" type="RichTextLabel" parent="Drums/VBoxContainer/MarginContainer/NameContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/default_color = Color(0.956863, 0.929412, 0.870588, 1)
+bbcode_enabled = true
+text = "Shopkeeper"
+fit_content = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="Drums/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 44
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Drums/VBoxContainer/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Drums/VBoxContainer/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Can you drum the fastest?"
+fit_content = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Drums"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Countdown" type="Label" parent="Drums/VBoxContainer2"]
+layout_mode = 2
+text = "00:00"
+horizontal_alignment = 1
+script = ExtResource("3_7xm44")
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Drums/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Drums/VBoxContainer2/AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("4_xeh33")
+
+[node name="TextureRectClick1" type="TextureRect" parent="Drums/VBoxContainer2/AspectRatioContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("5_3qexe")
+
+[node name="TextureRectClick2" type="TextureRect" parent="Drums/VBoxContainer2/AspectRatioContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("6_ck4m4")
+
+[node name="TextureRectClick3" type="TextureRect" parent="Drums/VBoxContainer2/AspectRatioContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("7_nbkqs")
+
+[node name="Counter" type="Label" parent="Drums/VBoxContainer2"]
+layout_mode = 2
+text = "GO! GO!! GO!!!"
+horizontal_alignment = 1

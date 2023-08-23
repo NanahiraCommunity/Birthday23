@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://batgaarwg6ygy"
+path="res://.godot/imported/camellia_world.dialogue-f274ecc00ddee96701a24fa4b387affd.tres"
+
+[deps]
+
+source_file="res://dialogs/camellia_world.dialogue"
+dest_files=["res://.godot/imported/camellia_world.dialogue-f274ecc00ddee96701a24fa4b387affd.tres"]
+
+[params]
+
+defaults=true

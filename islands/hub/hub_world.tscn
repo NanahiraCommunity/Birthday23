@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=49 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
@@ -28,6 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://dfwssfmg8nxgn" path="res://shared/fence/gate_door.tscn" id="26_6mylm"]
 [ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="26_gpwt4"]
 [ext_resource type="PackedScene" uid="uid://b0i2s7kgf33sj" path="res://islands/hub/market.tscn" id="28_61py4"]
+[ext_resource type="PackedScene" uid="uid://cc3pbew8ytvdr" path="res://islands/hub/airship_close.tscn" id="29_mh8ad"]
+[ext_resource type="PackedScene" uid="uid://b1b21cpiky6v5" path="res://islands/hub/airship_from_above.tscn" id="30_2b1cd"]
+[ext_resource type="PackedScene" uid="uid://d3wu170ttjhc1" path="res://islands/hub/airship_from_below.tscn" id="31_gxq2n"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -728,3 +731,12 @@ transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -0.70935
 
 [node name="market3" parent="." instance=ExtResource("28_61py4")]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 4.33414, -0.00099857, -21.898)
+
+[node name="airship_close" parent="." instance=ExtResource("29_mh8ad")]
+transform = Transform3D(-0.136442, 0, 0.990648, 0, 1, 0, -0.990648, 0, -0.136442, 36.4115, 1.68836, -44.8003)
+
+[node name="airship_from_above" parent="." instance=ExtResource("30_2b1cd")]
+transform = Transform3D(-0.919149, 0, -0.39391, 0, 1, 0, 0.39391, 0, -0.919149, -75.1884, -40.6182, -23.1217)
+
+[node name="airship_from_below" parent="." instance=ExtResource("31_gxq2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4775, 75.7594, 26.3577)

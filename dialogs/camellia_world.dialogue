@@ -1,0 +1,81 @@
+~ first
+BROKEN DIALOG
+=> END
+
+~ minihira_blue
+Minihira: Do you know Kassan from Neko Hacker? I would really like to get her signature...
+do try_start_quest("minihira_blue")
+=> END
+
+~ minihira_orange
+Minihira: There is not enough fire around here, look at all these burned out lanterns! Here, have some matches.
+do try_start_quest("minihira_orange")
+=> END
+
+~ minihira_green
+Minihira: I wanna eat pizza~
+do try_start_quest("minihira_green")
+=> END
+
+~ minihira_yellow
+Minihira: Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~
+#do try_start_quest("minihira_yellow")
+=> END
+
+~ minihira_blue_blocking
+Minihira: I can't let you through, Red Minihira tells me not to!
+=> END
+~ minihira_orange_blocking
+Minihira: I can't let you through, Green Minihira tells me not to!
+=> END
+~ minihira_green_blocking
+Minihira: I can't let you through, Yellow Minihira tells me not to!
+=> END
+~ minihira_yellow_blocking
+Minihira: I can't let you through, Blue Minihira tells me not to!
+=> END
+
+~ drums_minigame
+Shopkeeper: Hello! Would you like to beat the fast drumming highscore?
+- Sure
+	set get_node("DrumsMinigame").start()
+	=> END
+- No, thanks
+	=> END
+
+~ pizza
+Shady Pizza Girl: do you want a totally legal pizza?
+- Uhh, "totally legal"?
+	Not Forbidden Pizza Girl: well it's not forbidden, that's for sure. The thing is just that I lost the ingredients...
+	- Umm... so no pizza?
+		=> pizza3
+	- Too bad, have a nice day.
+		do current_npc.dialog_entry = "pizza2"
+		=> END
+- No...
+	=> END
+
+~ pizza2
+Forgetful Pizza Girl: hey, I didn't mean it like that! I meant I just forgot the ingredients... at home, yes, at home!
+=> pizza3
+
+~ pizza3
+Pizza Girl: I can't leave in case customers show up! Can you get some new ingredients for me instead?
+- Sure...
+	=> pizza_accept
+- That doesn't make any sense!
+	Pizza Girl: that's not a no, so...
+	=> pizza_accept
+
+~ pizza_accept
+Pizza Girl: so the ingredients that are missing are:\n- Pizza dough\n-Pineapple
+- Pineapple on Pizza?!
+	Pizza Girl: it's delicious!
+	=> pizza_accept2
+- I mean if I get my pizza...
+	=> pizza_accept2
+
+~ pizza_accept2
+Pizza Girl: I'll even give you the pizza for free
+Pizza Girl: So, you can get the [b]Pizza dough[/b] from the food stalls, although you might need to sneak in.
+Pizza Girl: For the [b]Pineapple[/b], some rude customer threw my Pineapples all the way over there onto these stone structures. Since you got wings, can you maybe fly up there?

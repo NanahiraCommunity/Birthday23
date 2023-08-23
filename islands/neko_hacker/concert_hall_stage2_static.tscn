@@ -1,9 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnqeyhpwa7581"]
+[gd_scene load_steps=19 format=3 uid="uid://cnqeyhpwa7581"]
 
 [ext_resource type="PackedScene" uid="uid://csujex3wo2si6" path="res://islands/neko_hacker/concert_hall_stage2.glb" id="1_wlrra"]
 [ext_resource type="Texture2D" uid="uid://b0mb4vigcgb2y" path="res://islands/neko_hacker/concert_hall_ao.png" id="2_rsb0j"]
 [ext_resource type="Material" uid="uid://cwpgdykb8y1vp" path="res://islands/neko_hacker/glitch_material.tres" id="3_ivelq"]
 [ext_resource type="Script" path="res://islands/neko_hacker/glitch_surface.gd" id="4_tdep0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jek8"]
+albedo_color = Color(0.74902, 0.505882, 0.796078, 1)
+proximity_fade_distance = 10.0
+distance_fade_mode = 2
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 30.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6aqlf"]
 data = PackedVector3Array(-0.1875, -0.375, 0.375, -0.1515, 0.343, 0, -0.1875, 0.375, 0.375, -0.1875, -0.375, 0.375, -0.1515, -0.343, 0, -0.1515, 0.343, 0, -0.1515, -0.343, 0, 0.1515, 0.343, 0, -0.1515, 0.343, 0, -0.1515, -0.343, 0, 0.1515, -0.343, 0, 0.1515, 0.343, 0, 0.1515, -0.343, 0, 0.1875, 0.375, 0.375, 0.1515, 0.343, 0, 0.1515, -0.343, 0, 0.1875, -0.375, 0.375, 0.1875, 0.375, 0.375, -0.1657, -0.3532, 0.375, 0.1657, -0.3532, 0.3656, 0.1657, -0.3532, 0.375, -0.1657, -0.3532, 0.375, -0.1657, -0.3532, 0.3656, 0.1657, -0.3532, 0.3656, -0.1515, -0.343, 0, 0.1875, -0.375, 0.375, 0.1515, -0.343, 0, -0.1515, -0.343, 0, -0.1875, -0.375, 0.375, 0.1875, -0.375, 0.375, 0.1515, 0.343, 0, -0.1875, 0.375, 0.375, -0.1515, 0.343, 0, 0.1515, 0.343, 0, 0.1875, 0.375, 0.375, -0.1875, 0.375, 0.375, -0.1657, -0.3532, 0.375, -0.1875, 0.375, 0.375, -0.1657, 0.3532, 0.375, -0.1657, -0.3532, 0.375, -0.1875, -0.375, 0.375, -0.1875, 0.375, 0.375, 0.1657, 0.3532, 0.375, 0.1875, -0.375, 0.375, 0.1657, -0.3532, 0.375, 0.1657, 0.3532, 0.375, 0.1875, 0.375, 0.375, 0.1875, -0.375, 0.375, 0.1657, -0.3532, 0.375, -0.1875, -0.375, 0.375, -0.1657, -0.3532, 0.375, 0.1657, -0.3532, 0.375, 0.1875, -0.375, 0.375, -0.1875, -0.375, 0.375, -0.1657, 0.3532, 0.375, 0.1875, 0.375, 0.375, 0.1657, 0.3532, 0.375, -0.1657, 0.3532, 0.375, -0.1875, 0.375, 0.375, 0.1875, 0.375, 0.375, 0.1657, -0.3532, 0.3656, -0.1657, 0.3532, 0.3656, 0.1657, 0.3532, 0.3656, 0.1657, -0.3532, 0.3656, -0.1657, -0.3532, 0.3656, -0.1657, 0.3532, 0.3656, -0.1657, 0.3532, 0.375, -0.1657, -0.3532, 0.3656, -0.1657, -0.3532, 0.375, -0.1657, 0.3532, 0.375, -0.1657, 0.3532, 0.3656, -0.1657, -0.3532, 0.3656, 0.1657, 0.3532, 0.375, -0.1657, 0.3532, 0.3656, -0.1657, 0.3532, 0.375, 0.1657, 0.3532, 0.375, 0.1657, 0.3532, 0.3656, -0.1657, 0.3532, 0.3656, 0.1657, -0.3532, 0.375, 0.1657, 0.3532, 0.3656, 0.1657, 0.3532, 0.375, 0.1657, -0.3532, 0.375, 0.1657, -0.3532, 0.3656, 0.1657, 0.3532, 0.3656)
@@ -36,6 +43,9 @@ points = PackedVector3Array(0.327775, 0.566357, 0.156178, 0.327775, 5.96046e-08,
 albedo_texture = ExtResource("2_rsb0j")
 ao_light_affect = 1.0
 ao_texture = ExtResource("2_rsb0j")
+distance_fade_mode = 2
+distance_fade_min_distance = 20.0
+distance_fade_max_distance = 30.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wejdc"]
 albedo_color = Color(0.45098, 0.372549, 0.337255, 1)
@@ -51,6 +61,9 @@ data = PackedVector3Array(-1.4062, 6.8831, 5.7163, -1.1721, 7.3616, 6.3206, -1.5
 backface_collision = true
 
 [node name="concert_hall_stage2" instance=ExtResource("1_wlrra")]
+
+[node name="DomeMid_005" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4jek8")
 
 [node name="Cube_017" parent="." index="1"]
 transform = Transform3D(0.974817, -0.115576, -0.190718, 0.0567552, 0.955637, -0.289026, 0.215661, 0.270924, 0.938131, 8.19284, 2.93497, -11.3418)

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1b21cpiky6v5"]
+
+[ext_resource type="PackedScene" uid="uid://ctyxqtgp4g36e" path="res://islands/hub/airship_from_above.glb" id="1_4xrcy"]
+[ext_resource type="Shader" path="res://shaders/paper_material_walls.gdshader" id="2_f613c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lw84d"]
+render_priority = 0
+shader = ExtResource("2_f613c")
+shader_parameter/paper_color = Color(0.929412, 0.682353, 0.372549, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/normal_scale = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_on8ye"]
+render_priority = 0
+shader = ExtResource("2_f613c")
+shader_parameter/paper_color = Color(1, 1, 1, 1)
+shader_parameter/paper_color_both_sides = null
+shader_parameter/point_size = null
+shader_parameter/roughness = null
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = null
+shader_parameter/normal_scale = null
+shader_parameter/uv1_scale = null
+shader_parameter/uv1_offset = null
+shader_parameter/uv2_scale = null
+shader_parameter/uv2_offset = null
+
+[node name="airship_from_above" instance=ExtResource("1_4xrcy")]
+
+[node name="airship_003" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_lw84d")
+
+[node name="cymbals_004" parent="." index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_on8ye")
