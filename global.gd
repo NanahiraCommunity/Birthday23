@@ -1,5 +1,7 @@
 extends Node
 
+const Player = preload("res://player.gd")
+
 # enums
 
 enum CartType
@@ -16,6 +18,8 @@ enum Collectible
 	STAMP,
 	TAIYAKI,
 	BUGS,
+	PINEAPPLE,
+	DOUGH,
 }
 
 var collected_dynamics = {}
@@ -32,7 +36,7 @@ func _process(delta):
 func preprocess_bbcode(text: String) -> String:
 	return text.replace("[b]", "[color=#aa2a0e]").replace("[/b]", "[/color]").replace("\\n", "\n")
 
-var player: CharacterBody3D
+var player: Player
 var in_dialog: bool = false
 var block_player_ui: int = 0 # the same thing, but not auto-reset when dialogs are closing
 var in_ui: bool:
@@ -44,6 +48,8 @@ var collectibles: PackedInt32Array = [
 	0, # STAMP
 	0, # TAIYAKI
 	0, # BUGS
+	0, # PINEAPPLES
+	0, # DOUGH
 ]
 
 func collect_animated(c: Collectible, n: int):

@@ -1,0 +1,192 @@
+[gd_scene load_steps=22 format=3 uid="uid://blfqrqtiwme0w"]
+
+[ext_resource type="Script" path="res://shared/wind_drafts/wind_draft.gd" id="1_l6nge"]
+[ext_resource type="Texture2D" uid="uid://de6gcfngn1xqv" path="res://shared/wind_drafts/fx1.png" id="1_r0qjx"]
+[ext_resource type="Texture2D" uid="uid://pq7u0poma27k" path="res://shared/wind_drafts/fx2.png" id="2_c7uiy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fx453"]
+height = 6.0
+radius = 1.9
+
+[sub_resource type="Gradient" id="Gradient_6ocmm"]
+offsets = PackedFloat32Array(0, 0.0835509, 0.767624, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.490196, 0.490196, 0.490196, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_k7ye1"]
+gradient = SubResource("Gradient_6ocmm")
+width = 512
+
+[sub_resource type="Curve" id="Curve_57kf8"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 3.19579, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pwj53"]
+curve = SubResource("Curve_57kf8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dj26u"]
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 2, 0.5)
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 4, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_pwj53")
+color_ramp = SubResource("GradientTexture1D_k7ye1")
+turbulence_enabled = true
+turbulence_influence_min = 0.01
+turbulence_influence_max = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fip2"]
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_r0qjx")
+disable_receive_shadows = true
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_05gek"]
+material = SubResource("StandardMaterial3D_8fip2")
+size = Vector2(0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkjlv"]
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_c7uiy")
+disable_receive_shadows = true
+billboard_mode = 2
+grow = true
+grow_amount = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_70p32"]
+material = SubResource("StandardMaterial3D_dkjlv")
+size = Vector2(0.3, 1)
+
+[sub_resource type="Gradient" id="Gradient_8ntvm"]
+offsets = PackedFloat32Array(0, 0.167102, 0.81201, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vs5rn"]
+gradient = SubResource("Gradient_8ntvm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_udt6b"]
+emission_shape = 1
+emission_sphere_radius = 1.8
+direction = Vector3(0, 1.5, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+color_ramp = SubResource("GradientTexture1D_vs5rn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na7i8"]
+blend_mode = 1
+depth_draw_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_gqya1"]
+material = SubResource("StandardMaterial3D_na7i8")
+radius = 0.02
+height = 0.02
+radial_segments = 8
+rings = 5
+is_hemisphere = true
+
+[sub_resource type="Shader" id="Shader_5oq1o"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add,depth_draw_never,cull_back,diffuse_burley,specular_schlick_ggx,unshaded;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	VERTEX -= vec3(0, 0.5, 0);
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb * 0.5 * (0.5 - base_uv.y);
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rs84v"]
+render_priority = 0
+shader = SubResource("Shader_5oq1o")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lwq0a"]
+material = SubResource("ShaderMaterial_rs84v")
+top_radius = 0.02
+bottom_radius = 0.0
+height = 1.0
+radial_segments = 8
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[node name="WindDraft" type="Node3D"]
+script = ExtResource("1_l6nge")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
+shape = SubResource("CylinderShape3D_fx453")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_dj26u")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_05gek")
+draw_pass_2 = SubResource("QuadMesh_70p32")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.02508, 0)
+amount = 6
+speed_scale = 0.5
+process_material = SubResource("ParticleProcessMaterial_udt6b")
+draw_passes = 2
+draw_pass_1 = SubResource("SphereMesh_gqya1")
+draw_pass_2 = SubResource("CylinderMesh_lwq0a")
