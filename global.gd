@@ -146,4 +146,6 @@ var neko_world = null
 
 # camellia world
 
-var boosted = true
+var boosted = false
+var has_pizza = false
+var minihira_done = 0
