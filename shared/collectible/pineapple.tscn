@@ -200,7 +200,7 @@ _data = {
 
 [node name="Pineapple" type="Node3D"]
 script = ExtResource("1_qb2mx")
-type = 1
+type = 3
 
 [node name="Sprite" type="Sprite3D" parent="."]
 pixel_size = 0.0008

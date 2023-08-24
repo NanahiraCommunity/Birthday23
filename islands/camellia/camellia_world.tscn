@@ -1,9 +1,11 @@
-[gd_scene load_steps=46 format=3 uid="uid://cvwfpj8elepkn"]
+[gd_scene load_steps=50 format=3 uid="uid://cvwfpj8elepkn"]
 
 [ext_resource type="AudioStream" uid="uid://bckbj3r8g062a" path="res://islands/camellia/nanahirafangame_forbidenpizza.wav" id="1_7dodf"]
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_xo1hg"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="2_sa7he"]
+[ext_resource type="Script" path="res://quests/collect_items.gd" id="2_ucnup"]
 [ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="2_xx607"]
+[ext_resource type="Script" path="res://quests/waypoint_quest.gd" id="3_8mwjv"]
 [ext_resource type="PackedScene" uid="uid://dpm6gklw5oqw1" path="res://islands/camellia/stage.tscn" id="4_mm0r7"]
 [ext_resource type="Shader" path="res://islands/camellia/nightsky.gdshader" id="4_sb1mh"]
 [ext_resource type="Texture2D" uid="uid://doon4ou12otrg" path="res://shared/sky/camellia/spacescape.exr" id="5_3mwxc"]
@@ -22,6 +24,10 @@
 [ext_resource type="PackedScene" uid="uid://mj4c1acfyvdr" path="res://islands/camellia/drums_minigame.tscn" id="20_guac5"]
 [ext_resource type="PackedScene" uid="uid://blfqrqtiwme0w" path="res://shared/wind_drafts/wind_draft.tscn" id="21_h1233"]
 [ext_resource type="PackedScene" uid="uid://chpm7gtdkg82g" path="res://shared/collectible/pineapple.tscn" id="22_8u5wj"]
+[ext_resource type="PackedScene" uid="uid://cnwox3pxtd8mq" path="res://shared/collectible/pizza_dough.tscn" id="23_1wgd1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yeaf8"]
+radius = 2.03447
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dwd1j"]
 shader = ExtResource("4_sb1mh")
@@ -118,8 +124,58 @@ albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 [node name="Quests" type="Node3D" parent="."]
 script = ExtResource("7_n4h0l")
 
-[node name="test_quest" type="Node" parent="Quests"]
+[node name="camellia_collect_dough" type="Node" parent="Quests"]
+script = ExtResource("2_ucnup")
+collect_type = 4
+quest_id = &"camellia_collect_dough"
+description = "Q_COLLECT_DOUGH"
+
+[node name="camellia_collect_pineapples" type="Node" parent="Quests"]
+script = ExtResource("2_ucnup")
+collect_type = 3
+quest_id = &"camellia_collect_pineapples"
+description = "Q_COLLECT_PINEAPPLES"
+
+[node name="camellia_collect_pineapples_markers" type="Node" parent="Quests/camellia_collect_pineapples"]
+script = ExtResource("3_8mwjv")
+quest_id = &"camellia_collect_pineapples_markers"
+description = "Q_COLLECT_PINEAPPLES_MARKERS"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/camellia_collect_pineapples/camellia_collect_pineapples_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6431, 0.980953, 1.72403)
+shape = SubResource("SphereShape3D_yeaf8")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Quests/camellia_collect_pineapples/camellia_collect_pineapples_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9976, 2.3303, -1.56248)
+shape = SubResource("SphereShape3D_yeaf8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Quests/camellia_collect_pineapples/camellia_collect_pineapples_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5601, 1.66281, -15.1943)
+shape = SubResource("SphereShape3D_yeaf8")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Quests/camellia_collect_pineapples/camellia_collect_pineapples_markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5408, 14.3959, -23.5468)
+shape = SubResource("SphereShape3D_yeaf8")
+
+[node name="minihira_blue" type="Node" parent="Quests"]
 script = ExtResource("8_26f5k")
+quest_id = &"minihira_blue"
+description = "Blue Minihira wants Kassan's signature"
+
+[node name="minihira_orange" type="Node" parent="Quests"]
+script = ExtResource("8_26f5k")
+quest_id = &"minihira_orange"
+description = "Red Minihira wants more fire"
+
+[node name="minihira_green" type="Node" parent="Quests"]
+script = ExtResource("8_26f5k")
+quest_id = &"minihira_green"
+description = "Green Minihira wants some pizza"
+
+[node name="minihira_yellow" type="Node" parent="Quests"]
+script = ExtResource("8_26f5k")
+quest_id = &"minihira_yellow"
+description = "Yellow Minihira has the drumming highscore"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_7dodf")
@@ -168,10 +224,10 @@ cell_center_z = false
 collision_layer = 0
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(1572864, 0, 1048577, 6815926, 41, 1, 4063441, 65417, 1, 4063441, 65419, 1, 4063439, 65418, 1, 589876, 7, 0, 589878, 8, 0, 589876, 9, 0, 1441867, 65529, 0, 1441866, 65527, 0, 1441865, 65529, 0, 1441860, 65534, 0, 1507387, 5, 0, 1900619, 65524, 0, 1900619, 65523, 0, 1900619, 65522, 0, 1900619, 65521, 0, 1900619, 65520, 0, 1638475, 65500, 0, 1638475, 65499, 0, 1638475, 65498, 0, 1638475, 65497, 0, 1638475, 65496, 0, 1638475, 65495, 0, 1179724, 65464, 0, 1179724, 65465, 0, 1179724, 65466, 0, 1179724, 65467, 0, 1179724, 65468, 0, 1179724, 65469, 0)
+"cells": PackedInt32Array(1572864, 0, 1048577, 6815926, 41, 1, 4063441, 65417, 1, 4063441, 65419, 1, 4063439, 65418, 1, 589876, 7, 0, 589878, 8, 0, 589876, 9, 0, 1441867, 65529, 0, 1441866, 65527, 0, 1441865, 65529, 0, 1441860, 65534, 0, 1638475, 65497, 0, 1638475, 65496, 0, 852027, 4, 0, 1900618, 65515, 0, 1900618, 65514, 0, 1900618, 65513, 0, 1900618, 65512, 0, 1900618, 65511, 0, 1638475, 65495, 0, 1638475, 65494, 0, 1638475, 65493, 0, 1638475, 65492, 0, 1441868, 65464, 0, 1441868, 65465, 0, 1441868, 65466, 0, 1441868, 65467, 0, 1441868, 65468, 0, 1441868, 65469, 0)
 }
 script = ExtResource("6_d7fbk")
-metadata/_editor_floor_ = Vector3(0, 18, 0)
+metadata/_editor_floor_ = Vector3(0, 22, 0)
 
 [node name="FestivalArea" type="Node3D" parent="."]
 
@@ -186,7 +242,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, -0.25)
 
 [node name="Pizzahira" parent="FestivalArea" instance=ExtResource("7_pm2ox")]
 transform = Transform3D(0.758715, 0, 0.651423, 0, 1, 0, -0.651423, 0, 0.758715, 0.31632, 6.55651e-07, 6.35904)
-dialog_entry = ""
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "pizza"
 character = 6
 
 [node name="Microwave" parent="FestivalArea" instance=ExtResource("10_ipgrb")]
@@ -755,7 +812,7 @@ sides = 24
 ring_sides = 13
 
 [node name="Pineapple" parent="." instance=ExtResource("22_8u5wj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0261, 14.166, -23.1497)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0261, 13.8284, -23.1497)
 
 [node name="NPCCharacter" parent="." instance=ExtResource("7_pm2ox")]
 transform = Transform3D(0.814278, 0, 0.580476, 0, 1, 0, -0.580476, 0, 0.814278, -2.25628, 0.00999981, -4.09692)
@@ -776,3 +833,6 @@ character = 3
 [node name="NPCCharacter5" parent="." instance=ExtResource("7_pm2ox")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.65187, 0.0100002, 3.9175)
 character = 4
+
+[node name="PizzaDough" parent="." instance=ExtResource("23_1wgd1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.20951, 0.0807827, 5.68663)

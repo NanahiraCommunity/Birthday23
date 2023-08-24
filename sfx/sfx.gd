@@ -10,3 +10,7 @@ func play(sound: AudioStream, from_position: float = 0.0):
 		index = 0
 	streams[i].stream = sound
 	streams[i].play(from_position)
+
+# for quests / dialogue
+func play_wav(sound: String, from_position: float = 0.0):
+	play(load(sound), from_position)
