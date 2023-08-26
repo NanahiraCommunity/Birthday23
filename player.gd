@@ -31,6 +31,12 @@ var oob_height: float = -20
 
 func _ready():
 	Global.player = self
+	move_player_to_spawn()
+	
+func move_player_to_spawn():
+	var spawn_marker =  get_node("/root/World/player_initial_spawn")    
+	# Move the player inital spawn node to change spawn position
+	global_transform = spawn_marker.global_transform
 
 func _enter_tree():
 	await get_tree().process_frame

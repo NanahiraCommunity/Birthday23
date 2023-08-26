@@ -14,18 +14,18 @@
 [ext_resource type="PackedScene" uid="uid://2x2itktmd8dx" path="res://shared/fence/gate.tscn" id="11_7xdsa"]
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="12_k7x1g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="13_p013c"]
-[ext_resource type="PackedScene" uid="uid://ddyos5n0mdakr" path="res://islands/hub/fountain.tscn" id="15_psfrw"]
-[ext_resource type="PackedScene" uid="uid://ggkka44behwr" path="res://islands/hub/houses.tscn" id="17_w0p7f"]
+[ext_resource type="PackedScene" path="res://islands/hub/fountain.tscn" id="15_psfrw"]
+[ext_resource type="PackedScene" path="res://islands/hub/houses.tscn" id="17_w0p7f"]
 [ext_resource type="Shader" path="res://shaders/paper_material.gdshader" id="18_ul4fb"]
 [ext_resource type="Texture2D" uid="uid://bkbgyrqdfaeer" path="res://shaders/res/paper_0026_color_4k.jpg" id="19_pmedh"]
 [ext_resource type="Texture2D" uid="uid://dmtowuxps167p" path="res://shaders/res/paper_0026_normal_opengl_4k.png" id="20_k3ogq"]
 [ext_resource type="Texture2D" uid="uid://bag7nnesrme58" path="res://shaders/res/paper_0026_roughness_4k.jpg" id="21_gsucw"]
-[ext_resource type="PackedScene" uid="uid://3lejahn2jnx7" path="res://islands/hub/houses_2.tscn" id="22_iwaws"]
+[ext_resource type="PackedScene" path="res://islands/hub/houses_2.tscn" id="22_iwaws"]
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="23_mltwx"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="23_yvfsn"]
 [ext_resource type="PackedScene" uid="uid://cym7ce0ufnnec" path="res://shared/collectible/taiyaki.tscn" id="24_17d2l"]
 [ext_resource type="Script" path="res://quests/waypoint_quest.gd" id="24_yjym4"]
-[ext_resource type="PackedScene" uid="uid://dfwssfmg8nxgn" path="res://shared/fence/gate_door.tscn" id="26_6mylm"]
+[ext_resource type="PackedScene" path="res://shared/fence/gate_door.tscn" id="26_6mylm"]
 [ext_resource type="PackedScene" uid="uid://bimaorkxlb84v" path="res://shared/quickwarp/quickwarp.tscn" id="26_gpwt4"]
 [ext_resource type="PackedScene" uid="uid://b0i2s7kgf33sj" path="res://islands/hub/market.tscn" id="28_61py4"]
 [ext_resource type="PackedScene" uid="uid://cc3pbew8ytvdr" path="res://islands/hub/airship_close.tscn" id="29_mh8ad"]
@@ -740,3 +740,5 @@ transform = Transform3D(-0.919149, 0, -0.39391, 0, 1, 0, 0.39391, 0, -0.919149, 
 
 [node name="airship_from_below" parent="." instance=ExtResource("31_gxq2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4775, 75.7594, 26.3577)
+
+[node name="player_initial_spawn" type="Marker3D" parent="."]
