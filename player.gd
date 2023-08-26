@@ -28,7 +28,6 @@ const FLIGHT_DRAG_HORIZONTAL = 0.01
 @onready var root_bone: int = skeleton.find_bone("Root")
 
 var oob_height: float = -20
-
 func _ready():
 	Global.player = self
 	move_player_to_spawn()
@@ -36,7 +35,9 @@ func _ready():
 func move_player_to_spawn():
 	var spawn_marker =  get_node("/root/World/player_initial_spawn")    
 	# Move the player inital spawn node to change spawn position
-	global_transform = spawn_marker.global_transform
+	if Global.tuto_firstload == 1 :
+		global_transform = spawn_marker.global_transform
+		Global.tuto_firstload = 0
 
 func _enter_tree():
 	await get_tree().process_frame

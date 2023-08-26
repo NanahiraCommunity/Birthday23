@@ -43,7 +43,7 @@ var in_ui: bool:
 	get:
 		assert(block_player_ui >= 0)
 		return in_dialog or block_player_ui > 0
-
+var tuto_firstload = 1
 var collectibles: PackedInt32Array = [
 	0, # STAMP
 	0, # TAIYAKI
@@ -73,6 +73,7 @@ var current_npc: Node3D
 var dialog: Control
 # Current UI, if available
 var UI: Control
+
 
 func register_quest(quest: Quest):
 	_available_quests[quest.quest_id] = quest
