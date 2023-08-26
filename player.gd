@@ -33,9 +33,10 @@ func _ready():
 	move_player_to_spawn()
 	
 func move_player_to_spawn():
-	var spawn_marker =  get_node("/root/World/player_initial_spawn")    
+	
 	# Move the player inital spawn node to change spawn position
 	if Global.tuto_firstload == 1 :
+		var spawn_marker =  get_node("/root/World/player_initial_spawn")    
 		global_transform = spawn_marker.global_transform
 		Global.tuto_firstload = 0
 
