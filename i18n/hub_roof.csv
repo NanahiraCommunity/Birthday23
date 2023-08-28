@@ -2,13 +2,13 @@ keys,en,ja
 ???,???,？？？
 Nanahira,Nanahira,ななひら
 tfc7908f730,Why are you up here?,なぜここにいるんだ？
-tf982e50833,"No really, you shouldn't be up here!",「いや、ホントに、君はここにいるべきじゃない！」
+tf982e50833,"No really, you shouldn't be up here!","いや、ホントに、君はここにいるべきじゃない！"
 t8e3d900e15,You sure are persistent,しつこいね～
 tf2667e0aac,Do you love Nanahira?,ななひらは好き？
 tb57509736c,Yes,はーい
 ta40d0d35dc,Me too!,わたしも！
 t977efed699,"I really love Nanahira. Like, [i]a lot[/i]. Like, [i][b]a whole lot[/b][/i]. You have no idea. I love her [wait=0.6]so [wait=0.6]much [wait=1.0]that it is inexplicable, and I'm ninety-nine percent sure that I have an unhealthy obsession.","漏れはホントにななひらが大好きなんだ。とーってもすごくね。めっちゃすごくね。あなたにはわからないでしょう。言いようのないほど彼女を愛しているし、不健康な強迫観念を抱いていることは99パーセント間違いない"
-t34fe697e85,"Wait...[wait=1.5] I'm [set dialog.title = ""Nanahira""]Nanahira",「まって…[wait=1.5]わたしは[set dialog.title = ""ななひら""]ななひらです」
+t34fe697e85,"Wait...[wait=1.5] I'm [set dialog.title = ""Nanahira""]Nanahira","まって…[wait=1.5]わたしは[set dialog.title = ""ななひら""]ななひらです"
 t6f2957ea0e,No,いいえ
 t624eb17c17,bad answer,不正解。
 t8950baea66,Thanks for being my fan!,わたしのファン
