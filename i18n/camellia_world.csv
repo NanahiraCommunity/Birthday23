@@ -1,19 +1,19 @@
 keys,en,ja
-Blue Minihira,Blue Minihira,
-Red Minihira,Red Minihira,
-Green Minihira,Green Minihira,
-Yellow Minihira,Yellow Minihira,
-Shopkeeper,Shopkeeper,
-Shady Pizza Girl,Shady Pizza Girl,
+Blue Minihira,Blue Minihira,青色ミニひら
+Red Minihira,Red Minihira,暁色ミニひら
+Green Minihira,Green Minihira,緑色ミニひら
+Yellow Minihira,Yellow Minihira,黄色ミニひら
+Shopkeeper,Shopkeeper,店主さん
+Shady Pizza Girl,Shady Pizza Girl,あやしいピザ少女
 Not Forbidden Pizza Girl,Not Forbidden Pizza Girl,
-Forgetful Pizza Girl,Forgetful Pizza Girl,
-Pizza Girl,Pizza Girl,
-Microwave,Microwave,
-Fullflavor Girl,Fullflavor Girl,
+Forgetful Pizza Girl,Forgetful Pizza Girl,忘れっぽいピザ少女
+Pizza Girl,Pizza Girl,ピザ少女
+Microwave,Microwave,電子レンジ
+Fullflavor Girl,Fullflavor Girl,FULLFLAVOR少女
 tcef6234fd4,BROKEN DIALOG,
-t33bd29fbc0,Do you know Kassan from Neko Hacker? I would really like to get her signature...,
-t9fca0c5f59,I've got a letter from Kassan here,
-t3392780cc7,You met Kassan?! I'm so jealous...,
+t33bd29fbc0,Do you know Kassan from Neko Hacker? I would really like to get her signature..., ネコハッカーのかっさんさま知ってる？かっさんさまのサイン欲しいな…
+t9fca0c5f59,I've got a letter from Kassan here,かっさんの手紙を持っている
+t3392780cc7,You met Kassan?! I'm so jealous...,かっさんさま会ったことあるの？！うらやましいな…
 te6ec3a650c,Oh you want to go to [b]Fullflavor Girl[/b] behind me?,
 tba6ef79a0e,"I would let you through, but the other Minihiras don't like it if I just let people through, so you gotta first convince them you are worth it.",
 t3c6460df85,Feel free to talk to [b]Fullflavor Girl[/b] any time.,
@@ -25,7 +25,7 @@ tc912791cd3,Feel free to have it all,
 tc82f514e43,Since you have a good taste I'm sure you would get along with [b]Fullflavor Girl[/b] behind me.,
 t48437ee9e6,"However the other Minihiras don't think you are worth it yet, so I can't let you through",
 t9e421d67fc,"All the Minihiras agree, so feel free to talk to her any time.",
-t2a600165c1,I wanna eat pizza~,
+t2a600165c1,I wanna eat pizza~,ピザ食べたい～
 tb890438dc7,I can't believe you beat my record at drumming!,
 t43ce5868b5,Since you showed your willpower I'm sure you would get along with [b]Fullflavor Girl[/b] behind me.,
 t21857fbb07,"However the other Minihiras don't think you are worth it yet, so I can't let you through",
@@ -33,17 +33,17 @@ t0cd23cdb85,"All the Minihiras agree, so feel free to talk to her any time.",
 tb20c779258,"You are close to beating my record, but you haven't beaten it yet!",
 t6265419296,"I'm still the best at drumming! If you want to beat me, you should probably first find the secret power-up on this island before attempting more drumming",
 t7cac269199,"Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~",
-tc7de9ccbb7,"I can't let you through, Red Minihira tells me not to!",
-tb369f3cdbc,"I can't let you through, Green Minihira tells me not to!",
-t72b351ac75,"I can't let you through, Yellow Minihira tells me not to!",
-tce0318bcb1,"I can't let you through, Blue Minihira tells me not to!",
-td25ed7c32b,I wonder who Kassan looks up to,
-t9dc74d3fd8,Fire~,
+tc7de9ccbb7,"I can't let you through, Red Minihira tells me not to!","通せないよ、赤色ミニひらからダメって言われた！"
+tb369f3cdbc,"I can't let you through, Green Minihira tells me not to!","通せないよ、緑色ミニひらからダメって言われた！"
+t72b351ac75,"I can't let you through, Yellow Minihira tells me not to!","通せないよ、黄色ミニひからダメって言われた！"
+tce0318bcb1,"I can't let you through, Blue Minihira tells me not to!","通せないよ、青色ミニひらからダメって言われた！"
+td25ed7c32b,I wonder who Kassan looks up to,かっさんは誰を尊敬しているんだろう
+t9dc74d3fd8,Fire~,ファイヤ～
 t37eb852d09,*nomnomnom*,
 t52e4603a2c,I'm busy practicing my drum skills,
 t591139caba,Hello! Would you like to beat the fast drumming highscore?,
-t0ef74f0b89,Sure,
-t2c58782196,"No, thanks",
+t0ef74f0b89,Sure,うん
+t2c58782196,"No, thanks",いえ
 tf65726355f,do you want a totally legal pizza?,
 tebe3536f20,"Uhh, ""totally legal""?",
 tbc0a8ae1e4,"well it's not forbidden, that's for sure. The thing is just that I lost the ingredients...",
@@ -52,23 +52,25 @@ t0448179920,"Too bad, have a nice day.",
 t4167f6fbca,No...,
 tb50e15cdf4,"hey, I didn't mean it like that! I meant I just forgot the ingredients... at home, yes, at home!",
 t27602b0a59,I can't leave in case customers show up! Can you get some new ingredients for me instead?,
-tb5eb062088,Sure...,
-td47c41e60d,That doesn't make any sense!,
-t903573f4e2,"that's not a no, so...",
+tb5eb062088,Sure...,わかった…
+td47c41e60d,That doesn't make any sense!,意味わからない！
+t903573f4e2,"that's not a no, so...",断っていないので…
 td48582b880,"so the ingredients that are missing are:
 - Pizza dough
-- Pineapples",
-t1abf754fca,Pineapple on Pizza?!,
-tbf23a1e6be,it's delicious!,
-tdd5899cb7c,I mean if I get my pizza...,
-tb37eb9f88d,I'll even give you the pizza for free,
-t8e0a5fc21e,"So, I was pretty sure I had the [b]Pizza dough[/b] somewhere, but I can't seem to find it. It should still be somewhere around here.",
-teb5425954f,"For the [b]Pineapples[/b], some rude customer threw my Pineapples all the way over there onto these stone pillars. Since you got wings, can you maybe fly up there and grab them?",
-t3c9523baa9,Thank you so much for the ingredients!,
-t699c431a53,I'll make you a pizza right away...,
+- Pineapples","足りない食品は：
+- ピザ生地
+- パインアップル"
+t1abf754fca,Pineapple on Pizza?!,ピザにパインアップル？！
+tbf23a1e6be,it's delicious!,おいしいよ！
+tdd5899cb7c,I mean if I get my pizza...,ピザもらっても…
+tb37eb9f88d,I'll even give you the pizza for free,無料でピザあげるから
+t8e0a5fc21e,"So, I was pretty sure I had the [b]Pizza dough[/b] somewhere, but I can't seem to find it. It should still be somewhere around here.","たしか、[b]ピザ生地[/b]あったはずが、見つからない。ここらへんにあるはず。"
+teb5425954f,"For the [b]Pineapples[/b], some rude customer threw my Pineapples all the way over there onto these stone pillars. Since you got wings, can you maybe fly up there and grab them?","[b]パインアップル[/b]について…失礼な客さんがそこの石柱の上に投げた。翼あるから、上に飛んで、[b]パインアップル[/b]を拾ってくれる？"
+t3c9523baa9,Thank you so much for the ingredients!,食品本当にありがとな！
+t699c431a53,I'll make you a pizza right away...,すぐにピザを焼きます…
 taf58803057,"*bzzzzt* [wait=2.0]*[do SFX.play_wav(""res://sfx/pickup_coin.wav"")]DING*",
-t65869d2f2f,"Here you go! Pizza with extra pineapple, for free, as promised.",
+t65869d2f2f,"Here you go! Pizza with extra pineapple, for free, as promised.",はいよ！約束通り、無料のパインアップルたっぷりのピザ。
 t4f01ba9414,"I've got pizza again, but nobody wants any... More for me!",
 t9322cd252e,The future of flavor is TASTE INFINITE,
-t7496164702,I've got a letter from Kassan for you,
+t7496164702,I've got a letter from Kassan for you,かっさんからの手紙持っています
 t0c3cbf846d,"Super dope, thank you!",
