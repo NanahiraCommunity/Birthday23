@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d2pikad22akic"
+
+[deps]
+
+files=["res://i18n/camellia_world.en.translation", "res://i18n/camellia_world.ja.translation"]
+
+source_file="res://i18n/camellia_world.csv"
+dest_files=["res://i18n/camellia_world.en.translation", "res://i18n/camellia_world.ja.translation"]
+
+[params]
+
+compress=true
+delimiter=0
