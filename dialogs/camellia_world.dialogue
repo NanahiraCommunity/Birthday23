@@ -3,13 +3,30 @@ BROKEN DIALOG
 => END
 
 ~ minihira_blue
+set current_npc.dialog_entry = "minihira_blue_blocking"
+set minihira_done += 1
 Blue Minihira: Do you know Kassan from Neko Hacker? I would really like to get her signature...
-do try_start_quest("minihira_blue")
+- I've got a letter from Kassan here
+	Blue Minihira: You met Kassan?! I'm so jealous...
+	Blue Minihira: Oh you want to go to [b]Fullflavor Girl[/b] behind me?
+	if minihira_done < 4:
+		Blue Minihira: I would let you through, but the other Minihiras don't like it if I just let people through, so you gotta first convince them you are worth it.
+	else:
+		Blue Minihira: Feel free to talk to [b]Fullflavor Girl[/b] any time.
+		set current_npc.dialog_entry = "minihira_blue_done"
+		do camellia.unlock_fullflavor()
 => END
 
 ~ minihira_orange
-Red Minihira: There is not enough fire around here, look at all these burned out lanterns! Here, have some matches.
-do try_start_quest("minihira_orange")
+set current_npc.dialog_entry = "minihira_orange_blocking"
+set minihira_done += 1
+Red Minihira: I really like festivals, so much fire...
+if minihira_done < 4:
+	Red Minihira: The other Minihiras don't like it if I just let people through, so you gotta first convince them you are worth it.
+else:
+	Red Minihira: Feel free to talk to [b]Fullflavor Girl[/b] any time.
+	set current_npc.dialog_entry = "minihira_orange_done"
+	do camellia.unlock_fullflavor()
 => END
 
 ~ minihira_green
@@ -24,6 +41,8 @@ if has_pizza:
 			Green Minihira: However the other Minihiras don't think you are worth it yet, so I can't let you through
 		else:
 			Green Minihira: All the Minihiras agree, so feel free to talk to her any time.
+			set current_npc.dialog_entry = "minihira_green_done"
+			do camellia.unlock_fullflavor()
 	=> END
 else:
 	Green Minihira: I wanna eat pizza~
@@ -31,8 +50,26 @@ else:
 => END
 
 ~ minihira_yellow
-Minihira: Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~
-do try_start_quest("minihira_yellow")
+if max_drum_score > 10000:
+	Yellow Minihira: I can't believe you beat my record at drumming!
+	set current_npc.dialog_entry = "minihira_yellow_blocking"
+	set minihira_done += 1
+	Yellow Minihira: Since you showed your willpower I'm sure you would get along with [b]Fullflavor Girl[/b] behind me.
+	if minihira_done < 4:
+		Yellow Minihira: However the other Minihiras don't think you are worth it yet, so I can't let you through
+	else:
+		Yellow Minihira: All the Minihiras agree, so feel free to talk to her any time.
+		do camellia.unlock_fullflavor()
+		set current_npc.dialog_entry = "minihira_yellow_done"
+elif max_drum_score >= 9000:
+	Yellow Minihira: You are close to beating my record, but you haven't beaten it yet!
+	do try_start_quest("minihira_yellow")
+elif max_drum_score >= 50:
+	Yellow Minihira: I'm still the best at drumming! If you want to beat me, you should probably first find the secret power-up on this island before attempting more drumming
+	do try_start_quest("minihira_yellow")
+else:
+	Yellow Minihira: Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~
+	do try_start_quest("minihira_yellow")
 => END
 
 ~ minihira_blue_blocking
@@ -46,6 +83,19 @@ Green Minihira: I can't let you through, Yellow Minihira tells me not to!
 => END
 ~ minihira_yellow_blocking
 Yellow Minihira: I can't let you through, Blue Minihira tells me not to!
+=> END
+
+~ minihira_blue_done
+Blue Minihira: I wonder who Kassan looks up to
+=> END
+~ minihira_orange_done
+Red Minihira: Fire~
+=> END
+~ minihira_green_done
+Green Minihira: *nomnomnom*
+=> END
+~ minihira_yellow_done
+Yellow Minihira: I'm busy practicing my drum skills
 => END
 
 ~ drums_minigame
@@ -110,11 +160,20 @@ else
 set current_npc.dialog_entry = "pizza_done2"
 Pizza Girl: Thank you so much for the ingredients!
 Pizza Girl: I'll make you a pizza right away...
-Microwave: *bzzzzt* [wait=2.0][do SFX.play_wav("res://sfx/pickup_coin.wav")]*DING*
+Microwave: *bzzzzt* [wait=2.0]*[do SFX.play_wav("res://sfx/pickup_coin.wav")]DING*
 Pizza Girl: Here you go! Pizza with extra pineapple, for free, as promised.
 set has_pizza = true
 => END
 
 ~ pizza_done2
 Pizza Girl: I've got pizza again, but nobody wants any... More for me!
+=> END
+
+~ fullflavor_girl
+if minihira_done < 4
+	=> END
+Fullflavor Girl: The future of flavor is TASTE INFINITE
+- I've got a letter from Kassan for you
+	Fullflavor Girl: Super dope, thank you!
+	do finish_game()
 => END

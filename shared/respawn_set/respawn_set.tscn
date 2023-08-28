@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck18t7pi70ff0"]
+
+[ext_resource type="Script" path="res://shared/respawn_set/respawn_set.gd" id="1_tmw1w"]
+
+[node name="RespawnSetter" type="Area3D"]
+script = ExtResource("1_tmw1w")

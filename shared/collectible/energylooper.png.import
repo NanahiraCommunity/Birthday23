@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce701scyngrav"
-path="res://.godot/imported/NekoHackerPapercraft-kassan.png-941d3fb6a73a7d11106cb349cbd66dac.ctex"
+uid="uid://dtth3kpwy0ynn"
+path.s3tc="res://.godot/imported/energylooper.png-c99d6d9c84365e751b2893c120a168be.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://models/characters/kassan/NekoHackerPapercraft-kassan.png"
-dest_files=["res://.godot/imported/NekoHackerPapercraft-kassan.png-941d3fb6a73a7d11106cb349cbd66dac.ctex"]
+source_file="res://shared/collectible/energylooper.png"
+dest_files=["res://.godot/imported/energylooper.png-c99d6d9c84365e751b2893c120a168be.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -30,6 +30,9 @@ func _ready():
 	safe_area.body_exited.connect(_carry_exited)
 
 func _physics_process(delta):
+	if defend and Global.minihira_done >= 4:
+		_body_exited(Global.player)
+
 	var target: Vector3
 	var exp: float
 	var ldefend: bool
@@ -112,13 +115,13 @@ var local_position:
 		$DialogIndicator.position = v + DialogIndicator_offset
 
 func _body_entered(body):
-	if body != Global.player:
+	if body != Global.player or Global.minihira_done >= 4 or defend:
 		return
 	defend = true
 	print("DEFEND!")
 
 func _body_exited(body):
-	if body != Global.player:
+	if body != Global.player or not defend:
 		return
 	defend = false
 	var closest_range = INF
@@ -131,7 +134,7 @@ func _body_exited(body):
 	print("relax~")
 
 func _carry_entered(body):
-	if body == Global.player and not carry:
+	if body == Global.player and not carry and Global.minihira_done < 4:
 		carry_done = false
 		carry = true
 		carry_go = false

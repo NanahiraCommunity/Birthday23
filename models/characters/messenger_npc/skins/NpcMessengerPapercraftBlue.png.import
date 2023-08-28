@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://46f5ot7ocq21"
-path.s3tc="res://.godot/imported/NpcMessengerPapercraftBlue.png-71ea49b3f27a618db39a7d0c9f0e6b73.s3tc.ctex"
+path="res://.godot/imported/NpcMessengerPapercraftBlue.png-71ea49b3f27a618db39a7d0c9f0e6b73.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://models/characters/messenger_npc/skins/NpcMessengerPapercraftBlue.png"
-dest_files=["res://.godot/imported/NpcMessengerPapercraftBlue.png-71ea49b3f27a618db39a7d0c9f0e6b73.s3tc.ctex"]
+dest_files=["res://.godot/imported/NpcMessengerPapercraftBlue.png-71ea49b3f27a618db39a7d0c9f0e6b73.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

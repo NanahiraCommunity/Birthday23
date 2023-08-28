@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dayqvfe3um07g"
-path.s3tc="res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.s3tc.ctex"
+path="res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://models/characters/sera/NekoHackerPapercraft-sera.png"
-dest_files=["res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.s3tc.ctex"]
+dest_files=["res://.godot/imported/NekoHackerPapercraft-sera.png-e52073cb8887a9bb2e8b262811aff65d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

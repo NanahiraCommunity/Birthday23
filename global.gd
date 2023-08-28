@@ -20,6 +20,7 @@ enum Collectible
 	BUGS,
 	PINEAPPLE,
 	DOUGH,
+	ENERGY,
 }
 
 var collected_dynamics = {}
@@ -50,6 +51,7 @@ var collectibles: PackedInt32Array = [
 	0, # BUGS
 	0, # PINEAPPLES
 	0, # DOUGH
+	0, # ENERGY
 ]
 
 func collect_animated(c: Collectible, n: int):
@@ -137,6 +139,9 @@ func respawn_scene():
 	if neko_world:
 		# better performance
 		neko_world.reload()
+	elif camellia:
+		# better as well
+		camellia.respawn()
 	else:
 		get_tree().reload_current_scene()
 
@@ -146,6 +151,23 @@ var neko_world = null
 
 # camellia world
 
-var boosted = false
+var camellia = null
+var boosted: bool:
+	get:
+		return collectibles[Collectible.ENERGY] > 0
+
 var has_pizza = false
 var minihira_done = 0
+var max_drum_score = 0
+var kassan_step = 0
+var has_lighter = false
+
+func finish_game():
+	if dialog:
+		dialog.visible = false
+	await SceneSwitcher.switch_scene("res://islands/end_scene/end_scene.tscn")
+
+# func _unhandled_input(event):
+# 	if event is InputEventKey:
+# 		if event.pressed and event.keycode == KEY_F6:
+# 			finish_game()
