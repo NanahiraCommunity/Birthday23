@@ -11,7 +11,7 @@ Pizza Girl,Pizza Girl,ピザ少女
 Microwave,Microwave,電子レンジ
 Fullflavor Girl,Fullflavor Girl,FULLFLAVOR少女
 tcef6234fd4,BROKEN DIALOG,ダイアログエラー
-t33bd29fbc0,Do you know Kassan from Neko Hacker? I would really like to get her signature..., ネコハッカーのかっさんさま知ってる？かっさんさまのサイン欲しいな…
+t33bd29fbc0,Do you know Kassan from Neko Hacker? I would really like to get her signature...,ネコハッカーのかっさんさま知ってる？かっさんさまのサイン欲しいな…
 t9fca0c5f59,I've got a letter from Kassan here,かっさんの手紙を持っている
 t3392780cc7,You met Kassan?! I'm so jealous...,かっさんさま会ったことあるの？！うらやましいな…
 te6ec3a650c,Oh you want to go to [b]Fullflavor Girl[/b] behind me?,後ろにいる[b]FULLFLAVOR少女[/b]に行きたいの？
@@ -51,7 +51,7 @@ te720d68f6b,Umm... so no pizza?,じゃ…ピザないですか？
 t0448179920,"Too bad, have a nice day.","残念ながら、良い一日を。"
 t4167f6fbca,No...,え…
 tb50e15cdf4,"hey, I didn't mean it like that! I meant I just forgot the ingredients... at home, yes, at home!","そんなつもりじゃなかった！ 材料を忘れただけってことだ…家に、そう、家に！"
-t27602b0a59,I can't leave in case customers show up! Can you get some new ingredients for me instead?, "代わりに材料を持って来てもらえる？お客さんが来るかもしれないから帰れないから！ "
+t27602b0a59,I can't leave in case customers show up! Can you get some new ingredients for me instead?,"代わりに材料を持って来てもらえる？お客さんが来るかもしれないから帰れないから！ "
 tb5eb062088,Sure...,わかった…
 td47c41e60d,That doesn't make any sense!,意味わかんない！
 t903573f4e2,"that's not a no, so...",断っていないので…
@@ -71,6 +71,6 @@ t699c431a53,I'll make you a pizza right away...,すぐにピザを焼きます�
 taf58803057,"*bzzzzt* [wait=2.0]*[do SFX.play_wav(""res://sfx/pickup_coin.wav"")]DING*","*ビィィィィー* [wait=2.0]*[do SFX.play_wav(""res://sfx/pickup_coin.wav"")]チン*"
 t65869d2f2f,"Here you go! Pizza with extra pineapple, for free, as promised.",はいよ！約束通り、無料のパインアップルたっぷりのピザ。
 t4f01ba9414,"I've got pizza again, but nobody wants any... More for me!","またピザをあるけど、誰も私のピザを欲しがらない…もっと私の食べる分！"
-t9322cd252e,The future of flavor is TASTE INFINITE,"味の未来は「TASTE INFINITE」"
+t9322cd252e,The future of flavor is TASTE INFINITE,"未来は「味∞限∞大」"
 t7496164702,I've got a letter from Kassan for you,かっさんからの手紙持っています
-t0c3cbf846d,"Super dope, thank you!","マジで？ありがとう！"
+t0c3cbf846d,"Super dope, thank you!","Dopeな感謝よ"

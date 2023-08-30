@@ -44,7 +44,7 @@ Level Design
 
 Internationalization
 	Liz Hasegawa
+	ライスCake
 	Ungrave
 
 Playtesters
-
