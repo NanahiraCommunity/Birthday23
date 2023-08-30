@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=55 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Script" path="res://islands/hub/hub_world.gd" id="1_7us4m"]
@@ -125,6 +125,9 @@ size = Vector3(1, 0.966757, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wwyku"]
 radius = 0.608127
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m864b"]
+radius = 0.884906
 
 [sub_resource type="Animation" id="Animation_ke5n4"]
 resource_name = "OpenDoors"
@@ -783,6 +786,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6863, 2.68526, -25.9084)
 [node name="Taiyaki4" parent="Quests/hub_collect_taiyaki" instance=ExtResource("24_17d2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59817, 3.48263, -28.5294)
 
+[node name="hub_warp" type="Node" parent="Quests"]
+script = ExtResource("24_yjym4")
+quest_id = &"hub_warp"
+description = "Q_HUB_WARP"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/hub_warp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39773, 0.131406, -9.56926)
+shape = SubResource("SphereShape3D_m864b")
+
 [node name="market" parent="." instance=ExtResource("28_61py4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.42987, -0.000998093, -20.7056)
 
@@ -813,3 +825,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04215, 0.578915)
 shape = SubResource("BoxShape3D_jkpqx")
 
 [connection signal="finished" from="Quests/hub_collect_taiyaki" to="." method="_on_hub_collect_taiyaki_finished"]
+[connection signal="finished" from="Quests/hub_warp" to="." method="_on_hub_warp_finished"]

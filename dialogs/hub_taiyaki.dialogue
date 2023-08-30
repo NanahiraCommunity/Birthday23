@@ -28,6 +28,7 @@ if is_quest_complete("hub_collect_taiyaki")
 	set neko_hacker_available = true
 	do end_quest("hub_collect_taiyaki")
 	Taiyaki Girl: thx [ID:t286dfd6069]
+	do start_quest("hub_warp")
 else
 	Taiyaki Girl: The [b]Taiyaki[/b] should be on the rooftops around us here [ID:t0b4dd79435]
 => END

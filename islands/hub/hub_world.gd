@@ -14,3 +14,7 @@ func _exit_tree():
 func _on_hub_collect_taiyaki_finished():
 	$TaiyakiGirl.hide_quest_indicator = false
 	$Quests/hub_collect_taiyaki/SampleTaiyaki.visible = false
+
+
+func _on_hub_warp_finished():
+	Global.try_end_quest("hub_warp")
