@@ -1,33 +1,33 @@
 keys,en,ja
-OPT_FULLSCREEN,Fullscreen,
-OPT_BORDERLESS,Borderless,
-OPT_VSYNC,Vsync,
-OPT_VOLUME_MASTER,Master,
-OPT_VOLUME_BGM,BGM,
-OPT_VOLUME_SFX,SFX,
+OPT_FULLSCREEN,Fullscreen,フルスクリーン
+OPT_BORDERLESS,Borderless,ボーダーレス
+OPT_VSYNC,Vsync,Vsync
+OPT_VOLUME_MASTER,Master,マスター
+OPT_VOLUME_BGM,BGM,BGM
+OPT_VOLUME_SFX,SFX,SFX
 OPT_LANG_EN,English,English
 OPT_LANG_JA,日本語,日本語
-MENU_BACK,Back,
-MENU_START,Play,
-MENU_RESUME,Resume,
-MENU_OPTIONS,Options,
-MENU_QUIT,Quit,
-PAUSE_TEXT,[center]Game is paused,
-Q_COLLECT_TAIYAKI,Collect [b]Taiyaki[/b],
-Q_COLLECT_TAIYAKI_MARKERS,Jump onto the rooftop,
-Q_STAGE2_SQUASH_BUGS,Squash [b]Bug Nests[/b],
-Q_STAGE2_SQUASH_BUGS_MARKERS,Jump on the marked bug nests,
-Q_STAGE2_AFTER_SQUASH,Speak with Kassan,
-Q_STAGE3_SQUASH_BUGS,Squash [b]Bug Nests[/b],
-Q_STAGE3_SIMON_SAYS,Help Kassan get out,
-Q_VISIT_CAMELLIA_ISLAND,Leave the Area,
-Q_COLLECT_DOUGH,Find the [b]Pizza Dough[/b],
-Q_COLLECT_PINEAPPLES,Get some [b]Pineapples[/b],
-Q_COLLECT_PINEAPPLES_MARKERS,Jump onto the stone pillars at the sea,
-Q_GRAB_STUFF,Grab your delivery stuff,
-Q_GO_UPSTAIRS,Go upstairs to your office,
-Q_HELP_GIRL,Go to the market and help your coworker,
-Q_LEAVE_AREA,Leave the building and go to your coworker,
+MENU_BACK,Back,もどる
+MENU_START,Play,プレイ
+MENU_RESUME,Resume,つづく
+MENU_OPTIONS,Options,設定
+MENU_QUIT,Quit,おわる
+PAUSE_TEXT,[center]Game is paused,ゲーム提出
+Q_COLLECT_TAIYAKI,Collect [b]Taiyaki[/b],[b]たい焼き[/b]を集める
+Q_COLLECT_TAIYAKI_MARKERS,Jump onto the rooftop,屋上に飛び乗る
+Q_STAGE2_SQUASH_BUGS,Squash [b]Bug Nests[/b],[b]虫の巣[/b]を押しつぶす
+Q_STAGE2_SQUASH_BUGS_MARKERS,Jump on the marked bug nests,マークされた虫の巣をつぶす
+Q_STAGE2_AFTER_SQUASH,Speak with Kassan,かっさん話しかける
+Q_STAGE3_SQUASH_BUGS,Squash [b]Bug Nests[/b],[b]虫の巣[/b]を押しつぶす
+Q_STAGE3_SIMON_SAYS,Help Kassan get out,かっさんを助ける
+Q_VISIT_CAMELLIA_ISLAND,Leave the Area,エリアを離れろう
+Q_COLLECT_DOUGH,Find the [b]Pizza Dough[/b],[b]ピザ生地[/b]を探す
+Q_COLLECT_PINEAPPLES,Get some [b]Pineapples[/b],[b]パインアップル[/b]を手に入れる
+Q_COLLECT_PINEAPPLES_MARKERS,Jump onto the stone pillars at the sea,海の石柱に飛び乗ろう
+Q_GRAB_STUFF,Grab your delivery stuff,デリバリーバックを手に入れる
+Q_GO_UPSTAIRS,Go upstairs to your office,上の階のオフィスに行く
+Q_HELP_GIRL,Go to the market and help your coworker,市場に行って同僚を助けよ
+Q_LEAVE_AREA,Leave the building and go to your coworker,ビルを出て同僚のところへ行こう
 Project Lead,Project Lead,プロジェクトリード
 Character Lead,Character Lead,キャラクターリード
 Creative Lead,Creative Lead,クリエイティブリード
