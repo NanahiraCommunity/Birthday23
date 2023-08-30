@@ -33,8 +33,9 @@ func _ready():
 	Global.player = self
 
 func _enter_tree():
-	await get_tree().process_frame
-	var oobnode = get_tree().current_scene.get_node_or_null("OOBHeight")
+	var tree = get_tree()
+	await tree.process_frame
+	var oobnode = tree.current_scene.get_node_or_null("OOBHeight")
 	if oobnode:
 		oob_height = oobnode.global_position.y
 

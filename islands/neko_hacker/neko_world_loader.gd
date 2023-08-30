@@ -62,7 +62,8 @@ func glitch_death():
 	$PlayerExplosion.global_position = $Player.global_position
 	$PlayerExplosion.visible = true
 	$PlayerExplosion.emitting = true
-	await get_tree().create_timer(1.5).timeout
+	if is_inside_tree():
+		await get_tree().create_timer(1.5).timeout
 	await SceneSwitcher.fade_to_black()
 	reload()
 	$Player.visible = true
@@ -92,7 +93,8 @@ func countdown_death(seconds: float):
 			$Control/Countdown.visible = false
 			return
 	# for particles, and just for fairness as well
-	await get_tree().create_timer(0.3).timeout
+	if is_inside_tree():
+		await get_tree().create_timer(0.3).timeout
 	if $Control/Countdown.aborted:
 		$Player/Timelimit.visible = false
 		$Player/Timelimit.emitting = false

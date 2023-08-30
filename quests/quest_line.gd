@@ -7,11 +7,11 @@ var _text: String
 		return _text
 	set(value):
 		_text = value
-		if $HBoxContainer/MarginContainer/Label:
+		if has_node("HBoxContainer/MarginContainer/Label"):
 			if Engine.is_editor_hint():
-				$HBoxContainer/MarginContainer/Label.text = value
+				get_node("HBoxContainer/MarginContainer/Label").text = value
 			else:
-				$HBoxContainer/MarginContainer/Label.text = Global.preprocess_bbcode(value)
+				get_node("HBoxContainer/MarginContainer/Label").text = Global.preprocess_bbcode(value)
 
 var _finished: bool
 @export var finished: bool:
@@ -45,6 +45,10 @@ func hide_animated():
 func hide_animated_and_free(timeout: float = 0.0):
 	assert(not freeing, "attempted to animated free twice")
 	freeing = true
+	if not is_inside_tree():
+		queue_free()
+		return
+
 	if timeout > 0.0:
 		await get_tree().create_timer(timeout).timeout
 	await hide_animated()
