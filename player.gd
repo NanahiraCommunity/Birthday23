@@ -39,7 +39,7 @@ func _enter_tree():
 	if oobnode:
 		oob_height = oobnode.global_position.y
 
-var flight_strokes_max = 2
+var flight_strokes_max = 3
 var flight_strokes = flight_strokes_max
 var flight_stroke_timer_first = 0.2
 var flight_stroke_timer_max = 0.3
