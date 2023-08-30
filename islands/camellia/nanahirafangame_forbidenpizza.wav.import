@@ -20,5 +20,5 @@ edit/trim=false
 edit/normalize=false
 edit/loop_mode=2
 edit/loop_begin=0
-edit/loop_end=1000000000
+edit/loop_end=-1
 compress/mode=0
