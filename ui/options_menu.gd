@@ -42,7 +42,8 @@ func _process(delta):
 # Hardcoded because thinking of having the options menu accessable from
 # gameplay and when clicking back it will take you there and not to title
 func _back():
-	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+	visible = false
+#	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
 
 func _fullscreen(button_pressed):
 	print("fullscreen")

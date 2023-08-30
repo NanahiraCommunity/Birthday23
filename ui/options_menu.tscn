@@ -4,7 +4,7 @@
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qt4ss"]
 
-[node name="MainMenu" type="Control"]
+[node name="OptionsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
