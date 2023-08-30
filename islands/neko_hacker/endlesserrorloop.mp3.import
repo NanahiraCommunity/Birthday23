@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/endlesserrorloop.mp3-609e55e5ba15fd775d68360a
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0
