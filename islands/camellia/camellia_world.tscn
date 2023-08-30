@@ -194,7 +194,6 @@ description = "Yellow Minihira has the drumming highscore"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_7dodf")
-autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xmast")
