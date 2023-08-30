@@ -10,12 +10,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if inside and Global.player.state == Global.Player.FLYING:
+		# hack: worked well on 240 fps, forgot to add delta checks then - rescale!
+		var scale = delta * 240.0
 		var v = Global.player.velocity
 		var base_strength = clamp(Vector2(v.x, v.z).length(), 0.01, 2.0)
 		var h = clamp(Global.player.global_position.y - global_position.y, 0.0, 6.0) / 6.0
 		var strength = clamp(((1.0 - h * h) - v.y * 0.2) * base_strength, 0.5, 2.0)
-		print(strength)
-		Global.player.velocity.y += 0.03 * strength
+		Global.player.velocity.y += 0.03 * strength * scale
 		Global.player.flight_strokes = Global.player.flight_strokes_max - 1
 
 func _body_entered(body):

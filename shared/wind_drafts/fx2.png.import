@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://pq7u0poma27k"
-path.s3tc="res://.godot/imported/fx2.png-8cfac58390f7f13322fdd5fcd674e29c.s3tc.ctex"
+path="res://.godot/imported/fx2.png-8cfac58390f7f13322fdd5fcd674e29c.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shared/wind_drafts/fx2.png"
-dest_files=["res://.godot/imported/fx2.png-8cfac58390f7f13322fdd5fcd674e29c.s3tc.ctex"]
+dest_files=["res://.godot/imported/fx2.png-8cfac58390f7f13322fdd5fcd674e29c.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

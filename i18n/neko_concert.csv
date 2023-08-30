@@ -4,35 +4,38 @@ System,System,SYSTEM
 null,null,null
 Sera,Sera,Sera
 Haruka Nana,Haruka Nana,春歌ナナ
-t3b355aa01b,Hello! I am Kassan!,
-t41cc240d99,Is that a letter for me?,
-t6d499d67b2,Yes,
-t2289c3746a,You give Kassan the letter.,
-t97fe594009,Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color],
-ta028ca5bef,[shake rate=20.0 level=5 connected=1]bug detected; [color=red]killing child[/color][/shake],
-t4af09b8595,No,
-t5504685dd6,I see. Must be for someone else then!,
-tee4e9badb9,[shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake],[shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake]
-t2ec0c34fa7,[color=#ff00ff]RETURN[/color],
-t9b773985dd,Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?,
+t3b355aa01b,Hello! I am Kassan!,おっす！わたしはかっさんだ！
+t41cc240d99,Is that a letter for me?,それは私に…手紙ですか…？
+t6d499d67b2,Yes,はい！
+t2289c3746a,You give Kassan the letter.,かっさんに手紙を渡す。
+t97fe594009,Thank y[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]STACK OVERFLOW ERROR[/shake][/color],ありがっ[wait=1.5][color=green][shake rate=20.0 level=5 connected=1]スタックオーバーフローエラー[/shake][/color]
+ta028ca5bef,[shake rate=20.0 level=5 connected=1]バグ発見しました; [color=red]消去ファイル[/color][/shake],
+t4af09b8595,No,いいえ
+t5504685dd6,I see. Must be for someone else then!,なるほど。じゃあ、誰かのためにあるに違いない！
+tee4e9badb9,[shake rate=20.0 level=5 connected=1][color=green]TERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATEXTERMINATE[/color][/shake],[shake rate=20.0 level=5 connected=1][color=green]センメツクジョセンメツクジョセンメツクジョセンメツクジョセンメツクジョセンメツクジョセンメツクジョセンメツクジョセンメツクジョ[/color][/shake]
+t2ec0c34fa7,[color=#ff00ff]RETURN[/color],[color=#ff00ff]モドル[/color]
+t9b773985dd,Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already met before?,それは... ちょっと待って。[wait=0.5] 前に[wait=0.3]会ったことあるよね？
 ta8eabe31ef,"ModuleNotFoundError@builtin.d(0)
 ----------------
 ??:? _d_assertp [0x5630b7fb8fac]
+??:? _Dmain [0x5630b7fb0ff0]","ModuleNotFoundError@builtin.d(0)
+----------------
+??:? _d_assertp [0x5630b7fb8fac]
 ??:? _Dmain [0x5630b7fb0ff0]",
-t8cf79b7d78,"Help, I'm locked in!",
-t32195f00bc,"There must be some way to open this door, can you help me get out?",
-t84e3f43fd3,Try pressing the buttons in the order how they light up.,
-t2240fd94e6,Thank you for resucing me! I found the bug causing this whole mess in my cell!,
-tfdef35a83c,Let me just fix it really quick...,
-t06f5bc5162,Hi... I am Sera.,
-t14f9616e95,"Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely!",
-ta30cad91d3,Stamp on the [color=green]bug nests[/color] to squash them,
-t50661bd7e7,[b]Kassan[/b] might know how to restore the world...,
+t8cf79b7d78,"Help, I'm locked in!","たすけてー！閉じ込められているんだ！"
+t32195f00bc,"There must be some way to open this door, can you help me get out?","このドアを開ける方法があるはずだ、 外に出るのを手伝ってくれる？"
+t84e3f43fd3,Try pressing the buttons in the order how they light up.,点灯順にボタンを押してみてください。
+t2240fd94e6,Thank you for resucing me! I found the bug causing this whole mess in my cell!,助けてくれてありがとうございます！この混乱の原因となっているエラーは、私のセルの中にありました！
+tfdef35a83c,Let me just fix it really quick...,手っ取り早く直させてもらうと...。
+t06f5bc5162,Hi... I am Sera.,こんにちは…セラです。
+t14f9616e95,"Bugs have appeared everywhere, we need to get rid of them quickly before they break this world entirely!","情報エラーがあちこちに出現している、 この世界を完全に壊してしまう前に、早く取り除く必要がある。"
+ta30cad91d3,Stamp on the [color=green]bug nests[/color] to squash them,[color=green]虫の巣[/color]を踏みつぶす
+t50661bd7e7,[b]Kassan[/b] might know how to restore the world...,[b]かっさん[/b]は世界を回復させる方法を知っているかもしれないが...。
 t2926822867,I like Warabimochi,わらびもち好きです
-tec9c3230a7,"I am Nanahira! ... no wait, I am Haruka Nana!",
-t4259018832,I don't understand what's happening...,
-tb65e57a28e,Everyone is suddenly gone as well...,
-t9859ec2567,...,
+tec9c3230a7,"I am Nanahira! ... no wait, I am Haruka Nana!","ななひらです！…いや、じゃなくて、春歌ナナです！"
+t4259018832,I don't understand what's happening...,この状況わかんねーよ…
+tb65e57a28e,Everyone is suddenly gone as well...,みんなも突然いなくなってしまった...
+t9859ec2567,...,…
 td31bb673de,"I was suddenly holding this button - I don't want to press it, you can have it!",
 t5feedb4ea2,Press the Button,
 tcf4349133d,"Eeek, more bugs!",

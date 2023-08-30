@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3h1j3uxftkja"
-path.s3tc="res://.godot/imported/pizza-dough.png-bfb2a8c8c7c19a77125e6844a1e5cabf.s3tc.ctex"
+path="res://.godot/imported/pizza-dough.png-bfb2a8c8c7c19a77125e6844a1e5cabf.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://shared/collectible/pizza-dough.png"
-dest_files=["res://.godot/imported/pizza-dough.png-bfb2a8c8c7c19a77125e6844a1e5cabf.s3tc.ctex"]
+dest_files=["res://.godot/imported/pizza-dough.png-bfb2a8c8c7c19a77125e6844a1e5cabf.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

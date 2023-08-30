@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc7lucsm6tcxv"]
+
+[ext_resource type="Shader" path="res://shared/collect_rings/collect_ring.gdshader" id="1_4vno4"]
+[ext_resource type="Script" path="res://shared/collect_rings/collect_ring.gd" id="1_nxj7r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6je05"]
+render_priority = 0
+shader = ExtResource("1_4vno4")
+shader_parameter/distance_fade_min = 0.5
+shader_parameter/distance_fade_max = 2.0
+shader_parameter/color = Color(0.627451, 0, 1, 1)
+shader_parameter/collected = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_01ols"]
+height = 0.2
+radius = 1.1
+
+[node name="CollectRing" type="CSGTorus3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+inner_radius = 1.0
+outer_radius = 1.4
+sides = 24
+ring_sides = 13
+material = SubResource("ShaderMaterial_6je05")
+script = ExtResource("1_nxj7r")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_01ols")

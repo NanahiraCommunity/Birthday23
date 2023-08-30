@@ -1,6 +1,6 @@
 extends Node3D
 
-var stage_idx = 1
+var stage_idx = 0
 var loaded_stage: Node = null
 var stages: Array[Node] = []
 var timeout_deaths = 0

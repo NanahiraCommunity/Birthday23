@@ -29,7 +29,11 @@ func unfade_from_black(delay: float = 0.0):
 	if delay > 0.0:
 		await get_tree().create_timer(delay).timeout
 	var camera = get_viewport().get_camera_3d()
-	player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
+	if not camera:
+		var window = get_viewport().get_window()
+		player_pos = Vector2(window.size.x * 0.5, window.size.y * 0.5)
+	else:
+		player_pos = camera.unproject_position(camera.target.global_position + HEAD_OFFSET)
 	material.set_shader_parameter("center", player_pos)
 	animator.play("In")
 	await animator.animation_finished

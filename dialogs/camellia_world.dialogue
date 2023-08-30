@@ -1,95 +1,145 @@
 ~ first
-BROKEN DIALOG
+BROKEN DIALOG [ID:tcef6234fd4]
 => END
 
 ~ minihira_blue
-Blue Minihira: Do you know Kassan from Neko Hacker? I would really like to get her signature...
-do try_start_quest("minihira_blue")
+set current_npc.dialog_entry = "minihira_blue_blocking"
+set minihira_done += 1
+Blue Minihira: Do you know Kassan from Neko Hacker? I would really like to get her signature... [ID:t33bd29fbc0]
+- I've got a letter from Kassan here [ID:t9fca0c5f59]
+	Blue Minihira: You met Kassan?! I'm so jealous... [ID:t3392780cc7]
+	Blue Minihira: Oh you want to go to [b]Fullflavor Girl[/b] behind me? [ID:te6ec3a650c]
+	if minihira_done < 4:
+		Blue Minihira: I would let you through, but the other Minihiras don't like it if I just let people through, so you gotta first convince them you are worth it. [ID:tba6ef79a0e]
+	else:
+		Blue Minihira: Feel free to talk to [b]Fullflavor Girl[/b] any time. [ID:t3c6460df85]
+		set current_npc.dialog_entry = "minihira_blue_done"
+		do camellia.unlock_fullflavor()
 => END
 
 ~ minihira_orange
-Red Minihira: There is not enough fire around here, look at all these burned out lanterns! Here, have some matches.
-do try_start_quest("minihira_orange")
+set current_npc.dialog_entry = "minihira_orange_blocking"
+set minihira_done += 1
+Red Minihira: I really like festivals, so much fire... [ID:tb17a61592b]
+if minihira_done < 4:
+	Red Minihira: The other Minihiras don't like it if I just let people through, so you gotta first convince them you are worth it. [ID:t8a5e8e63a7]
+else:
+	Red Minihira: Feel free to talk to [b]Fullflavor Girl[/b] any time. [ID:t8ba83c9a47]
+	set current_npc.dialog_entry = "minihira_orange_done"
+	do camellia.unlock_fullflavor()
 => END
 
 ~ minihira_green
 if has_pizza:
 	do try_end_quest("minihira_green")
-	Green Minihira: is that pizza with extra pineapple?! [wait=2.0]I want it, give it to me...
-	- Feel free to have it all
+	Green Minihira: is that pizza with extra pineapple?! [wait=2.0]I want it, give it to me... [ID:tcb4e311d03]
+	- Feel free to have it all [ID:tc912791cd3]
 		set current_npc.dialog_entry = "minihira_green_blocking"
 		set minihira_done += 1
-		Green Minihira: Since you have a good taste I'm sure you would get along with [b]Fullflavor Girl[/b] behind me.
+		Green Minihira: Since you have a good taste I'm sure you would get along with [b]Fullflavor Girl[/b] behind me. [ID:tc82f514e43]
 		if minihira_done < 4:
-			Green Minihira: However the other Minihiras don't think you are worth it yet, so I can't let you through
+			Green Minihira: However the other Minihiras don't think you are worth it yet, so I can't let you through [ID:t48437ee9e6]
 		else:
-			Green Minihira: All the Minihiras agree, so feel free to talk to her any time.
+			Green Minihira: All the Minihiras agree, so feel free to talk to her any time. [ID:t9e421d67fc]
+			set current_npc.dialog_entry = "minihira_green_done"
+			do camellia.unlock_fullflavor()
 	=> END
 else:
-	Green Minihira: I wanna eat pizza~
+	Green Minihira: I wanna eat pizza~ [ID:t2a600165c1]
 	do try_start_quest("minihira_green")
 => END
 
 ~ minihira_yellow
-Minihira: Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~
-do try_start_quest("minihira_yellow")
+if max_drum_score > 10000:
+	Yellow Minihira: I can't believe you beat my record at drumming! [ID:tb890438dc7]
+	set current_npc.dialog_entry = "minihira_yellow_blocking"
+	set minihira_done += 1
+	Yellow Minihira: Since you showed your willpower I'm sure you would get along with [b]Fullflavor Girl[/b] behind me. [ID:t43ce5868b5]
+	if minihira_done < 4:
+		Yellow Minihira: However the other Minihiras don't think you are worth it yet, so I can't let you through [ID:t21857fbb07]
+	else:
+		Yellow Minihira: All the Minihiras agree, so feel free to talk to her any time. [ID:t0cd23cdb85]
+		do camellia.unlock_fullflavor()
+		set current_npc.dialog_entry = "minihira_yellow_done"
+elif max_drum_score >= 9000:
+	Yellow Minihira: You are close to beating my record, but you haven't beaten it yet! [ID:tb20c779258]
+	do try_start_quest("minihira_yellow")
+elif max_drum_score >= 50:
+	Yellow Minihira: I'm still the best at drumming! If you want to beat me, you should probably first find the secret power-up on this island before attempting more drumming [ID:t6265419296]
+	do try_start_quest("minihira_yellow")
+else:
+	Yellow Minihira: Nobody has beat my record at drumming yet! Nobody ever will, not without knowing about the secret power-up, fufufu~ [ID:t7cac269199]
+	do try_start_quest("minihira_yellow")
 => END
 
 ~ minihira_blue_blocking
-Blue Minihira: I can't let you through, Red Minihira tells me not to!
+Blue Minihira: I can't let you through, Red Minihira tells me not to! [ID:tc7de9ccbb7]
 => END
 ~ minihira_orange_blocking
-Red Minihira: I can't let you through, Green Minihira tells me not to!
+Red Minihira: I can't let you through, Green Minihira tells me not to! [ID:tb369f3cdbc]
 => END
 ~ minihira_green_blocking
-Green Minihira: I can't let you through, Yellow Minihira tells me not to!
+Green Minihira: I can't let you through, Yellow Minihira tells me not to! [ID:t72b351ac75]
 => END
 ~ minihira_yellow_blocking
-Yellow Minihira: I can't let you through, Blue Minihira tells me not to!
+Yellow Minihira: I can't let you through, Blue Minihira tells me not to! [ID:tce0318bcb1]
+=> END
+
+~ minihira_blue_done
+Blue Minihira: I wonder who Kassan looks up to [ID:td25ed7c32b]
+=> END
+~ minihira_orange_done
+Red Minihira: Fire~ [ID:t9dc74d3fd8]
+=> END
+~ minihira_green_done
+Green Minihira: *nomnomnom* [ID:t37eb852d09]
+=> END
+~ minihira_yellow_done
+Yellow Minihira: I'm busy practicing my drum skills [ID:t52e4603a2c]
 => END
 
 ~ drums_minigame
-Shopkeeper: Hello! Would you like to beat the fast drumming highscore?
-- Sure
+Shopkeeper: Hello! Would you like to beat the fast drumming highscore? [ID:t591139caba]
+- Sure [ID:t0ef74f0b89]
 	set get_node("DrumsMinigame").start()
 	=> END
-- No, thanks
+- No, thanks [ID:t2c58782196]
 	=> END
 
 ~ pizza
-Shady Pizza Girl: do you want a totally legal pizza?
-- Uhh, "totally legal"?
-	Not Forbidden Pizza Girl: well it's not forbidden, that's for sure. The thing is just that I lost the ingredients...
-	- Umm... so no pizza?
+Shady Pizza Girl: do you want a totally legal pizza? [ID:tf65726355f]
+- Uhh, "totally legal"? [ID:tebe3536f20]
+	Not Forbidden Pizza Girl: well it's not forbidden, that's for sure. The thing is just that I lost the ingredients... [ID:tbc0a8ae1e4]
+	- Umm... so no pizza? [ID:te720d68f6b]
 		=> pizza3
-	- Too bad, have a nice day.
+	- Too bad, have a nice day. [ID:t0448179920]
 		do current_npc.dialog_entry = "pizza2"
 		=> END
-- No...
+- No... [ID:t4167f6fbca]
 	=> END
 
 ~ pizza2
-Forgetful Pizza Girl: hey, I didn't mean it like that! I meant I just forgot the ingredients... at home, yes, at home!
+Forgetful Pizza Girl: hey, I didn't mean it like that! I meant I just forgot the ingredients... at home, yes, at home! [ID:tb50e15cdf4]
 => pizza3
 
 ~ pizza3
-Pizza Girl: I can't leave in case customers show up! Can you get some new ingredients for me instead?
-- Sure...
+Pizza Girl: I can't leave in case customers show up! Can you get some new ingredients for me instead? [ID:t27602b0a59]
+- Sure... [ID:tb5eb062088]
 	=> pizza_accept
-- That doesn't make any sense!
-	Pizza Girl: that's not a no, so...
+- That doesn't make any sense! [ID:td47c41e60d]
+	Pizza Girl: that's not a no, so... [ID:t903573f4e2]
 	=> pizza_accept
 
 ~ pizza_accept
-Pizza Girl: so the ingredients that are missing are:\n- Pizza dough\n- Pineapples
-- Pineapple on Pizza?!
-	Pizza Girl: it's delicious!
+Pizza Girl: so the ingredients that are missing are:\n- Pizza dough\n- Pineapples [ID:td48582b880]
+- Pineapple on Pizza?! [ID:t1abf754fca]
+	Pizza Girl: it's delicious! [ID:tbf23a1e6be]
 	=> pizza_accept2
-- I mean if I get my pizza...
+- I mean if I get my pizza... [ID:tdd5899cb7c]
 	=> pizza_accept2
 
 ~ pizza_accept2
-Pizza Girl: I'll even give you the pizza for free
+Pizza Girl: I'll even give you the pizza for free [ID:tb37eb9f88d]
 => pizza_quest
 
 ~ pizza_quest
@@ -101,20 +151,29 @@ if is_quest_complete("camellia_collect_dough") and is_quest_complete("camellia_c
 else
 	set current_npc.dialog_entry = "pizza_quest"
 	do try_start_quest("camellia_collect_dough")
-	Pizza Girl: So, I was pretty sure I had the [b]Pizza dough[/b] somewhere, but I can't seem to find it. It should still be somewhere around here.
+	Pizza Girl: So, I was pretty sure I had the [b]Pizza dough[/b] somewhere, but I can't seem to find it. It should still be somewhere around here. [ID:t8e0a5fc21e]
 	do try_start_quest("camellia_collect_pineapples")
-	Pizza Girl: For the [b]Pineapples[/b], some rude customer threw my Pineapples all the way over there onto these stone pillars. Since you got wings, can you maybe fly up there and grab them?
+	Pizza Girl: For the [b]Pineapples[/b], some rude customer threw my Pineapples all the way over there onto these stone pillars. Since you got wings, can you maybe fly up there and grab them? [ID:teb5425954f]
 => END
 
 ~ pizza_done
 set current_npc.dialog_entry = "pizza_done2"
-Pizza Girl: Thank you so much for the ingredients!
-Pizza Girl: I'll make you a pizza right away...
-Microwave: *bzzzzt* [wait=2.0][do SFX.play_wav("res://sfx/pickup_coin.wav")]*DING*
-Pizza Girl: Here you go! Pizza with extra pineapple, for free, as promised.
+Pizza Girl: Thank you so much for the ingredients! [ID:t3c9523baa9]
+Pizza Girl: I'll make you a pizza right away... [ID:t699c431a53]
+Microwave: *bzzzzt* [wait=2.0]*[do SFX.play_wav("res://sfx/pickup_coin.wav")]DING* [ID:taf58803057]
+Pizza Girl: Here you go! Pizza with extra pineapple, for free, as promised. [ID:t65869d2f2f]
 set has_pizza = true
 => END
 
 ~ pizza_done2
-Pizza Girl: I've got pizza again, but nobody wants any... More for me!
+Pizza Girl: I've got pizza again, but nobody wants any... More for me! [ID:t4f01ba9414]
+=> END
+
+~ fullflavor_girl
+if minihira_done < 4
+	=> END
+Fullflavor Girl: The future of flavor is TASTE INFINITE [ID:t9322cd252e]
+- I've got a letter from Kassan for you [ID:t7496164702]
+	Fullflavor Girl: Super dope, thank you! [ID:t0c3cbf846d]
+	do finish_game()
 => END

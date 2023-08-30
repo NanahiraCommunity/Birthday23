@@ -1,7 +1,8 @@
-[gd_scene load_steps=50 format=3 uid="uid://cvwfpj8elepkn"]
+[gd_scene load_steps=57 format=3 uid="uid://cvwfpj8elepkn"]
 
 [ext_resource type="AudioStream" uid="uid://bckbj3r8g062a" path="res://islands/camellia/nanahirafangame_forbidenpizza.wav" id="1_7dodf"]
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_xo1hg"]
+[ext_resource type="Script" path="res://islands/camellia/camellia_world.gd" id="1_yfeo7"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="2_sa7he"]
 [ext_resource type="Script" path="res://quests/collect_items.gd" id="2_ucnup"]
 [ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="2_xx607"]
@@ -9,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://dpm6gklw5oqw1" path="res://islands/camellia/stage.tscn" id="4_mm0r7"]
 [ext_resource type="Shader" path="res://islands/camellia/nightsky.gdshader" id="4_sb1mh"]
 [ext_resource type="Texture2D" uid="uid://doon4ou12otrg" path="res://shared/sky/camellia/spacescape.exr" id="5_3mwxc"]
-[ext_resource type="PackedScene" path="res://islands/camellia/food_stall.tscn" id="6_6hpqe"]
+[ext_resource type="PackedScene" uid="uid://k0yj614d7e0f" path="res://islands/camellia/food_stall.tscn" id="6_6hpqe"]
 [ext_resource type="Script" path="res://shared/collectible/collectible_grid_generator.gd" id="6_d7fbk"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="7_n4h0l"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="7_pm2ox"]
 [ext_resource type="Script" path="res://quests/quest.gd" id="8_26f5k"]
-[ext_resource type="PackedScene" path="res://islands/camellia/table.tscn" id="10_hv8l1"]
-[ext_resource type="PackedScene" path="res://islands/camellia/microwave.tscn" id="10_ipgrb"]
+[ext_resource type="PackedScene" uid="uid://bws7xcbhqw7y3" path="res://islands/camellia/table.tscn" id="10_hv8l1"]
+[ext_resource type="PackedScene" uid="uid://dlce5qpaogob2" path="res://islands/camellia/microwave.tscn" id="10_ipgrb"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="11_tttmk"]
 [ext_resource type="PackedScene" uid="uid://bx7gx1d13p8nv" path="res://islands/camellia/minihira.tscn" id="14_snhn7"]
 [ext_resource type="PackedScene" uid="uid://isobc4i517mw" path="res://islands/camellia/lantern_row.tscn" id="14_x6xk2"]
@@ -23,8 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://bpw21ckw5jd47" path="res://islands/camellia/island_shape.tscn" id="18_vepf8"]
 [ext_resource type="PackedScene" uid="uid://mj4c1acfyvdr" path="res://islands/camellia/drums_minigame.tscn" id="20_guac5"]
 [ext_resource type="PackedScene" uid="uid://blfqrqtiwme0w" path="res://shared/wind_drafts/wind_draft.tscn" id="21_h1233"]
+[ext_resource type="PackedScene" uid="uid://ck18t7pi70ff0" path="res://shared/respawn_set/respawn_set.tscn" id="22_5yc33"]
 [ext_resource type="PackedScene" uid="uid://chpm7gtdkg82g" path="res://shared/collectible/pineapple.tscn" id="22_8u5wj"]
 [ext_resource type="PackedScene" uid="uid://cnwox3pxtd8mq" path="res://shared/collectible/pizza_dough.tscn" id="23_1wgd1"]
+[ext_resource type="PackedScene" uid="uid://dc7lucsm6tcxv" path="res://shared/collect_rings/collect_ring.tscn" id="24_iqnl0"]
+[ext_resource type="PackedScene" uid="uid://b4r8pfmbdo45j" path="res://shared/collectible/energylooper.tscn" id="27_rdjh3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_yeaf8"]
 radius = 2.03447
@@ -86,6 +90,9 @@ albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7uqup"]
 albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_84tc0"]
+size = Vector3(1.31991, 1, 1.33797)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ri30p"]
 albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 
@@ -119,7 +126,15 @@ albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4xbs"]
 albedo_color = Color(0.454902, 0.454902, 0.454902, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bq72g"]
+height = 0.1
+radius = 0.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hijua"]
+radius = 17.9888
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_yfeo7")
 
 [node name="Quests" type="Node3D" parent="."]
 script = ExtResource("7_n4h0l")
@@ -154,7 +169,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5601, 1.66281, -15.1943)
 shape = SubResource("SphereShape3D_yeaf8")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Quests/camellia_collect_pineapples/camellia_collect_pineapples_markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5408, 14.3959, -23.5468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5408, 14.129, -23.5468)
 shape = SubResource("SphereShape3D_yeaf8")
 
 [node name="minihira_blue" type="Node" parent="Quests"]
@@ -192,7 +207,7 @@ light_energy = 0.3
 shadow_enabled = true
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_xo1hg")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -4.16144, 0, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5.21834, 0.0229262, 0.174051)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="Node3D" type="Node3D" parent="."]
@@ -224,10 +239,10 @@ cell_center_z = false
 collision_layer = 0
 collision_mask = 0
 data = {
-"cells": PackedInt32Array(1572864, 0, 1048577, 6815926, 41, 1, 4063441, 65417, 1, 4063441, 65419, 1, 4063439, 65418, 1, 589876, 7, 0, 589878, 8, 0, 589876, 9, 0, 1441867, 65529, 0, 1441866, 65527, 0, 1441865, 65529, 0, 1441860, 65534, 0, 1638475, 65497, 0, 1638475, 65496, 0, 852027, 4, 0, 1900618, 65515, 0, 1900618, 65514, 0, 1900618, 65513, 0, 1900618, 65512, 0, 1900618, 65511, 0, 1638475, 65495, 0, 1638475, 65494, 0, 1638475, 65493, 0, 1638475, 65492, 0, 1441868, 65464, 0, 1441868, 65465, 0, 1441868, 65466, 0, 1441868, 65467, 0, 1441868, 65468, 0, 1441868, 65469, 0)
+"cells": PackedInt32Array(1572864, 0, 1048577, 6815926, 41, 1, 4063441, 65417, 1, 4063441, 65419, 1, 589876, 7, 0, 589878, 8, 0, 589876, 9, 0, 1441867, 65529, 0, 1441866, 65527, 0, 1441865, 65529, 0, 1441860, 65534, 0, 1638475, 65497, 0, 1638475, 65496, 0, 852027, 4, 0, 1900618, 65515, 0, 1900618, 65514, 0, 1900618, 65513, 0, 1900618, 65512, 0, 1900618, 65511, 0, 1638475, 65495, 0, 1638475, 65494, 0, 1638475, 65493, 0, 1638475, 65492, 0, 1441868, 65464, 0, 1441868, 65465, 0, 1441868, 65466, 0, 1441868, 65467, 0, 1441868, 65468, 0, 1441868, 65469, 0, 4063439, 65413, 1, 4063439, 65414, 0, 4063439, 65415, 0, 4063439, 65416, 0)
 }
 script = ExtResource("6_d7fbk")
-metadata/_editor_floor_ = Vector3(0, 22, 0)
+metadata/_editor_floor_ = Vector3(0, 62, 0)
 
 [node name="FestivalArea" type="Node3D" parent="."]
 
@@ -253,6 +268,8 @@ transform = Transform3D(0.978133, 0, 0.20798, 0, 1, 0, -0.20798, 0, 0.978133, -0
 
 [node name="FullflavorGirl" parent="FestivalArea/Stage" instance=ExtResource("7_pm2ox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+dialog_path = "res://dialogs/camellia_world.dialogue"
+dialog_entry = "fullflavor_girl"
 character = 17
 
 [node name="MinihiraBlue" parent="FestivalArea/Stage" node_paths=PackedStringArray("carry_area", "safe_area") instance=ExtResource("14_snhn7")]
@@ -261,6 +278,7 @@ carry_area = NodePath("../CarryPlayerArea")
 safe_area = NodePath("../SafeArea")
 dialog_path = "res://dialogs/camellia_world.dialogue"
 dialog_entry = "minihira_blue"
+interact_range = 1.5
 character = 18
 
 [node name="MinihiraGreen" parent="FestivalArea/Stage" node_paths=PackedStringArray("carry_area", "safe_area") instance=ExtResource("14_snhn7")]
@@ -269,6 +287,7 @@ carry_area = NodePath("../CarryPlayerArea")
 safe_area = NodePath("../SafeArea")
 dialog_path = "res://dialogs/camellia_world.dialogue"
 dialog_entry = "minihira_green"
+interact_range = 1.5
 character = 19
 
 [node name="MinihiraOrange" parent="FestivalArea/Stage" node_paths=PackedStringArray("carry_area", "safe_area") instance=ExtResource("14_snhn7")]
@@ -277,6 +296,7 @@ carry_area = NodePath("../CarryPlayerArea")
 safe_area = NodePath("../SafeArea")
 dialog_path = "res://dialogs/camellia_world.dialogue"
 dialog_entry = "minihira_orange"
+interact_range = 1.5
 character = 20
 
 [node name="MinihiraYellow" parent="FestivalArea/Stage" node_paths=PackedStringArray("carry_area", "safe_area") instance=ExtResource("14_snhn7")]
@@ -285,6 +305,7 @@ carry_area = NodePath("../CarryPlayerArea")
 safe_area = NodePath("../SafeArea")
 dialog_path = "res://dialogs/camellia_world.dialogue"
 dialog_entry = "minihira_yellow"
+interact_range = 1.5
 character = 21
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FestivalArea/Stage"]
@@ -567,6 +588,12 @@ use_collision = true
 size = Vector3(1.5, 2.254, 1.5)
 material = SubResource("StandardMaterial3D_7uqup")
 
+[node name="RespawnSetter" parent="Stones/CSGBox3D2" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32463, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D2/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="Stones"]
 transform = Transform3D(0.707107, 0.707107, 0, -0.5, 0.5, 0.707107, 0.5, -0.5, 0.707107, 28.4632, -0.3228, -42.2739)
 use_collision = true
@@ -644,11 +671,23 @@ use_collision = true
 size = Vector3(2, 6.41, 2)
 material = SubResource("StandardMaterial3D_ux7yt")
 
+[node name="RespawnSetter" parent="Stones/CSGBox3D5" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 3.41085, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D5/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
+
 [node name="CSGBox3D12" type="CSGBox3D" parent="Stones"]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 20.0347, 1.77798, -61.0073)
 use_collision = true
 size = Vector3(2, 7.691, 2)
 material = SubResource("StandardMaterial3D_3jg84")
+
+[node name="RespawnSetter" parent="Stones/CSGBox3D12" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.94665, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D12/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="Stones"]
 transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 28.4885, 2.1833, -68.374)
@@ -662,16 +701,28 @@ use_collision = true
 size = Vector3(2, 9.624, 1.62388)
 material = SubResource("StandardMaterial3D_3jg84")
 
+[node name="RespawnSetter" parent="Stones/CSGBox3D13" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.93126, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D13/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
+
 [node name="CSGBox3D15" type="CSGBox3D" parent="Stones"]
 transform = Transform3D(-5.96046e-08, 0, -1, 0, 1, 0, 1, 0, -5.96046e-08, 56.9108, 2.1833, -30.0078)
 use_collision = true
 size = Vector3(2, 9.624, 2)
 material = SubResource("StandardMaterial3D_3jg84")
 
+[node name="RespawnSetter" parent="Stones/CSGBox3D15" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.93126, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D15/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
+
 [node name="CSGBox3D25" type="CSGBox3D" parent="Stones"]
-transform = Transform3D(-0.932456, 0, 0.361283, 0, 1, 0, -0.361283, 0, -0.932456, 41.6513, 6.46599, -23.5404)
+transform = Transform3D(-0.932456, 0, 0.361283, 0, 1, 0, -0.361283, 0, -0.932456, 41.6513, 6.12127, -23.5404)
 use_collision = true
-size = Vector3(2, 14, 2)
+size = Vector3(2, 13.4427, 2)
 material = SubResource("StandardMaterial3D_t4xbs")
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Stones/CSGBox3D25"]
@@ -680,6 +731,12 @@ operation = 2
 polygon = PackedVector2Array(0.002491, -1.68724, -2.54712, 3.3273, 2.04399, 0.145163)
 depth = 2.0
 material = SubResource("StandardMaterial3D_5j1pk")
+
+[node name="RespawnSetter" parent="Stones/CSGBox3D25" instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.9176, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stones/CSGBox3D25/RespawnSetter"]
+shape = SubResource("BoxShape3D_84tc0")
 
 [node name="island_shape" parent="." instance=ExtResource("18_vepf8")]
 
@@ -707,112 +764,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2902, 14.4197, -16.1615)
 [node name="WindDraft7" parent="." instance=ExtResource("21_h1233")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.9646, 9.26412, -3.74068)
 
-[node name="CSGTorus3D" type="CSGTorus3D" parent="."]
+[node name="CollectRing2" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.894225, -0.447619, 1.9566e-08, 0, -4.37114e-08, -1, 0.447619, 0.894225, -3.90878e-08, 18.2966, 2.94966, -20.3161)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D2" type="CSGTorus3D" parent="."]
-transform = Transform3D(0.956585, -0.291454, 1.27398e-08, 0, -4.37114e-08, -1, 0.291454, 0.956585, -4.18137e-08, 21.8967, 7.2838, -27.77)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
+[node name="CollectRing3" parent="." instance=ExtResource("24_iqnl0")]
+transform = Transform3D(0.956585, -0.291454, 1.27399e-08, 0, -4.37114e-08, -1, 0.291454, 0.956585, -4.18137e-08, 21.8967, 7.2838, -27.77)
 
-[node name="CSGTorus3D3" type="CSGTorus3D" parent="."]
+[node name="CollectRing" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.995116, 0.0987118, -4.31483e-09, 1.10955e-16, -4.37114e-08, -1, -0.0987118, 0.995116, -4.34979e-08, 23.5374, 6.30489, -39.4987)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D4" type="CSGTorus3D" parent="."]
+[node name="CollectRing4" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.995116, 0.0987118, -4.31483e-09, 1.10955e-16, -4.37114e-08, -1, -0.0987118, 0.995116, -4.34979e-08, 23.5374, 5.13725, -43.9668)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D5" type="CSGTorus3D" parent="."]
+[node name="CollectRing5" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.973139, 0.23022, -1.00632e-08, 1.10955e-16, -4.37114e-08, -1, -0.23022, 0.973139, -4.25373e-08, 21.5928, 7.38171, -54.0739)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D7" type="CSGTorus3D" parent="."]
+[node name="CollectRing6" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.655848, -0.754893, 3.29974e-08, 1.10955e-16, -4.37114e-08, -1, 0.754893, 0.655848, -2.8668e-08, 23.3379, 7.52706, -63.861)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D13" type="CSGTorus3D" parent="."]
+[node name="CollectRing7" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.655848, -0.754893, 3.29974e-08, 1.10955e-16, -4.37114e-08, -1, 0.754893, 0.655848, -2.8668e-08, 25.8538, 7.52706, -66.0479)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D8" type="CSGTorus3D" parent="."]
+[node name="CollectRing8" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(0.000523627, -1, 4.37114e-08, 1.10955e-16, -4.37114e-08, -1, 1, 0.000523627, -2.28848e-11, 35.3692, 8.29941, -67.9526)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D9" type="CSGTorus3D" parent="."]
+[node name="CollectRing9" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.442226, -0.896904, 3.92049e-08, 1.10955e-16, -4.37114e-08, -1, 0.896904, -0.442226, 1.93303e-08, 44.3433, 13.2792, -64.4385)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D10" type="CSGTorus3D" parent="."]
+[node name="CollectRing10" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.649037, -0.760757, 3.32538e-08, 1.10955e-16, -4.37114e-08, -1, 0.760757, -0.649037, 2.83703e-08, 52.771, 10.326, -58.6879)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D11" type="CSGTorus3D" parent="."]
+[node name="CollectRing11" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.999954, -0.00954688, 4.17302e-10, 1.10955e-16, -4.37114e-08, -1, 0.00954688, -0.999954, 4.37094e-08, 57.8624, 14.4507, -47.0641)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D12" type="CSGTorus3D" parent="."]
+[node name="CollectRing12" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.999954, -0.00954688, 4.17302e-10, 1.10955e-16, -4.37114e-08, -1, 0.00954688, -0.999954, 4.37094e-08, 57.4086, 12.0782, -38.028)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D14" type="CSGTorus3D" parent="."]
+[node name="CollectRing13" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.432039, 0.901855, -3.94213e-08, 4.92836e-17, -4.37114e-08, -1, -0.901855, -0.432039, 1.8885e-08, 53.6509, 8.80175, -27.8822)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D15" type="CSGTorus3D" parent="."]
+[node name="CollectRing14" parent="." instance=ExtResource("24_iqnl0")]
 transform = Transform3D(-0.436488, 0.89971, -3.93276e-08, 1.69366e-15, -4.37114e-08, -1, -0.89971, -0.436488, 1.90795e-08, 34.9574, 15.2474, -20.1779)
-inner_radius = 1.0
-outer_radius = 1.4
-sides = 24
-ring_sides = 13
 
-[node name="CSGTorus3D6" type="CSGTorus3D" parent="."]
-transform = Transform3D(0.926506, 0.363669, -0.0966, -0.076284, -0.0698552, -0.994636, -0.368467, 0.928905, -0.036979, 20.9498, 7.5247, -57.2532)
+[node name="CollectRing15" parent="." instance=ExtResource("24_iqnl0")]
+transform = Transform3D(0.926507, 0.363669, -0.0966, -0.0762841, -0.0698552, -0.994636, -0.368467, 0.928906, -0.036979, 20.9498, 7.5247, -57.2532)
+inner_radius = 0.5
 outer_radius = 0.9
-sides = 24
-ring_sides = 13
+worth = 10
+
+[node name="CollisionShape3D" parent="CollectRing15/Area3D" index="0"]
+shape = SubResource("CylinderShape3D_bq72g")
 
 [node name="Pineapple" parent="." instance=ExtResource("22_8u5wj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0261, 13.8284, -23.1497)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.0261, 13.33, -23.1497)
 
 [node name="NPCCharacter" parent="." instance=ExtResource("7_pm2ox")]
 transform = Transform3D(0.814278, 0, 0.580476, 0, 1, 0, -0.580476, 0, 0.814278, -2.25628, 0.00999981, -4.09692)
@@ -836,3 +840,24 @@ character = 4
 
 [node name="PizzaDough" parent="." instance=ExtResource("23_1wgd1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.20951, 0.0807827, 5.68663)
+
+[node name="Energylooper" parent="." instance=ExtResource("27_rdjh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.6282, 7.38213, -23.5181)
+
+[node name="OOBHeight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.55428, 0)
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(0.321902, 0, 0.946773, 0, 1, 0, -0.946773, 0, 0.321902, -5.24908, 0.0350184, 0.161891)
+
+[node name="CameraSpawn" type="Marker3D" parent="."]
+transform = Transform3D(0.321902, 0, 0.946773, 0, 1, 0, -0.946773, 0, 0.321902, -6.2863, 0.356801, 0.168773)
+
+[node name="RespawnSetter" parent="." instance=ExtResource("22_5yc33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.14931, 0.0932951, 0.267313)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RespawnSetter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.80896, 0, -1.2015)
+shape = SubResource("CylinderShape3D_hijua")
+
+[editable path="CollectRing15"]
