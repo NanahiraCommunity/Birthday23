@@ -1,6 +1,7 @@
-[gd_scene load_steps=49 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=54 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
+[ext_resource type="Script" path="res://islands/hub/hub_world.gd" id="1_7us4m"]
 [ext_resource type="Texture2D" uid="uid://dfykanpnb7saq" path="res://shared/sky/sky1.exr" id="1_yjjgd"]
 [ext_resource type="PackedScene" uid="uid://igunt2eyo7yq" path="res://shared/npc/npc_character.tscn" id="2_tgr6h"]
 [ext_resource type="MeshLibrary" uid="uid://c8ak2ul5co588" path="res://shared/collectible/stamp_mesh_library.tres" id="4_5188e"]
@@ -125,7 +126,71 @@ size = Vector3(1, 0.966757, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_wwyku"]
 radius = 0.608127
 
+[sub_resource type="Animation" id="Animation_ke5n4"]
+resource_name = "OpenDoors"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gate_door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gate_door2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6m0iu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gate_door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gate_door2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbxqc"]
+_data = {
+"OpenDoors": SubResource("Animation_ke5n4"),
+"RESET": SubResource("Animation_6m0iu")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkpqx"]
+size = Vector3(11.1251, 1, 9.32292)
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_7us4m")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ofiqo")
@@ -151,7 +216,7 @@ light_cull_mask = 4293918722
 sky_mode = 1
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_0d04h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505235, 0.0430359, -20.0923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.583493, 0.0430358, 1.39326)
 camera = NodePath("../Node3D/Camera3D")
 
 [node name="NPCCharacter" parent="." instance=ExtResource("2_tgr6h")]
@@ -162,14 +227,8 @@ character = 5
 [node name="NPCCharacter2" parent="." instance=ExtResource("2_tgr6h")]
 transform = Transform3D(-0.516279, 0, -0.856421, 0, 1, 0, 0.856421, 0, -0.516279, 1.7262, 0, 0.285873)
 dialog_path = "res://dialogs/test2.dialogue"
-dialog_entry = "bhira"
+dialog_entry = "background1"
 character = 5
-
-[node name="NPCCharacter3" parent="." instance=ExtResource("2_tgr6h")]
-transform = Transform3D(0.920382, 0, -0.39102, 0, 1, 0, 0.39102, 0, 0.920382, -0.980716, 0, -3.31197)
-dialog_path = "res://dialogs/test2.dialogue"
-dialog_entry = "ahira"
-character = 4
 
 [node name="CollectibleGridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0.25, 0.1)
@@ -184,7 +243,7 @@ script = ExtResource("5_d6g4h")
 metadata/_editor_floor_ = Vector3(2, 17, -114)
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.218429, 2.14577e-06, -21.3531)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.751399, 2.02656e-06, 0.132464)
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(-1, 4.37114e-08, -7.57104e-08, 0, 0.866025, 0.5, 8.74228e-08, 0.5, -0.866025, 0, 1.14857, 0)
@@ -202,6 +261,7 @@ floor_constant_speed = true
 platform_on_leave = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/CameraSafeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.138035, 0, -0.687097)
 shape = SubResource("SphereShape3D_qr5sb")
 
 [node name="UI" parent="." instance=ExtResource("5_pw1g7")]
@@ -667,10 +727,10 @@ dialog_path = "res://dialogs/hub_taiyaki.dialogue"
 character = 8
 
 [node name="gate_door" parent="." instance=ExtResource("26_6mylm")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.366, -0.001, -2.984)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.366, -0.001, -2.984)
 
 [node name="gate_door2" parent="." instance=ExtResource("26_6mylm")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 0.266685, -0.001, -2.984)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.266685, -0.001, -2.984)
 
 [node name="Quickwarp" parent="." instance=ExtResource("26_gpwt4")]
 transform = Transform3D(-0.789438, 0, -0.613831, 0, 1, 0, 0.613831, 0, -0.789438, 1.4667, -0.00101826, -9.63702)
@@ -740,3 +800,14 @@ transform = Transform3D(-0.919149, 0, -0.39391, 0, 1, 0, 0.39391, 0, -0.919149, 
 
 [node name="airship_from_below" parent="." instance=ExtResource("31_gxq2n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.4775, 75.7594, 26.3577)
+
+[node name="DoorAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pbxqc")
+}
+
+[node name="KeepInside" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KeepInside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04215, 0.578915)
+shape = SubResource("BoxShape3D_jkpqx")

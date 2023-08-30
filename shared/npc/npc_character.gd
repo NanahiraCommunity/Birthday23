@@ -8,6 +8,7 @@ const C = preload("res://models/characters/character.gd")
 @export var dynamic_collision: bool = false
 @export var hide_quest_indicator: bool = false
 @export var interact_point: Marker3D = null
+@export var auto_interact_first: Area3D = null
 @export var interact_range: float = 0.7
 @export var animation_entry: String
 @export var character: C.Character:
@@ -44,13 +45,19 @@ func _ready():
 		$StaticCollision.disabled = true
 		$DynamicCollision.disabled = false
 
+	if auto_interact_first:
+		auto_interact_first.body_entered.connect(_auto_interact)
+
 func _input(event):
 	if event.is_action_pressed("interact") and can_talk and closest_npc == self:
-		Global.current_npc = self
-		Global.UI.DialogBox.trigger_dialog(dialog_path, dialog_entry)
+		interact()
 		get_viewport().set_input_as_handled()
-		closest_distance = INF
-		closest_npc = null
+
+func interact():
+	Global.current_npc = self
+	Global.UI.DialogBox.trigger_dialog(dialog_path, dialog_entry)
+	closest_distance = INF
+	closest_npc = null
 
 func _on_child_order_changed():
 	if controller and animation_entry:
@@ -102,3 +109,8 @@ func _process(delta):
 		t.basis = Basis(pose).scaled(t.basis.get_scale())
 		head_angle = lerp_angle(head_angle, target_angle, 0.03)
 		skeleton.set_bone_global_pose_override(head_bone, t, 1.0, true)
+
+func _auto_interact(body):
+	if body == Global.player:
+		auto_interact_first.body_entered.disconnect(_auto_interact)
+		interact()

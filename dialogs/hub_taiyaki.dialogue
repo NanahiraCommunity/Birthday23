@@ -8,6 +8,7 @@ if in_quest("hub_collect_taiyaki")
 
 Taiyaki Girl: *sob* [ID:t77328d3ce1]
 - What's wrong? [ID:tfd859cb223]
+	do try_end_quest("intro_taiyaki_transition")
 	Taiyaki Girl: I was supposed to deliver these [b]Taiyaki[/b], but... now they are all on the rooftops [ID:t187c9383a6]
 	- How did that happen? [ID:t82cd15e0b2]
 		Taiyaki Girl: nevermind that, can you help me pick up the [b]Taiyaki[/b]? I have collected the ones I lost on the ground, but I'm afraid of heights so I don't want to climb the rooftops. [ID:t8f6d95f160]
@@ -24,6 +25,7 @@ Taiyaki Girl: *sob* [ID:t77328d3ce1]
 if is_quest_complete("hub_collect_taiyaki")
 	set current_npc.dialog_entry = "done"
 	set current_npc.hide_quest_indicator = false
+	set neko_hacker_available = true
 	do end_quest("hub_collect_taiyaki")
 	Taiyaki Girl: thx [ID:t286dfd6069]
 else

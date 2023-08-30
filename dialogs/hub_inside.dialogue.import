@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://ck6epqtjjxmdv"
+path="res://.godot/imported/hub_inside.dialogue-410a8f2e8957bb23f4683269d97528e3.tres"
+
+[deps]
+
+source_file="res://dialogs/hub_inside.dialogue"
+dest_files=["res://.godot/imported/hub_inside.dialogue-410a8f2e8957bb23f4683269d97528e3.tres"]
+
+[params]
+
+defaults=true

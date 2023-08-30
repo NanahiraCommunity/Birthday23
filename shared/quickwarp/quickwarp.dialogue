@@ -1,11 +1,14 @@
 ~ start
 
 Quickwarp: Where would you like to go? [ID:taf7f60a571]
-- Neko World [ID:t0b3c89509c] [if neko_hacker_available]
+- Neko World [ID:t0b3c89509c] [if neko_hacker_available and not neko_world]
 	do current_npc.warp("islands/neko_hacker/neko_world.tscn")
 	=> END
-- Camellia Island [ID:tebc6b1cf83] [if camellia_available]
+- Camellia Island [ID:tebc6b1cf83] [if camellia_available and not camellia]
 	do current_npc.warp("islands/camellia/camellia_world.tscn")
+	=> END
+- Hub [if not in_hub]
+	do current_npc.warp("islands/hub/hub_world.tscn")
 	=> END
 - Nevermind [ID:t312a89ce14]
 	=> END

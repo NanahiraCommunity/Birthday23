@@ -1,0 +1,19 @@
+~ intro
+Coworker: Hey there! Don't forget to grab your work stuff from upstairs. Keep up the great work! [ID:t09a0f81cad]
+set current_npc.dialog_entry = "intro_repeat"
+do try_start_quest("intro_grab")
+=> END
+
+~ intro_repeat
+Coworker: Keep up the great work! [ID:te504b06539]
+=> END
+
+~ intro2
+Coworker: Oh before you go! One of our coworkers seems to be having a bit of a problem at the market near the fountain. If you could possibly lend her a hand before you head anywhere else, that would be truly appreciated. [ID:tb8ce3f66bd]
+set current_npc.dialog_entry = "intro2_repeat"
+do try_start_quest("intro_taiyaki_transition")
+=> END
+
+~ intro2_repeat
+Coworker: Go outside, head to the market and speak with our coworker near the fountain. [ID:tdeab861d6b]
+=> END

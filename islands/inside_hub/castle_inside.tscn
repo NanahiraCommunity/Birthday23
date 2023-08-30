@@ -1,8 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=40 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
+[ext_resource type="Script" path="res://quests/register_child_quests.gd" id="1_jh56h"]
+[ext_resource type="Script" path="res://islands/inside_hub/castle_inside.gd" id="1_xsww7"]
+[ext_resource type="Script" path="res://quests/collect_items.gd" id="2_23tay"]
 [ext_resource type="PackedScene" uid="uid://btd2flquf86h0" path="res://islands/inside_hub/stool.tscn" id="3_2l40b"]
 [ext_resource type="Script" path="res://follow_camera.gd" id="3_8r8sj"]
+[ext_resource type="Script" path="res://quests/quest.gd" id="3_he8hb"]
+[ext_resource type="Script" path="res://quests/waypoint_quest.gd" id="4_2k2tr"]
 [ext_resource type="PackedScene" uid="uid://w2nb3hku11pg" path="res://ui/ui.tscn" id="4_3u7si"]
 [ext_resource type="PackedScene" uid="uid://5e0r6jojpuol" path="res://islands/inside_hub/sorting_desk.tscn" id="4_dyp41"]
 [ext_resource type="PackedScene" uid="uid://tsew73160rqy" path="res://shared/door/world_portal.tscn" id="4_ih1bi"]
@@ -21,6 +26,20 @@
 [ext_resource type="PackedScene" uid="uid://nbjqrecwxw8e" path="res://islands/hub/window_f1.tscn" id="20_a8f4g"]
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="20_pp1vp"]
 [ext_resource type="PackedScene" uid="uid://brbran7yg3jdg" path="res://islands/inside_hub/shelve.tscn" id="21_sk7v3"]
+[ext_resource type="PackedScene" uid="uid://4d1oy145bqwq" path="res://shared/collectible/bag.tscn" id="24_uedaf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_no36r"]
+size = Vector3(2.53737, 4.02424, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h6tlc"]
+height = 0.388214
+radius = 0.289129
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r0vqs"]
+radius = 0.853544
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_oatoy"]
+radius = 1.11389
 
 [sub_resource type="Environment" id="Environment_na0up"]
 background_mode = 1
@@ -55,17 +74,61 @@ shader = SubResource("Shader_3kdek")
 [sub_resource type="BoxShape3D" id="BoxShape3D_5wi58"]
 size = Vector3(20, 2, 20)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d7m85"]
+size = Vector3(1.16973, 1.56132, 1)
+
 [node name="World" type="Node3D"]
+script = ExtResource("1_xsww7")
+
+[node name="Quests" type="Node3D" parent="."]
+script = ExtResource("1_jh56h")
+
+[node name="intro_grab" type="Node" parent="Quests"]
+script = ExtResource("2_23tay")
+collect_type = 6
+quest_id = &"intro_grab"
+description = "Q_GRAB_STUFF"
+
+[node name="intro_grab_upstairs" type="Node" parent="Quests/intro_grab"]
+script = ExtResource("4_2k2tr")
+quest_id = &"intro_grab_upstairs"
+description = "Q_GO_UPSTAIRS"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Quests/intro_grab/intro_grab_upstairs"]
+transform = Transform3D(-0.456244, 0, -0.889855, 0, 1, 0, 0.889855, 0, -0.456244, -5.50499, 1.21344, -4.93957)
+shape = SubResource("BoxShape3D_no36r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/intro_grab/intro_grab_upstairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0616012, 1.905, 0.870442)
+shape = SubResource("CylinderShape3D_h6tlc")
+
+[node name="intro_taiyaki_transition" type="Node" parent="Quests"]
+script = ExtResource("3_he8hb")
+quest_id = &"intro_taiyaki_transition"
+description = "Q_HELP_GIRL"
+
+[node name="WaypointQuest" type="Node" parent="Quests/intro_taiyaki_transition"]
+script = ExtResource("4_2k2tr")
+quest_id = &"intro_taiyaki_transition_leave"
+description = "Q_LEAVE_AREA"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/WaypointQuest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300692, 4.85919)
+shape = SubResource("SphereShape3D_r0vqs")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/WaypointQuest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358865, 0.525903, -21.3269)
+shape = SubResource("SphereShape3D_oatoy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_na0up")
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_4pj2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09359, 0.0528373, -1.46358)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0412564, 0.0528373, 3.45844)
 camera = NodePath("../CameraGroup/Camera3D")
 
 [node name="CameraGroup" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.33438, 0.883262, 0.193773)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103022, 0.883262, 6.77469)
 
 [node name="Camera3D" type="Camera3D" parent="CameraGroup" node_paths=PackedStringArray("target", "kinematic_body")]
 transform = Transform3D(1, -8.7423e-08, 1.51421e-07, 9.47311e-16, 0.866025, 0.5, -1.74846e-07, -0.5, 0.866025, -2.32728, 0, -0.796576)
@@ -512,6 +575,9 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92156, 2.19871, 4)
 skeleton = NodePath("../..")
 
+[node name="Bag" parent="Floor2" instance=ExtResource("24_uedaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0687828, 1.89177, 0.867539)
+
 [node name="WindowF1_1" parent="." instance=ExtResource("20_a8f4g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07541, 0.470034, 4)
 
@@ -586,3 +652,35 @@ transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, 
 
 [node name="shelve13" parent="." instance=ExtResource("21_sk7v3")]
 transform = Transform3D(-1.31134e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.31134e-08, -2.20811, 0.57901, 3.03502)
+
+[node name="ElfIntro1" parent="." node_paths=PackedStringArray("auto_interact_first") instance=ExtResource("4_k2tdf")]
+transform = Transform3D(-0.794976, 0, -0.606641, 0, 1, 0, 0.606641, 0, -0.794976, -0.382483, 0, 1.58027)
+dialog_path = "res://dialogs/hub_inside.dialogue"
+dialog_entry = "intro"
+hide_quest_indicator = true
+auto_interact_first = NodePath("Area3D")
+character = 16
+
+[node name="Area3D" type="Area3D" parent="ElfIntro1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElfIntro1/Area3D"]
+transform = Transform3D(0.755007, 0, -0.655716, 0, 1, 0, 0.655716, 0, 0.755007, -0.386946, 0.699177, -0.125731)
+shape = SubResource("BoxShape3D_d7m85")
+
+[node name="ElfIntro2" parent="." node_paths=PackedStringArray("auto_interact_first") instance=ExtResource("4_k2tdf")]
+process_mode = 4
+transform = Transform3D(0.924898, 0, 0.380215, 0, 1, 0, -0.380215, 0, 0.924898, 0.306057, 0, 2.35844)
+visible = false
+dialog_path = "res://dialogs/hub_inside.dialogue"
+dialog_entry = "intro2"
+hide_quest_indicator = true
+auto_interact_first = NodePath("Area3D")
+character = 16
+
+[node name="Area3D" type="Area3D" parent="ElfIntro2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ElfIntro2/Area3D"]
+transform = Transform3D(0.947936, 0, -0.318463, 0, 1, 0, 0.318463, 0, 0.947936, -0.30076, 0.699177, -0.0724831)
+shape = SubResource("BoxShape3D_d7m85")
+
+[connection signal="finished" from="Quests/intro_grab" to="." method="_on_intro_grab_finished"]

@@ -24,3 +24,23 @@ Q_VISIT_CAMELLIA_ISLAND,Leave the Area,
 Q_COLLECT_DOUGH,Find the [b]Pizza Dough[/b],
 Q_COLLECT_PINEAPPLES,Get some [b]Pineapples[/b],
 Q_COLLECT_PINEAPPLES_MARKERS,Jump onto the stone pillars at the sea,
+Q_GRAB_STUFF,Grab your delivery stuff,
+Q_GO_UPSTAIRS,Go upstairs to your office,
+Q_HELP_GIRL,Go to the market and help your coworker,
+Q_LEAVE_AREA,Leave the building and go to your coworker,
+Project Lead,Project Lead,プロジェクトリード
+Character Lead,Character Lead,キャラクターリード
+Creative Lead,Creative Lead,クリエイティブリード
+Code,Code,コード
+Music,Music,ミュージック
+Sound Effects,Sound Effects,サウンドエフェクト
+3D Artists,3D Artists,3Dアーティスト
+2D Artists,2D Artists,2Dアーティスト
+Level Design,Level Design,レベルデザイン
+Internationalization,Internationalization,国際化
+Playtesters,Playtesters,プレイテスター
+CREDITS_HAPPY_BIRTHDAY,"Happy Birthday Nanahira, from the entire Nanahira Community Fan-Server!","ななひら様
+
+お誕生日おめでとうございます！
+
+ななひらコミュニティファンサーバーの皆さん"

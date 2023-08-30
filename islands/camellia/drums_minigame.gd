@@ -70,7 +70,7 @@ func _input(event):
 				$Drums/VBoxContainer2/Countdown.set_time(10)
 			click()
 			get_viewport().set_input_as_handled()
-		elif visible and event.pressed and (event.is_action("ui_cancel") or event.is_action("ui_accept")) and not can_click:
+		elif visible and event.pressed and (event.is_action("ui_cancel") or event.is_action("ui_accept") or event.is_action_pressed("interact")) and not can_click:
 			Global.block_player_ui -= 1
 			visible = false
 

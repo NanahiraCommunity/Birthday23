@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://mj4c1acfyvdr"]
+[gd_scene load_steps=9 format=3 uid="uid://mj4c1acfyvdr"]
 
 [ext_resource type="Script" path="res://islands/camellia/drums_minigame.gd" id="1_budqu"]
 [ext_resource type="Texture2D" uid="uid://dg06wadpj8f8l" path="res://dialogs/dialog_box.svg" id="2_l4o5u"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bq3opw1ihwsi4" path="res://islands/camellia/drum1.png" id="5_3qexe"]
 [ext_resource type="Texture2D" uid="uid://c5ifb86f5jnnx" path="res://islands/camellia/drum2.png" id="6_ck4m4"]
 [ext_resource type="Texture2D" uid="uid://c2c3yaiutd7mx" path="res://islands/camellia/drum3.png" id="7_nbkqs"]
+[ext_resource type="Texture2D" uid="uid://b6nac5wpt63vs" path="res://islands/camellia/button_mash.png" id="8_flp83"]
 
 [node name="DrumsMinigame" type="MarginContainer"]
 anchors_preset = 15
@@ -217,3 +218,8 @@ texture = ExtResource("7_nbkqs")
 layout_mode = 2
 text = "GO! GO!! GO!!!"
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Drums/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("8_flp83")
+stretch_mode = 5

@@ -21,6 +21,7 @@ enum Collectible
 	PINEAPPLE,
 	DOUGH,
 	ENERGY,
+	DELIVERY_STUFF,
 }
 
 var collected_dynamics = {}
@@ -52,6 +53,7 @@ var collectibles: PackedInt32Array = [
 	0, # PINEAPPLES
 	0, # DOUGH
 	0, # ENERGY
+	0, # DELIVERY_STUFF
 ]
 
 func collect_animated(c: Collectible, n: int):
@@ -65,7 +67,7 @@ var _available_quests: Dictionary = {}
 var active_quests: Array[Quest]
 signal active_quests_changed
 
-var neko_hacker_available = true
+var neko_hacker_available = false
 var camellia_available = false
 
 # Set when interacting (opening dialog) with an NPC
@@ -146,6 +148,13 @@ func respawn_scene():
 		get_tree().reload_current_scene()
 
 # per-island state
+
+# hub world
+
+var first_spawn = true
+var in_hub = false
+
+# neko world
 
 var neko_world = null
 

@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 				selected_index = 0
 			SFX.play(preload("res://sfx/drip.wav"))
 			handled = true
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 			if not current_line.responses[selected_index].is_allowed:
 				# deny sound
 				SFX.play(preload("res://sfx/bonk.wav"))
@@ -68,7 +68,7 @@ func _input(event: InputEvent) -> void:
 				show_next()
 			handled = true
 	else:
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 			if rendering:
 				if can_skip:
 					# copied from their skip code
