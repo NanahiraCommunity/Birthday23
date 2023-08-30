@@ -18,9 +18,6 @@ t9b773985dd,Is that a... Wait a second.[wait=0.5] Haven't we[wait=0.3] already m
 ta8eabe31ef,"ModuleNotFoundError@builtin.d(0)
 ----------------
 ??:? _d_assertp [0x5630b7fb8fac]
-??:? _Dmain [0x5630b7fb0ff0]","ModuleNotFoundError@builtin.d(0)
-----------------
-??:? _d_assertp [0x5630b7fb8fac]
 ??:? _Dmain [0x5630b7fb0ff0]",
 t8cf79b7d78,"Help, I'm locked in!","たすけてー！閉じ込められているんだ！"
 t32195f00bc,"There must be some way to open this door, can you help me get out?","このドアを開ける方法があるはずだ、 外に出るのを手伝ってくれる？"
