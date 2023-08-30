@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx4enm717273p"]
+[gd_scene load_steps=8 format=3 uid="uid://bx4enm717273p"]
 
 [ext_resource type="Shader" path="res://blur.gdshader" id="1_3xjrr"]
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="2_1x8q7"]
+[ext_resource type="PackedScene" uid="uid://djoo6dx7hmcnn" path="res://ui/options_menu.tscn" id="3_s2nkm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_we4g4"]
 shader = ExtResource("1_3xjrr")
@@ -104,6 +105,11 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 script = ExtResource("2_1x8q7")
 
+[node name="OptionsMenu" parent="." instance=ExtResource("3_s2nkm")]
+visible = false
+top_level = true
+layout_mode = 1
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -139,6 +145,11 @@ fit_content = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "MENU_RESUME"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "MENU_OPTIONS"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -45,6 +45,10 @@ func hide_animated():
 func hide_animated_and_free(timeout: float = 0.0):
 	assert(not freeing, "attempted to animated free twice")
 	freeing = true
+	if not is_inside_tree():
+		queue_free()
+		return
+
 	if timeout > 0.0:
 		await get_tree().create_timer(timeout).timeout
 	await hide_animated()

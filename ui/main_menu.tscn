@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcv4ub1453f4y"]
+[gd_scene load_steps=3 format=3 uid="uid://bcv4ub1453f4y"]
 
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_yair3"]
+[ext_resource type="PackedScene" uid="uid://djoo6dx7hmcnn" path="res://ui/options_menu.tscn" id="2_0ngi6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,7 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yair3")
 start_scene = "res://islands/hub/hub_world.tscn"
-options_scene = "res://ui/options_menu.tscn"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("2_0ngi6")]
+visible = false
+top_level = true
+layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
