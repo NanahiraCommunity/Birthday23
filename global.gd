@@ -59,7 +59,8 @@ var collectibles: PackedInt32Array = [
 func collect_animated(c: Collectible, n: int):
 	for i in range(0, n):
 		collectibles[c] += 1
-		await get_tree().create_timer(0.2).timeout
+		if is_inside_tree():
+			await get_tree().create_timer(0.2).timeout
 
 var _completed_quests: Array[StringName]
 # StringName -> Quest
@@ -151,7 +152,7 @@ func respawn_scene():
 
 # hub world
 
-var first_spawn = true
+var in_intro = true
 var in_hub = false
 
 # neko world

@@ -163,7 +163,8 @@ func notify_item(item: RigidBody3D):
 	else:
 		letters += 1
 	item.reparent(items_node)
-	await get_tree().create_timer(1.5).timeout
+	if is_inside_tree():
+		await get_tree().create_timer(1.5).timeout
 	item.freeze = true
 
 func empty_out():
@@ -179,7 +180,8 @@ func empty_out():
 
 			if last:
 				desk.grab_letter(last)
-			await get_tree().create_timer(0.1).timeout
+			if is_inside_tree():
+				await get_tree().create_timer(0.1).timeout
 			last = child
 		if last:
 			await desk.grab_letter(last)

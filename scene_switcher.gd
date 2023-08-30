@@ -26,7 +26,7 @@ func fade_to_black():
 	await animator.animation_finished
 
 func unfade_from_black(delay: float = 0.0):
-	if delay > 0.0:
+	if delay > 0.0 and is_inside_tree():
 		await get_tree().create_timer(delay).timeout
 	var camera = get_viewport().get_camera_3d()
 	if not camera:
@@ -40,6 +40,7 @@ func unfade_from_black(delay: float = 0.0):
 	visible = false
 
 func switch_scene(scene):
+	var tree = get_tree()
 	next_scene = scene
 	await fade_to_black()
 	var bgm = Global.UI.get_node_or_null("BGM")
@@ -48,10 +49,10 @@ func switch_scene(scene):
 	else:
 		bgm = get_node("BGM")
 	var next: PackedScene = load(next_scene)
-	get_tree().change_scene_to_packed(next)
-	await get_tree().process_frame # scene is adding now
+	tree.change_scene_to_packed(next)
+	await tree.process_frame # scene is adding now
 
-	var new_bgm = get_tree().current_scene.get_node_or_null("BGM")
+	var new_bgm = tree.current_scene.get_node_or_null("BGM")
 	if new_bgm and new_bgm.stream:
 		new_bgm.stop()
 		if new_bgm.stream != bgm.stream:
@@ -60,5 +61,5 @@ func switch_scene(scene):
 	else:
 		bgm.stop()
 
-	await get_tree().process_frame # first frame was rendered
+	await tree.process_frame # first frame was rendered
 	await unfade_from_black()

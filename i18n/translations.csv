@@ -28,6 +28,7 @@ Q_GRAB_STUFF,Grab your delivery stuff,デリバリーバックを手に入れる
 Q_GO_UPSTAIRS,Go upstairs to your office,上の階のオフィスに行く
 Q_HELP_GIRL,Go to the market and help your coworker,市場に行って同僚を助けよ
 Q_LEAVE_AREA,Leave the building and go to your coworker,ビルを出て同僚のところへ行こう
+Q_HUB_WARP,Use the Quickwarp,ワープを使おう
 Project Lead,Project Lead,プロジェクトリード
 Character Lead,Character Lead,キャラクターリード
 Creative Lead,Creative Lead,クリエイティブリード

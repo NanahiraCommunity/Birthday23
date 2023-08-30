@@ -33,12 +33,13 @@ func _ready():
 	Global.player = self
 
 func _enter_tree():
-	await get_tree().process_frame
-	var oobnode = get_tree().current_scene.get_node_or_null("OOBHeight")
+	var tree = get_tree()
+	await tree.process_frame
+	var oobnode = tree.current_scene.get_node_or_null("OOBHeight")
 	if oobnode:
 		oob_height = oobnode.global_position.y
 
-var flight_strokes_max = 2
+var flight_strokes_max = 3
 var flight_strokes = flight_strokes_max
 var flight_stroke_timer_first = 0.2
 var flight_stroke_timer_max = 0.3

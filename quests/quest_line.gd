@@ -7,11 +7,11 @@ var _text: String
 		return _text
 	set(value):
 		_text = value
-		if $HBoxContainer/MarginContainer/Label:
+		if has_node("HBoxContainer/MarginContainer/Label"):
 			if Engine.is_editor_hint():
-				$HBoxContainer/MarginContainer/Label.text = value
+				get_node("HBoxContainer/MarginContainer/Label").text = value
 			else:
-				$HBoxContainer/MarginContainer/Label.text = Global.preprocess_bbcode(value)
+				get_node("HBoxContainer/MarginContainer/Label").text = Global.preprocess_bbcode(value)
 
 var _finished: bool
 @export var finished: bool:

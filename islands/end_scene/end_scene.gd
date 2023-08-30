@@ -51,6 +51,13 @@ const CREDITS = [
 	"\tUngrave",
 	"",
 	"Playtesters",
+	"\tライスCake",
+	"\tTopaz",
+	"\tNicocchi",
+	"\tHappydiamo",
+	"\tazunyan",
+	"\tIjalRamd",
+	"\tUngrave",
 	"",
 	"CREDITS_HAPPY_BIRTHDAY",
 ]
