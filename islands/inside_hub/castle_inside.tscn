@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://nl1w72vybc7k"]
+[gd_scene load_steps=41 format=3 uid="uid://nl1w72vybc7k"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_4pj2m"]
 [ext_resource type="Script" path="res://quests/register_child_quests.gd" id="1_jh56h"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://n8wkg1u5mb4m" path="res://islands/hub/window_f2.tscn" id="20_pp1vp"]
 [ext_resource type="PackedScene" uid="uid://brbran7yg3jdg" path="res://islands/inside_hub/shelve.tscn" id="21_sk7v3"]
 [ext_resource type="PackedScene" uid="uid://4d1oy145bqwq" path="res://shared/collectible/bag.tscn" id="24_uedaf"]
+[ext_resource type="AudioStream" uid="uid://8n6podjo4rgl" path="res://addons/contrib/ima2nddraft.mp3" id="28_pbp4r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_no36r"]
 size = Vector3(2.53737, 4.02424, 1)
@@ -75,7 +76,7 @@ shader = SubResource("Shader_3kdek")
 size = Vector3(20, 2, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d7m85"]
-size = Vector3(1.16973, 1.56132, 1)
+size = Vector3(1.79322, 1.56132, 1.31146)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_xsww7")
@@ -107,16 +108,16 @@ script = ExtResource("3_he8hb")
 quest_id = &"intro_taiyaki_transition"
 description = "Q_HELP_GIRL"
 
-[node name="WaypointQuest" type="Node" parent="Quests/intro_taiyaki_transition"]
+[node name="intro_taiyaki_transition_leave" type="Node" parent="Quests/intro_taiyaki_transition"]
 script = ExtResource("4_2k2tr")
 quest_id = &"intro_taiyaki_transition_leave"
 description = "Q_LEAVE_AREA"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/WaypointQuest"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/intro_taiyaki_transition_leave"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300692, 4.85919)
 shape = SubResource("SphereShape3D_r0vqs")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/WaypointQuest"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Quests/intro_taiyaki_transition/intro_taiyaki_transition_leave"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358865, 0.525903, -21.3269)
 shape = SubResource("SphereShape3D_oatoy")
 
@@ -662,6 +663,8 @@ auto_interact_first = NodePath("Area3D")
 character = 16
 
 [node name="Area3D" type="Area3D" parent="ElfIntro1"]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ElfIntro1/Area3D"]
 transform = Transform3D(0.755007, 0, -0.655716, 0, 1, 0, 0.655716, 0, 0.755007, -0.386946, 0.699177, -0.125731)
@@ -678,9 +681,15 @@ auto_interact_first = NodePath("Area3D")
 character = 16
 
 [node name="Area3D" type="Area3D" parent="ElfIntro2"]
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ElfIntro2/Area3D"]
-transform = Transform3D(0.947936, 0, -0.318463, 0, 1, 0, 0.318463, 0, 0.947936, -0.30076, 0.699177, -0.0724831)
+transform = Transform3D(0.947936, 0, -0.318463, 0, 1, 0, 0.318463, 0, 0.947936, -0.358283, 0.699177, 0.11184)
 shape = SubResource("BoxShape3D_d7m85")
 
-[connection signal="finished" from="Quests/intro_grab" to="." method="_on_intro_grab_finished"]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("28_pbp4r")
+autoplay = true
+bus = &"BGM"

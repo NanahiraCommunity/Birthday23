@@ -13,7 +13,9 @@ config_version=5
 config/name="Tiny story"
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.196078, 0.145098, 0.203922, 1)
+boot_splash/image="res://addons/contrib/icon.png"
+config/icon="res://addons/contrib/icon.png"
 
 [autoload]
 

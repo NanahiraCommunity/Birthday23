@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://03d6finnci30"]
+[gd_scene load_steps=56 format=3 uid="uid://03d6finnci30"]
 
 [ext_resource type="PackedScene" uid="uid://dbmoi5f76yo36" path="res://shared/player.tscn" id="1_0d04h"]
 [ext_resource type="Script" path="res://islands/hub/hub_world.gd" id="1_7us4m"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://cc3pbew8ytvdr" path="res://islands/hub/airship_close.tscn" id="29_mh8ad"]
 [ext_resource type="PackedScene" uid="uid://b1b21cpiky6v5" path="res://islands/hub/airship_from_above.tscn" id="30_2b1cd"]
 [ext_resource type="PackedScene" uid="uid://d3wu170ttjhc1" path="res://islands/hub/airship_from_below.tscn" id="31_gxq2n"]
+[ext_resource type="AudioStream" uid="uid://8n6podjo4rgl" path="res://addons/contrib/ima2nddraft.mp3" id="33_ydehp"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_c3803"]
 panorama = ExtResource("1_yjjgd")
@@ -190,7 +191,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jkpqx"]
-size = Vector3(11.1251, 1, 9.32292)
+size = Vector3(12.8925, 1, 9.32292)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_7us4m")
@@ -823,6 +824,12 @@ libraries = {
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KeepInside"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04215, 0.578915)
 shape = SubResource("BoxShape3D_jkpqx")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("33_ydehp")
+autoplay = true
+bus = &"BGM"
 
 [connection signal="finished" from="Quests/hub_collect_taiyaki" to="." method="_on_hub_collect_taiyaki_finished"]
 [connection signal="finished" from="Quests/hub_warp" to="." method="_on_hub_warp_finished"]

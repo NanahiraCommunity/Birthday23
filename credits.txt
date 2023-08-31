@@ -48,3 +48,10 @@ Internationalization
 	Ungrave
 
 Playtesters
+	ライスCake
+	Topaz
+	Nicocchi
+	Happydiamo
+	azunyan
+	IjalRamd
+	Ungrave

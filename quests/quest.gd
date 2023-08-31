@@ -23,7 +23,6 @@ signal finished
 var _started = false
 
 func _ready():
-	finished.connect(_finished)
 	end()
 
 func _ended():
@@ -33,7 +32,11 @@ func _finished():
 	if done:
 		return
 	done = true
+	finished.emit()
 	updated.emit()
+	for child in get_children():
+		if child is Quest:
+			child._finished()
 	for q in auto_next_quest:
 		Global.start_quest(q)
 

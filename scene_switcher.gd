@@ -57,6 +57,7 @@ func switch_scene(scene):
 		new_bgm.stop()
 		if new_bgm.stream != bgm.stream:
 			bgm.stream = new_bgm.stream
+			bgm.volume_db = new_bgm.volume_db
 			bgm.play()
 	else:
 		bgm.stop()

@@ -54,7 +54,7 @@ func _first_trigger(body):
 			break
 
 	$Node3D/Bars.queue_free()
-	finished.emit()
+	_finished()
 	$Animations.play("hide_buttons")
 
 func lock(buttons, locked: bool):

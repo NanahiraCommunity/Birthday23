@@ -5,6 +5,8 @@ var current_quests: Dictionary
 
 func _ready():
 	update_quests_loop()
+	await get_tree().create_timer(4.0).timeout
+	update_quests()
 
 func update_quests_loop():
 	while true:

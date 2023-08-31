@@ -7,6 +7,9 @@ func _ready():
 		if has_node("KeepInside"):
 			get_node("KeepInside").queue_free()
 
+	Global.get_quest_node("hub_collect_taiyaki").finished.connect(_on_hub_collect_taiyaki_finished)
+	Global.get_quest_node("hub_warp").finished.connect(_on_hub_warp_finished)
+
 func _exit_tree():
 	Global.in_hub = false
 

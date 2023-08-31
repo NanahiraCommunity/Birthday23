@@ -22,7 +22,7 @@ func _process(delta):
 	if not done:
 		var count = collected
 		if count >= collect_amount:
-			finished.emit()
+			_finished()
 		elif Global.collectibles[collect_type] != last_amount:
 			last_amount = Global.collectibles[collect_type]
 			updated.emit()

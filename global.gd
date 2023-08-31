@@ -32,9 +32,6 @@ var collected_grids = {}
 func _ready():
 	assert(collectibles.size() == Collectible.values().size())
 
-func _process(delta):
-	pass
-
 func preprocess_bbcode(text: String) -> String:
 	return text.replace("[b]", "[color=#aa2a0e]").replace("[/b]", "[/color]").replace("\\n", "\n")
 
@@ -137,6 +134,20 @@ func is_quest_complete(qid: StringName):
 		return quest.done
 	else:
 		return false
+
+func get_quest_node(qid: StringName):
+	var q = get_quest(qid)
+	if q:
+		return q
+	var loaded_quests = get_node("/root/LoadedQuests")
+	for q2 in loaded_quests.get_children():
+		if q2.quest_id == qid:
+			return q2
+	if is_inside_tree():
+		q = get_tree().current_scene.get_node_or_null("Quests/" + str(qid))
+		if q:
+			return q
+	return null
 
 func respawn_scene():
 	if neko_world:

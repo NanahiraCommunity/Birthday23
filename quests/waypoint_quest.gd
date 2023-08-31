@@ -35,8 +35,8 @@ func start():
 	max = markers.size() - 1
 
 func _finished():
-	_ended()
 	super()
+	_ended()
 
 func _ended():
 	if marker:
@@ -55,4 +55,4 @@ func _body_entered(body: Node, i: int):
 	if body == Global.player:
 		current = max(current, i)
 		if i >= max:
-			finished.emit()
+			_finished()
