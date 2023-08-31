@@ -52,15 +52,15 @@ func switch_scene(scene):
 	tree.change_scene_to_packed(next)
 	await tree.process_frame # scene is adding now
 
-	var new_bgm = tree.current_scene.get_node_or_null("BGM")
-	if new_bgm and new_bgm.stream:
-		new_bgm.stop()
-		if new_bgm.stream != bgm.stream:
-			bgm.stream = new_bgm.stream
-			bgm.volume_db = new_bgm.volume_db
-			bgm.play()
-	else:
-		bgm.stop()
+#	var new_bgm = tree.current_scene.get_node_or_null("BGM")
+#	if new_bgm and new_bgm.stream:
+#		new_bgm.stop()
+#		if new_bgm.stream != bgm.stream:
+#			bgm.stream = new_bgm.stream
+#			bgm.volume_db = new_bgm.volume_db
+#			bgm.play()
+#	else:
+#		bgm.stop()
 
 	await tree.process_frame # first frame was rendered
 	await unfade_from_black()
