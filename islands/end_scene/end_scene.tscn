@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wsdvv")
+main_scene = "res://ui/main_menu.tscn"
 
 [node name="M" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,3 +50,10 @@ text = "[center]Credits[/center]
 
 [b][/b]"
 fit_content = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 78.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

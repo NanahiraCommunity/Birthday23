@@ -1,7 +1,7 @@
 extends Control
 
 const CREDITS = [
-	"Project Lead",
+	"Project Lead / ",
 	"\tWebFreak",
 	"",
 	"Character Lead",
@@ -62,6 +62,13 @@ const CREDITS = [
 	"CREDITS_HAPPY_BIRTHDAY",
 ]
 
+var _main_scene: String
+@export_file("*.tscn") var main_scene: String:
+	get:
+		return _main_scene
+	set(value):
+		_main_scene = value
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var end_label = $M/M/V/RichTextLabel
@@ -77,4 +84,7 @@ func _ready():
 	$M.position.y = get_viewport().get_window().size.y
 
 func _process(delta):
-	$M.position.y -= delta * 30
+	$M.position.y -= delta * 37
+
+func _on_timer_timeout():
+	get_tree().change_scene_to_file(_main_scene)
