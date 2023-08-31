@@ -1,7 +1,7 @@
 extends Control
 
 const CREDITS = [
-	"Project Lead / ",
+	"Project Lead",
 	"\tWebFreak",
 	"",
 	"Character Lead",
